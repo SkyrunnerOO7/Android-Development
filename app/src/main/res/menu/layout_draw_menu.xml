@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn = "navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/home_icon"
+            android:title="Home"/>
+    </group>
+
+    <item
+        android:title="Profile"
+
+        android:checkableBehavior="single">
+        <menu>
+            <item
+                android:id="@+id/nav_profile"
+                android:icon="@drawable/profile_icon"
+                android:title="My Account"/>
+
+        </menu>
+    </item>
+
+    <item
+        android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_Feedback"
+                android:icon="@drawable/feedback_icon"
+                android:title="FeedBack"/>
+
+            <item
+                android:id="@+id/nav_Rate"
+                android:icon="@drawable/rate_icon"
+                android:title="Rate Us"/>
+
+        </menu>
+    </item>
+
+    <item
+        android:title="Account">
+        <menu>
+            <item
+                android:id="@+id/nav_signout"
+                android:icon="@drawable/logout_icon"
+                android:title="Log Out"/>
+
+        </menu>
+    </item>
+
+
+
+</menu>
