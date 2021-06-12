@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:label="Support"
+    tools:context=".SupportActivity">
+
+
+    <TextView
+        android:id="@+id/txt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:fontFamily="@font/oxygen_bold"
+        android:gravity="center"
+        android:text="Are you facing any technical issue with CRM app?"
+        android:textColor="#072f5f"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/phone_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginVertical="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:backgroundTint="@color/md_white_1000"
+        android:text="call us"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+        android:textColor="#0189ff"
+        android:theme="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        app:icon="@drawable/phone_icon"
+        app:iconGravity="textStart"
+        app:iconSize="25dp"
+        app:iconTint="#0189ff"
+        app:layout_constraintEnd_toEndOf="@+id/txt1"
+        app:layout_constraintStart_toStartOf="@+id/txt1"
+        app:layout_constraintTop_toBottomOf="@+id/txt1"
+        app:strokeColor="#0189ff"
+        app:strokeWidth="2dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/mail_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginVertical="5dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:backgroundTint="@color/md_white_1000"
+        android:text="mail us"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+        android:textColor="#0189ff"
+        android:theme="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        app:icon="@drawable/email_icon"
+        app:iconGravity="textStart"
+        app:iconSize="25dp"
+        app:iconTint="#0189ff"
+        app:layout_constraintEnd_toEndOf="@+id/phone_btn"
+        app:layout_constraintStart_toStartOf="@+id/phone_btn"
+        app:layout_constraintTop_toBottomOf="@+id/phone_btn"
+        app:strokeColor="#0189ff"
+        app:strokeWidth="2dp" />
+
+    <TextView
+        android:id="@+id/txt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:fontFamily="@font/oxygen_bold"
+        android:gravity="center"
+        android:text="We ensure to fix your problem in 24-48 hrs"
+        android:textColor="#072f5f"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/txt3"
+        app:layout_constraintEnd_toEndOf="@+id/txt3"
+        app:layout_constraintStart_toStartOf="@+id/txt3" />
+
+    <TextView
+        android:id="@+id/txt3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginBottom="40dp"
+        android:gravity="center"
+        android:text="No system is ever perfect, we tried best to be avaliablewith you 99.5%.But we had to faced 2 downtime of 6 hours each this year"
+        android:textColor="#7A7272"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView222"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:contentDescription="@string/content_description"
+        app:layout_constraintBottom_toTopOf="@+id/txt2"
+        app:layout_constraintEnd_toEndOf="@+id/txt2"
+        app:layout_constraintStart_toStartOf="@+id/txt2"
+        app:layout_constraintTop_toBottomOf="@+id/mail_btn"
+        app:srcCompat="@drawable/app_icon_small" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
