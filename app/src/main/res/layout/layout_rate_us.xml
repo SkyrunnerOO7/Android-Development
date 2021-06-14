@@ -55,6 +55,8 @@
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
                     android:fontFamily="sans-serif"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
                     android:gravity="center"
                     android:text="@string/rate_us_note_text"
                     android:textSize="14sp" />
@@ -161,7 +163,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/rate_love_text"
+                    android:text="@string/rateusLovetext"
                     android:textSize="14sp"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"/>

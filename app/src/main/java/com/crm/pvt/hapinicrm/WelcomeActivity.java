@@ -7,6 +7,7 @@ import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class WelcomeActivity extends AppCompatActivity {
     Vibrator vibrator;
     Button WellcomACbtn;
+    TextView privacyBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +34,8 @@ public class WelcomeActivity extends AppCompatActivity {
         }
 
         vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
-
         WellcomACbtn = (Button)findViewById(R.id.welcomeAcBtn);
+        privacyBtn = (TextView) findViewById(R.id.privacyPolicyBtn);
 
         WellcomACbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +52,14 @@ public class WelcomeActivity extends AppCompatActivity {
 
                 startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
                 finish();
+            }
+        });
+
+        privacyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(WelcomeActivity.this, "Privacy Policy!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(WelcomeActivity.this, PrivacyPolicyActivity.class));
             }
         });
     }

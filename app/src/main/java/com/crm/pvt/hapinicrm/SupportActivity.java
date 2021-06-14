@@ -52,7 +52,7 @@ public class SupportActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("support@hapini.in"));
-                intent.putExtra(Intent.EXTRA_SUBJECT,"Feedback | Hapini CRM | Support");
+                intent.putExtra(Intent.EXTRA_SUBJECT,"Hapini CRM | Support");
                 intent.putExtra(Intent.EXTRA_TEXT,"I got some technical or other issues through hapini-CRM app! Describe problem...");
                 startActivity(intent);
 

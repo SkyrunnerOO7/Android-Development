@@ -104,6 +104,15 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        CreateAdminAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(LoginActivity.this, "Only Admin Create this Account!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(LoginActivity.this, RegisterdActivity.class));
+                finish();
+            }
+        });
+
     }
     private boolean validatePass(String password) {
         if(password.isEmpty()){
