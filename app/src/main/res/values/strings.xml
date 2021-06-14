@@ -38,4 +38,18 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">close navigation drawer</string>
 
+
+    <!-- String use in Add New Employee Sheet-->
+    <string name="Hint_device_bulid_number">Device Bulid Number</string>
+    <string name="add_new_emp">Add New Employee</string>
+    <string name="i_accept">I Accepts</string>
+    <string name="terms"><![CDATA[T&C]]></string>
+
+    <string-array name="Spinner_item">
+        <item>Choose Category</item>
+        <item>Admin</item>
+        <item>Employee</item>
+        <item>Developers</item>
+    </string-array>
+
 </resources>

@@ -31,6 +31,11 @@ public class DeveloperActivity extends AppCompatActivity {
         Eight = (TextView)findViewById(R.id.eight);
         Nine = (TextView)findViewById(R.id.nine);
 
+        // CALL getInternetStatus() function to check for internet and display error dialog
+        if(new InternetDialog(getApplicationContext()).getInternetStatus()){
+            //   Toast.makeText(getContext(), "INTERNET VALIDATION PASSED", Toast.LENGTH_SHORT).show();
+        }
+
         One.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

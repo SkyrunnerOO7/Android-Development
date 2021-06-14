@@ -30,6 +30,11 @@ public class SupportActivity extends AppCompatActivity {
         setContentView(R.layout.activity_support);
         getSupportActionBar().setTitle("Support");
 
+        // CALL getInternetStatus() function to check for internet and display error dialog
+        if(new InternetDialog(getApplicationContext()).getInternetStatus()){
+            //   Toast.makeText(getContext(), "INTERNET VALIDATION PASSED", Toast.LENGTH_SHORT).show();
+        }
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         phone = findViewById(R.id.phone_btn);
