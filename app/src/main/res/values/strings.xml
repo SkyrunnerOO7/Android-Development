@@ -2,7 +2,6 @@
     <string name="app_name">hapini CRM</string>
     <string name="content_description">Developer: Kuldeep Sahu</string>
 
-    <!--String use in Login Activity  -->
     <string name="register">REGISTER</string>
     <string name="login_email_hint">Create password</string>
     <string name="login_password_hint">Confirm password</string>
@@ -12,7 +11,6 @@
     <string name="login_name_tandc">Accept all T&amp;C</string>
     <string name="login_mobile_number_hint">E-mail</string>
 
-    <!--String use in Main Activity/Splash Activity  -->
     <string name="hapini">hapini</string>
     <string name="crm">CRM</string>
     <string name="made_in_india">Proudly Made In India</string>
@@ -20,12 +18,10 @@
     <string name="copyright">Copyright©|</string>
     <string name="hapini_site">hapini.in</string>
 
-    <!--String use in Wellcome Activity  -->
     <string name="welcome">Welcome</string>
     <string name="letstart">Let get started...</string>
     <string name="signOrCreate">Sign in or Create</string>
 
-    <!--String use in Registerd Activity  -->
     <string name="Create_your_EmployeeAC">Create an Admin account!</string>
     <string name="fullName">Full name</string>
     <string name="Email">E-mail</string>
@@ -34,17 +30,26 @@
     <string name="CFP">Confirm Password</string>
     <string name="verify">Verify</string>
     <string name="alreadySignIn">Already have a account? Sign In?</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
     <!--String use in admin Dashboard  -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">close navigation drawer</string>
 
-    <!--String use in Feed back Activity  -->
-    <string name="feedback_note_text">Do you have a suggestion or found some bug? Let us know in the field bellow.</string>
 
-    <!--String use in Rate Us Activity  -->
-    <string name="rate_us_note_text">We work super hard to make hapini-CRM better for you, and would love to know: How would you rate our app?</string>
-    <string name="rate_love_text">Love form the hapini-CRM team.</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- String use in Add New Employee Sheet-->
+    <string name="Hint_device_bulid_number">Device Bulid Number</string>
+    <string name="add_new_emp">Add New Employee</string>
+    <string name="i_accept">I Accepts</string>
+    <string name="terms"><![CDATA[T&C]]></string>
+
+    <string-array name="Spinner_item">
+        <item>Choose Category</item>
+        <item>Admin</item>
+        <item>Employee</item>
+        <item>Developers</item>
+    </string-array>
+
 </resources>

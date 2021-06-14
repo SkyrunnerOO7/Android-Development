@@ -41,6 +41,7 @@
             android:id="@+id/spinner_login"
             style="@style/modifiedEditText"
             android:layout_width="match_parent"
+            android:entries="@array/Spinner_item"
             android:layout_height="match_parent"
             android:spinnerMode="dialog" />
 
