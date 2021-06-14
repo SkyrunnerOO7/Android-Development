@@ -168,6 +168,7 @@
                             app:cardCornerRadius="16dp">
 
                             <LinearLayout
+                                android:id="@+id/add_user"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
@@ -219,6 +220,7 @@
                                 android:orientation="vertical"
                                 android:layout_margin="3dp"
                                 android:layout_gravity="center"
+                                android:id="@+id/active_user"
                                 android:gravity="center"
                                 android:weightSum="2">
 
@@ -280,6 +282,7 @@
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
                                 android:layout_margin="3dp"
+                                android:id="@+id/add_data"
                                 android:layout_gravity="center"
                                 android:gravity="center"
                                 android:weightSum="2">
@@ -324,9 +327,11 @@
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
                                 android:layout_margin="3dp"
+                                android:id="@+id/construction"
                                 android:layout_gravity="center"
                                 android:gravity="center"
-                                android:weightSum="2">
+                                android:weightSum="2"
+                                tools:ignore="InvalidId">
 
                                 <ImageView
                                     android:layout_width="wrap_content"
