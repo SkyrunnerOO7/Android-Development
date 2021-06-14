@@ -16,5 +16,10 @@ public class RegisterdActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registerd);
+        // CALL getInternetStatus() function to check for internet and display error dialog
+        if(new InternetDialog(getApplicationContext()).getInternetStatus()){
+            //   Toast.makeText(getContext(), "INTERNET VALIDATION PASSED", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }

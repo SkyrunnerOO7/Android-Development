@@ -19,6 +19,12 @@ public class fragment_admin_dashboard extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
+        // CALL getInternetStatus() function to check for internet and display error dialog
+        if(new InternetDialog(getContext()).getInternetStatus()){
+            //   Toast.makeText(getContext(), "INTERNET VALIDATION PASSED", Toast.LENGTH_SHORT).show();
+        }
+
         return inflater.inflate(R.layout.fragment_admin_dashboard, container, false);
     }
 }

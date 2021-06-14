@@ -22,6 +22,11 @@ public class WebViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view);
 
+        // CALL getInternetStatus() function to check for internet and display error dialog
+        if(new InternetDialog(getApplicationContext()).getInternetStatus()){
+            //   Toast.makeText(getContext(), "INTERNET VALIDATION PASSED", Toast.LENGTH_SHORT).show();
+        }
+
         web = (WebView)findViewById(R.id.web_view);
 
         WebSettings webSettings = web.getSettings();

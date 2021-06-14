@@ -321,4 +321,9 @@
     <color name="md_blue_grey_900">#263238</color>
     <!--_____________________________________________-->
 
+
+    <!-- List by Priyanshu Gupta-->
+    <color name="navy_blue">#072F5F</color>
+    <color name="royal_blue">#0189ff</color>
+
 </resources>

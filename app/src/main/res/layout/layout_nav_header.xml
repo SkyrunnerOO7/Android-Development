@@ -58,7 +58,6 @@
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
         android:text="abc@gmail.com"
-        android:textAlignment=""
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
 

@@ -26,6 +26,11 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
+        // CALL getInternetStatus() function to check for internet and display error dialog
+        if(new InternetDialog(getApplicationContext()).getInternetStatus()){
+            //   Toast.makeText(getContext(), "INTERNET VALIDATION PASSED", Toast.LENGTH_SHORT).show();
+        }
+
         vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
 
         WellcomACbtn = (Button)findViewById(R.id.welcomeAcBtn);
