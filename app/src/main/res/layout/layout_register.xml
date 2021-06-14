@@ -34,12 +34,15 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/adminpasscode"
         style="@style/parent"
+        android:layout_height="50dp"
         android:layout_marginTop="@dimen/loginViewsMargin">
 
         <EditText
             android:id="@+id/passcodeinputadmin"
             style="@style/modifiedEditText"
             android:hint="@string/PassCode"
+            android:text="16sp"
+            android:layout_height="50dp"
             android:inputType="textPassword"
             android:maxLines="1"/>
     </com.google.android.material.textfield.TextInputLayout>
@@ -47,12 +50,15 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputName"
         style="@style/parent"
+        android:layout_height="50dp"
         android:layout_marginTop="@dimen/loginViewsMargin">
 
         <EditText
             android:id="@+id/editTextName"
             style="@style/modifiedEditText"
             android:hint="@string/fullName"
+            android:layout_height="50dp"
+            android:textSize="16sp"
             android:inputType="textPersonName"
             android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -73,6 +79,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputEmail"
         style="@style/parent"
+        android:layout_height="50dp"
         android:layout_marginTop="@dimen/loginViewsMargin">
 
         <EditText
@@ -80,18 +87,23 @@
             style="@style/modifiedEditText"
             android:hint="@string/login_email_hint"
             android:inputType="textPassword"
+            android:layout_height="50dp"
+            android:textSize="16sp"
             android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputPassword"
         style="@style/parent"
+        android:layout_height="50dp"
         android:layout_marginTop="@dimen/loginViewsMargin">
 
         <EditText
             android:id="@+id/editTextPassword_login"
             style="@style/modifiedEditText"
             android:hint="@string/login_password_hint"
+            android:layout_height="50dp"
+            android:textSize="16sp"
             android:inputType="textPassword"
             android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>

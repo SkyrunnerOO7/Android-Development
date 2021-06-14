@@ -1,5 +1,6 @@
 package com.crm.pvt.hapinicrm;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,12 +8,15 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Telephony;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.sun.mail.imap.protocol.INTERNALDATE;
+
 /**
  * Created by Kuldeep Sahu on 04/06/2021.
  * E-mail: sahukuldeep912001@gmail.com
@@ -100,6 +104,13 @@ public class AdminDashboardActivity extends AppCompatActivity implements Navigat
                 //add Home fragment
                 Toast.makeText(this, "Sign Out|under construction", Toast.LENGTH_SHORT).show();
                 break;
+
+            case R.id.nav_copyright:
+                //add Home fragment
+                Toast.makeText(this, "Hapini.in", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(),WebViewActivity.class));
+                break;
+
         }
 
         drawer.closeDrawer(GravityCompat.START);

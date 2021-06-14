@@ -50,9 +50,9 @@ public class fragment_feedback extends Fragment {
                 javaMailAPI.execute();*/
 
                 if(message.isEmpty()) {
-                    desc.setError("invalid text");
+                    desc.setError("please enter a text");
                 }else{
-                    Toast.makeText(container.getContext(), "clicked", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(container.getContext(), "Successfully send", Toast.LENGTH_SHORT).show();
                 }
             }
         });

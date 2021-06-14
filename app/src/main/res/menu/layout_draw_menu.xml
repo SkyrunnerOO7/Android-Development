@@ -54,9 +54,18 @@
         android:title="Account">
         <menu>
             <item
-                android:id="@+id/nav_signout"
-                android:icon="@drawable/logout_icon"
-                android:title="Log Out"/>
+                android:id="@+id/nav_copyright"
+                android:icon="@drawable/copyright_icon"
+                android:title="Hapini.in"
+                />
+
+            <item
+            android:id="@+id/nav_signout"
+            android:icon="@drawable/logout_icon"
+            android:title="Log Out"
+            />
+
+
 
         </menu>
     </item>

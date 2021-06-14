@@ -44,7 +44,7 @@ public class fragment_rate_us extends Fragment {
             @Override
             public void onClick(View view) {
                 String to="abc@gmail.com";
-                String subject="";
+                String subject="Hapini CRM|Rate Us";
                 String message= desc;
                 String num_rate = String.valueOf(ratingbar.getRating());
 
@@ -52,8 +52,9 @@ public class fragment_rate_us extends Fragment {
                 Intent email = new Intent(Intent.ACTION_SEND);
                 email.putExtra(Intent.EXTRA_EMAIL, new String[]{ to});
                 email.putExtra(Intent.EXTRA_SUBJECT, subject);
-                email.putExtra(Intent.EXTRA_TEXT, message);
                 email.putExtra(Intent.EXTRA_TEXT, num_rate);
+                email.putExtra(Intent.EXTRA_TEXT, message);
+
 
                 //need this to prompts email client only
                 email.setType("message/rfc822");
