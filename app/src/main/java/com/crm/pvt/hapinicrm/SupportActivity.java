@@ -46,9 +46,9 @@ public class SupportActivity extends AppCompatActivity {
         mail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("rafalestudio2020@gmail.com"));
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("support@hapini.in"));
                 intent.putExtra(Intent.EXTRA_SUBJECT,"Feedback | Hapini CRM | Support");
-                intent.putExtra(Intent.EXTRA_TEXT,"I got some technical or other issues through this app! Describe problem...");
+                intent.putExtra(Intent.EXTRA_TEXT,"I got some technical or other issues through hapini-CRM app! Describe problem...");
                 startActivity(intent);
 
             }
@@ -62,7 +62,7 @@ public class SupportActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(SupportActivity.this,new String[] {Manifest.permission.CALL_PHONE},callrequest);
 
         }else{
-            String s = "tel: 180030000123";
+            String s = "tel: 9794899312";
             Intent pI = new Intent(Intent.ACTION_CALL);
             pI.setData(Uri.parse(s));
             startActivity(pI);

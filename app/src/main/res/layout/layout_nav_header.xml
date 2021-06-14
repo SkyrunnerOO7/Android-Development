@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="176dp"
+    android:layout_height="200dp"
     android:background="@drawable/gradient_drawable_menu"
     android:gravity="bottom"
+    android:orientation="vertical"
     android:padding="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
@@ -17,12 +17,12 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/shape_admin_image"
-            />
+            android:background="@drawable/shape_admin_image" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:orientation="vertical"
             android:padding="5dp">
 
@@ -30,24 +30,26 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="8dp"
+                android:fontFamily="@font/oxygen_bold"
                 android:paddingLeft="20dp"
-                android:text="abc"
+                android:paddingTop="8dp"
+                android:text="Muthu Swami Aiyar"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                />
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="8dp"
                 android:paddingLeft="20dp"
+                android:paddingTop="8dp"
                 android:text="Admin"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                />
+                android:textColor="@color/whiteCardColor"
+                android:textSize="15sp" />
 
 
         </LinearLayout>
-
 
 
     </LinearLayout>
@@ -56,15 +58,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:text="abc@gmail.com"
-        android:textAlignment=""
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
-
-
-
-
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:fontFamily="@font/oxygen_bold"
+        android:gravity="center"
+        android:text="muthuswami729@gmail.com"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="14sp"
+        android:textStyle="bold" />
 
 
 </LinearLayout>

@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:focusableInTouchMode="true"
+    android:background="@color/whiteCardColor"
+    android:id="@+id/home_fragment"
     tools:context=".fragment_admin_dashboard">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -105,8 +107,10 @@
                         android:layout_height="125dp"
                         android:layout_gravity="center"
                         android:layout_margin="10dp"
+                        android:background="@android:color/transparent"
                         android:contentDescription="@string/content_description"
-                        android:src="@drawable/app_icon" />
+                        android:src="@drawable/app_icon"
+                        app:srcCompat="@drawable/app_icon_remove_bg" />
 
                 </LinearLayout>
 

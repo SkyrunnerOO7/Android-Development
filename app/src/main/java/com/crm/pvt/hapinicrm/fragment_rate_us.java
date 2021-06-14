@@ -13,15 +13,12 @@ import android.view.ViewGroup;
  * E-mail: sahukuldeep912001@gmail.com
  * http://skywarrior09.gq
  */
-
-
-public class fragment_feedback extends Fragment {
+public class fragment_rate_us extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_feedback, container, false);
+        return inflater.inflate(R.layout.fragment_rate_us, container, false);
     }
-
 }

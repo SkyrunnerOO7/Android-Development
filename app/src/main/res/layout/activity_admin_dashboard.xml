@@ -4,44 +4,46 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:id="@+id/drawer_layout"
     android:fitsSystemWindows="true"
-    android:layout_height="match_parent"
-    tools:context=".AdminDashboardActivity"
-
-    >
+    tools:openDrawer="start"
+    tools:context=".AdminDashboardActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#072f5f"
+            android:background="@drawable/gradient_drawable_menu"
             android:id="@+id/Menu_toolbar"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-        </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.MaterialToolbar>
 
         <FrameLayout
-            android:id="@+id/frag"
+            android:id="@+id/fragment_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent">
+
+            <include layout="@layout/fragment_home_blank" />
+
+        </FrameLayout>
+
+
 
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
-        android:layout_width="wrap_content"
+        android:layout_width="330dp"
         android:layout_height="match_parent"
-        android:layout_marginTop="40dp"
         android:layout_gravity = "start"
         android:id="@+id/nav_view"
         app:headerLayout="@layout/layout_nav_header"
-        app:menu="@menu/layout_draw_menu"
-        android:layout_marginBottom="20dp"/>
+        app:menu="@menu/layout_draw_menu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

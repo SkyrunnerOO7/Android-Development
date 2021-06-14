@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
  */
 
 public class DeveloperActivity extends AppCompatActivity {
-    TextView One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten;
+    TextView One, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten, Eleven, Twelve, Thirteen, Fourteen, Fifteen, Sixteen, Seventeen, Eighteen, Ninteen, Twenty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +30,9 @@ public class DeveloperActivity extends AppCompatActivity {
         Seven = (TextView)findViewById(R.id.seven);
         Eight = (TextView)findViewById(R.id.eight);
         Nine = (TextView)findViewById(R.id.nine);
+        Ten = (TextView)findViewById(R.id.ten);
+        Eleven = (TextView)findViewById(R.id.eleven);
+        Twelve = (TextView)findViewById(R.id.twelve);
 
         One.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +93,7 @@ public class DeveloperActivity extends AppCompatActivity {
         Nine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(DeveloperActivity.this, fragment_feedback.class));
+                startActivity(new Intent(DeveloperActivity.this, AdminDashboardActivity.class));
             }
         });
 
