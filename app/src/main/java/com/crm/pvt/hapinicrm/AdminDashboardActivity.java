@@ -1,5 +1,6 @@
 package com.crm.pvt.hapinicrm;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,12 +8,15 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Telephony;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.sun.mail.imap.protocol.INTERNALDATE;
+
 /**
  * Created by Kuldeep Sahu on 04/06/2021.
  * E-mail: sahukuldeep912001@gmail.com
@@ -42,10 +46,13 @@ public class AdminDashboardActivity extends AppCompatActivity implements Navigat
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        navigationView.setNavigationItemSelectedListener(this);
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, new fragment_admin_dashboard())
-                .commit();
+        if(savedInstanceState==null){
+            navigationView.setNavigationItemSelectedListener(this);
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new fragment_admin_dashboard())
+                    .commit();
+            navigationView.setCheckedItem(R.id.nav_home);
+        }
 
     }
 
@@ -54,7 +61,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements Navigat
         if(drawer.isDrawerOpen(GravityCompat.START)){
             drawer.closeDrawer(GravityCompat.START);
         }else{
-            super.onBackPressed();
+            finish();
         }
 
 
@@ -69,6 +76,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements Navigat
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, new fragment_admin_dashboard())
                         .commit();
+
                 break;
 
             case R.id.nav_profile:
@@ -81,6 +89,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements Navigat
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, new fragment_feedback())
                         .commit();
+
                 break;
 
             case R.id.nav_Rate:
@@ -88,12 +97,20 @@ public class AdminDashboardActivity extends AppCompatActivity implements Navigat
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, new fragment_rate_us())
                         .commit();
+
                 break;
 
             case R.id.nav_signout:
                 //add Home fragment
                 Toast.makeText(this, "Sign Out|under construction", Toast.LENGTH_SHORT).show();
                 break;
+
+            case R.id.nav_copyright:
+                //add Home fragment
+                Toast.makeText(this, "Hapini.in", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(),WebViewActivity.class));
+                break;
+
         }
 
         drawer.closeDrawer(GravityCompat.START);

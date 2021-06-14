@@ -16,5 +16,6 @@ public class Error404Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_error404);
+        getSupportActionBar().hide();
     }
 }

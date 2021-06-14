@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setTitle(null);
+        getSupportActionBar().hide();
 
         vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
 

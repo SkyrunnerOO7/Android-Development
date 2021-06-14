@@ -23,6 +23,7 @@ public class RegisterdActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registerd);
+        getSupportActionBar().hide();
 
         // CALL getInternetStatus() function to check for internet and display error dialog
         if(new InternetDialog(getApplicationContext()).getInternetStatus()){

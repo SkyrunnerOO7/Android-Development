@@ -20,6 +20,7 @@ public class DeveloperActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_developer);
+        getSupportActionBar().hide();
 
         One = (TextView)findViewById(R.id.one);
         Two = (TextView)findViewById(R.id.two);
