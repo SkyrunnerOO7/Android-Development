@@ -1,79 +1,78 @@
 package com.crm.pvt.hapinicrm;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-// Created by Priyanshu Gupta on June 12
-
-public class BottonSheetAddEmployeeActivity extends BottomSheetDialogFragment {
+public class Add_new_employee_activity extends AppCompatActivity {
 
     private TextInputEditText build_number;
     private Button add;
     private CheckBox checkBox;
     private TextInputEditText email;
     private TextInputEditText pass;
-    private TextView terms;
+    private TextInputEditText conf_pass;
 
-    public BottonSheetAddEmployeeActivity(){
-
-    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.activity_botton_sheet_add_employee, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_add_new_employee);
 
         // CALL getInternetStatus() function to check for internet and display error dialog
-        if(new InternetDialog(getContext()).getInternetStatus()){
-         //   Toast.makeText(getContext(), "INTERNET VALIDATION PASSED", Toast.LENGTH_SHORT).show();
+        if(new InternetDialog(getApplicationContext()).getInternetStatus()){
+            //   Toast.makeText(getContext(), "INTERNET VALIDATION PASSED", Toast.LENGTH_SHORT).show();
         }
 
-        build_number = v.findViewById(R.id.bulid_number);
-        email = v.findViewById(R.id.Email);
-        pass = v.findViewById(R.id.password);
-        checkBox = v.findViewById(R.id.checkbox);
+        build_number = findViewById(R.id.bulid_number);
+        email = findViewById(R.id.Email);
+        pass = findViewById(R.id.password);
+        checkBox = findViewById(R.id.checkbox);
+        conf_pass = findViewById(R.id.confirm_password);
 
-        add = v.findViewById(R.id.add_emp);
+        add = findViewById(R.id.add_emp);
         add.setOnClickListener(view -> {
             String Email = email.getText().toString();
             String password = pass.getText().toString();
             String build_num = build_number.getText().toString();
+            String confirm_pass = conf_pass.getText().toString();
 
-            if(validateEmail(Email) && validatePass(password) && validateBuild(build_num)){
-                if(checkBox.isChecked())
-                Toast.makeText(getContext(),"Successfully Added",Toast.LENGTH_LONG).show();
+            if(validateBuild(build_num) && validateEmail(Email) && validatePass(password)){
+                if(checkBox.isChecked()) {
+                    if (password.contentEquals(confirm_pass)) {
+                        Toast.makeText(getApplicationContext(), "Successfully Added", Toast.LENGTH_LONG).show();
+                    }
+                    else{
+                        conf_pass.setError("Password don't matches");
+                    }
+                }
                 else
                     checkBox.setError("Please Accepts All T&C");
             }
 
         });
 
-        terms = v.findViewById(R.id.terms);
-        terms.setOnClickListener(view -> {
-            Toast.makeText(getContext(),"You Clicked on Terms and Conditions",Toast.LENGTH_LONG).show();
-        });
 
 
-
-        return v;
     }
+
     private boolean validateBuild(String build_num) {
         if(build_num.isEmpty()){
             build_number.setError("Field can't be Empty");
+            return false;
+        }
+
+        if(build_num.length() != 15){
+            build_number.setError("Wrong IMEI Number");
             return false;
         }
         return true;
