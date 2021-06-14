@@ -14,20 +14,16 @@ import android.view.ViewGroup;
  * http://skywarrior09.gq
  */
 
+public class fragment_home_blank extends Fragment {
 
-public class fragment_feedback extends Fragment {
+    public fragment_home_blank() {
+        // Required empty public constructor
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        // CALL getInternetStatus() function to check for internet and display error dialog
-        if(new InternetDialog(getContext()).getInternetStatus()){
-            //   Toast.makeText(getContext(), "INTERNET VALIDATION PASSED", Toast.LENGTH_SHORT).show();
-        }
-
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_feedback, container, false);
+        return inflater.inflate(R.layout.fragment_home_blank, container, false);
     }
-
 }

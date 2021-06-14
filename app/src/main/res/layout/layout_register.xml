@@ -105,13 +105,14 @@
         android:text="@string/login_name_tandc" />
 
     <Button
-        android:id="@+id/cirLoginButton_login"
+        android:id="@+id/sign_up_btn"
         style="@style/loginButton"
         android:layout_gravity="right"
         android:layout_marginTop="@dimen/loginViewsMargin"
         android:text="Signup" />
 
     <TextView
+        android:id="@+id/already_have_ac_signIn"
         style="@style/parent"
         android:layout_marginTop="@dimen/loginViewsMargin"
         android:gravity="end"

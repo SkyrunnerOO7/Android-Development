@@ -11,9 +11,10 @@
 
         />
 
+
     <gradient
-        android:endColor="@color/md_amber_300"
-        android:startColor="@color/colorAccent"
+        android:endColor="@color/md_green_500"
+        android:startColor="@color/md_cyan_900"
         />
     <size
         android:width="100dp"

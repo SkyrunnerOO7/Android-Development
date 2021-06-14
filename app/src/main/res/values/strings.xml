@@ -30,14 +30,19 @@
     <string name="CFP">Confirm Password</string>
     <string name="verify">Verify</string>
     <string name="alreadySignIn">Already have a account? Sign In?</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
     <!--String use in admin Dashboard  -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">close navigation drawer</string>
 
+
+    <!--String use in Feedback Activity-->
+    <string name="feedback_note_text">Do you have a suggestion or found some bug? Let us know in the field bellow.</string>
+
+    <!--String use in RateUs Activity-->
+    <string name="rate_us_note_text">We work super hard to make hapiniCRM better for you, and would love to know: How would you rate our app?</string>
+    <string name="rateusLovetext">Love form hapini CRM</string>
 
     <!-- String use in Add New Employee Sheet-->
     <string name="Hint_device_bulid_number">Device Bulid Number</string>

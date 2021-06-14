@@ -15,8 +15,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HapiniCRM">
-        <activity android:name=".AdminDashboardActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".PrivacyPolicyActivity"></activity>
+        <activity
+            android:name=".AdminDashboardActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".DeveloperActivity" />
         <activity android:name=".SupportActivity" />
         <activity android:name=".WebViewActivity" />
@@ -37,13 +39,5 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-
-    <!--Main Project | hapiniCRM | Kuldeep Sahu-->
-    <!--Change hai bhai-->
-    <!--Punit pawar-->
-    <!--Rohan -->
-    <!--Kuldeep -->
-    <!-- Priyanshu -->
-    <!--new comment from kuldeep-->
 
 </manifest>

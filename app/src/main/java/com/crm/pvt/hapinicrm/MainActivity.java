@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setTitle(null);
 
         vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
 
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
                 finish();
             }
-        }, 5000);
+        }, 2000);
 
     }
 }
