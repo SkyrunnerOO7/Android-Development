@@ -14,6 +14,7 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_privacy_policy);
+        getSupportActionBar().hide();
 
         backBtnPrivacyAc = (ImageView)findViewById(R.id.back_arrow_btn_privacyPolicyAc);
 

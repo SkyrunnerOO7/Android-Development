@@ -21,6 +21,7 @@ public class WebViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view);
+        getSupportActionBar().hide();
 
         // CALL getInternetStatus() function to check for internet and display error dialog
         if(new InternetDialog(getApplicationContext()).getInternetStatus()){

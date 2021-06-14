@@ -42,10 +42,13 @@ public class AdminDashboardActivity extends AppCompatActivity implements Navigat
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        navigationView.setNavigationItemSelectedListener(this);
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, new fragment_admin_dashboard())
-                .commit();
+        if(savedInstanceState==null){
+            navigationView.setNavigationItemSelectedListener(this);
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new fragment_admin_dashboard())
+                    .commit();
+            navigationView.setCheckedItem(R.id.nav_home);
+        }
 
     }
 
@@ -54,7 +57,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements Navigat
         if(drawer.isDrawerOpen(GravityCompat.START)){
             drawer.closeDrawer(GravityCompat.START);
         }else{
-            super.onBackPressed();
+            finish();
         }
 
 
@@ -69,6 +72,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements Navigat
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, new fragment_admin_dashboard())
                         .commit();
+
                 break;
 
             case R.id.nav_profile:
@@ -81,6 +85,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements Navigat
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, new fragment_feedback())
                         .commit();
+
                 break;
 
             case R.id.nav_Rate:
@@ -88,6 +93,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements Navigat
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, new fragment_rate_us())
                         .commit();
+
                 break;
 
             case R.id.nav_signout:

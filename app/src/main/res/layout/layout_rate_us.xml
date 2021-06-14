@@ -72,56 +72,13 @@
                 android:gravity="center"
                 android:background="@color/whiteCardColor">
 
-                <LinearLayout
+                <RatingBar
+                    android:id="@+id/ratingBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:weightSum="5"
-                    android:layout_margin="10dp"
-                    android:focusableInTouchMode="true">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="3dp"
-                        android:src="@drawable/star_iocn"
-                        android:contentDescription="@string/content_description"
-                        android:focusableInTouchMode="true" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="3dp"
-                        android:src="@drawable/star_iocn"
-                        android:contentDescription="@string/content_description"
-                        android:focusableInTouchMode="true" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="3dp"
-                        android:src="@drawable/star_iocn"
-                        android:contentDescription="@string/content_description"
-                        android:focusableInTouchMode="true" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="3dp"
-                        android:src="@drawable/star_iocn"
-                        android:contentDescription="@string/content_description"
-                        android:focusableInTouchMode="true" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="3dp"
-                        android:src="@drawable/star_iocn"
-                        android:contentDescription="@string/content_description"
-                        android:focusableInTouchMode="true" />
-
-                </LinearLayout>
+                    android:numStars="5"
+                    android:stepSize="0.5"
+                    />
 
                 <EditText
                     android:id="@+id/description_box_of_rate_us"
