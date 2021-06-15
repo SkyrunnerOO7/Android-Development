@@ -51,6 +51,10 @@ dependencies {
     implementation files('libs/additionnal.jar')
     implementation files('libs/mail.jar')
 
+
+    // For Country Picker
+    implementation 'com.github.joielechong:countrycodepicker:2.4.2'
+
     // for database
     def room_version = "2.3.0"
 

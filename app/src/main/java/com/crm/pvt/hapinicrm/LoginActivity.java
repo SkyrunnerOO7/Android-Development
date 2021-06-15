@@ -55,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
+
         // CALL getInternetStatus() function to check for internet and display error dialog
         if (new InternetDialog(getApplicationContext()).getInternetStatus()) {
             //   Toast.makeText(getContext(), "INTERNET VALIDATION PASSED", Toast.LENGTH_SHORT).show();
