@@ -1,9 +1,12 @@
-package com.crm.pvt.hapinicrm;
+package com.crm.pvt.hapinicrm.models;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
+
+import com.crm.pvt.hapinicrm.models.Utils;
+
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;

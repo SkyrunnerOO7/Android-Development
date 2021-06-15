@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.crm.pvt.hapinicrm.models.DBhelper;
+
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.regex.Matcher;
@@ -30,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     CheckBox LoginCheckBox;
     Button LoginButton;
     TextView CreateAdminAccount;
+    DBhelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,18 +41,22 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         LoginSpinner = findViewById(R.id.spinner_login);
-        LoginEmail =  findViewById(R.id.editTextEmail_login);
-        LoginPassword =  findViewById(R.id.editTextPassword_login);
-        LoginCheckBox =  findViewById(R.id.checkBox_loginAC);
-        LoginButton =  findViewById(R.id.cirLoginButton_login);
-        CreateAdminAccount =  findViewById(R.id.I_am_admin_login);
+        LoginEmail = findViewById(R.id.editTextEmail_login);
+        LoginPassword = findViewById(R.id.editTextPassword_login);
+        LoginCheckBox = findViewById(R.id.checkBox_loginAC);
+        LoginButton = findViewById(R.id.cirLoginButton_login);
+        CreateAdminAccount = findViewById(R.id.I_am_admin_login);
 
-//        String StrLoginEmail, StrLoginPassword;
-//        StrLoginEmail = (String)LoginEmail.getText().toString();
-//        StrLoginPassword = (String)LoginPassword.getText().toString();
+        db = new DBhelper(this);
+        String StrLoginEmail, StrLoginPassword;
+        StrLoginEmail = (String) LoginEmail.getText().toString();
+        StrLoginPassword = (String) LoginPassword.getText().toString();
+
+
+
 
         // CALL getInternetStatus() function to check for internet and display error dialog
-        if(new InternetDialog(getApplicationContext()).getInternetStatus()){
+        if (new InternetDialog(getApplicationContext()).getInternetStatus()) {
             //   Toast.makeText(getContext(), "INTERNET VALIDATION PASSED", Toast.LENGTH_SHORT).show();
         }
 
@@ -65,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
-        
+
         LoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -73,35 +80,40 @@ public class LoginActivity extends AppCompatActivity {
                 String StrLoginPassword = LoginPassword.getText().toString();
 
                 // For Admin
-                if(validateEmail(StrLoginEmail) && validatePass(StrLoginPassword) && choose_category[0].contentEquals("Admin")) {
-                    if (LoginCheckBox.isChecked()) {
-                        startActivity(new Intent(LoginActivity.this, AdminDashboardActivity.class));
+                if (validateEmail(StrLoginEmail) && validatePass(StrLoginPassword) && choose_category[0].contentEquals("Admin")) {
+                    if(db.checkAdminpasword(StrLoginEmail,StrLoginPassword)){
+                        if (LoginCheckBox.isChecked()) {
+                            startActivity(new Intent(LoginActivity.this, AdminDashboardActivity.class));
+                        } else
+                            Toast.makeText(LoginActivity.this, "Something wrong ", Toast.LENGTH_SHORT).show();
                     }
-                    else
-                        LoginCheckBox.setError("Please Accepts All T&C");
+                }else{
+                    LoginCheckBox.setError("Please check the box");
                 }
 
                 // For Employee
-                if(validateEmail(StrLoginEmail) && validatePass(StrLoginPassword) && choose_category[0].contentEquals("Employee")) {
-                    if (LoginCheckBox.isChecked()) {
-                        Toast.makeText(getApplicationContext(),"Under Constrution",Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(LoginActivity.this, Error404Activity.class));
-                        finish();
+                if (validateEmail(StrLoginEmail) && validatePass(StrLoginPassword) && choose_category[0].contentEquals("Employee")) {
+                    if(db.checkEmpoyeepasword(StrLoginEmail,StrLoginPassword)){
+                        if (LoginCheckBox.isChecked()) {
+                            startActivity(new Intent(LoginActivity.this, Error404Activity.class));
+                        } else
+                            Toast.makeText(LoginActivity.this, "Something wrong ", Toast.LENGTH_SHORT).show();
                     }
-                    else
-                        LoginCheckBox.setError("Please Accepts All T&C");
+                }else{
+                    LoginCheckBox.setError("Please check the box");
                 }
 
                 // For Developers
-                if(StrLoginEmail.contentEquals("test123@gmail.com") && StrLoginPassword.contentEquals("Test@123") && choose_category[0].contentEquals("Developers")) {
-                    if (LoginCheckBox.isChecked()) {
-
-                        startActivity(new Intent(LoginActivity.this, DeveloperActivity.class));
+                if (validateEmail(StrLoginEmail) && validatePass(StrLoginPassword) && choose_category[0].contentEquals("Developers")) {
+                    if(db.checkEmpoyeepasword(StrLoginEmail,StrLoginPassword)){
+                        if (LoginCheckBox.isChecked()) {
+                            startActivity(new Intent(LoginActivity.this, DeveloperActivity.class));
+                        } else
+                            Toast.makeText(LoginActivity.this, "Something wrong ", Toast.LENGTH_SHORT).show();
                     }
-                    else
-                        LoginCheckBox.setError("Please Accepts All T&C");
+                }else{
+                    LoginCheckBox.setError("Please check the box");
                 }
-
             }
         });
 
@@ -115,72 +127,72 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
+
     private boolean validatePass(String password) {
-        if(password.isEmpty()){
+
+
+
+        if (password.isEmpty()) {
             LoginPassword.setError("Field can't be Empty");
             return false;
         }
         String[] regex = {".*\\d+.*"
-                , ".*[a-z].*",".*[A-Z].*"
+                , ".*[a-z].*", ".*[A-Z].*"
                 , ".*[@#$%^&+=].*"
-                , ".*/\\s/.*",".{8,20}.*"};
+                , ".*/\\s/.*", ".{8,20}.*"};
         Pattern pattern;
         Matcher matcher;
-        pattern= Pattern.compile(regex[0]);
+        pattern = Pattern.compile(regex[0]);
         matcher = pattern.matcher(password);
-        if(!matcher.matches()){
+        if (!matcher.matches()) {
             LoginPassword.setError("Password should contain at least one digit");
             return false;
         }
-        pattern= Pattern.compile(regex[1]);
+        pattern = Pattern.compile(regex[1]);
         matcher = pattern.matcher(password);
-        if(!matcher.matches()){
+        if (!matcher.matches()) {
             LoginPassword.setError("Password should contain at least one lower case alphabet");
             return false;
         }
-        pattern= Pattern.compile(regex[2]);
+        pattern = Pattern.compile(regex[2]);
         matcher = pattern.matcher(password);
-        if(!matcher.matches()){
+        if (!matcher.matches()) {
             LoginPassword.setError("Password should contain at least one upper case alphabet");
             return false;
         }
-        pattern= Pattern.compile(regex[3]);
+        pattern = Pattern.compile(regex[3]);
         matcher = pattern.matcher(password);
-        if(!matcher.matches()){
+        if (!matcher.matches()) {
             LoginPassword.setError("Password should contain at least one special character");
             return false;
         }
-        pattern= Pattern.compile(regex[4]);
+        pattern = Pattern.compile(regex[4]);
         matcher = pattern.matcher(password);
-        if(matcher.matches()){
+        if (matcher.matches()) {
             LoginPassword.setError("White spaces are not allowed");
             return false;
         }
-        pattern= Pattern.compile(regex[5]);
+        pattern = Pattern.compile(regex[5]);
         matcher = pattern.matcher(password);
-        if(!matcher.matches()){
+        if (!matcher.matches()) {
             LoginPassword.setError("Password should contain 8 to 20 characters only");
             return false;
         }
-
-
-
         return true;
     }
 
     private boolean validateEmail(String Email) {
-        if(Email.isEmpty()){
+        if (Email.isEmpty()) {
             LoginEmail.setError("Field can't be Empty");
             return false;
         }
         String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(Email);
-        if(!matcher.matches()){
+        if (!matcher.matches()) {
             LoginEmail.setError("Please Provide a valid E-mail");
             return false;
         }
-
         return true;
     }
 }

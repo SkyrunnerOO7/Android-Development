@@ -41,7 +41,7 @@
             android:id="@+id/passcodeinputadmin"
             style="@style/modifiedEditText"
             android:hint="@string/PassCode"
-            android:text="16sp"
+            android:textSize="16sp"
             android:layout_height="50dp"
             android:inputType="textPassword"
             android:maxLines="1"/>
@@ -66,12 +66,15 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputMobile"
         style="@style/parent"
+        android:layout_height="50dp"
         android:layout_marginTop="@dimen/loginViewsMargin">
 
         <EditText
             android:id="@+id/editTextMobile"
             style="@style/modifiedEditText"
             android:hint="@string/Email"
+            android:layout_height="50dp"
+            android:textSize="16dp"
             android:inputType="textEmailAddress"
             android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
