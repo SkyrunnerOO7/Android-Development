@@ -1,4 +1,4 @@
-package com.crm.pvt.hapinicrm;
+package com.crm.pvt.hapinicrm.models;
 
 public class Utils {
     public static final String Email = "xyz@gmail.com";
