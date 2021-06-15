@@ -2,12 +2,14 @@ package com.crm.pvt.hapinicrm;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crm.pvt.hapinicrm.models.DBhelper;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.regex.Matcher;
@@ -21,7 +23,7 @@ public class Add_new_employee_activity extends AppCompatActivity {
     private TextInputEditText email;
     private TextInputEditText pass;
     private TextInputEditText conf_pass;
-
+    DBhelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +42,7 @@ public class Add_new_employee_activity extends AppCompatActivity {
         conf_pass = findViewById(R.id.confirm_password);
 
         add = findViewById(R.id.add_emp);
-        add.setOnClickListener(view -> {
+      /*  add.setOnClickListener(view -> {
             String Email = email.getText().toString();
             String password = pass.getText().toString();
             String build_num = build_number.getText().toString();
@@ -48,8 +50,21 @@ public class Add_new_employee_activity extends AppCompatActivity {
 
             if(validateBuild(build_num) && validateEmail(Email) && validatePass(password)){
                 if(checkBox.isChecked()) {
-                    if (password.contentEquals(confirm_pass)) {
-                        Toast.makeText(getApplicationContext(), "Successfully Added", Toast.LENGTH_LONG).show();
+                    if (password.equals(confirm_pass)) {
+
+                        Boolean checkadmin = db.checkEmployeeEmail(Email);
+                        if (checkadmin == false) {
+                            Boolean insert = db.insertdataEmpoyee(build_num, Email, password);
+                            if (insert == true) {
+                                Toast.makeText(this, "Registered Successfully", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                            } else {
+                                Toast.makeText(this, "Registration Failed please try again", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(this, "Admin already exists", Toast.LENGTH_SHORT).show();
+                        }
+
                     }
                     else{
                         conf_pass.setError("Password don't matches");
@@ -59,7 +74,7 @@ public class Add_new_employee_activity extends AppCompatActivity {
                     checkBox.setError("Please Accepts All T&C");
             }
 
-        });
+        });*/
 
 
 
