@@ -48,9 +48,9 @@ public class fragment_admin_dashboard extends Fragment {
         // Add Data
         AddData = view.findViewById(R.id.add_data);
         AddData.setOnClickListener(view1 -> {
-            Toast.makeText(getContext(),"You Click On Add Data ",Toast.LENGTH_SHORT).show();
-//            Intent intent = new Intent(getActivity(),Add_new_employee_activity.class);
-//            startActivity(intent);
+           // Toast.makeText(getContext(),"You Click On Add Data ",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getActivity(),AddDataActivity.class);
+            startActivity(intent);
         });
 
         // Construction

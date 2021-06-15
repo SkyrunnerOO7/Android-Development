@@ -44,17 +44,22 @@
     <string name="rate_us_note_text">We work super hard to make hapiniCRM better for you, and would love to know: How would you rate our app?</string>
     <string name="rateusLovetext">Love form hapini CRM</string>
 
-    <!-- String use in Add New Employee Sheet-->
+    <!-- String use in Add New Employee Activity-->
     <string name="Hint_device_bulid_number">Device IMEI Number</string>
     <string name="add_new_emp">Add New Employee</string>
     <string name="i_accept">I Accept that Above All the Information is Correct in My View</string>
 
 
+    <!-- Spinner Item -->
     <string-array name="Spinner_item">
         <item>Choose Category</item>
         <item>Admin</item>
         <item>Employee</item>
         <item>Developers</item>
     </string-array>
+
+    <!-- String use in Add Data Activity -->
+    <string name="phoneNumber">Phone Number</string>
+
 
 </resources>

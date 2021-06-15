@@ -18,12 +18,9 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
 
         backBtnPrivacyAc = (ImageView)findViewById(R.id.back_arrow_btn_privacyPolicyAc);
 
-        backBtnPrivacyAc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(PrivacyPolicyActivity.this,WelcomeActivity.class));
-                finish();
-            }
+        backBtnPrivacyAc.setOnClickListener(view -> {
+            startActivity(new Intent(PrivacyPolicyActivity.this,WelcomeActivity.class));
+            finish();
         });
     }
 }

@@ -44,9 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         LoginButton =  findViewById(R.id.cirLoginButton_login);
         CreateAdminAccount =  findViewById(R.id.I_am_admin_login);
 
-//        String StrLoginEmail, StrLoginPassword;
-//        StrLoginEmail = (String)LoginEmail.getText().toString();
-//        StrLoginPassword = (String)LoginPassword.getText().toString();
+
 
         // CALL getInternetStatus() function to check for internet and display error dialog
         if(new InternetDialog(getApplicationContext()).getInternetStatus()){
