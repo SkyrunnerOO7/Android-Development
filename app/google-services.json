@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "159807799926",
+    "project_id": "hapini-crm-30382",
+    "storage_bucket": "hapini-crm-30382.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:159807799926:android:2d7cbaac05987498e71557",
+        "android_client_info": {
+          "package_name": "com.crm.pvt.hapinicrm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "159807799926-kovo6ch8rhjbcsohce568m06jbqbokv2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQEE2v7oEEFZHU4-MSDGJ9CYh65BP8uL4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "159807799926-kovo6ch8rhjbcsohce568m06jbqbokv2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
