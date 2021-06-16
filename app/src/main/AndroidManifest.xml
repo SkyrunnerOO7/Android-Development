@@ -42,5 +42,6 @@
             android:resource="@array/preloaded_fonts" />
     </application>
     <!--New-->
+    <!--Kuldeep New-->
 
 </manifest>
