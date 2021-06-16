@@ -8,7 +8,13 @@
     android:background="@drawable/login_bk"
     android:focusableInTouchMode="true">
 
-    <include layout="@layout/layout_welcome" />
+    <include
+        android:id="@+id/include2"
+        layout="@layout/layout_welcome"
+        tools:layout_editor_absoluteX="24dp"
+        tools:layout_editor_absoluteY="229dp" />
+
+
 
     <TextView
         android:id="@+id/privacyPolicyBtn"
@@ -25,5 +31,8 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

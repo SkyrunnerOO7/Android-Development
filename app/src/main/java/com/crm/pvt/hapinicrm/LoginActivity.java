@@ -46,9 +46,11 @@ public class LoginActivity extends AppCompatActivity {
     Button LoginButton;
     TextView CreateAdminAccount;
     DBhelper db;
+    ProgressDialog progressDialog;
+  
     private String parentDBname = "Admin";
     private ProgressDialog loadingBar;
-
+  
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +66,10 @@ public class LoginActivity extends AppCompatActivity {
         loadingBar = new ProgressDialog(this);
 
 
+        db = new DBhelper(this);
+
+
+
 
 
 
@@ -77,6 +83,10 @@ public class LoginActivity extends AppCompatActivity {
         LoginSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                    choose_category[0] = LoginSpinner.getSelectedItem().toString();
+
+
                 choose_category[0] = LoginSpinner.getSelectedItem().toString();
                 if(choose_category[0].contentEquals("Admin")){
                     LoginEmail.setHint("Enter passcode");
@@ -90,6 +100,7 @@ public class LoginActivity extends AppCompatActivity {
                 }else{
                     Toast.makeText(LoginActivity.this, "please select on feild", Toast.LENGTH_SHORT).show();
                 }
+
             }
 
             @Override
@@ -102,10 +113,38 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                String StrLoginEmail = LoginEmail.getText().toString();
+                String StrLoginPassword = LoginPassword.getText().toString();
+                progressDialog = new ProgressDialog(LoginActivity.this);
+                progressDialog.show();
+                progressDialog.setContentView(R.layout.progress_dialog);
+                progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+                if(choose_category[0].contentEquals("Choose Category")){
+                    ((TextView)LoginSpinner.getSelectedView()).setError("Choose Valid Category");
+                    progressDialog.dismiss();
+                    return;
+                }
+
 
                 String Email = LoginEmail.getText().toString();
                 String Password = LoginPassword.getText().toString();
                 // For Admin
+
+                if (validateEmail(StrLoginEmail) && validatePass(StrLoginPassword) && choose_category[0].contentEquals("Admin")) {
+                    if (LoginCheckBox.isChecked()) {
+
+                        // if(db.checkAdminpasword(StrLoginEmail,StrLoginPassword)){
+                        startActivity(new Intent(LoginActivity.this, AdminDashboardActivity.class));
+                        //   } else{
+                        //   Toast.makeText(LoginActivity.this, "Something wrong ", Toast.LENGTH_SHORT).show();
+                        //progressDialog.dismiss();
+                    //}
+                    }else{
+                        LoginCheckBox.setError("Please check the box");
+                        progressDialog.dismiss();
+
+
                 if (choose_category[0].contentEquals("Admin")){
                     if(TextUtils.isEmpty(Email)){
                         Toast.makeText(getApplicationContext(), "Please Enter Your passcode...", Toast.LENGTH_SHORT).show();
@@ -118,12 +157,43 @@ public class LoginActivity extends AppCompatActivity {
                         loadingBar.setCanceledOnTouchOutside(false);
                         loadingBar.show();
                         AllowAccessToAccount(Email,Password);
+
                     }
-                }else{
-                    LoginCheckBox.setError("Please check the box");
                 }
 
                 // For Employee
+
+                if (validateEmail(StrLoginEmail) && validatePass(StrLoginPassword) && choose_category[0].contentEquals("Employee")) {
+                    if (LoginCheckBox.isChecked()) {
+                    if(db.checkEmpoyeepasword(StrLoginEmail,StrLoginPassword)){
+
+                            startActivity(new Intent(LoginActivity.this, Error404Activity.class));
+                        } else {
+                        Toast.makeText(LoginActivity.this, "Something wrong ", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                    }
+                    }else{
+                        LoginCheckBox.setError("Please check the box");
+                        progressDialog.dismiss();
+                    }
+                }
+
+                // For Developers
+                if (validateEmail(StrLoginEmail) && validatePass(StrLoginPassword) && choose_category[0].contentEquals("Developers")) {
+                    if (LoginCheckBox.isChecked()) {
+                    if(db.checkEmpoyeepasword(StrLoginEmail,StrLoginPassword)){
+
+                            startActivity(new Intent(LoginActivity.this, DeveloperActivity.class));
+                        } else {
+                        Toast.makeText(LoginActivity.this, "Something wrong ", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                    }
+                    }
+                    else{
+                        LoginCheckBox.setError("Please check the box");
+                        progressDialog.dismiss();
+                    }
+
                if (choose_category[0].contentEquals("Employee")) {
                      if(TextUtils.isEmpty(Email)){
                        Toast.makeText(getApplicationContext(), "Please Enter Your IMEI number...", Toast.LENGTH_SHORT).show();
@@ -158,6 +228,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 }else{
                     LoginCheckBox.setError("Please check the box");
+
                 }
             }
         });
@@ -165,6 +236,11 @@ public class LoginActivity extends AppCompatActivity {
         CreateAdminAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressDialog = new ProgressDialog(LoginActivity.this);
+                progressDialog.show();
+                progressDialog.setContentView(R.layout.progress_dialog);
+                progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
                 Toast.makeText(LoginActivity.this, "Only Admin Create this Account!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(LoginActivity.this, RegisterdActivity.class));
                 finish();
