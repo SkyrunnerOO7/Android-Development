@@ -3,18 +3,30 @@ package com.crm.pvt.hapinicrm;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.crm.pvt.hapinicrm.models.Admin;
 import com.crm.pvt.hapinicrm.models.DBhelper;
+import com.crm.pvt.hapinicrm.models.Developer;
+import com.crm.pvt.hapinicrm.models.Employee;
+import com.crm.pvt.hapinicrm.prevalent.prevalent;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -35,7 +47,10 @@ public class LoginActivity extends AppCompatActivity {
     TextView CreateAdminAccount;
     DBhelper db;
     ProgressDialog progressDialog;
-
+  
+    private String parentDBname = "Admin";
+    private ProgressDialog loadingBar;
+  
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,13 +58,16 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         LoginSpinner = findViewById(R.id.spinner_login);
-        LoginEmail = findViewById(R.id.editTextEmail_login);
+        LoginEmail = findViewById(R.id.editText_login);
         LoginPassword = findViewById(R.id.editTextPassword_login);
         LoginCheckBox = findViewById(R.id.checkBox_loginAC);
         LoginButton = findViewById(R.id.cirLoginButton_login);
         CreateAdminAccount = findViewById(R.id.I_am_admin_login);
+        loadingBar = new ProgressDialog(this);
+
 
         db = new DBhelper(this);
+
 
 
 
@@ -68,6 +86,21 @@ public class LoginActivity extends AppCompatActivity {
 
                     choose_category[0] = LoginSpinner.getSelectedItem().toString();
 
+
+                choose_category[0] = LoginSpinner.getSelectedItem().toString();
+                if(choose_category[0].contentEquals("Admin")){
+                    LoginEmail.setHint("Enter passcode");
+                    parentDBname = "Admin";
+                }else if(choose_category[0].contentEquals("Employee")){
+                    LoginEmail.setHint("Enter IMEI");
+                    parentDBname = "Employee";
+                }else if(choose_category[0].contentEquals("Developers")){
+                    LoginEmail.setHint("Enter Number");
+                    parentDBname = "Developer";
+                }else{
+                    Toast.makeText(LoginActivity.this, "please select on feild", Toast.LENGTH_SHORT).show();
+                }
+
             }
 
             @Override
@@ -79,6 +112,7 @@ public class LoginActivity extends AppCompatActivity {
         LoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String StrLoginEmail = LoginEmail.getText().toString();
                 String StrLoginPassword = LoginPassword.getText().toString();
                 progressDialog = new ProgressDialog(LoginActivity.this);
@@ -92,7 +126,11 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
+
+                String Email = LoginEmail.getText().toString();
+                String Password = LoginPassword.getText().toString();
                 // For Admin
+
                 if (validateEmail(StrLoginEmail) && validatePass(StrLoginPassword) && choose_category[0].contentEquals("Admin")) {
                     if (LoginCheckBox.isChecked()) {
 
@@ -106,10 +144,25 @@ public class LoginActivity extends AppCompatActivity {
                         LoginCheckBox.setError("Please check the box");
                         progressDialog.dismiss();
 
+
+                if (choose_category[0].contentEquals("Admin")){
+                    if(TextUtils.isEmpty(Email)){
+                        Toast.makeText(getApplicationContext(), "Please Enter Your passcode...", Toast.LENGTH_SHORT).show();
+                    }
+                    else if(TextUtils.isEmpty(Password)){
+                        Toast.makeText(getApplicationContext(), "Please Enter a Password...", Toast.LENGTH_SHORT).show();
+                    }else{
+                        loadingBar.setTitle("Login Account");
+                        loadingBar.setMessage("please Wait while checking Credentials..");
+                        loadingBar.setCanceledOnTouchOutside(false);
+                        loadingBar.show();
+                        AllowAccessToAccount(Email,Password);
+
                     }
                 }
 
                 // For Employee
+
                 if (validateEmail(StrLoginEmail) && validatePass(StrLoginPassword) && choose_category[0].contentEquals("Employee")) {
                     if (LoginCheckBox.isChecked()) {
                     if(db.checkEmpoyeepasword(StrLoginEmail,StrLoginPassword)){
@@ -140,6 +193,42 @@ public class LoginActivity extends AppCompatActivity {
                         LoginCheckBox.setError("Please check the box");
                         progressDialog.dismiss();
                     }
+
+               if (choose_category[0].contentEquals("Employee")) {
+                     if(TextUtils.isEmpty(Email)){
+                       Toast.makeText(getApplicationContext(), "Please Enter Your IMEI number...", Toast.LENGTH_SHORT).show();
+                   }
+                   else if(TextUtils.isEmpty(Password)){
+                       Toast.makeText(getApplicationContext(), "Please Enter a Password...", Toast.LENGTH_SHORT).show();
+                   }else{
+                       loadingBar.setTitle("Login Account");
+                       loadingBar.setMessage("please Wait while checking Credentials..");
+                       loadingBar.setCanceledOnTouchOutside(false);
+                       loadingBar.show();
+                       AllowAccessToEmployee(Email,Password);
+                   }
+                }else{
+                    LoginCheckBox.setError("Please check the box");
+                }
+
+                // For Developers
+                if (choose_category[0].contentEquals("Developers") && LoginCheckBox.isChecked()) {
+                    if(TextUtils.isEmpty(Email)){
+                        Toast.makeText(getApplicationContext(), "Please Enter Your Devloper number...", Toast.LENGTH_SHORT).show();
+                    }
+                    else if(TextUtils.isEmpty(Password)){
+                        Toast.makeText(getApplicationContext(), "Please Enter a Password...", Toast.LENGTH_SHORT).show();
+                    }else{
+                        loadingBar.setTitle("Login Account");
+                        loadingBar.setMessage("please Wait while checking Credentials..");
+                        loadingBar.setCanceledOnTouchOutside(false);
+                        loadingBar.show();
+                        AllowAccessToDeveloper(Email,Password);
+                    }
+
+                }else{
+                    LoginCheckBox.setError("Please check the box");
+
                 }
             }
         });
@@ -160,14 +249,131 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+
+    public void AllowAccessToAccount(final String Passcode,final String Password){
+        final DatabaseReference RootRef;
+        RootRef = FirebaseDatabase.getInstance().getReference();
+
+        RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.child(parentDBname).child(Passcode).exists()){
+                    Admin Admindata = dataSnapshot.child(parentDBname).child(Passcode).getValue(Admin.class);
+                    if (Admindata.getPasscode().equals(Passcode)){
+                        if(Admindata.getPassword().equals(Password)){
+                            if(parentDBname.equals("Admin")){
+                                Toast.makeText(getApplicationContext(), "Welcome Admin You are Logged In Successfully... ", Toast.LENGTH_SHORT).show();
+                                loadingBar.dismiss();
+                                Intent intent = new Intent(getApplicationContext(),AdminDashboardActivity.class);
+                                startActivity(intent);
+                            }
+                        }else{
+                            loadingBar.dismiss();
+                            Toast.makeText(getApplicationContext(), "Incorrect Password..", Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+
+
+                }else{
+                    Toast.makeText(getApplicationContext(), "Invalid Credentials..PLease Try again with another Phone Number", Toast.LENGTH_SHORT).show();
+                    loadingBar.dismiss();
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+    public void AllowAccessToEmployee(final String IMEI,final String Password){
+        final DatabaseReference RootRef;
+        RootRef = FirebaseDatabase.getInstance().getReference();
+
+        RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.child(parentDBname).child(IMEI).exists()){
+                    Employee EmployeeData = dataSnapshot.child(parentDBname).child(IMEI).getValue(Employee.class);
+                    if (EmployeeData.getIMEI().equals(IMEI)){
+                        if(EmployeeData.getPassword().equals(Password)){
+                            if(parentDBname.equals("Employee")){
+                                Toast.makeText(getApplicationContext(), "Welcome Employee You are Logged In Successfully... ", Toast.LENGTH_SHORT).show();
+                                loadingBar.dismiss();
+                                Intent intent = new Intent(getApplicationContext(),Error404Activity.class);
+                                startActivity(intent);
+                            }
+                        }else{
+                            loadingBar.dismiss();
+                            Toast.makeText(getApplicationContext(), "Incorrect Password..", Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+
+
+                }else{
+                    Toast.makeText(getApplicationContext(), "Invalid Credentials..PLease Try again with another Phone Number", Toast.LENGTH_SHORT).show();
+                    loadingBar.dismiss();
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    public void AllowAccessToDeveloper(final String number,final String Password){
+        final DatabaseReference RootRef;
+        RootRef = FirebaseDatabase.getInstance().getReference();
+
+        RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.child(parentDBname).child(number).exists()){
+                    Developer DeveloperData = dataSnapshot.child(parentDBname).child(number).getValue(Developer.class);
+                    if (DeveloperData.getNumber().equals(number)){
+                        if(DeveloperData.getPassword().equals(Password)){
+                            if(parentDBname.equals("Developer")){
+                                Toast.makeText(getApplicationContext(), "Welcome Developer You are Logged In Successfully... ", Toast.LENGTH_SHORT).show();
+                                loadingBar.dismiss();
+                                Intent intent = new Intent(getApplicationContext(),DeveloperActivity.class);
+                                startActivity(intent);
+                            }
+                        }else{
+                            loadingBar.dismiss();
+                            Toast.makeText(getApplicationContext(), "Incorrect Password..", Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+
+
+                }else{
+                    Toast.makeText(getApplicationContext(), "Invalid Credentials..PLease Try again with another Phone Number", Toast.LENGTH_SHORT).show();
+                    loadingBar.dismiss();
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+
     private boolean validatePass(String password) {
-
-
-
-        if (password.isEmpty()) {
-            LoginPassword.setError("Field can't be Empty");
-            return false;
-        }
         String[] regex = {".*\\d+.*"
                 , ".*[a-z].*", ".*[A-Z].*"
                 , ".*[@#$%^&+=].*"
@@ -214,10 +420,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean validateEmail(String Email) {
-        if (Email.isEmpty()) {
-            LoginEmail.setError("Field can't be Empty");
-            return false;
-        }
+
         String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(Email);
@@ -227,4 +430,6 @@ public class LoginActivity extends AppCompatActivity {
         }
         return true;
     }
+
+
 }
