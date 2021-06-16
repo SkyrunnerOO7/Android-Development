@@ -15,7 +15,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HapiniCRM">
-        <activity android:name=".AddDataActivity"></activity>
+
+        <activity android:name=".Error405Activity"></activity>
+
+        <activity android:name=".EmployeeDashboardActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".AddDataActivity" />
         <activity android:name=".Add_new_employee_activity" />
         <activity android:name=".PrivacyPolicyActivity" />
         <activity
@@ -35,13 +41,16 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
+
     <!--New-->
     <!--Kuldeep New-->
+
 
 </manifest>
