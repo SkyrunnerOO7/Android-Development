@@ -1,17 +1,28 @@
 package com.crm.pvt.hapinicrm;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.crm.pvt.hapinicrm.models.DBhelper;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -23,6 +34,7 @@ public class Add_new_employee_activity extends AppCompatActivity {
     private TextInputEditText email;
     private TextInputEditText pass;
     private TextInputEditText conf_pass;
+    private ProgressDialog loadingBar;
     DBhelper db;
 
     @Override
@@ -40,64 +52,131 @@ public class Add_new_employee_activity extends AppCompatActivity {
         pass = findViewById(R.id.password);
         checkBox = findViewById(R.id.checkbox);
         conf_pass = findViewById(R.id.confirm_password);
+        loadingBar = new ProgressDialog(this);
 
         add = findViewById(R.id.add_emp);
-      /*  add.setOnClickListener(view -> {
-            String Email = email.getText().toString();
-            String password = pass.getText().toString();
-            String build_num = build_number.getText().toString();
-            String confirm_pass = conf_pass.getText().toString();
+        add.setOnClickListener(new View.OnClickListener() {
+            String IMEI = build_number.getText().toString();
+            @Override
+            public void onClick(View view) {
+                createAccount();
 
-            if(validateBuild(build_num) && validateEmail(Email) && validatePass(password)){
-                if(checkBox.isChecked()) {
-                    if (password.equals(confirm_pass)) {
+            }
+        });
 
-                        Boolean checkadmin = db.checkEmployeeEmail(Email);
-                        if (checkadmin == false) {
-                            Boolean insert = db.insertdataEmpoyee(build_num, Email, password);
-                            if (insert == true) {
-                                Toast.makeText(this, "Registered Successfully", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-                            } else {
-                                Toast.makeText(this, "Registration Failed please try again", Toast.LENGTH_SHORT).show();
-                            }
-                        } else {
-                            Toast.makeText(this, "Admin already exists", Toast.LENGTH_SHORT).show();
-                        }
 
-                    }
-                    else{
-                        conf_pass.setError("Password don't matches");
-                    }
+
+
+
+    }
+
+
+    public void createAccount(){
+
+        String IMEI = build_number.getText().toString();
+        String mail = email.getText().toString();
+        String password = pass.getText().toString();
+        String repassword = conf_pass.getText().toString();
+
+
+        // get text
+
+
+        if(password.isEmpty()){
+            pass.setError("passcode can't be empty");
+        }
+        else if(mail.isEmpty()){
+            email.setError("Feild can't be empty");
+        }
+        else if(repassword.isEmpty()){
+            conf_pass.setError("Field can't be Empty");
+        }
+        else if(IMEI.isEmpty()){
+            build_number.setError("Feild can't be empty");
+        }
+        else{
+
+            loadingBar.setTitle("Create Account");
+            loadingBar.setMessage("please Wait while checking Credentials..");
+            loadingBar.setCanceledOnTouchOutside(false);
+            loadingBar.show();
+            ValidateEmp(IMEI,mail,password);
+
+
+
+        }
+
+
+
+    }
+
+    public void ValidateEmp(String IMEI,String mail,String password){
+        final DatabaseReference RootRef;
+        RootRef = FirebaseDatabase.getInstance().getReference();
+
+        RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(!(dataSnapshot.child("Employee").child(IMEI).exists())){
+                    HashMap<String,Object> EmpDataMap = new HashMap<>();
+                    EmpDataMap.put("mail",mail);
+                    EmpDataMap.put("IMEI",IMEI);
+                    EmpDataMap.put("Password",password);
+
+
+                    RootRef.child("Employee").child(IMEI).updateChildren(EmpDataMap)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()){
+                                        Toast.makeText(getApplicationContext(), "Account Has been Created Sucessfully.. ", Toast.LENGTH_SHORT).show();
+                                        loadingBar.dismiss();
+                                        Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+                                        startActivity(intent);
+
+                                    }else{
+                                        loadingBar.dismiss();
+                                        Toast.makeText(getApplicationContext(), "Somthing Went Wrong.. Please Try Again After Some time..", Toast.LENGTH_SHORT).show();
+                                    }
+
+                                }
+                            });
+
+
+
+                }else{
+                    Toast.makeText(getApplicationContext(), "This "+email+" id already Exists..", Toast.LENGTH_SHORT).show();
+                    loadingBar.dismiss();
+                    Toast.makeText(getApplicationContext(), "Please Try Again Using Another email..", Toast.LENGTH_SHORT).show();
                 }
-                else
-                    checkBox.setError("Please Accepts All T&C");
             }
 
-        });*/
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-
-
+            }
+        });
     }
 
-    private boolean validateBuild(String build_num) {
-        if(build_num.isEmpty()){
-            build_number.setError("Field can't be Empty");
-            return false;
+
+
+    private boolean validIMEI(String IMEI){
+        int count = 0;
+
+        //Counts each character except space
+        for(int i = 0; i < IMEI.length(); i++) {
+            count++;
         }
 
-        if(build_num.length() != 15){
-            build_number.setError("Wrong IMEI Number");
+        if(count==15){
+            return true;
+        }else{
             return false;
         }
-        return true;
     }
+
 
     private boolean validatePass(String password) {
-        if(password.isEmpty()){
-            pass.setError("Field can't be Empty");
-            return false;
-        }
         String[] regex = {".*\\d+.*"
                 , ".*[a-z].*",".*[A-Z].*"
                 , ".*[@#$%^&+=].*"
@@ -140,25 +219,6 @@ public class Add_new_employee_activity extends AppCompatActivity {
             pass.setError("Password should contain 8 to 20 characters only");
             return false;
         }
-
-
-
         return true;
-    }
-
-    private boolean validateEmail(String Email) {
-        if(Email.isEmpty()){
-            email.setError("Field can't be Empty");
-            return false;
         }
-        String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(Email);
-        if(!matcher.matches()){
-            email.setError("Please Provide a valid E-mail");
-            return false;
-        }
-
-        return true;
     }
-}
