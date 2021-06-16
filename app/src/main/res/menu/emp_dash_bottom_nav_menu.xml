@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <item android:id="@+id/menu_feedback"
+        android:icon="@drawable/feedback_icon"
+
+        android:title="FeedBack"/>
+
+    <item android:id="@+id/menu_rate_us"
+        android:icon="@drawable/rate_icon"
+        android:title="Rate Us"/>
+
+    <item android:id="@+id/menu_home"
+        android:icon="@drawable/home_icon"
+        android:title="Home"/>
+
+    <item android:id="@+id/menu_support"
+        android:icon="@drawable/support_icon"
+        android:title="Support"/>
+
+    <item android:id="@+id/menu_profile"
+        android:icon="@drawable/profile_icon"
+        android:title="Profile"/>
+
+
+
+
+
+
+
+
+
+
+</menu>
