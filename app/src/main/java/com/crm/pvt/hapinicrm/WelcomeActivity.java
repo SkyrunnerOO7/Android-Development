@@ -1,5 +1,6 @@
 package com.crm.pvt.hapinicrm;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -7,10 +8,14 @@ import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by Kuldeep Sahu on 04/06/2021.
@@ -22,7 +27,7 @@ public class WelcomeActivity extends AppCompatActivity {
     Vibrator vibrator;
     Button WellcomACbtn;
     TextView privacyBtn;
-
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,17 +47,24 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(WelcomeActivity.this, "WelCome", Toast.LENGTH_SHORT).show();
+                        progressDialog = new ProgressDialog(WelcomeActivity.this);
+                        progressDialog.show();
+                        progressDialog.setContentView(R.layout.progress_dialog);
+                        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
-                if (Build.VERSION.SDK_INT >= 26 ) {
-                    vibrator.vibrate(VibrationEffect.createOneShot(50, VibrationEffect.DEFAULT_AMPLITUDE));
-                }
-                else {
-                    vibrator.vibrate(50);
-                }
 
-                startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
-                finish();
+                        if (Build.VERSION.SDK_INT >= 26 ) {
+                            vibrator.vibrate(VibrationEffect.createOneShot(50, VibrationEffect.DEFAULT_AMPLITUDE));
+                        }
+                        else {
+                            vibrator.vibrate(50);
+                        }
+
+                        startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
+                        Toast.makeText(WelcomeActivity.this, "WelCome", Toast.LENGTH_SHORT).show();
+                        finish();
+
+
             }
         });
 
