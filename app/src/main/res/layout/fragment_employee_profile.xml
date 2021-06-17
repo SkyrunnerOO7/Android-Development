@@ -274,6 +274,7 @@
 
 
         <View
+            android:id="@+id/view3"
             android:layout_width="300dp"
             android:layout_height="1dp"
             android:layout_marginStart="30dp"
@@ -282,6 +283,60 @@
             android:background="#DDDCDC"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/emp_phone" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:clickable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            app:layout_constraintEnd_toEndOf="@+id/view3"
+            app:layout_constraintStart_toStartOf="@+id/view3"
+            app:layout_constraintTop_toBottomOf="@+id/view3">
+
+            <ImageView
+                android:id="@+id/logout_emp_icon"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:background="@color/md_red_500"
+                android:focusableInTouchMode="true"
+                android:src="@drawable/logout_icon"
+                app:layout_constraintEnd_toEndOf="@+id/view3"
+                app:layout_constraintStart_toStartOf="@+id/view3"
+                tools:layout_editor_absoluteY="522dp" />
+
+            <TextView
+                android:id="@+id/logout_emp_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:clickable="true"
+                android:focusableInTouchMode="true"
+                android:text="Log Out"
+                android:textColor="@color/blackTextColor"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/logout_emp_icon"
+                app:layout_constraintStart_toEndOf="@+id/logout_emp_icon"
+                app:layout_constraintTop_toTopOf="@+id/logout_emp_icon" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="300dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:background="#DDDCDC"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emp_phone" />
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,8 @@
 package com.crm.pvt.hapinicrm;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -8,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +46,7 @@ public class RegisterdActivity extends AppCompatActivity {
     EditText mail;
     EditText password;
     EditText repassword;
+    ImageView devIconBtn;
     private ProgressDialog loadingBar;
     CheckBox checkBox;
 
@@ -62,6 +66,7 @@ public class RegisterdActivity extends AppCompatActivity {
         name = findViewById(R.id.editTextName);
         mail = findViewById(R.id.editTextMobile);
         password = findViewById(R.id.editTextEmail_login);
+        devIconBtn = findViewById(R.id.laptop_Dev_icon_btn);
         repassword = findViewById(R.id.editTextPassword_login);
         checkBox = findViewById(R.id.checkbox_signupAC);
         loadingBar = new ProgressDialog(this);
@@ -116,6 +121,35 @@ public class RegisterdActivity extends AppCompatActivity {
             }
         });
 
+        devIconBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alert("Develop and Design:");
+            }
+        });
+
+    }
+
+    public void alert(String header) {
+        AlertDialog alertDialog = new AlertDialog.Builder(RegisterdActivity.this)
+                .setTitle(header)
+                .setMessage("\bKULDEEP SAHU (Senior Developer & Team Head)\b\n\n"
+                        +"PUNIT PAWAR (VCS Maintener)\n\n"
+                        +"PRIYANSHU GUPTA (Developer)\n\n"
+                        +"ROHAN KULKARNI (Developer)\n\n"
+                        +"SAPNA KUSHWAH (Developer)\n\n\n"
+                        +"sahukuldeep912001@gmail.com\n\n"
+                        +"http://skywarrior09.gq\n"
+                        +"-------------------------"
+)
+                .setPositiveButton("Close", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .create();
+        alertDialog.show();
     }
 
       public void createAccount(){
