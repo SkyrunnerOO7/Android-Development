@@ -6,7 +6,7 @@
     <string name="login_email_hint">Create password</string>
     <string name="login_password_hint">Confirm password</string>
     <string name="signup_login_hint">Already have an account? Sign In</string>
-    <string name="login_signup_hint">I am admin? Sign Up</string>
+    <string name="login_signup_hint">Developer team?</string>
     <string name="login_name_hint">Full name</string>
     <string name="login_name_tandc">Accept all T&amp;C</string>
     <string name="login_mobile_number_hint">E-mail</string>
