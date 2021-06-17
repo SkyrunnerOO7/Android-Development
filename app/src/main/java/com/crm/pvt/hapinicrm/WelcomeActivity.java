@@ -68,6 +68,22 @@ public class WelcomeActivity extends AppCompatActivity {
             }
         });
 
+        WellcomACbtn.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                Toast.makeText(WelcomeActivity.this, "Warning: master panel!", Toast.LENGTH_SHORT).show();
+                Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        startActivity(new Intent(WelcomeActivity.this, SplashScreenMasterPanel.class));
+                        finish();
+                    }
+                }, 1000);
+                return true;
+            }
+        });
+
         privacyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

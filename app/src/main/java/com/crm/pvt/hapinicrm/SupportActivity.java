@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,7 @@ import androidx.core.content.ContextCompat;
  */
 
 public class SupportActivity extends AppCompatActivity {
+    ImageView backBtn;
     Button phone;
     Button mail;
     private static final int callrequest = 1;

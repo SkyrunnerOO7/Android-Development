@@ -40,7 +40,7 @@
                 style="@style/homeHeading"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:text="Error 405"
+                android:text="Failed!"
                 android:textColor="@color/blackTextColor"
                 android:textSize="@dimen/headerTextSize" />
 
@@ -50,7 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Failed!"
+                android:text="Error 405"
                 android:textSize="14dp"
                 android:textStyle="normal" />
 
