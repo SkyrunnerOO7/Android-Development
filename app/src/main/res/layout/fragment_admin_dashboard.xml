@@ -194,7 +194,7 @@
                                     android:layout_gravity="center"
                                     android:gravity="center"
                                     android:layout_margin="3dp"
-                                    android:text="Add User"
+                                    android:text="Add Employee"
                                     android:textColor="#072f5f"
                                     android:textStyle="bold"
                                     android:textAllCaps="false"

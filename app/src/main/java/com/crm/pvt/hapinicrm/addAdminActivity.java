@@ -1,98 +1,58 @@
 package com.crm.pvt.hapinicrm;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.crm.pvt.hapinicrm.models.DBhelper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Created by Kuldeep Sahu on 05/06/2021.
- * E-mail: sahukuldeep912001@gmail.com
- * http://skywarrior09.gq
- */
-
-public class RegisterdActivity extends AppCompatActivity {
-    TextView alreadyAcSignIn;
-    Button SignUpBtn;
-    DBhelper db;
-    EditText pass;
-    EditText name;
+public class addAdminActivity extends AppCompatActivity {
+    TextInputEditText build_number;
+    Button add;
+    EditText passcode;
     EditText mail;
+    EditText name;
     EditText password;
     EditText repassword;
-    private ProgressDialog loadingBar;
+    ProgressDialog loadingBar;
     CheckBox checkBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registerd);
-        getSupportActionBar().hide();
+        setContentView(R.layout.activity_add_admin);
 
-        // CALL getInternetStatus() function to check for internet and display error dialog
-        if(new InternetDialog(getApplicationContext()).getInternetStatus()){
-            //   Toast.makeText(getContext(), "INTERNET VALIDATION PASSED", Toast.LENGTH_SHORT).show();
-        }
-
-        // get id
-        pass = findViewById(R.id.passcodeinputadmin);
-        name = findViewById(R.id.editTextName);
-        mail = findViewById(R.id.editTextMobile);
-        password = findViewById(R.id.editTextEmail_login);
-        repassword = findViewById(R.id.editTextPassword_login);
-        checkBox = findViewById(R.id.checkbox_signupAC);
+        passcode = findViewById(R.id.bulid_number_admin);
+        name = findViewById(R.id.Name_admin);
+        mail = findViewById(R.id.Email_admin);
+        password = findViewById(R.id.password_admin);
+        repassword = findViewById(R.id.confirm_password_admin);
+        checkBox = findViewById(R.id.checkbox_admin);
         loadingBar = new ProgressDialog(this);
 
 
-   /*     String passcode = pass.getText().toString();
-        String Fullname = name.getText().toString();
-        String email = mail.getText().toString();
-        String password_st = password.getText().toString();
-        String repassword_st = repassword.getText().toString();*/
-
-
-
-
-
-
-        alreadyAcSignIn = (TextView)findViewById(R.id.already_have_ac_signIn);
-        SignUpBtn = (Button)findViewById(R.id.sign_up_btn);
-
-
-
-        alreadyAcSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(RegisterdActivity.this, "Please SignIn", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(RegisterdActivity.this, LoginActivity.class));
-                finish();
-            }
-        });
-
-      /*  SignUpBtn.setOnClickListener(new View.OnClickListener() {
+        add = findViewById(R.id.add_admin_btn);
+        add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String StrLoginEmail = mail.getText().toString();
@@ -101,42 +61,34 @@ public class RegisterdActivity extends AppCompatActivity {
                     if(checkBox.isChecked()){
                         createAccount();
                     }else{
-                        Toast.makeText(RegisterdActivity.this, "please check the checkbox", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "please check the checkbox", Toast.LENGTH_SHORT).show();
                     }
                 }else{
-                    Toast.makeText(RegisterdActivity.this, "PLease try again ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "PLease try again ", Toast.LENGTH_SHORT).show();
                 }
             }
-        });*/
-
-        SignUpBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(RegisterdActivity.this, "This site is Under Construction", Toast.LENGTH_SHORT).show();
-            }
         });
-
     }
 
-      public void createAccount(){
+    private void createAccount() {
 
-          String passcode = pass.getText().toString();
-          String Fullname = name.getText().toString();
-          String email = mail.getText().toString();
-          String password_st = password.getText().toString();
-          String repassword_st = repassword.getText().toString();
+        String Passcode = passcode.getText().toString();
+        String Fullname = name.getText().toString();
+        String email = mail.getText().toString();
+        String password_st = password.getText().toString();
+        String repassword_st = repassword.getText().toString();
 
 
         // get text
 
 
-        if(passcode.isEmpty()){
-            pass.setError("passcode can't be empty");
+        if(Passcode.isEmpty()){
+            passcode.setError("passcode can't be empty");
         }
         else if(Fullname.isEmpty()){
             Toast.makeText(this, "Please Enter Your Name...", Toast.LENGTH_SHORT).show();
         }
-       else if(email.isEmpty()){
+        else if(email.isEmpty()){
             mail.setError("Field can't be Empty");
         }
         else if(password_st.isEmpty()){
@@ -150,11 +102,11 @@ public class RegisterdActivity extends AppCompatActivity {
         }
         else{
 
-        loadingBar.setTitle("Create Account");
-        loadingBar.setMessage("please Wait while checking Credentials..");
-        loadingBar.setCanceledOnTouchOutside(false);
-        loadingBar.show();
-        Validate(email,passcode,Fullname,password_st);
+            loadingBar.setTitle("Create Account");
+            loadingBar.setMessage("please Wait while checking Credentials..");
+            loadingBar.setCanceledOnTouchOutside(false);
+            loadingBar.show();
+            Validate(email,Passcode,Fullname,password_st);
 
 
 
@@ -162,11 +114,12 @@ public class RegisterdActivity extends AppCompatActivity {
 
 
 
+
+
     }
 
+    private void Validate(final String email,final String passcode,final String fullname,final String password) {
 
-
-    public void Validate(final String email,final String passcode,final String fullname,final String password){
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
 
@@ -188,7 +141,7 @@ public class RegisterdActivity extends AppCompatActivity {
                                     if(task.isSuccessful()){
                                         Toast.makeText(getApplicationContext(), "Congratulations..Your Account Has been Created Sucessfully.. ", Toast.LENGTH_SHORT).show();
                                         loadingBar.dismiss();
-                                        Intent intent = new Intent(RegisterdActivity.this,LoginActivity.class);
+                                        Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
                                         startActivity(intent);
 
                                     }else{
@@ -204,7 +157,6 @@ public class RegisterdActivity extends AppCompatActivity {
                 }else{
                     Toast.makeText(getApplicationContext(), "This "+email+" id already Exists..", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
-                    Toast.makeText(getApplicationContext(), "Please Try Again Using Another email..", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -214,7 +166,12 @@ public class RegisterdActivity extends AppCompatActivity {
             }
         });
 
+
+
+
     }
+
+
     private boolean validatePass(String Password) {
 
         String[] regex = {".*\\d+.*"
@@ -272,7 +229,5 @@ public class RegisterdActivity extends AppCompatActivity {
         }
         return true;
     }
-
-
 
 }
