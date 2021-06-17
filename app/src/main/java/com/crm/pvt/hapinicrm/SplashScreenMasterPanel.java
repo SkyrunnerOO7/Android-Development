@@ -16,6 +16,7 @@ import java.util.TimerTask;
  */
 
 public class SplashScreenMasterPanel extends AppCompatActivity {
+    Vibrator vibrator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

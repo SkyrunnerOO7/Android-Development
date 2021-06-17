@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HapiniCRM">
-        <activity android:name=".MasterAdminLoginActivity"></activity>
+        <activity android:name=".addAdminActivity"></activity>
+        <activity android:name=".MasterAdminLoginActivity" />
         <activity android:name=".SplashScreenMasterPanel" />
         <activity android:name=".MasterAdminDasboardActivity" />
         <activity android:name=".Error405Activity" />

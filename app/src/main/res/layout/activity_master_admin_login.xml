@@ -43,14 +43,13 @@
             android:layout_width="match_parent"
             android:layout_margin="40dp"
             android:layout_height="wrap_content"
-            android:inputType="numberPassword"
             android:textColor="@color/md_black_1000"
             android:fontFamily="sans-serif"
             android:textSize="17sp"
             android:hint="Enter you Code..."
             android:layout_gravity="start"
             android:padding="10dp"
-            android:focusableInTouchMode="false"
+            android:focusableInTouchMode="true"
             android:lines="1"
             android:background="@color/md_grey_400" />
 

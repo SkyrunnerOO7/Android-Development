@@ -124,7 +124,8 @@ public class AdminDashboardActivity extends AppCompatActivity implements Navigat
 
             case R.id.nav_signout:
                 //add Home fragment
-                Toast.makeText(this, "Sign Out|under construction", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+                Toast.makeText(this, "Logout Successfully", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.nav_copyright:
@@ -132,6 +133,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements Navigat
                 Toast.makeText(this, "Hapini.in", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getApplicationContext(),WebViewActivity.class));
                 break;
+
 
         }
 

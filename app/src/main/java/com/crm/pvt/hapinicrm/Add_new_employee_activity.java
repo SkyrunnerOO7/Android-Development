@@ -40,7 +40,6 @@ public class Add_new_employee_activity extends AppCompatActivity {
     private TextInputEditText pass;
     private TextInputEditText conf_pass;
     private ProgressDialog loadingBar;
-    DBhelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,10 +60,14 @@ public class Add_new_employee_activity extends AppCompatActivity {
 
         add = findViewById(R.id.add_emp);
         add.setOnClickListener(new View.OnClickListener() {
-            String IMEI = build_number.getText().toString();
+            String imei = build_number.getText().toString();
             @Override
             public void onClick(View view) {
-                createAccount();
+                if(validIMEI(imei)){
+                    createAccount();
+                }else{
+                    Toast.makeText(Add_new_employee_activity.this, "Number should be of 15 digits", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });

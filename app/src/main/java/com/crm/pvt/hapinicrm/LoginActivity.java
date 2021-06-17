@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     Button LoginButton;
     TextView CreateAdminAccount;
     DBhelper db;
-    ProgressDialog progressDialog;
+
   
     private String parentDBname = "Admin";
     private ProgressDialog loadingBar;
@@ -113,16 +113,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String StrLoginEmail = LoginEmail.getText().toString();
-                String StrLoginPassword = LoginPassword.getText().toString();
-                progressDialog = new ProgressDialog(LoginActivity.this);
-                progressDialog.show();
-                progressDialog.setContentView(R.layout.progress_dialog);
-                progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                loadingBar = new ProgressDialog(LoginActivity.this);
+                loadingBar.show();
+                loadingBar.setContentView(R.layout.progress_dialog);
+                loadingBar.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
                 if(choose_category[0].contentEquals("Choose Category")){
                     ((TextView)LoginSpinner.getSelectedView()).setError("Choose Valid Category");
-                    progressDialog.dismiss();
+                    loadingBar.dismiss();
                     return;
                 }
 
@@ -130,22 +128,7 @@ public class LoginActivity extends AppCompatActivity {
                 String Email = LoginEmail.getText().toString();
                 String Password = LoginPassword.getText().toString();
                 // For Admin
-
-                if (validateEmail(StrLoginEmail) && validatePass(StrLoginPassword) && choose_category[0].contentEquals("Admin")) {
-                    if (LoginCheckBox.isChecked()) {
-
-                        // if(db.checkAdminpasword(StrLoginEmail,StrLoginPassword)){
-                        startActivity(new Intent(LoginActivity.this, AdminDashboardActivity.class));
-                        //   } else{
-                        //   Toast.makeText(LoginActivity.this, "Something wrong ", Toast.LENGTH_SHORT).show();
-                        //progressDialog.dismiss();
-                    //}
-                    }else{
-                        LoginCheckBox.setError("Please check the box");
-                        progressDialog.dismiss();
-
-
-                if (choose_category[0].contentEquals("Admin")){
+                if (choose_category[0].contentEquals("Admin") && LoginCheckBox.isChecked()){
                     if(TextUtils.isEmpty(Email)){
                         Toast.makeText(getApplicationContext(), "Please Enter Your passcode...", Toast.LENGTH_SHORT).show();
                     }
@@ -163,38 +146,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 // For Employee
 
-                if (validateEmail(StrLoginEmail) && validatePass(StrLoginPassword) && choose_category[0].contentEquals("Employee")) {
-                    if (LoginCheckBox.isChecked()) {
-                    if(db.checkEmpoyeepasword(StrLoginEmail,StrLoginPassword)){
-
-                            startActivity(new Intent(LoginActivity.this, Error404Activity.class));
-                        } else {
-                        Toast.makeText(LoginActivity.this, "Something wrong ", Toast.LENGTH_SHORT).show();
-                        progressDialog.dismiss();
-                    }
-                    }else{
-                        LoginCheckBox.setError("Please check the box");
-                        progressDialog.dismiss();
-                    }
-                }
-
-                // For Developers
-                if (validateEmail(StrLoginEmail) && validatePass(StrLoginPassword) && choose_category[0].contentEquals("Developers")) {
-                    if (LoginCheckBox.isChecked()) {
-                    if(db.checkEmpoyeepasword(StrLoginEmail,StrLoginPassword)){
-
-                            startActivity(new Intent(LoginActivity.this, DeveloperActivity.class));
-                        } else {
-                        Toast.makeText(LoginActivity.this, "Something wrong ", Toast.LENGTH_SHORT).show();
-                        progressDialog.dismiss();
-                    }
-                    }
-                    else{
-                        LoginCheckBox.setError("Please check the box");
-                        progressDialog.dismiss();
-                    }
-
-               if (choose_category[0].contentEquals("Employee")) {
+               if (choose_category[0].contentEquals("Employee") && LoginCheckBox.isChecked()) {
                      if(TextUtils.isEmpty(Email)){
                        Toast.makeText(getApplicationContext(), "Please Enter Your IMEI number...", Toast.LENGTH_SHORT).show();
                    }
@@ -236,10 +188,10 @@ public class LoginActivity extends AppCompatActivity {
         CreateAdminAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                progressDialog = new ProgressDialog(LoginActivity.this);
-                progressDialog.show();
-                progressDialog.setContentView(R.layout.progress_dialog);
-                progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                loadingBar = new ProgressDialog(LoginActivity.this);
+                loadingBar.show();
+                loadingBar.setContentView(R.layout.progress_dialog);
+                loadingBar.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
                 Toast.makeText(LoginActivity.this, "Only Admin Create this Account!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(LoginActivity.this, RegisterdActivity.class));
@@ -304,7 +256,7 @@ public class LoginActivity extends AppCompatActivity {
                             if(parentDBname.equals("Employee")){
                                 Toast.makeText(getApplicationContext(), "Welcome Employee You are Logged In Successfully... ", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
-                                Intent intent = new Intent(getApplicationContext(),Error404Activity.class);
+                                Intent intent = new Intent(getApplicationContext(),EmployeeDashboardActivity.class);
                                 startActivity(intent);
                             }
                         }else{
