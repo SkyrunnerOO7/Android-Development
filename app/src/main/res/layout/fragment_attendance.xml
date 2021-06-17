@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/light_grey">
+
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@drawable/attendance_backround"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/logo_cardview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="20dp"
+        android:layout_marginTop="35dp"
+        android:layout_centerHorizontal="true">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/app_icon"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textColor="@color/whiteTextColor"
+        android:textStyle="bold"
+        android:layout_below="@id/logo_cardview"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="130dp"
+        android:background="@color/whiteTextColor"
+        android:layout_marginHorizontal="15dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="10dp"
+        android:layout_marginBottom="15dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="30dp"
+                tools:ignore="InvalidId">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Your Presence"
+                    android:textSize="20sp"
+                    android:textColor="@color/navy_blue"
+                    android:fontFamily="sans-serif"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/ll"
+                android:layout_above="@id/ll1"
+                >
+                <ListView
+                    android:id="@+id/list_item"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll1"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_alignParentBottom="true"
+                android:gravity="center"
+                >
+                <Button
+                    android:id="@+id/mark_attendance"
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mark_att"
+                    android:textColor="@color/whiteTextColor"
+                    android:textSize="18sp"
+                    android:background="@drawable/gradiant_button"
+                    tools:ignore="InvalidId" />
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

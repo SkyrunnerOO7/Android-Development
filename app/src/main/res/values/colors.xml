@@ -18,6 +18,7 @@
 
     <!--colros for card-->
     <color name="whiteCardColor">#fff</color>
+
     <!--_____________________________________________-->
 
     <!--colros for no internet-->
@@ -325,5 +326,6 @@
     <!-- List by Priyanshu Gupta-->
     <color name="navy_blue">#072F5F</color>
     <color name="royal_blue">#0189ff</color>
+    <color name="light_grey">#f0f1f2</color>
 
 </resources>
