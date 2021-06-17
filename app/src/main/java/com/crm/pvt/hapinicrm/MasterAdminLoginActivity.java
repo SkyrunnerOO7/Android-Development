@@ -68,8 +68,6 @@ public class MasterAdminLoginActivity extends AppCompatActivity {
     }
 
 
-
-
     public void AllowAccess(final String code){
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
