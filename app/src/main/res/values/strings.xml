@@ -49,6 +49,35 @@
     <string name="add_new_emp">Add New Employee</string>
     <string name="i_accept">I Accept that Above All the Information is Correct in My View</string>
 
+    <!--Spinner_calling_feedback_item
+
+    <string-array name="Spinner_calling_feedback_item">
+        <item>Select Status </item>
+
+        <item>Intersted/Done</item>
+        <item>Not Intersted</item>
+        <item>Don't PickUp</item>
+        <item>Network Issues</item>
+        <item>Tell to callback</item>
+        <item>Intersted/Issue</item>
+
+    </string-array>
+-->
+
+
+    <string-array name="Spinner_calling_feedback_item">
+        <item>Select Status</item>
+        <item>Intersted(Done)</item>
+        <item>Not Intersted</item>
+        <item>Do not PickUp</item>
+        <item>Network Issues</item>
+        <item>Tell to callback</item>
+        <item>Intersted(Issue)</item>
+
+
+
+    </string-array>
+
 
     <!-- Spinner Item -->
     <string-array name="Spinner_item">

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment_calling_feedback">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="388dp"
+            android:layout_height="470dp"
+            android:layout_margin="15dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:elevation="10dp"
+            android:gravity="center"
+            app:cardBackgroundColor="@color/whiteCardColor"
+            app:cardCornerRadius="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:id="@+id/ConstraintLayout_calling_feedback"
+                android:layout_height="match_parent">
+
+
+                <Spinner
+                    android:id="@+id/spinner_calling_feedback"
+                    style="@style/modifiedEditText"
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="60dp"
+                    android:background="@drawable/textbox_round"
+                    android:entries="@array/Spinner_calling_feedback_item"
+
+                    android:spinnerMode="dialog"
+                    app:layout_constraintEnd_toEndOf="parent"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/remark_calling_feedback"
+                    android:layout_width="300dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/spinner_round"
+
+                    android:hint="Remark"
+                    android:textColorHint="#202020"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spinner_calling_feedback" />
+
+                <EditText
+                    android:id="@+id/problem_calling_feedback"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/spinner_round"
+                    android:gravity="top"
+                    android:hint="Any Problem"
+                    android:inputType="textCapSentences|textNoSuggestions|textMultiLine"
+                    android:maxLines="6"
+                    android:minLines="4"
+                    android:textColorHint="#202020"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/remark_calling_feedback" />
+
+                <Button
+                    android:id="@+id/Submit_calling_fragment"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/button_round"
+                    android:backgroundTint="#072f5f"
+                    android:text="Submit"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toEndOf="@+id/Again_calling_fragment"
+                    app:layout_constraintTop_toBottomOf="@+id/problem_calling_feedback" />
+
+                <Button
+                    android:id="@+id/Again_calling_fragment"
+                    android:layout_width="85dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="52dp"
+                    android:layout_marginLeft="52dp"
+                    android:layout_marginTop="40dp"
+                    android:backgroundTint="#072f5f"
+
+                    android:text="Call Again"
+                    android:textColor="#ffffff"
+                    app:cornerRadius="10dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/problem_calling_feedback" />
+
+                <Button
+                    android:id="@+id/later_calling_fragment"
+                    android:layout_width="85dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="40dp"
+                    android:backgroundTint="#072f5f"
+                    android:text="call Later"
+                    android:textColor="#ffffff"
+                    app:cornerRadius="10dp"
+                    app:layout_constraintStart_toEndOf="@+id/Submit_calling_fragment"
+                    app:layout_constraintTop_toBottomOf="@+id/problem_calling_feedback" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+</FrameLayout>

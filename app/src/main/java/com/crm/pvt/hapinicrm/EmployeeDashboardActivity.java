@@ -43,7 +43,8 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
 
                 switch (item.getItemId())
                 {
-                    case R.id.menu_home :
+                    case R.id.menu_home : temp=new fragment_calling();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.FrameConatiner,temp).commit();
                         break;
                     case R.id.menu_feedback: temp=new fragment_feedback();
                         getSupportFragmentManager().beginTransaction().replace(R.id.FrameConatiner,temp).commit();
