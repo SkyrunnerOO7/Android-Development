@@ -31,7 +31,9 @@
             android:name=".AdminDashboardActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".DeveloperActivity" />
-        <activity android:name=".SupportActivity" />
+        <activity android:name=".SupportActivity"
+            android:parentActivityName=".EmployeeDashboardActivity"
+            ></activity>
         <activity android:name=".WebViewActivity" />
         <activity android:name=".Error404Activity" />
         <activity android:name=".InternetDialogActivity" />

@@ -108,6 +108,25 @@
                         tools:ignore="DuplicateIds" />
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_marginHorizontal="16dp"
+                    app:startIconDrawable="@drawable/city_icon"
+                    android:textColorHint="@color/navy_blue"
+                    android:layout_marginTop="15dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="City"
+                        android:id="@+id/city"
+                        android:inputType="text"
+                        android:paddingLeft="10dp"
+                        tools:ignore="InvalidId" />
+                </com.google.android.material.textfield.TextInputLayout>
+
 
 
 
