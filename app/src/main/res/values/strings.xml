@@ -61,8 +61,10 @@
     <!-- String use in Add Data Activity -->
     <string name="phoneNumber">Phone Number</string>
     <string name="mark_att">Mark Presence</string>
+    <string name="city">City</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sample_Email">priyanshugupta132@gmailcom</string>
 
 
 </resources>

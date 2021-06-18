@@ -126,6 +126,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements Navigat
                 //add Home fragment
                 startActivity(new Intent(getApplicationContext(),LoginActivity.class));
                 Toast.makeText(this, "Logout Successfully", Toast.LENGTH_SHORT).show();
+                finish();
                 break;
 
             case R.id.nav_copyright:

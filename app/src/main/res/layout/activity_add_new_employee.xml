@@ -61,6 +61,7 @@
                     android:layout_marginHorizontal="16dp"
                     app:startIconDrawable="@drawable/ic_baseline_smartphone_24"
                     android:textColorHint="@color/navy_blue"
+
                     android:layout_marginTop="15dp">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -68,7 +69,6 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/Hint_device_bulid_number"
                         android:id="@+id/bulid_number"
-                        android:inputType="text"
                         android:paddingLeft="10dp"
                         tools:ignore="InvalidId" />
                 </com.google.android.material.textfield.TextInputLayout>

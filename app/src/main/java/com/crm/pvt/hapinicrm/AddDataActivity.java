@@ -33,18 +33,20 @@ public class AddDataActivity extends AppCompatActivity {
         phone_number = findViewById(R.id.phone_number);
         checkBox = findViewById(R.id.checkbox);
 
+
         add = findViewById(R.id.add_data);
         add.setOnClickListener(view -> {
             String phoneNumber = phone_number.getText().toString();
             String fullName = full_name.getText().toString();
+
             countryCodePicker.registerPhoneNumberTextView(phone_number);
             if(validateFullName(fullName) && validatePhoneNumber(phoneNumber)) {
                 if (checkBox.isChecked()) {
-                        if(countryCodePicker.isValid())
-                        Toast.makeText(getApplicationContext(), "Successfully Submitted", Toast.LENGTH_SHORT).show();
+
+                        if (countryCodePicker.isValid())
+                            Toast.makeText(getApplicationContext(), "Successfully Submitted", Toast.LENGTH_SHORT).show();
                         else
                             Toast.makeText(getApplicationContext(), "Provide valid code/phone number", Toast.LENGTH_SHORT).show();
-
                 }else
                     checkBox.setError("Accepts Conditions");
             }

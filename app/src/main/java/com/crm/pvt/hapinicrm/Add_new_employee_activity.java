@@ -60,14 +60,15 @@ public class Add_new_employee_activity extends AppCompatActivity {
 
         add = findViewById(R.id.add_emp);
         add.setOnClickListener(new View.OnClickListener() {
-            String imei = build_number.getText().toString();
+
             @Override
             public void onClick(View view) {
-                if(validIMEI(imei)){
+                String imei = build_number.getText().toString();
+                if(validIMEI(imei)) {
+
                     createAccount();
-                }else{
-                    Toast.makeText(Add_new_employee_activity.this, "Number should be of 15 digits", Toast.LENGTH_SHORT).show();
                 }
+
 
             }
         });
@@ -169,18 +170,15 @@ public class Add_new_employee_activity extends AppCompatActivity {
 
 
     private boolean validIMEI(String IMEI){
-        int count = 0;
 
-        //Counts each character except space
-        for(int i = 0; i < IMEI.length(); i++) {
-            count++;
-        }
+        if(IMEI.length() != 15){
 
-        if(count==15){
-            return true;
-        }else{
+            build_number.setError("Number should be of 15 digits");
             return false;
         }
+
+
+       return true;
     }
 
 

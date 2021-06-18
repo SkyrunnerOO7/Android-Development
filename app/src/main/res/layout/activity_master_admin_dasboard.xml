@@ -327,20 +327,20 @@
                                 android:layout_height="match_parent"
                                 android:orientation="vertical"
                                 android:layout_margin="3dp"
-                                android:id="@+id/construction"
+                                android:id="@+id/profile"
                                 android:layout_gravity="center"
                                 android:gravity="center"
                                 android:weightSum="2"
                                 tools:ignore="InvalidId">
 
                                 <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/construction_icon"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:src="@drawable/person_icon"
+                                    android:layout_marginTop="5dp"
                                     android:focusableInTouchMode="true"
                                     android:focusable="auto"
-                                    android:contentDescription="@string/content_description"
-                                    android:layout_margin="5dp"/>
+                                    android:contentDescription="@string/content_description" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -348,8 +348,8 @@
                                     android:layout_gravity="center"
                                     android:gravity="center"
                                     android:layout_margin="3dp"
-                                    android:text="construction"
-                                    android:textColor="@color/md_red_700"
+                                    android:text="My Profile"
+                                    android:textColor="#072f5f"
                                     android:textStyle="bold"
                                     android:textAllCaps="false"
                                     android:textSize="14sp"

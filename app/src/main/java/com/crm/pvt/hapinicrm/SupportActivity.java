@@ -37,8 +37,7 @@ public class SupportActivity extends AppCompatActivity {
             //   Toast.makeText(getContext(), "INTERNET VALIDATION PASSED", Toast.LENGTH_SHORT).show();
         }
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         phone = findViewById(R.id.phone_btn);
         mail = findViewById(R.id.mail_btn);
 
