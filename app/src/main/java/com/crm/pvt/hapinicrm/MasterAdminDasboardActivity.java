@@ -35,7 +35,7 @@ public class MasterAdminDasboardActivity extends AppCompatActivity {
 
         active_user = findViewById(R.id.active_user);
         active_user.setOnClickListener(view -> {
-            Toast.makeText(getApplicationContext(),"You Clicked On Active User",Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(getApplicationContext(),ActiveUserActivity.class));
         });
 
         profile = findViewById(R.id.profile);

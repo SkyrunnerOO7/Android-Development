@@ -1,7 +1,7 @@
 package com.crm.pvt.hapinicrm.models;
 
 public class Employee {
-    private String IMEI,Password,mail;
+    private String IMEI,Password,mail,Name,City,Phone;
 
     public Employee() {
 
@@ -35,5 +35,34 @@ public class Employee {
 
     public void setMail(String mail) {
         this.mail = mail;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public String getCity() {
+        return City;
+    }
+
+    public void setCity(String city) {
+        City = city;
+    }
+
+    public String getPhone() {
+        return Phone;
+    }
+
+    public void setPhone(String phone) {
+        Phone = phone;
+    }
+
+    public void setName(String name) {
+        Name = name;
+
+
+
+
+
     }
 }
