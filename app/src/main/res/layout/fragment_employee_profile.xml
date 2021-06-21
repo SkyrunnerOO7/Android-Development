@@ -3,16 +3,341 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".EmployeeProfileFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Profile Activity"
-        android:textColor="#072f5f"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        >
 
+
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="Your Profile "
+            android:textColor="#072f5f"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="#072f5f"
+            app:layout_constraintTop_toBottomOf="@+id/textView9"
+            tools:layout_editor_absoluteX="0dp" />
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/emp_profile_image"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/admin_profile_icon1"
+            app:civ_border_color="#FFFFFF"
+            app:civ_border_width="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="330dp"
+
+            android:layout_height="1.5dp"
+            android:layout_marginTop="20dp"
+            android:background="#072f5f"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emp_Name" />
+
+
+        <!--          First Name             -->
+
+
+        <TextView
+            android:id="@+id/emp_Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Fname Sname"
+            android:textColor="#072f5f"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emp_profile_image" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="28dp"
+            android:src="@drawable/user_icon_blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+        <TextView
+            android:id="@+id/emp_first_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="31dp"
+            android:text="First Name"
+            android:textColor="#090909"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+
+        <TextView
+            android:id="@+id/emp_first_name_Value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="32dp"
+            android:text="FName"
+            android:textColor="#090909"
+            app:layout_constraintStart_toEndOf="@+id/emp_first_name"
+            app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+
+        <!--          last Name             -->
+
+        <View
+            android:layout_width="300dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="12dp"
+            android:background="#DDDCDC"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emp_first_name" />
+
+        <ImageView
+            android:id="@+id/lname_image"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/user_icon_blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+        <TextView
+            android:id="@+id/emp_last_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="26dp"
+            android:text="Last Name"
+            android:textColor="#090909"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/lname_image"
+            app:layout_constraintTop_toBottomOf="@+id/emp_first_name" />
+
+
+        <TextView
+            android:id="@+id/emp_last_name_Value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="26dp"
+            android:text="LName"
+            android:textColor="#090909"
+            app:layout_constraintStart_toEndOf="@+id/emp_last_name"
+            app:layout_constraintTop_toBottomOf="@+id/emp_first_name_Value" />
+
+
+        <!--          Email            -->
+
+
+        <View
+            android:layout_width="300dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:background="#DDDCDC"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emp_last_name" />
+
+        <ImageView
+            android:id="@+id/email_image"
+            android:layout_width="22dp"
+            android:layout_height="23dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/email_icon_blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lname_image" />
+
+        <TextView
+            android:id="@+id/emp_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:text="Email"
+            android:textColor="#090909"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/email_image"
+            app:layout_constraintTop_toBottomOf="@+id/emp_last_name" />
+
+
+        <!--          Phone             -->
+
+        <View
+            android:layout_width="300dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:background="#DDDCDC"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emp_email" />
+
+        <TextView
+            android:id="@+id/emp_email_Value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="26dp"
+            android:text="fname@gmail.com"
+            android:textColor="#090909"
+            app:layout_constraintStart_toEndOf="@+id/emp_email"
+            app:layout_constraintTop_toBottomOf="@+id/emp_last_name_Value" />
+
+        <ImageView
+            android:id="@+id/phone_image"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/phone_icon_blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email_image" />
+
+        <TextView
+            android:id="@+id/emp_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="22dp"
+            android:text="Phone"
+            android:textColor="#090909"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/phone_image"
+            app:layout_constraintTop_toBottomOf="@+id/emp_email" />
+
+
+        <TextView
+            android:id="@+id/emp_phone_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="24dp"
+            android:text="1234567890"
+            android:textColor="#090909"
+            app:layout_constraintStart_toEndOf="@+id/emp_phone"
+            app:layout_constraintTop_toBottomOf="@+id/emp_email_Value" />
+
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="300dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:background="#DDDCDC"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emp_phone" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:clickable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            app:layout_constraintEnd_toEndOf="@+id/view3"
+            app:layout_constraintStart_toStartOf="@+id/view3"
+            app:layout_constraintTop_toBottomOf="@+id/view3">
+
+            <ImageView
+                android:id="@+id/logout_emp_icon"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:background="@color/md_red_500"
+                android:focusableInTouchMode="true"
+                android:src="@drawable/logout_icon"
+                app:layout_constraintEnd_toEndOf="@+id/view3"
+                app:layout_constraintStart_toStartOf="@+id/view3"
+                tools:layout_editor_absoluteY="522dp" />
+
+            <TextView
+                android:id="@+id/logout_emp_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:clickable="true"
+                android:focusableInTouchMode="true"
+                android:text="Log Out"
+                android:textColor="@color/blackTextColor"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/logout_emp_icon"
+                app:layout_constraintStart_toEndOf="@+id/logout_emp_icon"
+                app:layout_constraintTop_toTopOf="@+id/logout_emp_icon" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="300dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:background="#DDDCDC"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emp_phone" />
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

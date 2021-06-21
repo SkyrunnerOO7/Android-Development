@@ -68,15 +68,12 @@
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#072f5f"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-2dp"
+        android:background="#072f5f"
         app:itemIconTint="#ffffff"
         app:itemTextColor="#ffffff"
         app:menu="@menu/emp_dash_bottom_nav_menu" />
-
-
-
-
 
 
 </RelativeLayout>

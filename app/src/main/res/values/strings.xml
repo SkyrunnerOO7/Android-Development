@@ -6,7 +6,7 @@
     <string name="login_email_hint">Create password</string>
     <string name="login_password_hint">Confirm password</string>
     <string name="signup_login_hint">Already have an account? Sign In</string>
-    <string name="login_signup_hint">I am admin? Sign Up</string>
+    <string name="login_signup_hint">Developer team?</string>
     <string name="login_name_hint">Full name</string>
     <string name="login_name_tandc">Accept all T&amp;C</string>
     <string name="login_mobile_number_hint">E-mail</string>
@@ -48,6 +48,35 @@
     <string name="Hint_device_bulid_number">Device IMEI Number</string>
     <string name="add_new_emp">Add New Employee</string>
     <string name="i_accept">I Accept that Above All the Information is Correct in My View</string>
+
+    <!--Spinner_calling_feedback_item
+
+    <string-array name="Spinner_calling_feedback_item">
+        <item>Select Status </item>
+
+        <item>Intersted/Done</item>
+        <item>Not Intersted</item>
+        <item>Don't PickUp</item>
+        <item>Network Issues</item>
+        <item>Tell to callback</item>
+        <item>Intersted/Issue</item>
+
+    </string-array>
+-->
+
+
+    <string-array name="Spinner_calling_feedback_item">
+        <item>Select Status</item>
+        <item>Intersted(Done)</item>
+        <item>Not Intersted</item>
+        <item>Do not PickUp</item>
+        <item>Network Issues</item>
+        <item>Tell to callback</item>
+        <item>Intersted(Issue)</item>
+
+
+
+    </string-array>
 
 
     <!-- Spinner Item -->

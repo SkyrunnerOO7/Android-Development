@@ -8,6 +8,9 @@
     android:background="@drawable/login_bk"
     android:focusableInTouchMode="true">
 
-    <include layout="@layout/layout_register" />
+    <include layout="@layout/layout_register"
+        android:visibility="gone"/>
+
+    <include layout="@layout/layout_under_construction" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

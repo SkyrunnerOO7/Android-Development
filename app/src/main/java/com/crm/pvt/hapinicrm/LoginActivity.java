@@ -190,14 +190,23 @@ public class LoginActivity extends AppCompatActivity {
         CreateAdminAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(LoginActivity.this, "⚠ Warning Resticated move!", Toast.LENGTH_SHORT).show();
+
                 loadingBar = new ProgressDialog(LoginActivity.this);
                 loadingBar.show();
                 loadingBar.setContentView(R.layout.progress_dialog);
                 loadingBar.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
-                Toast.makeText(LoginActivity.this, "Only Admin Create this Account!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(LoginActivity.this, RegisterdActivity.class));
-                finish();
+                Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        startActivity(new Intent(LoginActivity.this, RegisterdActivity.class));
+                        finish();
+                        finish();
+                    }
+                }, 5000);
+
             }
         });
 

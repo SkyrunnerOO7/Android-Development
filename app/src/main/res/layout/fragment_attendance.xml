@@ -73,8 +73,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_below="@id/ll"
-                android:layout_above="@id/ll1"
-                >
+                android:layout_above="@id/ll1">
+
                 <ListView
                     android:id="@+id/list_item"
                     android:layout_marginHorizontal="5dp"
