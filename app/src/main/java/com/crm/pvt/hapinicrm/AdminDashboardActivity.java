@@ -9,12 +9,16 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Telephony;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -30,6 +34,21 @@ public class AdminDashboardActivity extends AppCompatActivity implements Navigat
     private DrawerLayout drawer;
     private NavigationView navigationView;
     boolean doubleBackToExitPressedOnce = false;
+    View hView;
+    ImageView profileImage;
+    private static final int PICK_IMAGE=1,RESULT_OK=-1;
+    Uri imageUri;
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == PICK_IMAGE){
+            imageUri = data.getData();
+            profileImage.setImageURI(imageUri);
+        }
+    }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +56,6 @@ public class AdminDashboardActivity extends AppCompatActivity implements Navigat
         setContentView(R.layout.activity_admin_dashboard);
 
         setTitle(null);
-
         drawer = (DrawerLayout)findViewById(R.id.drawer_layout);
         navigationView = (NavigationView)findViewById(R.id.nav_view);
 
@@ -49,6 +67,27 @@ public class AdminDashboardActivity extends AppCompatActivity implements Navigat
 
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
+
+
+        //to add image picker in header part
+        NavigationView navigationView=(NavigationView) findViewById(R.id.nav_view);
+        hView=navigationView.getHeaderView(0);
+        profileImage=(ImageView)hView.findViewById(R.id.admin_profile_image);
+        profileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent,"Select Picture"),PICK_IMAGE);
+            }
+        });
+        navigationView.setNavigationItemSelectedListener(this);
+
+
+
+
 
         if(savedInstanceState==null){
             navigationView.setNavigationItemSelectedListener(this);
@@ -134,6 +173,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements Navigat
                 Toast.makeText(this, "Hapini.in", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getApplicationContext(),WebViewActivity.class));
                 break;
+
 
 
         }
