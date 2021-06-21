@@ -64,6 +64,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-database'
     implementation 'com.google.firebase:firebase-analytics'
 
+
+    //Circular ImageView
+
     // For Profile Imager
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 

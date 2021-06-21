@@ -2,6 +2,7 @@ package com.crm.pvt.hapinicrm;
 
 import android.os.Bundle;
 
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 
-public class fragment_attendance extends Fragment {
+public class fragment_attendance extends DialogFragment {
     private Button mark_presence;
     private Calendar calendar;
     private ListView listView;

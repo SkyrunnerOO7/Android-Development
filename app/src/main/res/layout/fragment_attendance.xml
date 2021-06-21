@@ -2,15 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/light_grey">
+    android:background="@drawable/attendance_bg">
 
 
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="100dp"
         android:background="@drawable/attendance_backround"/>
 
     <androidx.cardview.widget.CardView
@@ -18,11 +18,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:cardCornerRadius="20dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="15dp"
         android:layout_centerHorizontal="true">
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_centerHorizontal="true"
             android:src="@drawable/app_icon"/>
 
@@ -36,12 +36,12 @@
         android:textStyle="bold"
         android:layout_below="@id/logo_cardview"
         android:layout_centerHorizontal="true"
-        android:textSize="20dp"/>
+        android:textSize="14dp"/>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="130dp"
+        android:layout_height="350dp"
+        android:layout_marginTop="75dp"
         android:background="@color/whiteTextColor"
         android:layout_marginHorizontal="15dp"
         app:cardCornerRadius="16dp"
@@ -57,7 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 tools:ignore="InvalidId">
 
                 <TextView

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -19,13 +20,15 @@ public class MasterAdminDasboardActivity extends AppCompatActivity {
     LinearLayout addadmin;
     LinearLayout active_user;
     LinearLayout AddData;
-    LinearLayout construction;
+    LinearLayout profile;
+    boolean doubleBackToExitPressedOnce = false;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_master_admin_dasboard);
+        getSupportActionBar().hide();
 
         addadmin = findViewById(R.id.add_admin);
         addadmin.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(),addAdminActivity.class)));
@@ -35,15 +38,37 @@ public class MasterAdminDasboardActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"You Clicked On Active User",Toast.LENGTH_SHORT).show();
         });
 
-        construction = findViewById(R.id.construction);
-        construction.setOnClickListener(view -> {
-            Toast.makeText(getApplicationContext(),"You Clicked On Contruction",Toast.LENGTH_SHORT).show();
+        profile = findViewById(R.id.profile);
+        profile.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(),MasterProfileActivity.class));
         });
 
         AddData = findViewById(R.id.add_data);
         AddData.setOnClickListener(view -> {
             startActivity(new Intent(getApplicationContext(),AddDataActivity.class));
         });
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            this.finishAffinity();
+            super.onBackPressed();
+
+            return;
+        }
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
+
 
     }
 }

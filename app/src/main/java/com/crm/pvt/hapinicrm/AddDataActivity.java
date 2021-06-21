@@ -50,20 +50,26 @@ public class AddDataActivity extends AppCompatActivity {
         city = findViewById(R.id.city);
         loadingBar = new ProgressDialog(this);
 
+
         add = findViewById(R.id.add_data);
         add.setOnClickListener(view -> {
             String phoneNumber = phone_number.getText().toString();
             String fullName = full_name.getText().toString();
+
+
             String city_st = city.getText().toString();
             countryCodePicker.registerPhoneNumberTextView(phone_number);
             if(validateFullName(fullName) && validatePhoneNumber(phoneNumber) && validatecity(city_st)) {
                 if (checkBox.isChecked()) {
+
+                        if (countryCodePicker.isValid())
+                            Toast.makeText(getApplicationContext(), "Successfully Submitted", Toast.LENGTH_SHORT).show();
+
                         if(countryCodePicker.isValid()){
                             createEntry(fullName,phoneNumber,city_st);
                         }
                         else
                             Toast.makeText(getApplicationContext(), "Provide valid code/phone number", Toast.LENGTH_SHORT).show();
-
                 }else
                     checkBox.setError("Accepts Conditions");
             }
