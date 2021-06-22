@@ -28,6 +28,7 @@
         <activity
             android:name=".EmployeeDashboardActivity"
             android:theme="@style/AppTheme.NoActionBar">
+
         </activity>
         <activity android:name=".AddDataActivity" />
         <activity android:name=".Add_new_employee_activity" />

@@ -27,11 +27,9 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
     BottomNavigationView bnv;
     ImageView refresh;
     public TextView timerText;
-    public Timer timer,timer1;
-    public TimerTask timerTask,timerTask1;
+    public Timer timer;
+    public TimerTask timerTask;
     Double time = 0.0;
-    public Double time1 = 0.0;
-    RelativeLayout relativeLayout;
     boolean doubleBackToExitPressedOnce= false;
 
 
@@ -48,32 +46,16 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
         timerText = (TextView) findViewById(R.id.time_employee_dashboard);
         refresh=(ImageView)findViewById(R.id.refresh_employee_dashboard);
         bnv=(BottomNavigationView)findViewById(R.id.bottomNavigation);
-        relativeLayout=(RelativeLayout)findViewById(R.id.layout_emp_dashboard);
         // to open home fragment Bydefault
         getSupportFragmentManager().beginTransaction().replace(R.id.FrameConatiner,new fragment_calling()).commit();
         // To add timer
         timer = new Timer();
         startTimer();
-        timer1 = new Timer();
-        startTimer1();
-        relativeLayout.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-
-                timerTask1.cancel();
-                time1 = 0.0;
-                startTimer1();
-                return true;
-            }
-        });
 
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(EmployeeDashboardActivity.this,"Refresh",Toast.LENGTH_SHORT).show();
-                timerTask1.cancel();
-                time1 = 0.0;
-                startTimer1();
             }
         });
 
@@ -86,9 +68,6 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item)
             {
                 Fragment temp=null;
-                timerTask1.cancel();
-                time1 = 0.0;
-                startTimer1();
                 switch (item.getItemId())
                 {
                     case R.id.menu_home : temp=new fragment_calling();
@@ -120,7 +99,6 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
         if (doubleBackToExitPressedOnce) {
             this.finishAffinity();
             super.onBackPressed();
-            timerTask1.cancel();
             return;
         }
         this.doubleBackToExitPressedOnce = true;
@@ -166,8 +144,6 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
 
     }
 
-
-
     private String getTimerText()
     {
         int rounded = (int) Math.round(time);
@@ -178,49 +154,6 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
 
         return formatTime(seconds, minutes, hours);
     }
-
-
-
-    private void startTimer1()
-    {
-        timerTask1 = new TimerTask()
-        {
-            @Override
-            public void run()
-            {
-                runOnUiThread(new Runnable()
-                {
-                    @Override
-                    public void run()
-                    {
-                        time1++;
-                        //timerText1.setText(getTimerText());
-
-                        if(getTimerText1().equals("00 : 10 : 00"))
-                        {
-                            Intent i=new Intent(EmployeeDashboardActivity.this,LoginActivity.class);
-                            startActivity(i);
-                            finish();
-                        }
-                    }
-                });
-            }
-        };
-        timer1.scheduleAtFixedRate(timerTask1, 0 ,1000);
-
-    }
-
-    private String getTimerText1()
-    {
-        int rounded = (int) Math.round(time1);
-
-        int seconds = ((rounded % 86400) % 3600) % 60;
-        int minutes = ((rounded % 86400) % 3600) / 60;
-        int hours = ((rounded % 86400) / 3600);
-
-        return formatTime(seconds, minutes, hours);
-    }
-
     private String formatTime(int seconds, int minutes, int hours)
     {
         return String.format("%02d",hours) + " : " + String.format("%02d",minutes) + " : " + String.format("%02d",seconds);
