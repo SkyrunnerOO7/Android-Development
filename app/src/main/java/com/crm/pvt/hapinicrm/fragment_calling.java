@@ -22,12 +22,23 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
 
 public class fragment_calling extends DialogFragment {
     ImageView calling_fragment;
     TextView name;
     TextView city;
     TextView phone;
+    HashMap<String,String> PhoneNumberList;
+    ArrayList<HashMap> PhoneList;
     private static final int REQUEST_CALL = 1;
 
     @Override
@@ -44,6 +55,7 @@ public class fragment_calling extends DialogFragment {
             public void onClick(View view1) {
 
                makePhoneCall();
+
 
 
             }
@@ -80,5 +92,41 @@ public class fragment_calling extends DialogFragment {
             }
         }
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        final DatabaseReference RootRef;
+        RootRef = FirebaseDatabase.getInstance().getReference();
+
+        RootRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                PhoneNumberList = new HashMap<>();
+
+                PhoneList = new ArrayList<>();
+                for(DataSnapshot dataSnapshot: snapshot.child("Data").getChildren()){
+                    PhoneNumberList.clear();
+                    PhoneNumberList.put("City",dataSnapshot.child("City").getValue().toString());
+                    PhoneNumberList.put("Name",dataSnapshot.child("Name").getValue().toString());
+                    PhoneNumberList.put("Number",dataSnapshot.child("Number").getValue().toString());
+                    PhoneList.add(PhoneNumberList);
+
+                }
+
+                name.setText(PhoneList.get(0).get("Name").toString());
+                city.setText(PhoneList.get(0).get("City").toString());
+                phone.setText(PhoneList.get(0).get("Number").toString());
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

@@ -157,16 +157,16 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
 
-        if(isFirstTime()) {
+
             // added new Code to pop up calling Fragment
-            fragment_calling fragment_calling = new fragment_calling();
-            fragment_calling.show(getSupportFragmentManager(), "TAG");
-        }
+//            fragment_calling fragment_calling = new fragment_calling();
+//            fragment_calling.show(getSupportFragmentManager(), "TAG");
 
-          // Code to pop up attendance activicty
-          fragment_attendance fragment_attendance = new fragment_attendance();
-          fragment_attendance.show(getSupportFragmentManager(),"MyFragment");
-
+            if(isFirstTime()) {
+                // Code to pop up attendance activicty
+                fragment_attendance fragment_attendance = new fragment_attendance();
+                fragment_attendance.show(getSupportFragmentManager(), "MyFragment");
+            }
         super.onStart();
     }
     private void startTimer()

@@ -71,7 +71,7 @@ public class Add_new_employee_activity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                String imei = build_number.getText().toString();
+
                 createAccount();
 
 

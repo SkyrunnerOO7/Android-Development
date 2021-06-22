@@ -1,7 +1,10 @@
 package com.crm.pvt.hapinicrm;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -13,19 +16,26 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
 
 public class fragment_calling_feedback extends Fragment {
 
-
-
-
-    private String mParam1;
-    private String mParam2;
     Spinner spinner_calling_feedback;
     EditText remark,problem;
     public String s;
     Button submit;
-
+    private ProgressDialog loadingBar;
+    ArrayList<String> DataList;
 
 
     @Override
@@ -47,7 +57,7 @@ public class fragment_calling_feedback extends Fragment {
                 choose_category[0] = spinner_calling_feedback.getSelectedItem().toString();
 
 
-                choose_category[0] = spinner_calling_feedback.getSelectedItem().toString();
+
                 if(choose_category[0].contentEquals("Intersted(Done)")){
                     s="false";
                     Toast.makeText(getContext(),"Intersted",Toast.LENGTH_SHORT).show();
@@ -87,6 +97,7 @@ public class fragment_calling_feedback extends Fragment {
         submit=view.findViewById(R.id.Submit_calling_fragment);
         remark=view.findViewById(R.id.remark_calling_feedback);
         problem=view.findViewById(R.id.problem_calling_feedback);
+        loadingBar = new ProgressDialog(getContext());
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,6 +111,8 @@ public class fragment_calling_feedback extends Fragment {
                 if(s.equals("true"))
                 {
                     Toast.makeText(getContext(),"Please Select Status",Toast.LENGTH_SHORT).show();
+                    /// Added now
+                    return;
 
                 }
                 else if (remark1.isEmpty())
@@ -115,7 +128,11 @@ public class fragment_calling_feedback extends Fragment {
                     return;
                 }
                 else {
-                    Toast.makeText(getContext(),"Successfully Submited",Toast.LENGTH_SHORT).show();
+                    loadingBar.setTitle("Submitting...");
+                    loadingBar.setCanceledOnTouchOutside(false);
+                    loadingBar.show();
+                    SubmitData(choose_category[0],remark1,problem1);
+
 
                 }
 
@@ -125,5 +142,62 @@ public class fragment_calling_feedback extends Fragment {
 
 
         return view;
+    }
+
+   public void SubmitData(String status,String remark,String problem){
+       final DatabaseReference RootRef;
+       RootRef = FirebaseDatabase.getInstance().getReference();
+
+       RootRef.addValueEventListener(new ValueEventListener() {
+           @Override
+           public void onDataChange(@NonNull DataSnapshot snapshot) {
+               DataList = new ArrayList<>();
+               DataList.clear();
+               for(DataSnapshot dataSnapshot:snapshot.child("Data").getChildren())
+                    DataList.add(dataSnapshot.getKey());
+
+           }
+
+           @Override
+           public void onCancelled(@NonNull DatabaseError error) {
+
+           }
+       });
+
+       RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+           @Override
+           public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+               if(!snapshot.child("Feedback").child(DataList.get(0)).exists()){
+                   HashMap<String,Object> FeedbackDataMap = new HashMap<>();
+                   FeedbackDataMap.put("Status",status);
+                   FeedbackDataMap.put("Remark",remark);
+                   FeedbackDataMap.put("Problem",problem);
+
+                   RootRef.child("Feedback").child(DataList.get(0)).updateChildren(FeedbackDataMap)
+                           .addOnCompleteListener(new OnCompleteListener<Void>() {
+                               @Override
+                               public void onComplete(@NonNull Task<Void> task) {
+                                   if(task.isSuccessful()){
+                                       Toast.makeText(getContext(), "Sucessfully Submitted", Toast.LENGTH_SHORT).show();
+                                       loadingBar.dismiss();
+
+                                   }
+                                   else{
+                                       loadingBar.dismiss();
+                                       Toast.makeText(getContext(), "Somthing Went Wrong.. Please Try Again After Some time..", Toast.LENGTH_SHORT).show();
+                                   }
+                               }
+                           });
+
+               }
+           }
+
+           @Override
+           public void onCancelled(@NonNull DatabaseError error) {
+
+           }
+       });
+
     }
 }
