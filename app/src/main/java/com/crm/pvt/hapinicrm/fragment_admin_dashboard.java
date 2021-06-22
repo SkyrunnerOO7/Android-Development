@@ -26,7 +26,7 @@ public class fragment_admin_dashboard extends Fragment {
 
     private LinearLayout AddNewEmployee;
     private LinearLayout AddData;
-    private LinearLayout Construction;
+    private LinearLayout Feedback;
     private LinearLayout ActiveUser;
     ProgressDialog progressDialog;
 
@@ -86,18 +86,17 @@ public class fragment_admin_dashboard extends Fragment {
             }, 2000);
         });
 
-        // Construction
-        Construction = view.findViewById(R.id.construction);
-        Construction.setOnClickListener(view1 -> {
+        // Feedback
+        Feedback = view.findViewById(R.id.feedback);
+        Feedback.setOnClickListener(view1 -> {
 
             progressDialog = new ProgressDialog(getContext());
             progressDialog.show();
             progressDialog.setContentView(R.layout.progress_dialog);
             progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
-            Toast.makeText(getContext(),"You Click On Construction",Toast.LENGTH_SHORT).show();
-//            Intent intent = new Intent(getActivity(),Add_new_employee_activity.class);
-//            startActivity(intent);
+            Intent intent = new Intent(getActivity(),UserFeedbackShowActivity.class);
+            startActivity(intent);
 
         });
 
