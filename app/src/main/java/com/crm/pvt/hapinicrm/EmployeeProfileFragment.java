@@ -1,14 +1,24 @@
 package com.crm.pvt.hapinicrm;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
+
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,11 +32,13 @@ public class EmployeeProfileFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-
+    private static final int PICK_IMAGE=1,RESULT_OK=-1;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
     private ImageView profileImg;
+    public LinearLayout logout;
+    Uri imageUri;
     public EmployeeProfileFragment() {
         // Required empty public constructor
     }
@@ -64,16 +76,44 @@ public class EmployeeProfileFragment extends Fragment {
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == PICK_IMAGE){
+            imageUri = data.getData();
+            profileImg.setImageURI(imageUri);
+        }
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
         View view=inflater.inflate(R.layout.fragment_employee_profile,container,false);
         profileImg=view.findViewById(R.id.emp_profile_image);
+
+        logout=view.findViewById(R.id.logout_layout);
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent= new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
+
+
+
         profileImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(),"this is employee's Image",Toast.LENGTH_SHORT).show();
+
+                // to select image from phone storage
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent,"Select Picture"),PICK_IMAGE);
             }
         });
 
