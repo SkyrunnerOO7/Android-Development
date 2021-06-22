@@ -42,6 +42,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements Navigat
     ImageView profileImage;
     private static final int PICK_IMAGE=1,RESULT_OK=-1;
     Uri imageUri;
+    private LinearLayout ActiveUser;
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){

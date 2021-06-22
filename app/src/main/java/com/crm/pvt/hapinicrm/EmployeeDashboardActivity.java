@@ -43,7 +43,6 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
    
     Handler handler;
     Runnable r;
-    boolean doubleBackToExitPressedOnce= false;
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String text = "text";
 
