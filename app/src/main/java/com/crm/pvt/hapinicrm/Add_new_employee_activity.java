@@ -137,6 +137,7 @@ public class Add_new_employee_activity extends AppCompatActivity {
     }
 
     public void ValidateEmp(String IMEI,String mail,String password,String name,String city,String phone){
+
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
 
