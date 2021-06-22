@@ -1,7 +1,7 @@
 package com.crm.pvt.hapinicrm.models;
 
 public class Admin {
-    private String Passcode,Password,Name,Email;
+    private String Passcode,Password,Name,Email,City,Phone;
 
     Admin(){
 
@@ -44,5 +44,21 @@ public class Admin {
 
     public void setEmail(String email) {
         Email = email;
+    }
+
+    public String getCity() {
+        return City;
+    }
+
+    public void setCity(String city) {
+        City = city;
+    }
+
+    public String getPhone() {
+        return Phone;
+    }
+
+    public void setPhone(String phone) {
+        Phone = phone;
     }
 }
