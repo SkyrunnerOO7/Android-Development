@@ -18,7 +18,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+
 import android.widget.ImageView;
+
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -34,6 +37,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements Navigat
     private DrawerLayout drawer;
     private NavigationView navigationView;
     boolean doubleBackToExitPressedOnce = false;
+
     View hView;
     ImageView profileImage;
     private static final int PICK_IMAGE=1,RESULT_OK=-1;
@@ -42,13 +46,12 @@ public class AdminDashboardActivity extends AppCompatActivity implements Navigat
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK && requestCode == PICK_IMAGE){
+        if (resultCode == RESULT_OK && requestCode == PICK_IMAGE)
+        {
             imageUri = data.getData();
             profileImage.setImageURI(imageUri);
         }
     }
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +67,15 @@ public class AdminDashboardActivity extends AppCompatActivity implements Navigat
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer, toolbar, R.string.navigation_drawer_open,
                 R.string.navigation_drawer_close);
+
+
+        ActiveUser = findViewById(R.id.active_user1);
+        ActiveUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),Employee_Active_user.class));
+            }
+        });
 
         drawer.addDrawerListener(toggle);
         toggle.syncState();

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +41,7 @@ public class Add_new_employee_activity extends AppCompatActivity {
     private TextInputEditText pass;
     private TextInputEditText conf_pass;
     private ProgressDialog loadingBar;
+    private EditText Empname,CityE,phoneE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,12 @@ public class Add_new_employee_activity extends AppCompatActivity {
         checkBox = findViewById(R.id.checkbox);
         conf_pass = findViewById(R.id.confirm_password);
         loadingBar = new ProgressDialog(this);
+        Empname = findViewById(R.id.Ename);
+        CityE = findViewById(R.id.cityE);
+        phoneE = findViewById(R.id.phoneE);
+
+
+
 
         add = findViewById(R.id.add_emp);
         add.setOnClickListener(new View.OnClickListener() {
@@ -64,10 +72,7 @@ public class Add_new_employee_activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String imei = build_number.getText().toString();
-                if(validIMEI(imei)) {
-
-                    createAccount();
-                }
+                createAccount();
 
 
             }
@@ -86,6 +91,9 @@ public class Add_new_employee_activity extends AppCompatActivity {
         String mail = email.getText().toString();
         String password = pass.getText().toString();
         String repassword = conf_pass.getText().toString();
+        String empname = Empname.getText().toString();
+        String cityE = CityE.getText().toString();
+        String PhoneE = phoneE.getText().toString();
 
 
         // get text
@@ -93,6 +101,9 @@ public class Add_new_employee_activity extends AppCompatActivity {
 
         if(password.isEmpty()){
             pass.setError("passcode can't be empty");
+        }
+        if(empname.isEmpty()){
+            Empname.setError("Name can't be empty");
         }
         else if(mail.isEmpty()){
             email.setError("Feild can't be empty");
@@ -103,13 +114,19 @@ public class Add_new_employee_activity extends AppCompatActivity {
         else if(IMEI.isEmpty()){
             build_number.setError("Feild can't be empty");
         }
+        else if(cityE.isEmpty()){
+            CityE.setError("Feild can't be empty");
+        }
+        else if(PhoneE.isEmpty()){
+            phoneE.setError("Feild can't be empty");
+        }
         else{
 
             loadingBar.setTitle("Create Account");
             loadingBar.setMessage("please Wait while checking Credentials..");
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
-            ValidateEmp(IMEI,mail,password);
+            ValidateEmp(IMEI,mail,password,empname,cityE,PhoneE);
 
 
 
@@ -119,7 +136,7 @@ public class Add_new_employee_activity extends AppCompatActivity {
 
     }
 
-    public void ValidateEmp(String IMEI,String mail,String password){
+    public void ValidateEmp(String IMEI,String mail,String password,String name,String city,String phone){
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
 
@@ -131,6 +148,9 @@ public class Add_new_employee_activity extends AppCompatActivity {
                     EmpDataMap.put("mail",mail);
                     EmpDataMap.put("IMEI",IMEI);
                     EmpDataMap.put("Password",password);
+                    EmpDataMap.put("Name",name);
+                    EmpDataMap.put("City",city);
+                    EmpDataMap.put("Phone",phone);
 
 
                     RootRef.child("Employee").child(IMEI).updateChildren(EmpDataMap)

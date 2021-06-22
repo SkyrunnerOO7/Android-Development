@@ -41,6 +41,7 @@ public class addAdminActivity extends AppCompatActivity {
     EditText repassword;
     ProgressDialog loadingBar;
     CheckBox checkBox;
+    EditText cityA,phoneA;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,9 @@ public class addAdminActivity extends AppCompatActivity {
         repassword = findViewById(R.id.confirm_password_admin);
         checkBox = findViewById(R.id.checkbox_admin);
         loadingBar = new ProgressDialog(this);
+        cityA = findViewById(R.id.CityA);
+        phoneA = findViewById(R.id.phoneA);
+
 
 
         add = findViewById(R.id.add_admin_btn);
@@ -82,6 +86,9 @@ public class addAdminActivity extends AppCompatActivity {
         String email = mail.getText().toString();
         String password_st = password.getText().toString();
         String repassword_st = repassword.getText().toString();
+        String PhoneA = phoneA.getText().toString();
+        String CityA = cityA.getText().toString();
+
 
 
         // get text
@@ -100,7 +107,13 @@ public class addAdminActivity extends AppCompatActivity {
             Toast.makeText(this, "Please Enter a password...", Toast.LENGTH_SHORT).show();
         }
         else if(repassword_st.isEmpty()){
-            Toast.makeText(this, "Please Enter a please retype your password...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please retype your password...", Toast.LENGTH_SHORT).show();
+        }
+        else if(CityA.isEmpty()){
+            Toast.makeText(this, "Please Enter City Name...", Toast.LENGTH_SHORT).show();
+        }
+        else if(PhoneA.isEmpty()){
+            Toast.makeText(this, " please Enter Phone number...", Toast.LENGTH_SHORT).show();
         }
         else if(!password_st.equals(repassword_st)){
             Toast.makeText(this, "passwords are not matching", Toast.LENGTH_SHORT).show();
@@ -111,7 +124,7 @@ public class addAdminActivity extends AppCompatActivity {
             loadingBar.setMessage("please Wait while checking Credentials..");
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
-            Validate(email,Passcode,Fullname,password_st);
+            Validate(email,Passcode,Fullname,password_st,CityA,PhoneA);
 
 
 
@@ -123,7 +136,7 @@ public class addAdminActivity extends AppCompatActivity {
 
     }
 
-    private void Validate(final String email,final String passcode,final String fullname,final String password) {
+    private void Validate(final String email,final String passcode,final String fullname,final String password,final String cityA,final String phoneA) {
 
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
@@ -137,6 +150,8 @@ public class addAdminActivity extends AppCompatActivity {
                     UserDataMap.put("Name",fullname);
                     UserDataMap.put("Passcode",passcode);
                     UserDataMap.put("Password",password);
+                    UserDataMap.put("City",cityA);
+                    UserDataMap.put("Phone",phoneA);
 
 
                     RootRef.child("Admin").child(passcode).updateChildren(UserDataMap)

@@ -3,10 +3,11 @@ package com.crm.pvt.hapinicrm;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-
-import android.content.Intent;
-import android.os.Bundle;
 import android.os.Handler;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -23,6 +24,12 @@ import org.w3c.dom.Text;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 public class EmployeeDashboardActivity extends AppCompatActivity {
     BottomNavigationView bnv;
     ImageView refresh;
@@ -33,10 +40,14 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
     boolean doubleBackToExitPressedOnce= false;
 
 
-    // here, timer will display on screen
-    //and timer1 will calculate 10 mins and after every touch it will be set to 0
-    public EmployeeDashboardActivity() {
-    }
+   
+    Handler handler;
+    Runnable r;
+    boolean doubleBackToExitPressedOnce= false;
+    public static final String SHARED_PREFS = "sharedPrefs";
+    public static final String text = "text";
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +62,18 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
         // To add timer
         timer = new Timer();
         startTimer();
+
+
+        handler = new Handler();
+        r = new Runnable() {
+            @Override
+            public void run() {
+                finish();
+              startActivity(new Intent(EmployeeDashboardActivity.this,LoginActivity.class));
+
+            }
+        };
+        startHandler();
 
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,6 +117,24 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
         });
 
     }
+
+
+
+    @Override
+    public void onUserInteraction() {
+        super.onUserInteraction();
+        stopHandler();
+        startHandler();
+    }
+
+    private void stopHandler() {
+        handler.removeCallbacks(r);
+    }
+
+    private void startHandler() {
+        handler.postDelayed(r, 6000);
+    }
+
     @Override
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
@@ -116,8 +157,17 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
-        fragment_attendance fragment_attendance = new fragment_attendance();
-        fragment_attendance.show(getSupportFragmentManager(),"MyFragment");
+
+        if(isFirstTime()) {
+            // added new Code to pop up calling Fragment
+            fragment_calling fragment_calling = new fragment_calling();
+            fragment_calling.show(getSupportFragmentManager(), "TAG");
+        }
+
+          // Code to pop up attendance activicty
+          fragment_attendance fragment_attendance = new fragment_attendance();
+          fragment_attendance.show(getSupportFragmentManager(),"MyFragment");
+
         super.onStart();
     }
     private void startTimer()
@@ -161,4 +211,25 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
 
 
 
+
+
+    private boolean isFirstTime() {
+
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        String date1 = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+
+
+        if(sharedPreferences.getString(text,"2021-08-16").contentEquals(date1)){
+            return false;
+
+        }
+        else{
+
+            editor.putString(text,date1);
+            editor.apply();
+            return true;
+        }
+
+    }
 }
