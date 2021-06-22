@@ -32,6 +32,7 @@ public class fragment_attendance extends DialogFragment {
         ArrayList<String> list = new ArrayList<>();
 
 
+
         mark_presence = view.findViewById(R.id.mark_attendance);
         mark_presence.setOnClickListener(view1 -> {
             calendar = Calendar.getInstance();
@@ -41,6 +42,7 @@ public class fragment_attendance extends DialogFragment {
 
             ArrayAdapter arrayAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1,list);
             listView.setAdapter(arrayAdapter);
+
 
 
         });

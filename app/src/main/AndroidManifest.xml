@@ -15,9 +15,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HapiniCRM">
+
+        <activity android:name=".MasterProfileActivity"></activity>
+        <activity android:name=".ActiveUserActivity"></activity>
+
         <activity android:name=".Employee_Active_user"></activity>
         <activity android:name=".MasterProfileActivity" />
         <activity android:name=".ActiveUserActivity" />
+
         <activity android:name=".addAdminActivity" />
         <activity android:name=".MasterAdminLoginActivity" />
         <activity android:name=".SplashScreenMasterPanel" />

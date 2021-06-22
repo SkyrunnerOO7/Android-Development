@@ -269,6 +269,7 @@ public class LoginActivity extends AppCompatActivity {
                                 loadingBar.dismiss();
                                 Intent intent = new Intent(getApplicationContext(),EmployeeDashboardActivity.class);
                                 startActivity(intent);
+                                finish();
                             }
                         }else{
                             loadingBar.dismiss();
