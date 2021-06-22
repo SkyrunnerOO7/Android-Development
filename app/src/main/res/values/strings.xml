@@ -78,6 +78,15 @@
     </string-array>
 
 
+    <!-- Spinner user feedback Item -->
+    <string-array name="Spinner_user_feedback_item">
+        <item>Sort By</item>
+        <item>New</item>
+        <item>Number</item>
+        <item>Name</item>
+    </string-array>
+
+
     <!-- Spinner Item -->
     <string-array name="Spinner_item">
         <item>Choose Category</item>
