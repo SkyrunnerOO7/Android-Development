@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:strokeWidth="1dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="0dp"
             android:layout_marginHorizontal="10dp"
             android:layout_marginBottom="15dp"
             app:cardCornerRadius="20dp"
@@ -26,7 +26,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="45dp"
+                android:layout_marginTop="10dp"
                 android:background="@color/whiteTextColor"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -111,6 +111,46 @@
                         android:layout_height="wrap_content"
                         android:hint="Full name"
                         android:id="@+id/Name_admin"
+                        android:inputType="text"
+                        android:paddingLeft="10dp"
+                        tools:ignore="DuplicateIds" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/navy_blue"
+                    app:startIconDrawable="@drawable/home_icon"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="15dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="City"
+                        android:id="@+id/CityA"
+                        android:inputType="text"
+                        android:paddingLeft="10dp"
+                        tools:ignore="DuplicateIds" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColorHint="@color/navy_blue"
+                    app:startIconDrawable="@drawable/phone_icon"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="15dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="phone"
+                        android:id="@+id/phoneA"
                         android:inputType="text"
                         android:paddingLeft="10dp"
                         tools:ignore="DuplicateIds" />

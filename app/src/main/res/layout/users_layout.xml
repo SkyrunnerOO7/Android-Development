@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:elevation="10dp"
+        android:gravity="center"
+        app:cardBackgroundColor="@color/whiteCardColor"
+        app:cardCornerRadius="16dp"
+        >
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            >
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:layout_marginLeft="2dp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/passcode_imei"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:text="passcode "
+                android:textColor="#000000"
+                android:textAlignment="viewEnd"
+                android:gravity="end"
+                android:textSize="15sp"
+                android:layout_marginLeft="2dp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/emailText"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:text="mailid "
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="5dp"
+
+                android:layout_below="@id/user_name"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/passwordED"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:text="password "
+                android:layout_marginTop="5dp"
+                android:textColor="#000000"
+                android:textAlignment="viewEnd"
+                android:gravity="end"
+                android:textSize="15sp"
+                android:layout_marginLeft="2dp"
+                android:layout_below="@id/passcode_imei"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/CityText"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:text="City "
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="5dp"
+
+                android:layout_below="@id/emailText"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/PhoneText"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:text="Phone "
+                android:layout_marginTop="5dp"
+                android:textColor="#000000"
+                android:textAlignment="viewEnd"
+                android:gravity="end"
+                android:textSize="15sp"
+                android:layout_marginLeft="2dp"
+                android:layout_below="@id/passwordED"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/profileED"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:text="profile "
+                android:textColor="@color/md_pink_900"
+                android:textSize="15sp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="5dp"
+
+                android:layout_below="@id/CityText"
+                android:textStyle="bold"
+                />
+
+
+            <Button
+                android:id="@+id/delete_btn"
+                android:layout_width="26dp"
+                android:layout_height="25dp"
+                android:layout_below="@id/PhoneText"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/delete_icon"
+                android:gravity="end"
+                android:textAlignment="viewEnd"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+
+        </RelativeLayout>
+
+
+
+
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

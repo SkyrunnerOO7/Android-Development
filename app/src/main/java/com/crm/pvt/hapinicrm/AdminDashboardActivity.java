@@ -15,6 +15,8 @@ import android.provider.Telephony;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -30,6 +32,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements Navigat
     private DrawerLayout drawer;
     private NavigationView navigationView;
     boolean doubleBackToExitPressedOnce = false;
+    LinearLayout ActiveUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,15 @@ public class AdminDashboardActivity extends AppCompatActivity implements Navigat
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer, toolbar, R.string.navigation_drawer_open,
                 R.string.navigation_drawer_close);
+
+
+        ActiveUser = findViewById(R.id.active_user1);
+        ActiveUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),Employee_Active_user.class));
+            }
+        });
 
         drawer.addDrawerListener(toggle);
         toggle.syncState();
