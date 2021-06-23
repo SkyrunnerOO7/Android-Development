@@ -101,7 +101,7 @@ public class fragment_admin_dashboard extends Fragment {
         });
 
         // Active User
-        ActiveUser = view.findViewById(R.id.active_user);
+        ActiveUser = view.findViewById(R.id.active_user1);
         ActiveUser.setOnClickListener(view1 -> {
 
             progressDialog = new ProgressDialog(getContext());
@@ -109,9 +109,16 @@ public class fragment_admin_dashboard extends Fragment {
             progressDialog.setContentView(R.layout.progress_dialog);
             progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
-            Toast.makeText(getContext(),"You Click On Active Users ",Toast.LENGTH_SHORT).show();
-//            Intent intent = new Intent(getActivity(),Add_new_employee_activity.class);
-//            startActivity(intent);
+            Intent intent = new Intent(getActivity(),Employee_Active_user.class);
+            startActivity(intent);
+            Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    progressDialog.cancel();
+
+                }
+            }, 2000);
         });
 
         return view;

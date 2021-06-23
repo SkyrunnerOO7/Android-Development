@@ -42,7 +42,6 @@ public class AdminDashboardActivity extends AppCompatActivity implements Navigat
     ImageView profileImage;
     private static final int PICK_IMAGE=1,RESULT_OK=-1;
     Uri imageUri;
-    private LinearLayout ActiveUser;
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data){
@@ -70,16 +69,11 @@ public class AdminDashboardActivity extends AppCompatActivity implements Navigat
                 R.string.navigation_drawer_close);
 
 
-        ActiveUser = findViewById(R.id.active_user1);
-        ActiveUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),Employee_Active_user.class));
-            }
-        });
 
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
+
 
 
 
