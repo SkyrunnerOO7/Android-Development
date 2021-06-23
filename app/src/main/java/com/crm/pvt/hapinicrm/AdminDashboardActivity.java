@@ -22,8 +22,10 @@ import android.view.View;
 import android.widget.ImageView;
 
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crm.pvt.hapinicrm.prevalent.prevalent;
 import com.google.android.material.navigation.NavigationView;
 import com.sun.mail.imap.protocol.INTERNALDATE;
 
@@ -40,6 +42,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements Navigat
 
     View hView;
     ImageView profileImage;
+    TextView Uname,Uprofile,Uemail;
     private static final int PICK_IMAGE=1,RESULT_OK=-1;
     Uri imageUri;
 
@@ -81,6 +84,12 @@ public class AdminDashboardActivity extends AppCompatActivity implements Navigat
         NavigationView navigationView=(NavigationView) findViewById(R.id.nav_view);
         hView=navigationView.getHeaderView(0);
         profileImage=(ImageView)hView.findViewById(R.id.admin_profile_image);
+        Uname = hView.findViewById(R.id.userid);
+        Uname.setText(prevalent.CurrentOnlineAdmin.getName());
+        Uprofile = hView.findViewById(R.id.userProfile);
+        Uprofile.setText("Admin");
+        Uemail = hView.findViewById(R.id.userEmail);
+        Uemail.setText(prevalent.CurrentOnlineAdmin.getEmail());
         profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

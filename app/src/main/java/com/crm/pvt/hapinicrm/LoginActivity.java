@@ -228,6 +228,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), "Welcome Admin You are Logged In Successfully... ", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
                                 Intent intent = new Intent(getApplicationContext(),AdminDashboardActivity.class);
+                                prevalent.CurrentOnlineAdmin = Admindata;
                                 startActivity(intent);
                             }
                         }else{
@@ -268,6 +269,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), "Welcome Employee You are Logged In Successfully... ", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
                                 Intent intent = new Intent(getApplicationContext(),EmployeeDashboardActivity.class);
+                                prevalent.CurrentOnlineEmloyee = EmployeeData;
                                 startActivity(intent);
                                 finish();
                             }
