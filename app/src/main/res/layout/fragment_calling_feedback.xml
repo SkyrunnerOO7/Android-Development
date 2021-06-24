@@ -102,6 +102,7 @@
                     android:backgroundTint="#072f5f"
 
                     android:text="Call Again"
+                    android:textAllCaps="false"
                     android:textColor="#ffffff"
                     app:cornerRadius="10dp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -116,6 +117,7 @@
                     android:layout_marginTop="40dp"
                     android:backgroundTint="#072f5f"
                     android:text="call Later"
+                    android:textAllCaps="false"
                     android:textColor="#ffffff"
                     app:cornerRadius="10dp"
                     app:layout_constraintStart_toEndOf="@+id/Submit_calling_fragment"

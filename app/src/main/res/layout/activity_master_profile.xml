@@ -33,7 +33,7 @@
         android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/sample_Email"
+        android:text="abcd@gmail.com"
         android:layout_below="@id/sample_email"
         android:layout_marginLeft="20dp"
         android:fontFamily="sans-serif"
