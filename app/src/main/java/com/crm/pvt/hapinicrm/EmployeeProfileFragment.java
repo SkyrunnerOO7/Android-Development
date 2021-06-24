@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.crm.pvt.hapinicrm.prevalent.prevalent;
 
 
 
@@ -39,6 +40,7 @@ public class EmployeeProfileFragment extends Fragment {
     private ImageView profileImg;
     public LinearLayout logout;
     Uri imageUri;
+    TextView Ename,Email,Ephone,Fname,Lname;
     public EmployeeProfileFragment() {
         // Required empty public constructor
     }
@@ -91,6 +93,10 @@ public class EmployeeProfileFragment extends Fragment {
 
         View view=inflater.inflate(R.layout.fragment_employee_profile,container,false);
         profileImg=view.findViewById(R.id.emp_profile_image);
+        Ename=view.findViewById(R.id.emp_Name);
+        Email=view.findViewById(R.id.emp_email_Value);
+        Ephone = view.findViewById(R.id.emp_phone_value);
+
 
         logout=view.findViewById(R.id.logout_layout);
 
@@ -103,6 +109,11 @@ public class EmployeeProfileFragment extends Fragment {
             }
         });
 
+        Ename.setText(prevalent.CurrentOnlineEmloyee.getName());
+        Email.setText(prevalent.CurrentOnlineEmloyee.getMail());
+        Ephone.setText(prevalent.CurrentOnlineEmloyee.getPhone());
+
+        ;
 
 
         profileImg.setOnClickListener(new View.OnClickListener() {
