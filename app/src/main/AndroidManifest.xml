@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HapiniCRM">
-        <activity android:name=".UserFeedbackShowActivity"></activity>
+        <activity android:name=".AddDocumentActivity"></activity>
+        <activity android:name=".UserFeedbackShowActivity" />
         <activity android:name=".MasterProfileActivity" />
         <activity android:name=".ActiveUserActivity" />
         <activity android:name=".Employee_Active_user" />
@@ -28,12 +29,13 @@
         <activity
             android:name=".EmployeeDashboardActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".AddDataActivity" />
+        <activity android:name=".AddDataActivity">
+        </activity>
         <activity android:name=".Add_new_employee_activity" />
         <activity android:name=".PrivacyPolicyActivity" />
         <activity
             android:name=".AdminDashboardActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".DeveloperActivity" />
         <activity
             android:name=".SupportActivity"
@@ -47,6 +49,7 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

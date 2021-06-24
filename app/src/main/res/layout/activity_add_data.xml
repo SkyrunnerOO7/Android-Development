@@ -8,9 +8,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
-
-
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -20,6 +17,26 @@
             android:layout_marginBottom="15dp"
             app:cardCornerRadius="20dp"
             android:elevation="2dp">
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_add_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:thumb="@drawable/thumb"
+                app:track="@drawable/track_switch_button"
+                app:showText="true"
+                android:layout_gravity="end"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="7dp"
+                android:padding="1dp"
+
+                android:textSize="10sp"
+                android:textOn="on"
+                android:textOff="off"/>
+
+
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -44,6 +61,7 @@
 
                     android:textSize="22sp"
                     android:textStyle="bold" />
+
 
             </LinearLayout>
             <LinearLayout

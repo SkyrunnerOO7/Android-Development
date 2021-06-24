@@ -85,6 +85,15 @@
         <item>Number</item>
         <item>Name</item>
     </string-array>
+    Spinner_Add_doc_item
+
+    <string-array name="Spinner_Add_doc_item">
+        <item>Choose Here</item>
+        <item>Candidate</item>
+        <item>Vendors</item>
+        <item>CustomerB2B</item>
+        <item>CustomerB2C</item>
+    </string-array>
 
 
     <!-- Spinner Item -->

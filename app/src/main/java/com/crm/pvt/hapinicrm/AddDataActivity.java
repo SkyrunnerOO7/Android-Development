@@ -2,12 +2,15 @@ package com.crm.pvt.hapinicrm;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -37,6 +40,8 @@ public class AddDataActivity extends AppCompatActivity {
     private Button add;
     private CheckBox checkBox;
     ProgressDialog loadingBar;
+    //Switch Switch;
+    SwitchCompat Switch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +54,19 @@ public class AddDataActivity extends AppCompatActivity {
         checkBox = findViewById(R.id.checkbox);
         city = findViewById(R.id.city);
         loadingBar = new ProgressDialog(this);
+
+        Switch=findViewById(R.id.switch_add_data);
+        Switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if(isChecked)
+                {
+                    Intent i=new Intent(AddDataActivity.this,AddDocumentActivity.class);
+                    startActivity(i);
+                }
+
+            }
+        });
 
 
         add = findViewById(R.id.add_data);
