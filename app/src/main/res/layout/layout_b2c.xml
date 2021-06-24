@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:elevation="10dp"
+        android:gravity="center"
+        app:cardBackgroundColor="@color/whiteCardColor"
+        app:cardCornerRadius="16dp"
+        >
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            >
+
+            <TextView
+                android:id="@+id/user_nameb2c"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:layout_marginLeft="2dp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/Areab2c"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:text="Area "
+                android:textColor="#000000"
+                android:textAlignment="viewEnd"
+                android:gravity="end"
+                android:textSize="15sp"
+                android:layout_marginLeft="2dp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/emailTextCb2c"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:text="mailid "
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="5dp"
+
+                android:layout_below="@id/user_nameb2c"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/passwordEDb2c"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:text="password "
+                android:layout_marginTop="5dp"
+                android:textColor="#000000"
+                android:textAlignment="viewEnd"
+                android:gravity="end"
+                android:textSize="15sp"
+                android:layout_marginLeft="2dp"
+                android:layout_below="@id/Areab2c"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/CityTextb2c"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:text="City "
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="5dp"
+
+                android:layout_below="@id/emailTextCb2c"
+                android:textStyle="bold"
+                />
+
+
+
+            <TextView
+                android:id="@+id/PhoneTextb2c"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:text="Phone "
+                android:layout_marginTop="5dp"
+                android:textColor="#000000"
+                android:textAlignment="viewEnd"
+                android:gravity="end"
+                android:textSize="15sp"
+                android:layout_marginLeft="2dp"
+                android:layout_below="@id/passwordEDb2c"
+                android:textStyle="bold"
+                />
+
+
+
+            <Button
+                android:id="@+id/delete_btnb2c"
+                android:layout_width="26dp"
+                android:layout_height="25dp"
+                android:layout_below="@id/PhoneTextb2c"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/delete_icon"
+                android:gravity="end"
+                android:textAlignment="viewEnd"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+
+        </RelativeLayout>
+
+
+
+
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+</RelativeLayout>

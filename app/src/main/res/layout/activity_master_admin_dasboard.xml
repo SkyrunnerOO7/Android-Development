@@ -416,9 +416,63 @@
                                     android:textSize="14sp"
                                     android:fontFamily="sans-serif" />
 
+
+
+
+                            </LinearLayout>
+
+
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_margin="10dp"
+                            android:elevation="10dp"
+                            android:gravity="center"
+                            app:cardBackgroundColor="@color/whiteCardColor"
+                            app:cardCornerRadius="16dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:layout_margin="3dp"
+                                android:layout_gravity="center"
+                                android:id="@+id/ActiveData_layout"
+                                android:gravity="center"
+                                android:weightSum="2">
+
+                                <ImageView
+                                    android:id="@+id/active_data_img"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/active_user_icon"
+                                    android:focusableInTouchMode="true"
+                                    android:focusable="auto"
+                                    android:contentDescription="@string/content_description"
+                                    android:layout_margin="5dp"/>
+
+                                <TextView
+                                    android:id="@+id/ActiveData_text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:layout_margin="3dp"
+                                    android:text="Active Data"
+                                    android:textColor="#072f5f"
+                                    android:textStyle="bold"
+                                    android:textAllCaps="false"
+                                    android:textSize="14sp"
+                                    android:fontFamily="sans-serif" />
+
                             </LinearLayout>
 
                         </androidx.cardview.widget.CardView>
+
+
 
 
 

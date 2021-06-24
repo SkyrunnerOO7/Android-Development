@@ -17,9 +17,9 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
+//import com.google.firebase.storage.FirebaseStorage;
+//import com.google.firebase.storage.StorageReference;
+//import com.google.firebase.storage.UploadTask;
 
 public class AddDocumentActivity extends AppCompatActivity {
 
@@ -94,7 +94,7 @@ public class AddDocumentActivity extends AppCompatActivity {
 
     }
 
-    @Override
+ /*   @Override
     protected void onActivityResult(int requestCode, int resultCode,  Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode){
@@ -147,5 +147,5 @@ public class AddDocumentActivity extends AppCompatActivity {
                 }
                 break;
         }
-    }
+    }*/
 }
