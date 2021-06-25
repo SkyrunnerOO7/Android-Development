@@ -26,7 +26,6 @@ public class MasterProfileActivity extends AppCompatActivity {
     Uri imageUri;
 
     private TextView Email;
-    private Button resetCode;
     private Button logout;
     private CircleImageView image;
 
@@ -50,7 +49,6 @@ public class MasterProfileActivity extends AppCompatActivity {
 
 
             Email = findViewById(R.id.email);
-            resetCode = findViewById(R.id.reset_button);
             logout = findViewById(R.id.logout_button);
             image = findViewById(R.id.profile_image);
 
@@ -59,9 +57,7 @@ public class MasterProfileActivity extends AppCompatActivity {
                 finish();
             });
 
-            resetCode.setOnClickListener(view -> {
-                Toast.makeText(getApplicationContext(), "Your Code will be RESET ASAP", Toast.LENGTH_SHORT).show();
-            });
+
         }
 
         @Override

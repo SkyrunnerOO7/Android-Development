@@ -17,9 +17,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
+
 
 public class AddDocumentActivity extends AppCompatActivity {
 
@@ -101,51 +99,51 @@ public class AddDocumentActivity extends AppCompatActivity {
             case 10:
 
 
-                if(resultCode==RESULT_OK)
-                {
-                    Uri fileUri=data.getData();
-                    StorageReference file;
-
-                    if(type.equals("CustomerB2B"))
-                    {
-                        file= FirebaseStorage.getInstance().getReference().child("CustomerB2B");
-                    }
-                    else if(type.equals("CustomerB2C"))
-                    {
-                        file= FirebaseStorage.getInstance().getReference().child("CustomerB2C");
-                    }
-                    else if(type.equals("Candidate"))
-                    {
-                        file= FirebaseStorage.getInstance().getReference().child("Candidate");
-                    }
-                    else if(type.equals("Vendors"))
-                    {
-                        file= FirebaseStorage.getInstance().getReference().child("Vendors");
-                    }
-                    else
-                    {
-                        file= FirebaseStorage.getInstance().getReference().child("Documents");
-                    }
-
-                    StorageReference file_name=file.child("Doc"+fileUri.getLastPathSegment());
-
-                    loadingBar = new ProgressDialog(AddDocumentActivity.this);
-                    loadingBar.show();
-                    loadingBar.setContentView(R.layout.progress_dialog);
-                    loadingBar.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-
-                    file_name.putFile(fileUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-
-                            Toast.makeText(AddDocumentActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
-                            loadingBar.dismiss();
-                        }
-                    });
-
-                }
-                break;
+//                if(resultCode==RESULT_OK)
+//                {
+//                    Uri fileUri=data.getData();
+//                    StorageReference file;
+//
+//                    if(type.equals("CustomerB2B"))
+//                    {
+//                        file= FirebaseStorage.getInstance().getReference().child("CustomerB2B");
+//                    }
+//                    else if(type.equals("CustomerB2C"))
+//                    {
+//                        file= FirebaseStorage.getInstance().getReference().child("CustomerB2C");
+//                    }
+//                    else if(type.equals("Candidate"))
+//                    {
+//                        file= FirebaseStorage.getInstance().getReference().child("Candidate");
+//                    }
+//                    else if(type.equals("Vendors"))
+//                    {
+//                        file= FirebaseStorage.getInstance().getReference().child("Vendors");
+//                    }
+//                    else
+//                    {
+//                        file= FirebaseStorage.getInstance().getReference().child("Documents");
+//                    }
+//
+//                    StorageReference file_name=file.child("Doc"+fileUri.getLastPathSegment());
+//
+//                    loadingBar = new ProgressDialog(AddDocumentActivity.this);
+//                    loadingBar.show();
+//                    loadingBar.setContentView(R.layout.progress_dialog);
+//                    loadingBar.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+//
+//                    file_name.putFile(fileUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                        @Override
+//                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//
+//
+//                            Toast.makeText(AddDocumentActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
+//                            loadingBar.dismiss();
+//                        }
+//                    });
+//
+//                }
+//                break;
         }
     }
 }

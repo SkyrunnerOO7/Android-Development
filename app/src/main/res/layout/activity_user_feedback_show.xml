@@ -33,9 +33,9 @@
                     android:gravity="center"
                     android:text="Count: "
                     android:textAllCaps="false"
-                    android:textColor="#050505"
+                    android:textColor="@color/whiteTextColor"
                     android:textSize="15sp" />
-
+<!-- 050505 -->
                 <Spinner
                     android:id="@+id/spinner_user_feedback"
                     android:layout_width="wrap_content"

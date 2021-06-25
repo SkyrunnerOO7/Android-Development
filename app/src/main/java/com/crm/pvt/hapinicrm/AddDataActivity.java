@@ -108,6 +108,12 @@ public class AddDataActivity extends AppCompatActivity {
                     UserDataMap.put("Name",fullName);
                     UserDataMap.put("Number",phoneNumber);
                     UserDataMap.put("City",city);
+//                    UserDataMap.put("Qualifiction",fullName);
+//                    UserDataMap.put("Skills",phoneNumber);
+//                    UserDataMap.put("Email",city);
+//                    UserDataMap.put("Password",fullName);
+//                    UserDataMap.put("Experience",phoneNumber);
+
 
 
 

@@ -82,7 +82,7 @@
     <string-array name="Spinner_user_feedback_item">
         <item>Sort By</item>
         <item>New</item>
-        <item>Number</item>
+        <item>City</item>
         <item>Name</item>
     </string-array>
     Spinner_Add_doc_item

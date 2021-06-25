@@ -38,6 +38,7 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
     public TimerTask timerTask;
     Double time = 0.0;
     boolean doubleBackToExitPressedOnce= false;
+    String Key ;
 
 
    
@@ -57,8 +58,11 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
         refresh=(ImageView)findViewById(R.id.refresh_employee_dashboard);
         bnv=(BottomNavigationView)findViewById(R.id.bottomNavigation);
         // to open home fragment Bydefault
-        getSupportFragmentManager().beginTransaction().replace(R.id.FrameConatiner,new fragment_calling()).commit();
+        Key = getIntent().getStringExtra("IMEI");
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.FrameConatiner,new fragment_attendance()).commit();
         // To add timer
+      //
         timer = new Timer();
         startTimer();
 
@@ -92,8 +96,8 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
                 Fragment temp=null;
                 switch (item.getItemId())
                 {
-                    case R.id.menu_home : temp=new fragment_calling();
-                        getSupportFragmentManager().beginTransaction().replace(R.id.FrameConatiner,temp).commit();
+                    case R.id.menu_home : temp=new fragment_calling_feedback(Key);
+                       getSupportFragmentManager().beginTransaction().replace(R.id.FrameConatiner,temp).commit();
 
                         break;
                     case R.id.menu_feedback: temp=new fragment_feedback();
@@ -131,7 +135,7 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
     }
 
     private void startHandler() {
-        handler.postDelayed(r, 6000);
+        handler.postDelayed(r, 600000);
     }
 
     @Override

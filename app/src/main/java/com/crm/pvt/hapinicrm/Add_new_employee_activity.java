@@ -42,6 +42,7 @@ public class Add_new_employee_activity extends AppCompatActivity {
     private TextInputEditText conf_pass;
     private ProgressDialog loadingBar;
     private EditText Empname,CityE,phoneE;
+    private String type_of_emp  = "vendors";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,6 +153,7 @@ public class Add_new_employee_activity extends AppCompatActivity {
                     EmpDataMap.put("Name",name);
                     EmpDataMap.put("City",city);
                     EmpDataMap.put("Phone",phone);
+                    EmpDataMap.put("Tpye",type_of_emp);
 
 
                     RootRef.child("Employee").child(IMEI).updateChildren(EmpDataMap)
