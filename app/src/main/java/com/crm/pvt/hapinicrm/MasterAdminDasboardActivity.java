@@ -22,6 +22,7 @@ public class MasterAdminDasboardActivity extends AppCompatActivity {
     LinearLayout AddData;
     LinearLayout profile;
     LinearLayout Feedback;
+    LinearLayout ActiveData;
     boolean doubleBackToExitPressedOnce = false;
 
 
@@ -51,6 +52,10 @@ public class MasterAdminDasboardActivity extends AppCompatActivity {
         Feedback = findViewById(R.id.feedback_layout);
         Feedback.setOnClickListener(view -> {
             startActivity(new Intent(getApplicationContext(),UserFeedbackShowActivity.class));
+        });
+        ActiveData = findViewById(R.id.ActiveData_layout);
+        ActiveData.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(),ActiveDataActivity.class));
         });
 
     }

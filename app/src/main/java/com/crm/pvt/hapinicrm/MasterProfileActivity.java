@@ -50,7 +50,7 @@ public class MasterProfileActivity extends AppCompatActivity {
 
 
             Email = findViewById(R.id.email);
-            resetCode = findViewById(R.id.reset_button);
+//            resetCode = findViewById(R.id.reset_button);
             logout = findViewById(R.id.logout_button);
             image = findViewById(R.id.profile_image);
 
