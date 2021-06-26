@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +34,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -53,8 +55,7 @@ public class ActiveDataActivity extends AppCompatActivity {
     private int countCand = 0;
 
 
-    Button choosedb;
-    ArrayList<String> databases = new ArrayList<>();
+    Button choosedb,sortby;
 
 
 
@@ -62,9 +63,13 @@ public class ActiveDataActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_active_data);
+        getSupportActionBar().setTitle("");
 
         Candref = FirebaseDatabase.getInstance().getReference().child("Data").child("Candidate");
+        sortby = findViewById(R.id.sortAD);
         count = findViewById(R.id.sizeAD);
+
+
 
         choosedb = findViewById(R.id.ChooseAD);
         list = findViewById(R.id.rvAD);
@@ -72,6 +77,7 @@ public class ActiveDataActivity extends AppCompatActivity {
         b2bref = FirebaseDatabase.getInstance().getReference().child("Data").child("CustomerB2B");
         b2cref = FirebaseDatabase.getInstance().getReference().child("Data").child("CustomerB2C");
         Vref =FirebaseDatabase.getInstance().getReference().child("Data").child("Vendors");
+
 
 //        DisplayCandidate();
 //        DisplayB2B();
@@ -120,9 +126,136 @@ public class ActiveDataActivity extends AppCompatActivity {
             }
         });
 
+        sortby.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                CharSequence sort[] = new CharSequence[]{
+                        "By City",
+                        "BY Name"
+                };
+                AlertDialog.Builder builder2 = new AlertDialog.Builder(ActiveDataActivity.this);
+                builder2.setTitle("Category ");
+                builder2.setItems(sort, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        if(i==0){
+                            if(choosedb.getText()=="Candidate"){
+                                DisplayCandidateSort();
+
+                            }else if(choosedb.getText()=="Customer B2B"){
+                                DisplayB2BSort();
+
+                            }else if(choosedb.getText()=="Customer B2C"){
+                                DisplayB2CSort();
+
+                            }else if(choosedb.getText()=="Vendors"){
+                                DisplayVSort();
+
+                            }else{
+                                Toast.makeText(ActiveDataActivity.this, "please select  a sorting Criteria", Toast.LENGTH_SHORT).show();
+
+                            }
+                            sortby.setText("By City");
+
+                        }else{
+                            if(choosedb.getText()=="Candidate"){
+                                DisplayCandidateSortName();
+
+                            }else if(choosedb.getText()=="Customer B2B"){
+                                DisplayB2BSortName();
+
+                            }else if(choosedb.getText()=="Customer B2C"){
+                                DisplayB2CSortName();
+
+                            }else if(choosedb.getText()=="Vendors"){
+                                DisplayVSortName();
+
+                            }else{
+                                Toast.makeText(ActiveDataActivity.this, "please select  a sorting Criteria", Toast.LENGTH_SHORT).show();
+
+                            }
+                            sortby.setText("By Name");
+                        }
+
+                    }
+                });
+                builder2.show();
+
+            }
+        });
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.searchmenu,menu);
+        MenuItem item = menu.findItem(R.id.search);
+        SearchView searchView = (SearchView)item.getActionView();
+
+//        CharSequence choose[] = new CharSequence[]{
+//                "Candidate",
+//                "CustomerB2B",
+//                "CustomerB2C",
+//                "Vendors"
+//        };
+//        AlertDialog.Builder builder1 = new AlertDialog.Builder(ActiveDataActivity.this);
+//        builder1.setTitle("Category ");
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                if(choosedb.getText()=="Candidate"){
+                    DisplayCandidatesearch(s);
+
+                }else if(choosedb.getText()=="Customer B2B"){
+                    DisplayB2Bsearch(s);
+
+                }else if(choosedb.getText()=="Customer B2C"){
+                    DisplayB2Csearch(s);
+
+                }else if(choosedb.getText()=="Vendors"){
+                    DisplayVsearch(s);
+
+                }else{
+                    Toast.makeText(ActiveDataActivity.this, "please select  a database ", Toast.LENGTH_SHORT).show();
+
+                }
+
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+
+                if(choosedb.getText()=="Candidate"){
+                    DisplayCandidatesearch(s);
+
+                }else if(choosedb.getText()=="Customer B2B"){
+                    DisplayB2Bsearch(s);
+
+                }else if(choosedb.getText()=="Customer B2C"){
+                    DisplayB2Csearch(s);
+
+                }else if(choosedb.getText()=="Vendors"){
+                    DisplayVsearch(s);
+
+                }else{
+                    Toast.makeText(ActiveDataActivity.this, "please select a Database", Toast.LENGTH_SHORT).show();
+
+                }
+
+
+                return false;
+            }
+        });
+
+        return super.onCreateOptionsMenu(menu);
     }
 
     public void DisplayCandidate(){
+
         Candref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -201,6 +334,254 @@ public class ActiveDataActivity extends AppCompatActivity {
 
     }
 
+
+
+    public void DisplayCandidatesearch(String s){
+        Query query1 = Candref.orderByChild("Name").startAt(s).endAt(s+'\uf8ff');
+
+        Candref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                countCand = (int) snapshot.getChildrenCount();
+                count.setText("count = "+ countCand);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull  DatabaseError error) {
+
+            }
+        });
+
+        FirebaseRecyclerOptions<Candidate> options =
+                new FirebaseRecyclerOptions.Builder<Candidate>()
+                        .setQuery(query1, Candidate.class)
+                        .build();
+
+        FirebaseRecyclerAdapter<Candidate,CandViewHolder> adpater = new FirebaseRecyclerAdapter<Candidate, CandViewHolder>(options) {
+
+            @Override
+            protected void onBindViewHolder(@NonNull ActiveDataActivity.CandViewHolder holder, int position, @NonNull  Candidate model) {
+                holder.name.setText("Name : "+model.getName());
+                holder.skills.setText("Skills : "+model.getSkills());
+                holder.mail.setText("Mail : "+model.getEmail());
+                holder.password.setText("Password : " +model.getPassword());
+                holder.city.setText("City : " +model.getCity());
+                holder.Experience.setText("Experience : " +model.getExperience());
+                holder.Qualification.setText("Qualification : "+model.getQualification());
+                holder.phone.setText("Phone : " + model.getContact());
+
+
+                holder.delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        CharSequence options[] = new CharSequence[]{
+                                "Yes",
+                                "No"
+                        };
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(ActiveDataActivity.this);
+                        builder1.setTitle("Sure want to Delete this Candidate profile ?");
+                        builder1.setItems(options, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                if(i==0){
+                                    String uID = getRef(position).getKey();
+                                    Removecand(uID);
+
+                                }else{
+                                    finish();
+                                }
+
+                            }
+                        });
+                        builder1.show();
+                    }
+                });
+            }
+
+            @NonNull
+            @Override
+            public CandViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_candidate,parent,false);
+                return new CandViewHolder(view);
+            }
+
+
+        };
+
+        list.setAdapter(adpater);
+        adpater.startListening();
+
+
+
+    }
+
+    public void DisplayCandidateSort(){
+        Query query1 = Candref.orderByChild("City");
+
+        Candref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                countCand = (int) snapshot.getChildrenCount();
+                count.setText("count = "+ countCand);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull  DatabaseError error) {
+
+            }
+        });
+
+        FirebaseRecyclerOptions<Candidate> options =
+                new FirebaseRecyclerOptions.Builder<Candidate>()
+                        .setQuery(query1, Candidate.class)
+                        .build();
+
+        FirebaseRecyclerAdapter<Candidate,CandViewHolder> adpater = new FirebaseRecyclerAdapter<Candidate, CandViewHolder>(options) {
+
+            @Override
+            protected void onBindViewHolder(@NonNull ActiveDataActivity.CandViewHolder holder, int position, @NonNull  Candidate model) {
+                holder.name.setText("Name : "+model.getName());
+                holder.skills.setText("Skills : "+model.getSkills());
+                holder.mail.setText("Mail : "+model.getEmail());
+                holder.password.setText("Password : " +model.getPassword());
+                holder.city.setText("City : " +model.getCity());
+                holder.Experience.setText("Experience : " +model.getExperience());
+                holder.Qualification.setText("Qualification : "+model.getQualification());
+                holder.phone.setText("Phone : " + model.getContact());
+
+
+                holder.delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        CharSequence options[] = new CharSequence[]{
+                                "Yes",
+                                "No"
+                        };
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(ActiveDataActivity.this);
+                        builder1.setTitle("Sure want to Delete this Candidate profile ?");
+                        builder1.setItems(options, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                if(i==0){
+                                    String uID = getRef(position).getKey();
+                                    Removecand(uID);
+
+                                }else{
+                                    finish();
+                                }
+
+                            }
+                        });
+                        builder1.show();
+                    }
+                });
+            }
+
+            @NonNull
+            @Override
+            public CandViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_candidate,parent,false);
+                return new CandViewHolder(view);
+            }
+
+
+        };
+
+        list.setAdapter(adpater);
+        adpater.startListening();
+
+
+
+    }
+
+    public void DisplayCandidateSortName(){
+        Query query1 = Candref.orderByChild("Name");
+
+        Candref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                countCand = (int) snapshot.getChildrenCount();
+                count.setText("count = "+ countCand);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull  DatabaseError error) {
+
+            }
+        });
+
+        FirebaseRecyclerOptions<Candidate> options =
+                new FirebaseRecyclerOptions.Builder<Candidate>()
+                        .setQuery(query1, Candidate.class)
+                        .build();
+
+        FirebaseRecyclerAdapter<Candidate,CandViewHolder> adpater = new FirebaseRecyclerAdapter<Candidate, CandViewHolder>(options) {
+
+            @Override
+            protected void onBindViewHolder(@NonNull ActiveDataActivity.CandViewHolder holder, int position, @NonNull  Candidate model) {
+                holder.name.setText("Name : "+model.getName());
+                holder.skills.setText("Skills : "+model.getSkills());
+                holder.mail.setText("Mail : "+model.getEmail());
+                holder.password.setText("Password : " +model.getPassword());
+                holder.city.setText("City : " +model.getCity());
+                holder.Experience.setText("Experience : " +model.getExperience());
+                holder.Qualification.setText("Qualification : "+model.getQualification());
+                holder.phone.setText("Phone : " + model.getContact());
+
+
+                holder.delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        CharSequence options[] = new CharSequence[]{
+                                "Yes",
+                                "No"
+                        };
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(ActiveDataActivity.this);
+                        builder1.setTitle("Sure want to Delete this Candidate profile ?");
+                        builder1.setItems(options, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                if(i==0){
+                                    String uID = getRef(position).getKey();
+                                    Removecand(uID);
+
+                                }else{
+                                    finish();
+                                }
+
+                            }
+                        });
+                        builder1.show();
+                    }
+                });
+            }
+
+            @NonNull
+            @Override
+            public CandViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_candidate,parent,false);
+                return new CandViewHolder(view);
+            }
+
+
+        };
+
+        list.setAdapter(adpater);
+        adpater.startListening();
+
+
+
+    }
+
+
+
+
     public static class CandViewHolder extends RecyclerView.ViewHolder{
 
         public TextView name,skills,mail,password,city,Experience,Qualification,phone;
@@ -243,6 +624,244 @@ public class ActiveDataActivity extends AppCompatActivity {
         FirebaseRecyclerOptions<CustomerB2B> options =
                 new FirebaseRecyclerOptions.Builder<CustomerB2B>()
                         .setQuery(b2bref, CustomerB2B.class)
+                        .build();
+
+        FirebaseRecyclerAdapter<CustomerB2B,b2bViewHolder> adpater = new FirebaseRecyclerAdapter<CustomerB2B, b2bViewHolder>(options) {
+
+            @Override
+            protected void onBindViewHolder(@NonNull ActiveDataActivity.b2bViewHolder holder, int position, @NonNull  CustomerB2B model) {
+                holder.name.setText("Name : "+model.getName());
+                holder.Org.setText("Organization : "+model.getOrganization());
+                holder.mail.setText("Mail : "+model.getMail());
+                holder.password.setText("Password : " +model.getPassword());
+                holder.city.setText("City : " +model.getCity());
+                holder.phone.setText("Phone: " + model.getPhone());
+
+
+                holder.delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        CharSequence options[] = new CharSequence[]{
+                                "Yes",
+                                "No"
+                        };
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(ActiveDataActivity.this);
+                        builder1.setTitle("Sure want to Delete this Customer B2B profile ?");
+                        builder1.setItems(options, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                if(i==0){
+                                    String uID = getRef(position).getKey();
+                                    Removeb2b(uID);
+
+                                }else{
+                                    finish();
+                                }
+
+                            }
+                        });
+                        builder1.show();
+                    }
+                });
+            }
+
+
+            @NonNull
+            @Override
+            public b2bViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_b2b,parent,false);
+                return new b2bViewHolder(view);
+            }
+
+
+        };
+
+        list.setAdapter(adpater);
+        adpater.startListening();
+
+
+
+    }
+
+
+    public void DisplayB2Bsearch(String s){
+        Query q2 = b2bref.orderByChild("Name").startAt(s).endAt(s+'\uf8ff');
+        b2bref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                countCand = (int) snapshot.getChildrenCount();
+                count.setText("count = "+ countCand);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull  DatabaseError error) {
+
+            }
+        });
+
+        FirebaseRecyclerOptions<CustomerB2B> options =
+                new FirebaseRecyclerOptions.Builder<CustomerB2B>()
+                        .setQuery(q2, CustomerB2B.class)
+                        .build();
+
+        FirebaseRecyclerAdapter<CustomerB2B,b2bViewHolder> adpater = new FirebaseRecyclerAdapter<CustomerB2B, b2bViewHolder>(options) {
+
+            @Override
+            protected void onBindViewHolder(@NonNull ActiveDataActivity.b2bViewHolder holder, int position, @NonNull  CustomerB2B model) {
+                holder.name.setText("Name : "+model.getName());
+                holder.Org.setText("Organization : "+model.getOrganization());
+                holder.mail.setText("Mail : "+model.getMail());
+                holder.password.setText("Password : " +model.getPassword());
+                holder.city.setText("City : " +model.getCity());
+                holder.phone.setText("Phone: " + model.getPhone());
+
+
+                holder.delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        CharSequence options[] = new CharSequence[]{
+                                "Yes",
+                                "No"
+                        };
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(ActiveDataActivity.this);
+                        builder1.setTitle("Sure want to Delete this Customer B2B profile ?");
+                        builder1.setItems(options, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                if(i==0){
+                                    String uID = getRef(position).getKey();
+                                    Removeb2b(uID);
+
+                                }else{
+                                    finish();
+                                }
+
+                            }
+                        });
+                        builder1.show();
+                    }
+                });
+            }
+
+
+            @NonNull
+            @Override
+            public b2bViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_b2b,parent,false);
+                return new b2bViewHolder(view);
+            }
+
+
+        };
+
+        list.setAdapter(adpater);
+        adpater.startListening();
+
+
+
+    }
+
+    public void DisplayB2BSort(){
+        Query q2 = b2bref.orderByChild("City");
+        b2bref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                countCand = (int) snapshot.getChildrenCount();
+                count.setText("count = "+ countCand);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull  DatabaseError error) {
+
+            }
+        });
+
+        FirebaseRecyclerOptions<CustomerB2B> options =
+                new FirebaseRecyclerOptions.Builder<CustomerB2B>()
+                        .setQuery(q2, CustomerB2B.class)
+                        .build();
+
+        FirebaseRecyclerAdapter<CustomerB2B,b2bViewHolder> adpater = new FirebaseRecyclerAdapter<CustomerB2B, b2bViewHolder>(options) {
+
+            @Override
+            protected void onBindViewHolder(@NonNull ActiveDataActivity.b2bViewHolder holder, int position, @NonNull  CustomerB2B model) {
+                holder.name.setText("Name : "+model.getName());
+                holder.Org.setText("Organization : "+model.getOrganization());
+                holder.mail.setText("Mail : "+model.getMail());
+                holder.password.setText("Password : " +model.getPassword());
+                holder.city.setText("City : " +model.getCity());
+                holder.phone.setText("Phone: " + model.getPhone());
+
+
+                holder.delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        CharSequence options[] = new CharSequence[]{
+                                "Yes",
+                                "No"
+                        };
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(ActiveDataActivity.this);
+                        builder1.setTitle("Sure want to Delete this Customer B2B profile ?");
+                        builder1.setItems(options, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                if(i==0){
+                                    String uID = getRef(position).getKey();
+                                    Removeb2b(uID);
+
+                                }else{
+                                    finish();
+                                }
+
+                            }
+                        });
+                        builder1.show();
+                    }
+                });
+            }
+
+
+            @NonNull
+            @Override
+            public b2bViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_b2b,parent,false);
+                return new b2bViewHolder(view);
+            }
+
+
+        };
+
+        list.setAdapter(adpater);
+        adpater.startListening();
+
+
+
+    }
+
+    public void DisplayB2BSortName(){
+        Query q2 = b2bref.orderByChild("Name");
+        b2bref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                countCand = (int) snapshot.getChildrenCount();
+                count.setText("count = "+ countCand);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull  DatabaseError error) {
+
+            }
+        });
+
+        FirebaseRecyclerOptions<CustomerB2B> options =
+                new FirebaseRecyclerOptions.Builder<CustomerB2B>()
+                        .setQuery(q2, CustomerB2B.class)
                         .build();
 
         FirebaseRecyclerAdapter<CustomerB2B,b2bViewHolder> adpater = new FirebaseRecyclerAdapter<CustomerB2B, b2bViewHolder>(options) {
@@ -400,6 +1019,246 @@ public class ActiveDataActivity extends AppCompatActivity {
 
     }
 
+    public void DisplayB2Csearch(String s){
+        Query q2 = b2cref.orderByChild("Name").startAt(s).endAt(s+'\uf8ff');
+
+        b2cref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                countCand = (int) snapshot.getChildrenCount();
+                count.setText("count = "+ countCand);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull  DatabaseError error) {
+
+            }
+        });
+
+
+
+        FirebaseRecyclerOptions<CustomerB2C> options =
+                new FirebaseRecyclerOptions.Builder<CustomerB2C>()
+                        .setQuery(q2, CustomerB2C.class)
+                        .build();
+
+        FirebaseRecyclerAdapter<CustomerB2C,b2cViewHolder> adpater = new FirebaseRecyclerAdapter<CustomerB2C, b2cViewHolder>(options) {
+
+            @Override
+            protected void onBindViewHolder(@NonNull ActiveDataActivity.b2cViewHolder holder, int position, @NonNull  CustomerB2C model) {
+                holder.name.setText("Name : "+model.getName());
+                holder.Area.setText("Area : "+model.getArea());
+                holder.mail.setText("Mail : "+model.getMail());
+                holder.password.setText("Password : " +model.getPassword());
+                holder.city.setText("City : " +model.getCity());
+                holder.phone.setText("phone : " + model.getPhone());
+
+
+                holder.delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        CharSequence options[] = new CharSequence[]{
+                                "Yes",
+                                "No"
+                        };
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(ActiveDataActivity.this);
+                        builder1.setTitle("Sure want to Delete this Customer B2C profile ?");
+                        builder1.setItems(options, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                if(i==0){
+                                    String uID = getRef(position).getKey();
+                                    Removeb2c(uID);
+
+                                }else{
+                                    finish();
+                                }
+
+                            }
+                        });
+                        builder1.show();
+                    }
+                });
+            }
+            @NonNull
+            @Override
+            public b2cViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_b2c,parent,false);
+                return new b2cViewHolder(view);
+            }
+
+
+        };
+
+        list.setAdapter(adpater);
+        adpater.startListening();
+
+
+
+    }
+
+    public void DisplayB2CSort(){
+        Query q2 = b2cref.orderByChild("City");
+
+        b2cref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                countCand = (int) snapshot.getChildrenCount();
+                count.setText("count = "+ countCand);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull  DatabaseError error) {
+
+            }
+        });
+
+
+
+        FirebaseRecyclerOptions<CustomerB2C> options =
+                new FirebaseRecyclerOptions.Builder<CustomerB2C>()
+                        .setQuery(q2, CustomerB2C.class)
+                        .build();
+
+        FirebaseRecyclerAdapter<CustomerB2C,b2cViewHolder> adpater = new FirebaseRecyclerAdapter<CustomerB2C, b2cViewHolder>(options) {
+
+            @Override
+            protected void onBindViewHolder(@NonNull ActiveDataActivity.b2cViewHolder holder, int position, @NonNull  CustomerB2C model) {
+                holder.name.setText("Name : "+model.getName());
+                holder.Area.setText("Area : "+model.getArea());
+                holder.mail.setText("Mail : "+model.getMail());
+                holder.password.setText("Password : " +model.getPassword());
+                holder.city.setText("City : " +model.getCity());
+                holder.phone.setText("phone : " + model.getPhone());
+
+
+                holder.delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        CharSequence options[] = new CharSequence[]{
+                                "Yes",
+                                "No"
+                        };
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(ActiveDataActivity.this);
+                        builder1.setTitle("Sure want to Delete this Customer B2C profile ?");
+                        builder1.setItems(options, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                if(i==0){
+                                    String uID = getRef(position).getKey();
+                                    Removeb2c(uID);
+
+                                }else{
+                                    finish();
+                                }
+
+                            }
+                        });
+                        builder1.show();
+                    }
+                });
+            }
+            @NonNull
+            @Override
+            public b2cViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_b2c,parent,false);
+                return new b2cViewHolder(view);
+            }
+
+
+        };
+
+        list.setAdapter(adpater);
+        adpater.startListening();
+
+
+
+    }
+
+    public void DisplayB2CSortName(){
+        Query q2 = b2cref.orderByChild("Name");
+
+        b2cref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                countCand = (int) snapshot.getChildrenCount();
+                count.setText("count = "+ countCand);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull  DatabaseError error) {
+
+            }
+        });
+
+
+
+        FirebaseRecyclerOptions<CustomerB2C> options =
+                new FirebaseRecyclerOptions.Builder<CustomerB2C>()
+                        .setQuery(q2, CustomerB2C.class)
+                        .build();
+
+        FirebaseRecyclerAdapter<CustomerB2C,b2cViewHolder> adpater = new FirebaseRecyclerAdapter<CustomerB2C, b2cViewHolder>(options) {
+
+            @Override
+            protected void onBindViewHolder(@NonNull ActiveDataActivity.b2cViewHolder holder, int position, @NonNull  CustomerB2C model) {
+                holder.name.setText("Name : "+model.getName());
+                holder.Area.setText("Area : "+model.getArea());
+                holder.mail.setText("Mail : "+model.getMail());
+                holder.password.setText("Password : " +model.getPassword());
+                holder.city.setText("City : " +model.getCity());
+                holder.phone.setText("phone : " + model.getPhone());
+
+
+                holder.delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        CharSequence options[] = new CharSequence[]{
+                                "Yes",
+                                "No"
+                        };
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(ActiveDataActivity.this);
+                        builder1.setTitle("Sure want to Delete this Customer B2C profile ?");
+                        builder1.setItems(options, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                if(i==0){
+                                    String uID = getRef(position).getKey();
+                                    Removeb2c(uID);
+
+                                }else{
+                                    finish();
+                                }
+
+                            }
+                        });
+                        builder1.show();
+                    }
+                });
+            }
+            @NonNull
+            @Override
+            public b2cViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_b2c,parent,false);
+                return new b2cViewHolder(view);
+            }
+
+
+        };
+
+        list.setAdapter(adpater);
+        adpater.startListening();
+
+
+
+    }
+
     public static class b2cViewHolder extends RecyclerView.ViewHolder{
 
         public TextView name,Area,mail,password,city,phone;
@@ -441,6 +1300,253 @@ public class ActiveDataActivity extends AppCompatActivity {
         FirebaseRecyclerOptions<Vendors> options =
                 new FirebaseRecyclerOptions.Builder<Vendors>()
                         .setQuery(Vref,Vendors.class)
+                        .build();
+
+        FirebaseRecyclerAdapter<Vendors,VeViewHolder> adpater = new FirebaseRecyclerAdapter<Vendors, VeViewHolder>(options) {
+
+            @Override
+            protected void onBindViewHolder(@NonNull ActiveDataActivity.VeViewHolder holder, int position, @NonNull Vendors model) {
+                holder.name.setText("Name : "+model.getName());
+                holder.Org.setText("Organization : "+model.getArea());
+                holder.mail.setText("Mail : "+model.getMail());
+                holder.password.setText("Password : " +model.getPassword());
+                holder.city.setText("City : " +model.getCity());
+                holder.Experience.setText("Experience : " + model.getExperience());
+                holder.Area.setText("Area : " + model.getArea());
+                holder.Phone.setText("phone : " + model.getPhone());
+                holder.Service.setText("Service : " + model.getService());
+                holder.SubService.setText("SubService : " + model.getSubService());
+
+
+
+                holder.delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        CharSequence options[] = new CharSequence[]{
+                                "Yes",
+                                "No"
+                        };
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(ActiveDataActivity.this);
+                        builder1.setTitle("Sure want to Delete this Customer Vendor profile ?");
+                        builder1.setItems(options, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                if(i==0){
+                                    String uID = getRef(position).getKey();
+                                    RemoveV(uID);
+
+                                }else{
+                                    finish();
+                                }
+
+                            }
+                        });
+                        builder1.show();
+                    }
+                });
+            }
+            @NonNull
+            @Override
+            public VeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.vendors_layout,parent,false);
+                return new VeViewHolder(view);
+            }
+
+
+        };
+
+        list.setAdapter(adpater);
+        adpater.startListening();
+
+
+
+    }
+
+    public void DisplayVsearch(String s){
+        Query q = Vref.orderByChild("Name").startAt(s).endAt(s+'\uf8ff');
+        Vref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                countCand = (int) snapshot.getChildrenCount();
+                count.setText("count = "+ countCand);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull  DatabaseError error) {
+
+            }
+        });
+
+        FirebaseRecyclerOptions<Vendors> options =
+                new FirebaseRecyclerOptions.Builder<Vendors>()
+                        .setQuery(q,Vendors.class)
+                        .build();
+
+        FirebaseRecyclerAdapter<Vendors,VeViewHolder> adpater = new FirebaseRecyclerAdapter<Vendors, VeViewHolder>(options) {
+
+            @Override
+            protected void onBindViewHolder(@NonNull ActiveDataActivity.VeViewHolder holder, int position, @NonNull Vendors model) {
+                holder.name.setText("Name : "+model.getName());
+                holder.Org.setText("Organization : "+model.getArea());
+                holder.mail.setText("Mail : "+model.getMail());
+                holder.password.setText("Password : " +model.getPassword());
+                holder.city.setText("City : " +model.getCity());
+                holder.Experience.setText("Experience : " + model.getExperience());
+                holder.Area.setText("Area : " + model.getArea());
+                holder.Phone.setText("phone : " + model.getPhone());
+                holder.Service.setText("Service : " + model.getService());
+                holder.SubService.setText("SubService : " + model.getSubService());
+
+
+
+                holder.delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        CharSequence options[] = new CharSequence[]{
+                                "Yes",
+                                "No"
+                        };
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(ActiveDataActivity.this);
+                        builder1.setTitle("Sure want to Delete this Customer Vendor profile ?");
+                        builder1.setItems(options, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                if(i==0){
+                                    String uID = getRef(position).getKey();
+                                    RemoveV(uID);
+
+                                }else{
+                                    finish();
+                                }
+
+                            }
+                        });
+                        builder1.show();
+                    }
+                });
+            }
+            @NonNull
+            @Override
+            public VeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.vendors_layout,parent,false);
+                return new VeViewHolder(view);
+            }
+
+
+        };
+
+        list.setAdapter(adpater);
+        adpater.startListening();
+
+
+
+    }
+
+
+    public void DisplayVSort(){
+        Query q = Vref.orderByChild("City");
+        Vref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                countCand = (int) snapshot.getChildrenCount();
+                count.setText("count = "+ countCand);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull  DatabaseError error) {
+
+            }
+        });
+
+        FirebaseRecyclerOptions<Vendors> options =
+                new FirebaseRecyclerOptions.Builder<Vendors>()
+                        .setQuery(q,Vendors.class)
+                        .build();
+
+        FirebaseRecyclerAdapter<Vendors,VeViewHolder> adpater = new FirebaseRecyclerAdapter<Vendors, VeViewHolder>(options) {
+
+            @Override
+            protected void onBindViewHolder(@NonNull ActiveDataActivity.VeViewHolder holder, int position, @NonNull Vendors model) {
+                holder.name.setText("Name : "+model.getName());
+                holder.Org.setText("Organization : "+model.getArea());
+                holder.mail.setText("Mail : "+model.getMail());
+                holder.password.setText("Password : " +model.getPassword());
+                holder.city.setText("City : " +model.getCity());
+                holder.Experience.setText("Experience : " + model.getExperience());
+                holder.Area.setText("Area : " + model.getArea());
+                holder.Phone.setText("phone : " + model.getPhone());
+                holder.Service.setText("Service : " + model.getService());
+                holder.SubService.setText("SubService : " + model.getSubService());
+
+
+
+                holder.delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        CharSequence options[] = new CharSequence[]{
+                                "Yes",
+                                "No"
+                        };
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(ActiveDataActivity.this);
+                        builder1.setTitle("Sure want to Delete this Customer Vendor profile ?");
+                        builder1.setItems(options, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                if(i==0){
+                                    String uID = getRef(position).getKey();
+                                    RemoveV(uID);
+
+                                }else{
+                                    finish();
+                                }
+
+                            }
+                        });
+                        builder1.show();
+                    }
+                });
+            }
+            @NonNull
+            @Override
+            public VeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.vendors_layout,parent,false);
+                return new VeViewHolder(view);
+            }
+
+
+        };
+
+        list.setAdapter(adpater);
+        adpater.startListening();
+
+
+
+    }
+
+    public void DisplayVSortName(){
+        Query q = Vref.orderByChild("Name");
+        Vref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                countCand = (int) snapshot.getChildrenCount();
+                count.setText("count = "+ countCand);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull  DatabaseError error) {
+
+            }
+        });
+
+        FirebaseRecyclerOptions<Vendors> options =
+                new FirebaseRecyclerOptions.Builder<Vendors>()
+                        .setQuery(q,Vendors.class)
                         .build();
 
         FirebaseRecyclerAdapter<Vendors,VeViewHolder> adpater = new FirebaseRecyclerAdapter<Vendors, VeViewHolder>(options) {
