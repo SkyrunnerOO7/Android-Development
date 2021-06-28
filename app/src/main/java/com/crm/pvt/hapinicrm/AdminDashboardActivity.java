@@ -43,7 +43,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.Picasso;
+//import com.squareup.picasso.Picasso;
 import com.sun.mail.imap.protocol.INTERNALDATE;
 
 import java.util.HashMap;
@@ -183,10 +183,6 @@ public class AdminDashboardActivity extends AppCompatActivity implements Navigat
 
                 break;
 
-            case R.id.nav_profile:
-                //add Home fragment
-                Toast.makeText(this, "Under Construction!", Toast.LENGTH_SHORT).show();
-                break;
 
             case R.id.nav_Feedback:
                 //add Home fragment
@@ -211,11 +207,6 @@ public class AdminDashboardActivity extends AppCompatActivity implements Navigat
                 finish();
                 break;
 
-            case R.id.nav_copyright:
-                //add Home fragment
-                Toast.makeText(this, "Hapini.in", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplicationContext(),WebViewActivity.class));
-                break;
 
         }
 
