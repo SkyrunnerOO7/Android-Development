@@ -98,35 +98,35 @@ public class fragment_calling extends DialogFragment {
     public void onStart() {
         super.onStart();
 
-        final DatabaseReference RootRef;
-        RootRef = FirebaseDatabase.getInstance().getReference();
-
-        RootRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                PhoneNumberList = new HashMap<>();
-
-                PhoneList = new ArrayList<>();
-                for(DataSnapshot dataSnapshot: snapshot.child("Data").getChildren()){
-                    PhoneNumberList.clear();
-                    PhoneNumberList.put("City",dataSnapshot.child("City").getValue().toString());
-                    PhoneNumberList.put("Name",dataSnapshot.child("Name").getValue().toString());
-                    PhoneNumberList.put("Number",dataSnapshot.child("Number").getValue().toString());
-                    PhoneList.add(PhoneNumberList);
-
-                }
-
-                name.setText(PhoneList.get(0).get("Name").toString());
-                city.setText(PhoneList.get(0).get("City").toString());
-                phone.setText(PhoneList.get(0).get("Number").toString());
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+//        final DatabaseReference RootRef;
+//        RootRef = FirebaseDatabase.getInstance().getReference();
+//
+//        RootRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                PhoneNumberList = new HashMap<>();
+//
+//                PhoneList = new ArrayList<>();
+//                for(DataSnapshot dataSnapshot: snapshot.child("Data").getChildren()){
+//                    PhoneNumberList.clear();
+//                    PhoneNumberList.put("City",dataSnapshot.child("City").getValue().toString());
+//                    PhoneNumberList.put("Name",dataSnapshot.child("Name").getValue().toString());
+//                    PhoneNumberList.put("Number",dataSnapshot.child("Number").getValue().toString());
+//                    PhoneList.add(PhoneNumberList);
+//
+//                }
+//
+//                name.setText(PhoneList.get(0).get("Name").toString());
+//                city.setText(PhoneList.get(0).get("City").toString());
+//                phone.setText(PhoneList.get(0).get("Number").toString());
+//
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
     }
 }
