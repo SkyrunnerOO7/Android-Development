@@ -21,7 +21,8 @@
         <activity android:name=".MasterProfileActivity" />
         <activity android:name=".ActiveUserActivity" />
         <activity android:name=".ActiveDataActivity" />
-        <activity android:name=".Employee_Active_user" />
+        <activity android:name=".Employee_Active_user" >
+        </activity>
         <activity android:name=".addAdminActivity" />
         <activity android:name=".MasterAdminLoginActivity" />
         <activity android:name=".SplashScreenMasterPanel" />
@@ -29,14 +30,17 @@
         <activity android:name=".Error405Activity" />
         <activity
             android:name=".EmployeeDashboardActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" >
+
+        </activity>
         <activity android:name=".AddDataActivity">
         </activity>
         <activity android:name=".Add_new_employee_activity" />
         <activity android:name=".PrivacyPolicyActivity" />
         <activity
             android:name=".AdminDashboardActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
         <activity android:name=".DeveloperActivity" />
         <activity
             android:name=".SupportActivity"
@@ -53,6 +57,8 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+
         </activity>
 
         <meta-data

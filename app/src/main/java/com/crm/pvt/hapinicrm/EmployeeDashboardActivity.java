@@ -3,6 +3,8 @@ package com.crm.pvt.hapinicrm;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+
+import android.app.ProgressDialog;
 import android.os.Handler;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,6 +20,9 @@ import android.widget.Toast;
 
 import com.crm.pvt.hapinicrm.models.Employee;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
 
 import org.w3c.dom.Text;
 
@@ -39,12 +44,11 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
     Double time = 0.0;
     boolean doubleBackToExitPressedOnce= false;
 
-
-   
     Handler handler;
     Runnable r;
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String text = "text";
+    public String IMEI_emp;
 
 
 
@@ -56,8 +60,14 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
         timerText = (TextView) findViewById(R.id.time_employee_dashboard);
         refresh=(ImageView)findViewById(R.id.refresh_employee_dashboard);
         bnv=(BottomNavigationView)findViewById(R.id.bottomNavigation);
+
+        Intent intent = getIntent();
+        IMEI_emp = intent.getStringExtra("IMEI");
+
+
+
         // to open home fragment Bydefault
-        getSupportFragmentManager().beginTransaction().replace(R.id.FrameConatiner,new fragment_calling()).commit();
+        //getSupportFragmentManager().beginTransaction().replace(R.id.FrameConatiner,new fragment_calling()).commit();
         // To add timer
         timer = new Timer();
         startTimer();
@@ -90,6 +100,7 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item)
             {
                 Fragment temp=null;
+
                 switch (item.getItemId())
                 {
                     case R.id.menu_home : temp=new fragment_calling();
@@ -100,6 +111,9 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.FrameConatiner,temp).commit();
                         break;
                     case R.id.menu_profile: temp=new EmployeeProfileFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("IMEI", IMEI_emp);
+                        temp.setArguments(bundle);
                         getSupportFragmentManager().beginTransaction().replace(R.id.FrameConatiner,temp).commit();
                         break;
                     case R.id.menu_support :

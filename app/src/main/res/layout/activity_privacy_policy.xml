@@ -480,6 +480,7 @@
                     android:justificationMode="inter_word"
                     android:textStyle="bold"
                     android:textColor="#3278CC"
+                    android:layout_marginBottom="10dp"
                     android:textSize="15sp" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

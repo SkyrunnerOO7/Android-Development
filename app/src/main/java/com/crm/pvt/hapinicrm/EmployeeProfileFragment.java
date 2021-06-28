@@ -1,10 +1,16 @@
 package com.crm.pvt.hapinicrm;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
@@ -12,48 +18,67 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.crm.pvt.hapinicrm.models.Admin_picture_Model;
+import com.crm.pvt.hapinicrm.models.Employee;
 import com.crm.pvt.hapinicrm.prevalent.prevalent;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
 
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link EmployeeProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class EmployeeProfileFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+
     private static final int PICK_IMAGE=1,RESULT_OK=-1;
-    // TODO: Rename and change types of parameters
+
     private String mParam1;
+    public String IMEI_for_profile_pic,linkOfUrl;
     private String mParam2;
+
     private ImageView profileImg;
     public LinearLayout logout;
     Uri imageUri;
     TextView Ename,Email,Ephone,Fname,Lname;
+    public StorageReference mStorageRef,storageReference;
+    public DatabaseReference root,databaseReference;
+    public StorageTask mUploadTask;
+    public ProgressDialog loadingBar;
+
+
+
     public EmployeeProfileFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment EmployeeProfileFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static EmployeeProfileFragment newInstance(String param1, String param2) {
         EmployeeProfileFragment fragment = new EmployeeProfileFragment();
         Bundle args = new Bundle();
@@ -67,25 +92,13 @@ public class EmployeeProfileFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
-
-
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
+            IMEI_for_profile_pic = getArguments().getString("IMEI");
             mParam2 = getArguments().getString(ARG_PARAM2);
+            //Toast.makeText(getContext(), mParam1, Toast.LENGTH_SHORT).show();
         }
     }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK && requestCode == PICK_IMAGE){
-            imageUri = data.getData();
-            profileImg.setImageURI(imageUri);
-        }
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -98,6 +111,21 @@ public class EmployeeProfileFragment extends Fragment {
         Ephone = view.findViewById(R.id.emp_phone_value);
 
 
+
+
+        root= FirebaseDatabase.getInstance().getReference();
+        mStorageRef = FirebaseStorage.getInstance().getReference("Employee").child(IMEI_for_profile_pic);
+        loadingBar = new ProgressDialog(getContext());
+
+
+
+
+
+
+
+
+
+
         logout=view.findViewById(R.id.logout_layout);
 
         logout.setOnClickListener(new View.OnClickListener() {
@@ -108,12 +136,9 @@ public class EmployeeProfileFragment extends Fragment {
                 getActivity().finish();
             }
         });
-
         Ename.setText(prevalent.CurrentOnlineEmloyee.getName());
         Email.setText(prevalent.CurrentOnlineEmloyee.getMail());
         Ephone.setText(prevalent.CurrentOnlineEmloyee.getPhone());
-
-        ;
 
 
         profileImg.setOnClickListener(new View.OnClickListener() {
@@ -130,4 +155,115 @@ public class EmployeeProfileFragment extends Fragment {
 
         return view;
     }
+
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            imageUri = data.getData();
+
+            String s="true";
+            //profileImg.setImageURI(imageUri);
+            if (imageUri != null) {
+
+                loadingBar = new ProgressDialog(getContext());
+                loadingBar.setTitle("Please Wait");
+                loadingBar.setMessage("It will take few seconds..");
+                loadingBar.setCanceledOnTouchOutside(false);
+                loadingBar.show();
+
+                final StorageReference fileReference = mStorageRef.child(IMEI_for_profile_pic + "." + getFileExtension(imageUri));
+
+                mUploadTask = fileReference.putFile(imageUri)
+
+                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+
+                            @Override
+
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                                Admin_picture_Model model=new Admin_picture_Model(imageUri.toString(),IMEI_for_profile_pic);
+                                //String modelId=root.push().getKey();
+                                //root.child(IMEI_for_profile_pic).setValue(model);
+                                HashMap hashMap=new HashMap();
+                                hashMap.put("ImgUrl",imageUri.toString());
+
+
+                                root.child("Employee").child(IMEI_for_profile_pic).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
+                                    @Override
+                                    public void onSuccess(Object o) {
+                                        setImage();
+                                        //Toast.makeText(getContext(), "condkjf", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+
+
+                                Toast.makeText(getContext(), "Uploaded", Toast.LENGTH_SHORT).show();
+                                loadingBar.dismiss();
+
+
+                            }
+
+                        })
+
+                        .addOnFailureListener(new OnFailureListener() {
+
+                            @Override
+
+                            public void onFailure(@NonNull Exception e) {
+
+                                Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+
+                            }
+
+                        });
+
+
+            } else {
+
+                Toast.makeText(getContext(), "No profile image selected", Toast.LENGTH_SHORT).show();
+
+            }
+
+
+        }
+    }
+
+
+    public String getFileExtension(Uri uri) {
+
+        ContentResolver contentResolver = getContext().getContentResolver();
+
+        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
+
+        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
+
+
+    }
+    public void setImage()
+    {
+
+        databaseReference=FirebaseDatabase.getInstance().getReference().child("Employee");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String img=snapshot.child(IMEI_for_profile_pic).child("ImgUrl").getValue(String.class);
+                Toast.makeText(getContext(), img, Toast.LENGTH_SHORT).show();
+                if(!(img.equals("null")))
+                {
+                    Picasso.get().load(img).into(profileImg);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+    }
+
 }
