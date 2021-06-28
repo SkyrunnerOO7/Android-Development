@@ -126,7 +126,7 @@ public class Add_new_employee_activity extends AppCompatActivity {
             loadingBar.setMessage("please Wait while checking Credentials..");
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
-            ValidateEmp(IMEI,mail,password,empname,cityE,PhoneE);
+            ValidateEmp(IMEI,mail,password,empname,cityE,PhoneE,"null");
 
 
 
@@ -136,7 +136,7 @@ public class Add_new_employee_activity extends AppCompatActivity {
 
     }
 
-    public void ValidateEmp(String IMEI,String mail,String password,String name,String city,String phone){
+    public void ValidateEmp(String IMEI,String mail,String password,String name,String city,String phone,String url){
 
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
@@ -152,6 +152,8 @@ public class Add_new_employee_activity extends AppCompatActivity {
                     EmpDataMap.put("Name",name);
                     EmpDataMap.put("City",city);
                     EmpDataMap.put("Phone",phone);
+
+                    EmpDataMap.put("ImgUrl",url);
 
 
                     RootRef.child("Employee").child(IMEI).updateChildren(EmpDataMap)

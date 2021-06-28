@@ -130,10 +130,6 @@ public class addAdminActivity extends AppCompatActivity {
 
         }
 
-
-
-
-
     }
 
     private void Validate(final String email,final String passcode,final String fullname,final String password,final String cityA,final String phoneA) {

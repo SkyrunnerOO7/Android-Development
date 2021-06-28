@@ -1,6 +1,7 @@
 package com.crm.pvt.hapinicrm;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -29,6 +30,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.regex.Matcher;
@@ -69,9 +75,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
         db = new DBhelper(this);
-
-
-
 
 
 
@@ -228,6 +231,7 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), "Welcome Admin You are Logged In Successfully... ", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
                                 Intent intent = new Intent(getApplicationContext(),AdminDashboardActivity.class);
+                                intent.putExtra("passcode",Passcode);
                                 prevalent.CurrentOnlineAdmin = Admindata;
                                 startActivity(intent);
                             }
@@ -268,7 +272,52 @@ public class LoginActivity extends AppCompatActivity {
                             if(parentDBname.equals("Employee")){
                                 Toast.makeText(getApplicationContext(), "Welcome Employee You are Logged In Successfully... ", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
+
+
+
+                                String filename;
+                                filename="IMEI";
+                                StringBuffer stringBuffer = new StringBuffer();
+                                try {
+                                    //Attaching BufferedReader to the FileInputStream by the help of InputStreamReader
+                                    BufferedReader inputReader = new BufferedReader(new InputStreamReader(
+                                            LoginActivity.this.openFileInput(filename)));
+                                    String inputString;
+                                    //Reading data line by line and storing it into the stringbuffer
+                                    while ((inputString = inputReader.readLine()) != null) {
+                                        stringBuffer.append(inputString + "\n");
+                                    }
+
+
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+
+                                String fun1=stringBuffer.toString().trim();
+                                if(fun1.isEmpty())
+                                {
+                                    String data;
+                                    data=IMEI;
+
+                                    FileOutputStream fos;
+                                    try {
+                                        fos = LoginActivity.this.openFileOutput(filename, Context.MODE_PRIVATE);
+                                        //default mode is PRIVATE, can be APPEND etc.
+                                        fos.write(data.getBytes());
+                                        fos.close();
+
+
+                                    } catch (FileNotFoundException e) {e.printStackTrace();}
+                                    catch (IOException e) {e.printStackTrace();}
+
+
+                                }
+
+
+
+
                                 Intent intent = new Intent(getApplicationContext(),EmployeeDashboardActivity.class);
+                                intent.putExtra("IMEI",IMEI);
                                 prevalent.CurrentOnlineEmloyee = EmployeeData;
                                 startActivity(intent);
                                 finish();

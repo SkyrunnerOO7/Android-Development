@@ -22,10 +22,12 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.crm.pvt.hapinicrm.models.Admin;
 import com.crm.pvt.hapinicrm.models.Employee;
@@ -37,6 +39,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by Kuldeep Sahu on 04/06/2021.
@@ -49,6 +52,7 @@ public class ActiveUserActivity extends AppCompatActivity {
     private RecyclerView list;
     private DatabaseReference dbref;
     private DatabaseReference empref;
+    //private DatabaseReference databaseReference;
     private String parentDBname ="Admin";
     private SwitchCompat switchCompat;
     private int Tocall = 0;
@@ -355,6 +359,7 @@ public class ActiveUserActivity extends AppCompatActivity {
                 });
 
 
+
             }
 
 
@@ -473,6 +478,7 @@ public class ActiveUserActivity extends AppCompatActivity {
 
         public TextView Username,Passcode,mailED,password,profile,city,phone;
         public Button delete;
+        public ImageView profileimg1;
 
         public EmplistViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -485,6 +491,7 @@ public class ActiveUserActivity extends AppCompatActivity {
             profile = itemView.findViewById(R.id.profile_emp);
             city = itemView.findViewById(R.id.city_emp);
             phone = itemView.findViewById(R.id.phone_emp);
+            profileimg1=itemView.findViewById(R.id.emp_profile);
         }
 
 
