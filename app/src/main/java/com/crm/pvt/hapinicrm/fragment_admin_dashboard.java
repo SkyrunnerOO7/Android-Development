@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.google.android.gms.common.internal.SimpleClientAdapter;
+
 import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -28,6 +30,7 @@ public class fragment_admin_dashboard extends Fragment {
     private LinearLayout AddData;
     private LinearLayout Feedback;
     private LinearLayout ActiveUser;
+    private LinearLayout ActiveData;
     ProgressDialog progressDialog;
 
 
@@ -110,6 +113,27 @@ public class fragment_admin_dashboard extends Fragment {
             progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
             Intent intent = new Intent(getActivity(),Employee_Active_user.class);
+            startActivity(intent);
+            Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    progressDialog.cancel();
+
+                }
+            }, 2000);
+        });
+
+        // Active User
+        ActiveData = view.findViewById(R.id.active_data_Alayout);
+        ActiveUser.setOnClickListener(view1 -> {
+
+            progressDialog = new ProgressDialog(getContext());
+            progressDialog.show();
+            progressDialog.setContentView(R.layout.progress_dialog);
+            progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+            Intent intent = new Intent(getActivity(),ActiveDataActivity.class);
             startActivity(intent);
             Timer timer = new Timer();
             timer.schedule(new TimerTask() {
