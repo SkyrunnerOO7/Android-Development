@@ -8,6 +8,15 @@ public class CustomerB2B {
 
     }
 
+    public CustomerB2B(String name, String organization, String mail, String password, String city, String phone) {
+        Name = name;
+        Organization = organization;
+        Mail = mail;
+        Password = password;
+        City = city;
+        Phone = phone;
+    }
+
     public String getName() {
         return Name;
     }

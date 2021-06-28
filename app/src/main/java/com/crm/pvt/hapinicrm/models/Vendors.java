@@ -6,6 +6,20 @@ public class Vendors {
 
     Vendors(){
 
+
+    }
+
+    public Vendors(String name, String organization, String mail, String password, String city, String experience, String area, String phone, String service, String subService) {
+        Name = name;
+        Organization = organization;
+        Mail = mail;
+        Password = password;
+        City = city;
+        Experience = experience;
+        Area = area;
+        Phone = phone;
+        Service = service;
+        SubService = subService;
     }
 
     public String getName() {
