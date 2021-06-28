@@ -102,7 +102,7 @@ public class Add_new_employee_activity extends AppCompatActivity {
         if(password.isEmpty()){
             pass.setError("passcode can't be empty");
         }
-        if(empname.isEmpty()){
+        else if(empname.isEmpty()){
             Empname.setError("Name can't be empty");
         }
         else if(mail.isEmpty()){
