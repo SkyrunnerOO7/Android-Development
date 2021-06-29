@@ -164,6 +164,19 @@ public class AddDataActivity extends AppCompatActivity {
             full_name.setError("Field can't be Empty");
             return false;
         }
+        else if (name.length()<3) {
+            full_name.setError("Name should be greater than or equal to 3");
+            full_name.requestFocus();
+            return false;
+        }
+
+
+        if(!name.matches("[a-zA-Z ]+"))
+        {
+            full_name.requestFocus();
+            full_name.setError("ENTER ONLY ALPHABETICAL CHARACTER");
+            return false;
+        }
         return true;
     }
 
@@ -171,6 +184,12 @@ public class AddDataActivity extends AppCompatActivity {
 
         if(cityS.isEmpty()){
             city.setError("Field can't be Empty");
+            return false;
+        }
+        if(!cityS.matches("[a-zA-Z ]+"))
+        {
+            city.requestFocus();
+            city.setError("ENTER ONLY ALPHABETICAL CHARACTER");
             return false;
         }
         return true;
