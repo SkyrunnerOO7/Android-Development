@@ -34,6 +34,7 @@ import android.widget.Toast;
 
 import com.crm.pvt.hapinicrm.models.Admin;
 import com.crm.pvt.hapinicrm.models.Employee;
+import com.crm.pvt.hapinicrm.prevalent.prevalent;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
@@ -42,6 +43,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 //import com.squareup.picasso.Picasso;
 
 /**
@@ -126,8 +128,6 @@ public class ActiveUserActivity extends AppCompatActivity {
             public boolean onQueryTextSubmit(String s) {
                 if(switchCompat.getText()=="Admin"){
                     adminFirebasesearch(s);
-                }else{
-                    EmployeeFirebasesearch(s);
                 }
                 return false;
             }
@@ -135,9 +135,7 @@ public class ActiveUserActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String s) {
 
-                if(switchCompat.getText()=="Admin"){
-                    adminFirebasesearch(s);
-                }else{
+                if(switchCompat.getText()=="Employee"){
                     EmployeeFirebasesearch(s);
                 }
                 return false;
@@ -239,6 +237,7 @@ public class ActiveUserActivity extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Admin");
+                Picasso.get().load(model.getImage()).into(holder.image);
 
 
                 holder.att.setOnClickListener(new View.OnClickListener() {
@@ -852,6 +851,7 @@ public class ActiveUserActivity extends AppCompatActivity {
 
         public TextView Username,Passcode,mailED,password,profile,city,phone;
         public Button delete,att;
+        public ImageView image;
 
         public AdminlistViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -865,6 +865,7 @@ public class ActiveUserActivity extends AppCompatActivity {
             city = itemView.findViewById(R.id.CityText);
             phone = itemView.findViewById(R.id.PhoneText);
             att = itemView.findViewById(R.id.att_btn);
+            image = itemView.findViewById(R.id.admin_profile);
         }
 
 
