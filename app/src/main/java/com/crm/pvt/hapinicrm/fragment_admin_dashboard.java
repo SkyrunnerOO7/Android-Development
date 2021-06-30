@@ -126,7 +126,7 @@ public class fragment_admin_dashboard extends Fragment {
 
         // Active User
         ActiveData = view.findViewById(R.id.active_data_Alayout);
-        ActiveUser.setOnClickListener(view1 -> {
+        ActiveData.setOnClickListener(view1 -> {
 
             progressDialog = new ProgressDialog(getContext());
             progressDialog.show();

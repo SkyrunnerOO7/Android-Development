@@ -2,8 +2,10 @@ package com.crm.pvt.hapinicrm;
 
 import android.os.Bundle;
 
+import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,6 +64,9 @@ public class fragment_feedback extends Fragment {
 
         return view;
     }
+
+
+
 
 
 
