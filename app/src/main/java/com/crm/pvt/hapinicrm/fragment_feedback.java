@@ -53,6 +53,7 @@ public class fragment_feedback extends Fragment {
                     desc.setError("please enter a text");
                 }else{
                     Toast.makeText(container.getContext(), "Successfully send", Toast.LENGTH_SHORT).show();
+                    desc.setText("");
                 }
             }
         });

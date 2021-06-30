@@ -7,6 +7,15 @@ public class CustomerB2C {
 
     }
 
+    public CustomerB2C(String name, String area, String mail, String password, String city, String phone) {
+        Name = name;
+        Area = area;
+        Mail = mail;
+        Password = password;
+        City = city;
+        Phone = phone;
+    }
+
     public String getName() {
         return Name;
     }

@@ -128,17 +128,27 @@ public class LoginActivity extends AppCompatActivity {
                     loadingBar.dismiss();
                     return;
                 }
+                else if(!LoginCheckBox.isChecked())
+                {
+                    LoginCheckBox.setError("Please check the box");
+                    loadingBar.dismiss();
+                }
 
 
                 String Email = LoginEmail.getText().toString();
                 String Password = LoginPassword.getText().toString();
+
+
+
                 // For Admin
                 if (choose_category[0].contentEquals("Admin") && LoginCheckBox.isChecked()){
                     if(TextUtils.isEmpty(Email)){
                         Toast.makeText(getApplicationContext(), "Please Enter Your passcode...", Toast.LENGTH_SHORT).show();
+                        loadingBar.dismiss();
                     }
                     else if(TextUtils.isEmpty(Password)){
                         Toast.makeText(getApplicationContext(), "Please Enter a Password...", Toast.LENGTH_SHORT).show();
+                        loadingBar.dismiss();
                     }else{
                         loadingBar.setTitle("Login Account");
                         loadingBar.setMessage("please Wait while checking Credentials..");
@@ -154,9 +164,11 @@ public class LoginActivity extends AppCompatActivity {
                if (choose_category[0].contentEquals("Employee") && LoginCheckBox.isChecked()) {
                      if(TextUtils.isEmpty(Email)){
                        Toast.makeText(getApplicationContext(), "Please Enter Your IMEI number...", Toast.LENGTH_SHORT).show();
+                         loadingBar.dismiss();
                    }
                    else if(TextUtils.isEmpty(Password)){
                        Toast.makeText(getApplicationContext(), "Please Enter a Password...", Toast.LENGTH_SHORT).show();
+                         loadingBar.dismiss();
                    }else{
                        loadingBar.setTitle("Login Account");
                        loadingBar.setMessage("please Wait while checking Credentials..");
@@ -164,9 +176,9 @@ public class LoginActivity extends AppCompatActivity {
                        loadingBar.show();
                        AllowAccessToEmployee(Email,Password);
                    }
-                }else{
+                }/*else{
                     LoginCheckBox.setError("Please check the box");
-                }
+                }*/
 
                 // For Developers
                 if (choose_category[0].contentEquals("Developers") && LoginCheckBox.isChecked()) {
@@ -183,10 +195,10 @@ public class LoginActivity extends AppCompatActivity {
                         AllowAccessToDeveloper(Email,Password);
                     }
 
-                }else{
+                }/*else{
                     LoginCheckBox.setError("Please check the box");
 
-                }
+                }*/
             }
         });
 

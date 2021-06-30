@@ -7,6 +7,17 @@ public class Candidate {
 
     }
 
+    public Candidate(String city, String contact, String email, String experience, String name, String password, String qualification, String skills) {
+        City = city;
+        Contact = contact;
+        Email = email;
+        Experience = experience;
+        Name = name;
+        Password = password;
+        Qualification = qualification;
+        Skills = skills;
+    }
+
     public String getCity() {
         return City;
     }

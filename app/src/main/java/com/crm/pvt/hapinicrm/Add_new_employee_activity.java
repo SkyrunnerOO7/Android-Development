@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -62,6 +63,7 @@ public class Add_new_employee_activity extends AppCompatActivity {
         Empname = findViewById(R.id.Ename);
         CityE = findViewById(R.id.cityE);
         phoneE = findViewById(R.id.phoneE);
+        checkBox=findViewById(R.id.checkbox);
 
 
 
@@ -120,8 +122,56 @@ public class Add_new_employee_activity extends AppCompatActivity {
         else if(PhoneE.isEmpty()){
             phoneE.setError("Feild can't be empty");
         }
-        else{
 
+        else if(!(PhoneE.length()==10)){
+            phoneE.setError("Enter valid number");
+        }
+
+        else if(!empname.matches("[a-zA-Z ]+"))
+        {
+            Empname.requestFocus();
+            Empname.setError("Enter valid name");
+        }
+
+        else if(!cityE.matches("[a-zA-Z ]+"))
+        {
+            CityE.requestFocus();
+            CityE.setError("Enter valid name");
+        }
+
+
+
+        else if(IMEI.length() != 15){
+
+            build_number.setError("Number should be of 15 digits");
+
+        }
+        else if (!Patterns.EMAIL_ADDRESS.matcher(mail).matches()) {
+            email.setError("Enter a valid email address");
+            email.requestFocus();
+        }
+
+
+        else if(!password.equals(repassword))
+        {
+
+            conf_pass.setError("password and Confrim password should be same");
+
+        }
+
+
+        else if(!checkBox.isChecked())
+        {
+            checkBox.setError("Please check the box");
+
+        }
+
+
+
+
+
+        else{
+            validatePass(password);
             loadingBar.setTitle("Create Account");
             loadingBar.setMessage("please Wait while checking Credentials..");
             loadingBar.setCanceledOnTouchOutside(false);
