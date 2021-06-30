@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".settings_Activity">
+
+
+
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/settings_profile_image"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:src="@drawable/admin_profile_icon1"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        />
+
+    <TextView
+        android:id="@+id/profile_image_change_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Profile"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="4dp"
+        android:textColor="@android:color/black"
+        android:layout_below="@+id/settings_profile_image"
+        android:layout_centerHorizontal="true"
+        />
+
+    <TextView
+        android:id="@+id/settings_passcode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/profile_image_change_btn"
+        android:layout_margin="15dp"
+        android:padding="10dp"
+        android:text="Passcode"
+        android:textColor="@color/blackTextColor"
+        />
+
+    <TextView
+        android:id="@+id/settings_full_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/settings_passcode"
+
+        android:layout_margin="15dp"
+        android:padding="10dp"
+        android:text="Name"
+        android:textColor="@color/blackTextColor"
+        />
+
+    <TextView
+        android:id="@+id/settings_Email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/settings_full_name"
+        android:text="Email"
+        android:textColor="@color/blackTextColor"
+        android:layout_margin="15dp"
+        android:padding="10dp"
+        />
+
+    <TextView
+        android:id="@+id/save_btn"
+        android:layout_width="113dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/settings_Email"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:text="save"
+        android:textColor="@color/primaryTextColor"
+        android:textSize="20sp"
+        />
+
+</RelativeLayout>

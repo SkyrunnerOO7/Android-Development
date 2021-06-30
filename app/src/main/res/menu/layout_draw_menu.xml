@@ -12,20 +12,6 @@
     </group>
 
 
-    <group android:checkableBehavior="single">
-        <item
-            android:title="Profile">
-            <menu>
-                <item
-                    android:id="@+id/nav_profile"
-                    android:icon="@drawable/profile_icon"
-
-                    android:title="My Account"/>
-
-            </menu>
-        </item>
-    </group>
-
     <group
         android:checkableBehavior="single">
 
@@ -55,11 +41,7 @@
     <item
         android:title="Account">
         <menu>
-            <item
-                android:id="@+id/nav_copyright"
-                android:icon="@drawable/copyright_icon"
-                android:title="Hapini.in"
-                />
+
 
             <item
             android:id="@+id/nav_signout"

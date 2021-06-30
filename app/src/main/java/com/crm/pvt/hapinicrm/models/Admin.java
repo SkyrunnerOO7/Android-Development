@@ -1,17 +1,28 @@
 package com.crm.pvt.hapinicrm.models;
 
+import android.net.Uri;
+
 public class Admin {
-    private String Passcode,Password,Name,Email,City,Phone;
+    private String Passcode;
+    private String Password;
+    private String Name;
+    private String Email;
+    private String City;
+    private String Phone;
+    private String Image;
 
     Admin(){
 
     }
 
-    public Admin(String passcode, String password, String name, String email) {
+    public Admin(String passcode, String password, String name, String email, String city, String phone, String image) {
         Passcode = passcode;
         Password = password;
         Name = name;
         Email = email;
+        City = city;
+        Phone = phone;
+        Image = image;
     }
 
     public String getPasscode() {
@@ -60,5 +71,13 @@ public class Admin {
 
     public void setPhone(String phone) {
         Phone = phone;
+    }
+
+    public String getImage() {
+        return Image;
+    }
+
+    public void setImage(String image) {
+        Image = image;
     }
 }
