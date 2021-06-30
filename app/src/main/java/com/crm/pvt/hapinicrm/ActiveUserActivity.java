@@ -99,7 +99,7 @@ public class ActiveUserActivity extends AppCompatActivity {
 
 //        dbref = FirebaseDatabase.getInstance().getReference().child("Admin");
 //        empref = FirebaseDatabase.getInstance().getReference().child("Employee");
-
+//
         list = findViewById(R.id.rv);
         list.setLayoutManager(new LinearLayoutManager(this));
 
