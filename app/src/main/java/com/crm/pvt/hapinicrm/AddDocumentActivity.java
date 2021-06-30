@@ -51,6 +51,7 @@ public class AddDocumentActivity extends AppCompatActivity {
 
     public int n,c,m,p,pw,a,q,s,o,ss;
     String[] ids;
+    //new comment
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
