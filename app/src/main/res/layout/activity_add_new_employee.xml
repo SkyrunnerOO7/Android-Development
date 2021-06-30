@@ -74,6 +74,7 @@
                             android:layout_height="wrap_content"
                             android:hint="@string/Hint_device_bulid_number"
                             android:paddingLeft="10dp"
+                            android:inputType="number"
                             tools:ignore="InvalidId" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -148,7 +149,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="phone"
-                            android:inputType="text"
+                            android:inputType="number"
                             android:paddingLeft="10dp"
                             tools:ignore="DuplicateIds" />
                     </com.google.android.material.textfield.TextInputLayout>
