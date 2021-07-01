@@ -124,7 +124,7 @@ public class fragment_admin_dashboard extends Fragment {
             }, 2000);
         });
 
-        // Active User
+        // Active Data
         ActiveData = view.findViewById(R.id.active_data_Alayout);
         ActiveData.setOnClickListener(view1 -> {
 
