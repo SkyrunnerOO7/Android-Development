@@ -54,7 +54,6 @@ public class ActiveDataActivity extends AppCompatActivity {
     ImageButton img;
     private int countCand = 0;
 
-
     Button choosedb,sortby;
 
 
@@ -68,9 +67,6 @@ public class ActiveDataActivity extends AppCompatActivity {
         Candref = FirebaseDatabase.getInstance().getReference().child("Data").child("Candidate");
         sortby = findViewById(R.id.sortAD);
         count = findViewById(R.id.sizeAD);
-
-
-
         choosedb = findViewById(R.id.ChooseAD);
         list = findViewById(R.id.rvAD);
         list.setLayoutManager(new LinearLayoutManager(this));
