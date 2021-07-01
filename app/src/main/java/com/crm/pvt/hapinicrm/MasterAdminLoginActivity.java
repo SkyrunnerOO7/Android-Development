@@ -81,6 +81,7 @@ public class MasterAdminLoginActivity extends AppCompatActivity {
                         if(parent.equals("Master")){
                             Toast.makeText(getApplicationContext(), "Welcome Master Admin You are Logged In Successfully... ", Toast.LENGTH_SHORT).show();
                             loadingbar.dismiss();
+                            codeED.setText("");
                             Intent intent = new Intent(getApplicationContext(),MasterAdminDasboardActivity.class);
                             startActivity(intent);
                         }else{

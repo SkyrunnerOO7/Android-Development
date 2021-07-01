@@ -73,6 +73,9 @@
         <item>Network Issues</item>
         <item>Tell to callback</item>
         <item>Intersted(Issue)</item>
+        <item>Wrong number</item>
+        <item>not applicable</item>
+        <item>complain</item>
 
 
     </string-array>
@@ -87,7 +90,7 @@
     </string-array>
     Spinner_Add_doc_item
 
-    <string-array name="Spinner_Add_doc_item">
+    <string-array name="Spinner_Add_doc_item" >
         <item>Choose Here</item>
         <item>Candidate</item>
         <item>Vendors</item>
@@ -111,8 +114,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="sample_Email">priyanshugupta132@gmailcom</string>
-
-
 
 
     <string name="privacy_policy">
