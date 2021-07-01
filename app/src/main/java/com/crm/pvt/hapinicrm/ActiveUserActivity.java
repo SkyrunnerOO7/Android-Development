@@ -128,17 +128,25 @@ public class ActiveUserActivity extends AppCompatActivity {
             public boolean onQueryTextSubmit(String s) {
                 if(switchCompat.getText()=="Admin"){
                     adminFirebasesearch(s);
+                }else if(switchCompat.getText()=="Employee"){
+                    EmployeeFirebasesearch(s);
+                }else{
+                    Toast.makeText(ActiveUserActivity.this, "please select a User", Toast.LENGTH_SHORT).show();
                 }
-                return false;
+                return true;
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
 
-                if(switchCompat.getText()=="Employee"){
+                if(switchCompat.getText()=="Admin"){
+                    adminFirebasesearch(s);
+                }else if(switchCompat.getText()=="Employee"){
                     EmployeeFirebasesearch(s);
+                }else{
+                    Toast.makeText(ActiveUserActivity.this, "please select a User", Toast.LENGTH_SHORT).show();
                 }
-                return false;
+                return true;
             }
         });
 
@@ -215,6 +223,7 @@ public class ActiveUserActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull  DataSnapshot snapshot) {
                 countadmin = (int) snapshot.getChildrenCount();
+
             }
 
             @Override
@@ -240,12 +249,7 @@ public class ActiveUserActivity extends AppCompatActivity {
                 Picasso.get().load(model.getImage()).into(holder.image);
 
 
-                holder.att.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        startActivity(new Intent(getApplicationContext(),Attendance_Activity.class));
-                    }
-                });
+
 
 
                 holder.delete.setOnClickListener(new View.OnClickListener() {
@@ -320,13 +324,9 @@ public class ActiveUserActivity extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Admin");
+                Picasso.get().load(model.getImage()).into(holder.image);
 
-                holder.att.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        startActivity(new Intent(getApplicationContext(),Attendance_Activity.class));
-                    }
-                });
+
 
                 holder.delete.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -399,13 +399,9 @@ public class ActiveUserActivity extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Admin");
+                Picasso.get().load(model.getImage()).into(holder.image);
 
-                holder.att.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        startActivity(new Intent(getApplicationContext(),Attendance_Activity.class));
-                    }
-                });
+
 
 
                 holder.delete.setOnClickListener(new View.OnClickListener() {
@@ -480,12 +476,8 @@ public class ActiveUserActivity extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Admin");
-                holder.att.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        startActivity(new Intent(getApplicationContext(),Attendance_Activity.class));
-                    }
-                });
+                Picasso.get().load(model.getImage()).into(holder.image);
+
 
 
                 holder.delete.setOnClickListener(new View.OnClickListener() {
@@ -561,7 +553,10 @@ public class ActiveUserActivity extends AppCompatActivity {
                 holder.attE.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        startActivity(new Intent(getApplicationContext(),Attendance_Activity.class));
+                        Intent intent = new Intent(getApplicationContext(),Attendance_Activity.class);
+                        intent.putExtra("Passcode",model.getIMEI());
+                        intent.putExtra("profile","Employee");
+                        startActivity(intent);
                     }
                 });
                 holder.delete.setOnClickListener(new View.OnClickListener() {
@@ -850,7 +845,7 @@ public class ActiveUserActivity extends AppCompatActivity {
     public static class AdminlistViewHolder extends RecyclerView.ViewHolder{
 
         public TextView Username,Passcode,mailED,password,profile,city,phone;
-        public Button delete,att;
+        public Button delete;
         public ImageView image;
 
         public AdminlistViewHolder(@NonNull View itemView) {
@@ -864,7 +859,6 @@ public class ActiveUserActivity extends AppCompatActivity {
             profile = itemView.findViewById(R.id.profileED);
             city = itemView.findViewById(R.id.CityText);
             phone = itemView.findViewById(R.id.PhoneText);
-            att = itemView.findViewById(R.id.att_btn);
             image = itemView.findViewById(R.id.admin_profile);
         }
 

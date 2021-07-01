@@ -172,9 +172,11 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
     protected void onStart() {
 
 
-            // added new Code to pop up calling Fragment
-//
 
+
+            // added new Code to pop up calling Fragment
+
+//
             if(isFirstTime()) {
                 // Code to pop up attendance activicty
                 fragment_attendance fragment_attendance = new fragment_attendance(IMEI_emp);
