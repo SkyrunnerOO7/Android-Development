@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crm.pvt.hapinicrm.models.JavaMailAPI;
+
 /**
  * Created by Kuldeep Sahu on 04/06/2021.
  * E-mail: sahukuldeep912001@gmail.com
@@ -46,8 +48,8 @@ public class fragment_feedback extends Fragment {
                 String message = desc.getText().toString();
                 String subject = "Feedback";
 
-                /*JavaMailAPI javaMailAPI = new JavaMailAPI(container.getContext(),mail,subject,message);
-                javaMailAPI.execute();*/
+                JavaMailAPI javaMailAPI = new JavaMailAPI(container.getContext(),mail,subject,message);
+                javaMailAPI.execute();
 
                 if(message.isEmpty()) {
                     desc.setError("please enter a text");

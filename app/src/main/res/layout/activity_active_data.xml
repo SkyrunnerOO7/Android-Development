@@ -15,25 +15,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <RelativeLayout
-                android:id="@+id/rl0"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
-
-
-
-
-
-            </RelativeLayout>
-
 
             <RelativeLayout
                 android:id="@+id/rlAD"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                >
+                android:layout_marginTop="5dp">
 
 
                 <TextView

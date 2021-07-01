@@ -127,6 +127,8 @@ public class AdminDashboardActivity extends AppCompatActivity implements Navigat
             }
         });
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.bringToFront();
+        navigationView.setCheckedItem(R.id.nav_home);
 
 
 
