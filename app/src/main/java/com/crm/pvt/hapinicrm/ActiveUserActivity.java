@@ -868,8 +868,7 @@ public class ActiveUserActivity extends AppCompatActivity {
             image = itemView.findViewById(R.id.admin_profile);
         }
 
-
-        }
+    }
 
     public static class EmplistViewHolder extends RecyclerView.ViewHolder{
 
