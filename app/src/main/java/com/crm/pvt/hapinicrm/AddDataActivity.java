@@ -174,11 +174,6 @@ public class AddDataActivity extends AppCompatActivity {
                     subService.setHintTextColor(getResources().getColor(R.color.navy_blue));
                     service.setHintTextColor(getResources().getColor(R.color.navy_blue));
 
-
-
-
-
-
                     full_name.setEnabled(true);
                     phone_number.setEnabled(true);
                     city.setEnabled(true);
@@ -201,7 +196,6 @@ public class AddDataActivity extends AppCompatActivity {
                     subService.setFocusable(true);
                     service.setFocusable(true);
 
-
                     full_name.setHint("Enter FullName");
                     phone_number.setHint("Enter Phone Number");
                     city.setHint("Enter City");
@@ -212,10 +206,6 @@ public class AddDataActivity extends AppCompatActivity {
                     subService.setHint("Enter SubService");
                     mail.setHint("Enter Mail");
                     area.setHint("Enter Area");
-
-
-
-
 
                 }
                 else if(choose_category[0].contentEquals("CustomerB2B")){
@@ -231,13 +221,10 @@ public class AddDataActivity extends AppCompatActivity {
                     password.setHintTextColor(getResources().getColor(R.color.navy_blue));
                     mail.setHintTextColor(getResources().getColor(R.color.navy_blue));
 
-
                     area.setHintTextColor(getResources().getColor(R.color.md_blue_grey_400));
                     experience.setHintTextColor(getResources().getColor(R.color.md_blue_grey_400));
                     subService.setHintTextColor(getResources().getColor(R.color.md_blue_grey_400));
                     service.setHintTextColor(getResources().getColor(R.color.md_blue_grey_400));
-
-
 
                     full_name.setFocusable(true);
                     phone_number.setFocusable(true);
@@ -246,17 +233,12 @@ public class AddDataActivity extends AppCompatActivity {
                     mail.setFocusable(true);
                     organization.setFocusable(true);
 
-
-
                     full_name.setEnabled(true);
                     phone_number.setEnabled(true);
                     city.setEnabled(true);
                     password.setEnabled(true);
                     mail.setEnabled(true);
                     organization.setEnabled(true);
-
-
-
 
                     full_name.setHint("Enter FullName");
                     phone_number.setHint("Enter Phone Number");
@@ -320,7 +302,6 @@ public class AddDataActivity extends AppCompatActivity {
                     mail.setHint("Enter Mail");
                     area.setHint("Enter Area");
 
-
                     service.setHint("Not Required for CustomerB2C");
                     service.setEnabled(false);
                     service.setFocusable(false);
@@ -350,8 +331,6 @@ public class AddDataActivity extends AppCompatActivity {
 
             }
         });
-
-
 
 
         loadingBar = new ProgressDialog(this);
