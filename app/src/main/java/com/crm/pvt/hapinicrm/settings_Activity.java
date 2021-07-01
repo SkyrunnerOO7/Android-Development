@@ -45,6 +45,7 @@ public class settings_Activity extends AppCompatActivity {
     private StorageReference storageProfilePrictureRef;
     private static final int PICK_IMAGE = 1, RESULT_OK = -1;
     private String checker = "";
+    //abx
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
