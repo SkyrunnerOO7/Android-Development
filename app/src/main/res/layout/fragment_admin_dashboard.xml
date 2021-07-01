@@ -376,8 +376,8 @@
                         android:weightSum="2">
 
                         <androidx.cardview.widget.CardView
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
+                            android:layout_width="320dp"
+                            android:layout_height="80dp"
                             android:layout_margin="10dp"
                             android:elevation="10dp"
                             android:gravity="center"
@@ -387,7 +387,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:orientation="vertical"
+                                android:orientation="horizontal"
                                 android:layout_margin="3dp"
                                 android:id="@+id/active_data_Alayout"
                                 android:layout_gravity="center"
@@ -409,6 +409,7 @@
                                     android:layout_gravity="center"
                                     android:gravity="center"
                                     android:layout_margin="3dp"
+                                    android:padding="15dp"
                                     android:text="Active Data "
                                     android:textColor="#072f5f"
                                     android:textStyle="bold"
