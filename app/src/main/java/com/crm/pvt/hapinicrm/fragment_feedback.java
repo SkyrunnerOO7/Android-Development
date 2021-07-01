@@ -55,7 +55,8 @@ public class fragment_feedback extends Fragment {
 
                 if(message.isEmpty()) {
                     desc.setError("please enter a text");
-                }else{
+                }else
+                    {
                     Toast.makeText(container.getContext(), "Successfully send", Toast.LENGTH_SHORT).show();
                     desc.setText("");
                 }

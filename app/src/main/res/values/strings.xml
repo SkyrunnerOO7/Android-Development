@@ -84,7 +84,7 @@
     <!-- Spinner user feedback Item -->
     <string-array name="Spinner_user_feedback_item">
         <item>Sort By</item>
-        <item>New</item>
+        <item>City</item>
         <item>Number</item>
         <item>Name</item>
     </string-array>

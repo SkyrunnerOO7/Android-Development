@@ -20,7 +20,8 @@
         <activity android:name=".Attendance_Activity"></activity>
         <activity android:name=".AddDocumentActivity" />
 
-        <activity android:name=".UserFeedbackShowActivity" />
+        <activity android:name=".UserFeedbackShowActivity" >
+        </activity>
         <activity android:name=".MasterProfileActivity" />
         <activity android:name=".ActiveUserActivity" />
         <activity android:name=".ActiveDataActivity" />

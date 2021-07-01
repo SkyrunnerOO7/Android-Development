@@ -1,10 +1,12 @@
 package com.crm.pvt.hapinicrm;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -85,6 +87,22 @@ public class AddDataActivity extends AppCompatActivity {
         dataSpinner=findViewById(R.id.spinner_Doc);
 
         check_spinner="false";
+
+
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(AddDataActivity.this);
+        builder1.setMessage("Please first select the option from- choose here, to get the form ");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Ok",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+
 
 
         final String[] choose_category = new String[1];
