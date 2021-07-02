@@ -47,7 +47,6 @@ public class Add_new_employee_activity extends AppCompatActivity {
     private ProgressDialog loadingBar;
     private EditText Empname,CityE,phoneE;
     private Spinner spinner;
-    String[] type = {"candidate","vendors","customerb2c","customerb2b"};
     String type_of_emp;
 
     @Override
