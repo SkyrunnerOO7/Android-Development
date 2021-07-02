@@ -66,7 +66,7 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
 
 
         // to open home fragment Bydefault
-        //getSupportFragmentManager().beginTransaction().replace(R.id.FrameConatiner,new fragment_calling()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.FrameConatiner,new fragment_calling(IMEI_emp)).commit();
         // To add timer
         timer = new Timer();
         startTimer();
@@ -102,7 +102,7 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
 
                 switch (item.getItemId())
                 {
-                    case R.id.menu_home : temp=new fragment_calling();
+                    case R.id.menu_home : temp=new fragment_calling_feedback(IMEI_emp);
                         getSupportFragmentManager().beginTransaction().replace(R.id.FrameConatiner,temp).commit();
 
                         break;
@@ -179,10 +179,10 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
                 fragment_attendance fragment_attendance = new fragment_attendance(IMEI_emp);
                 fragment_attendance.show(getSupportFragmentManager(), "MyFragment");
             }
-            else{
-                fragment_calling fragment_calling = new fragment_calling();
-               fragment_calling.show(getSupportFragmentManager(), "TAG");
-            }
+//            else{
+//                fragment_calling fragment_calling = new fragment_calling(IMEI_emp);
+//               fragment_calling.show(getSupportFragmentManager(), "TAG");
+//            }
         super.onStart();
     }
     private void startTimer()
