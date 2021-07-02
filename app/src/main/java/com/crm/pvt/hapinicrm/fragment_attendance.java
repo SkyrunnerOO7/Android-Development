@@ -3,6 +3,7 @@ package com.crm.pvt.hapinicrm;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -17,15 +18,24 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.crm.pvt.hapinicrm.models.Admin;
+import com.crm.pvt.hapinicrm.models.Attendance;
+import com.crm.pvt.hapinicrm.prevalent.prevalent;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Transaction;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 
 
@@ -49,6 +59,23 @@ public class fragment_attendance extends DialogFragment {
         listView = view.findViewById(R.id.list_item);
         list = new ArrayList<>();
 
+        final DatabaseReference RootRef;
+        RootRef = FirebaseDatabase.getInstance().getReference();
+
+        RootRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull  DataSnapshot snapshot) {
+                Attendance att = snapshot.child("Attendance").child("IMEI").getValue(Attendance.class);
+
+                prevalent.CurrentUserAttendance = att;
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
 
         mark_presence = view.findViewById(R.id.mark_attendance);
@@ -70,9 +97,14 @@ public class fragment_attendance extends DialogFragment {
     }
 
     private void MarkAttendance(String currentDate, String curTime) {
-        databaseReference = FirebaseDatabase.getInstance().getReference();
+//        databaseReference = FirebaseDatabase.getInstance().getReference();
+//
+//        databaseReference.child("Attendance").child(String.valueOf(id)).child(currentDate).child("Time").setValue(curTime);
+        String IMEI = prevalent.CurrentOnlineEmloyee.getIMEI();
+        mark(IMEI,currentDate,curTime);
 
-        databaseReference.child("Attendance").child(String.valueOf(id)).child(currentDate).child("Time").setValue(curTime);
+
+
 
         Toast.makeText(getContext(),"Your Attendance is marked successfully",Toast.LENGTH_SHORT).show();
         ArrayAdapter arrayAdapter = new ArrayAdapter(getContext(), android.R.layout.simple_list_item_1,list);
@@ -80,5 +112,33 @@ public class fragment_attendance extends DialogFragment {
 
         
 
+    }
+
+
+
+    public void mark(String IMEI,String Date,String Time){
+
+        final DatabaseReference eRef;
+        eRef = FirebaseDatabase.getInstance().getReference();
+
+
+        eRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(!(dataSnapshot.child("Attendance").child("IMEI").child("Date").exists())){
+                    HashMap<String,Object> hashMap = new HashMap<>();
+                    hashMap.put("IMEI",IMEI);
+                    hashMap.put("Date",Date);
+                    hashMap.put("Time",Time);
+                    eRef.child("Attendance").child(IMEI).child(Date).updateChildren(hashMap);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 }

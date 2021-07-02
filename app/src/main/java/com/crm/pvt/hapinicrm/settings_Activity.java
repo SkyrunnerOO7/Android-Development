@@ -45,6 +45,7 @@ public class settings_Activity extends AppCompatActivity {
     private StorageReference storageProfilePrictureRef;
     private static final int PICK_IMAGE = 1, RESULT_OK = -1;
     private String checker = "";
+    //abx
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,12 +55,15 @@ public class settings_Activity extends AppCompatActivity {
         storageProfilePrictureRef = FirebaseStorage.getInstance().getReference().child("Admin pictures");
 
         profileImageView = (CircleImageView) findViewById(R.id.settings_profile_image);
+        if(prevalent.CurrentOnlineAdmin.getImage()!=null){
+            Picasso.get().load(prevalent.CurrentOnlineAdmin.getImage()).placeholder(R.drawable.admin_profile_icon1).into(profileImageView);
+        }
         fullNameEditText =  findViewById(R.id.settings_full_name);
-        fullNameEditText.setText("Name "+prevalent.CurrentOnlineAdmin.getName());
+        fullNameEditText.setText("Name:  "+prevalent.CurrentOnlineAdmin.getName());
         passcodeText =  findViewById(R.id.settings_passcode);
-        passcodeText.setText("passcode "+ prevalent.CurrentOnlineAdmin.getPasscode());
+        passcodeText.setText("passcode:  "+ prevalent.CurrentOnlineAdmin.getPasscode());
         emailText = findViewById(R.id.settings_Email);
-        emailText.setText("Email " + prevalent.CurrentOnlineAdmin.getEmail());
+        emailText.setText("Email:  " + prevalent.CurrentOnlineAdmin.getEmail());
         profileChangeTextBtn = (TextView) findViewById(R.id.profile_image_change_btn);
         saveTextButton =  findViewById(R.id.save_btn);
 

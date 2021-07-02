@@ -134,20 +134,20 @@
                 android:textStyle="bold"
                 />
 
-            <Button
-                android:id="@+id/att_btn"
-                android:layout_width="26dp"
-                android:layout_height="25dp"
-                android:layout_below="@id/PhoneText"
-                android:layout_toLeftOf="@id/delete_btn"
-                android:layout_marginLeft="2dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/attendence_icon"
-                android:gravity="end"
-                android:textAlignment="viewEnd"
-                android:textColor="#FFFFFF"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+<!--            <Button-->
+<!--                android:id="@+id/att_btn"-->
+<!--                android:layout_width="26dp"-->
+<!--                android:layout_height="25dp"-->
+<!--                android:layout_below="@id/PhoneText"-->
+<!--                android:layout_toLeftOf="@id/delete_btn"-->
+<!--                android:layout_marginLeft="2dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:background="@drawable/attendence_icon"-->
+<!--                android:gravity="end"-->
+<!--                android:textAlignment="viewEnd"-->
+<!--                android:textColor="#FFFFFF"-->
+<!--                android:textSize="15sp"-->
+<!--                android:textStyle="bold" />-->
 
 
             <Button
