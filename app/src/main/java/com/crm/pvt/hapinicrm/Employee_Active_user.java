@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ContentResolver;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -158,6 +159,15 @@ public class Employee_Active_user extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
+                holder.attE.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getApplicationContext(),Attendance_Activity.class);
+                        intent.putExtra("Passcode",model.getIMEI());
+                        intent.putExtra("profile","Employee");
+                        startActivity(intent);
+                    }
+                });
 
                 holder.delete.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -234,6 +244,15 @@ public class Employee_Active_user extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
+                holder.attE.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getApplicationContext(),Attendance_Activity.class);
+                        intent.putExtra("Passcode",model.getIMEI());
+                        intent.putExtra("profile","Employee");
+                        startActivity(intent);
+                    }
+                });
 
 
 
@@ -310,7 +329,15 @@ public class Employee_Active_user extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
-
+                holder.attE.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getApplicationContext(),Attendance_Activity.class);
+                        intent.putExtra("Passcode",model.getIMEI());
+                        intent.putExtra("profile","Employee");
+                        startActivity(intent);
+                    }
+                });
 
 
 
@@ -387,6 +414,15 @@ public class Employee_Active_user extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
+                holder.attE.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getApplicationContext(),Attendance_Activity.class);
+                        intent.putExtra("Passcode",model.getIMEI());
+                        intent.putExtra("profile","Employee");
+                        startActivity(intent);
+                    }
+                });
 
 
 
