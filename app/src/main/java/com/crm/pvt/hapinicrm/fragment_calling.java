@@ -22,13 +22,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crm.pvt.hapinicrm.models.Data;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 
 
@@ -40,6 +46,13 @@ public class fragment_calling extends DialogFragment {
     HashMap<String,String> PhoneNumberList;
     ArrayList<HashMap> PhoneList;
     private static final int REQUEST_CALL = 1;
+    String CUR_EMP_ID;
+
+    ArrayList<Data> DataList;
+
+    public fragment_calling(String imei) {
+        CUR_EMP_ID = imei;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -98,6 +111,8 @@ public class fragment_calling extends DialogFragment {
     public void onStart() {
         super.onStart();
 
+        getEMPID();
+
 //        final DatabaseReference RootRef;
 //        RootRef = FirebaseDatabase.getInstance().getReference();
 //
@@ -107,7 +122,7 @@ public class fragment_calling extends DialogFragment {
 //                PhoneNumberList = new HashMap<>();
 //
 //                PhoneList = new ArrayList<>();
-//                for(DataSnapshot dataSnapshot: snapshot.child("Data").getChildren()){
+//                for(DataSnapshot dataSnapshot: snapshot.child("NewData").child().getChildren()){
 //                    PhoneNumberList.clear();
 //                    PhoneNumberList.put("City",dataSnapshot.child("City").getValue().toString());
 //                    PhoneNumberList.put("Name",dataSnapshot.child("Name").getValue().toString());
@@ -129,4 +144,101 @@ public class fragment_calling extends DialogFragment {
 //            }
 //        });
     }
+
+    private void getEMPID() {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+         String[] Emp_type = new String[1];
+        if (databaseReference != null) {
+            databaseReference.child("Employee").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    Emp_type[0] = snapshot.child(CUR_EMP_ID).child("Type").getValue().toString();
+
+                    //   Toast.makeText(getContext(),String.valueOf(Emp_type[0]),Toast.LENGTH_SHORT).show();
+                    getSelectedList(Emp_type[0]);
+
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+        }
+    }
+
+
+    private void getSelectedList(String type) {
+        DatabaseReference df = FirebaseDatabase.getInstance().getReference().child("NewData");
+        if (df != null) {
+            df.orderByChild("Type").equalTo(type).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    DataList = new ArrayList<>();
+
+
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        DataList.add(dataSnapshot.getValue(Data.class));
+                    }
+
+                    Collections.sort(DataList, new Comparator<Data>() {
+                        DateFormat f = new SimpleDateFormat("MM/dd/yyyy '@'hh:mm a");
+                        @Override
+                        public int compare(Data data, Data t1) {
+                            try {
+                                return f.parse(data.getTime()).compareTo(f.parse(t1.getTime()));
+                            } catch (ParseException e) {
+                                throw new IllegalArgumentException(e);
+                            }
+                        }
+                    });
+                    getCounter(type,DataList);
+                    //   Toast.makeText(getContext(), String.valueOf(DataList.size()), Toast.LENGTH_SHORT).show();
+
+
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
+    }
+    private void getCounter(String type, ArrayList<Data> dataList) {
+        DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference();
+        final String[] position = new String[1];
+        databaseReference1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                position[0] =  snapshot.child(type).getValue().toString();
+
+                set_data(position[0]);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void set_data(String s) {
+
+        int pos = Integer.parseInt(s);
+        if(DataList.size() > pos) {
+            name.setText(DataList.get(pos).getName());
+            city.setText(DataList.get(pos).getCity());
+            phone.setText(DataList.get(pos).getContact());
+
+        }
+        else
+            Toast.makeText(getContext(),"There is no Data left for calling",Toast.LENGTH_SHORT).show();
+    }
+
 }

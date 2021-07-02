@@ -1,16 +1,33 @@
 package com.crm.pvt.hapinicrm.models;
 
 public class Data {
-    private String Name,Number,City;
+    private String Name,City,Time,Contact;
 
     Data(){
 
     }
 
-    public Data(String name, String number, String city) {
+    public Data(String name, String city,String time,String contact) {
         Name = name;
-        Number = number;
         City = city;
+        Contact = contact;
+        Time = time;
+    }
+
+    public String getTime() {
+        return Time;
+    }
+
+    public void setTime(String time) {
+        Time = time;
+    }
+
+    public String getContact() {
+        return Contact;
+    }
+
+    public void setContact(String contact) {
+        Contact = contact;
     }
 
     public String getName() {
@@ -21,13 +38,7 @@ public class Data {
         Name = name;
     }
 
-    public String getNumber() {
-        return Number;
-    }
 
-    public void setNumber(String number) {
-        Number = number;
-    }
 
     public String getCity() {
         return City;
