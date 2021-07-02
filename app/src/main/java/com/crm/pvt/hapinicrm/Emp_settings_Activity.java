@@ -6,12 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,11 +33,12 @@ import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class settings_Activity extends AppCompatActivity {
+public class Emp_settings_Activity extends AppCompatActivity {
+
     private CircleImageView profileImageView;
     private TextView fullNameEditText, passcodeText, emailText;
-    private ImageView profileChangeTextBtn, closeTextBtn;
-    private TextView saveTextButton;
+    private ImageView profileChangeTextBtn;
+    private TextView saveTextButton,logout;
 
     private Uri imageUri;
     private String myUrl = "";
@@ -47,30 +46,29 @@ public class settings_Activity extends AppCompatActivity {
     private StorageReference storageProfilePrictureRef;
     private static final int PICK_IMAGE = 1, RESULT_OK = -1;
     private String checker = "";
-    //abx
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_emp_settings);
 
-        storageProfilePrictureRef = FirebaseStorage.getInstance().getReference().child("Admin pictures");
+        storageProfilePrictureRef = FirebaseStorage.getInstance().getReference().child("Employee pictures");
 
-        profileImageView = (CircleImageView) findViewById(R.id.settings_profile_image);
-        if(prevalent.CurrentOnlineAdmin.getImage()!=null){
-            Picasso.get().load(prevalent.CurrentOnlineAdmin.getImage()).placeholder(R.drawable.admin_profile_icon1).into(profileImageView);
+        profileImageView = (CircleImageView) findViewById(R.id.SEimage);
+        if(prevalent.CurrentOnlineEmloyee.getImage()!=null){
+            Picasso.get().load(prevalent.CurrentOnlineEmloyee.getImage()).placeholder(R.drawable.admin_profile_icon1).into(profileImageView);
         }
-        fullNameEditText =  findViewById(R.id.settings_full_name);
-        fullNameEditText.setText("Name:  "+prevalent.CurrentOnlineAdmin.getName());
-        passcodeText =  findViewById(R.id.settings_passcode);
-        passcodeText.setText("passcode:  "+ prevalent.CurrentOnlineAdmin.getPasscode());
-        emailText = findViewById(R.id.settings_Email);
-        emailText.setText("Email:  " + prevalent.CurrentOnlineAdmin.getEmail());
-        profileChangeTextBtn =  findViewById(R.id.profile_image_change_btn);
-        saveTextButton =  findViewById(R.id.save_btn);
+        fullNameEditText =  findViewById(R.id.SEName);
+        fullNameEditText.setText("Name:  "+prevalent.CurrentOnlineEmloyee.getName());
+        passcodeText =  findViewById(R.id.SEIMEI);
+        passcodeText.setText("passcode:  "+ prevalent.CurrentOnlineEmloyee.getIMEI());
+        emailText = findViewById(R.id.SEemail);
+        emailText.setText("Email:  " + prevalent.CurrentOnlineEmloyee.getMail());
+        profileChangeTextBtn = findViewById(R.id.SEchange);
+        saveTextButton =  findViewById(R.id.SEsave);
+        logout = findViewById(R.id.SElogout);
 
-
-        userInfoDetails(profileImageView,fullNameEditText,emailText,passcodeText);
+        userInfoDetails(profileImageView);
 
         saveTextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,13 +87,24 @@ public class settings_Activity extends AppCompatActivity {
                 checker = "clicked";
                 CropImage.activity(imageUri).
                         setAspectRatio(1,1).
-                        start(settings_Activity.this);
+                        start(Emp_settings_Activity.this);
+
+            }
+        });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),LoginActivity.class));
 
             }
         });
 
 
+
     }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -104,22 +113,20 @@ public class settings_Activity extends AppCompatActivity {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             imageUri = result.getUri();
             profileImageView.setImageURI(imageUri);
-            
+
         }else{
             Toast.makeText(this, "Error try again", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(settings_Activity.this,settings_Activity.class));
+            startActivity(new Intent(Emp_settings_Activity.this,Emp_settings_Activity.class));
             finish();
 
         }
-
     }
 
     private void userInfosaved() {
+
         if(checker.equals("clicked")){
             uploadImage();
         }
-
-
     }
 
     private void uploadImage() {
@@ -130,11 +137,11 @@ public class settings_Activity extends AppCompatActivity {
         progressDialog.show();
         if(imageUri!=null){
             final StorageReference fileref = storageProfilePrictureRef
-                    .child(prevalent.CurrentOnlineAdmin.getPasscode() + ".jpg");
+                    .child(prevalent.CurrentOnlineEmloyee.getIMEI() + ".jpg");
             uploadTask = fileref.putFile(imageUri);
             uploadTask.continueWithTask(new Continuation() {
                 @Override
-                public Object then(@NonNull  Task task) throws Exception {
+                public Object then(@NonNull Task task) throws Exception {
                     if(!task.isSuccessful()){
                         throw task.getException();
 
@@ -143,43 +150,39 @@ public class settings_Activity extends AppCompatActivity {
                     return fileref.getDownloadUrl();
                 }
             })
-            .addOnCompleteListener(new OnCompleteListener<Uri>() {
-                @Override
-                public void onComplete(@NonNull  Task<Uri> task) {
-                    if(task.isSuccessful()){
-                        Uri downloaduri = task.getResult();
-                        myUrl  = downloaduri.toString();
-                        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Admin");
-                        HashMap<String ,Object> hashMap = new HashMap<>();
-                        hashMap.put("Image",myUrl);
-                        ref.child(prevalent.CurrentOnlineAdmin.getPasscode()).updateChildren(hashMap);
-                        progressDialog.dismiss();
-                        startActivity(new Intent(getApplicationContext(),AdminDashboardActivity.class));
-                        Toast.makeText(settings_Activity.this, "Profile updated Successfully", Toast.LENGTH_SHORT).show();
-                        finish();
-                    }else{
-                        progressDialog.dismiss();
-                        Toast.makeText(settings_Activity.this, "error while uploading please try again", Toast.LENGTH_SHORT).show();
-                    }
+                    .addOnCompleteListener(new OnCompleteListener<Uri>() {
+                        @Override
+                        public void onComplete(@NonNull  Task<Uri> task) {
+                            if(task.isSuccessful()){
+                                Uri downloaduri = task.getResult();
+                                myUrl  = downloaduri.toString();
+                                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Employee");
+                                HashMap<String ,Object> hashMap = new HashMap<>();
+                                hashMap.put("Image",myUrl);
+                                ref.child(prevalent.CurrentOnlineEmloyee.getIMEI()).updateChildren(hashMap);
+                                progressDialog.dismiss();
+                                Toast.makeText(Emp_settings_Activity.this, "Profile updated Successfully", Toast.LENGTH_SHORT).show();
+                            }else{
+                                progressDialog.dismiss();
+                                Toast.makeText(Emp_settings_Activity.this, "error while uploading please try again", Toast.LENGTH_SHORT).show();
+                            }
 
-                }
-            });
+                        }
+                    });
         }else{
             Toast.makeText(this, "Image is not selected", Toast.LENGTH_SHORT).show();
         }
-    }
 
-    private void userInfoDetails(CircleImageView profileImageView, TextView fullNameEditText, TextView emailText, TextView passcodeText) {
-        DatabaseReference adminref = FirebaseDatabase.getInstance().getReference().child("Users").child(prevalent.CurrentOnlineAdmin.getPasscode());
+    }
+    private void userInfoDetails(CircleImageView profileImageView) {
+        DatabaseReference adminref = FirebaseDatabase.getInstance().getReference().child("Users").child(prevalent.CurrentOnlineEmloyee.getIMEI());
         adminref.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull  DataSnapshot snapshot) {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
                     if(snapshot.child("Image").exists()){
                         String image  = snapshot.child("Image").getValue().toString();
-                        String passcode  = snapshot.child("Passcode").getValue().toString();
-                        String name  = snapshot.child("Name").getValue().toString();
-                        String email = snapshot.child("Email").getValue().toString();
+
 
                         Picasso.get().load(image).into(profileImageView);
 
@@ -191,7 +194,7 @@ public class settings_Activity extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(@NonNull  DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
