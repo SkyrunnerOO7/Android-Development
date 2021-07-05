@@ -35,8 +35,15 @@
         <activity android:name=".Error405Activity" />
         <activity
             android:name=".EmployeeDashboardActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".AddDataActivity" />
+
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+      
+        <activity android:name=".AddDataActivity">
+          android:theme="@style/AppTheme.NoActionBar"
+        </activity>
+
+      
+
         <activity android:name=".Add_new_employee_activity" />
         <activity android:name=".PrivacyPolicyActivity" />
         <activity

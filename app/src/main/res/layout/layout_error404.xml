@@ -38,6 +38,7 @@
 
             <TextView
                 style="@style/homeHeading"
+                android:id="@+id/homeHeading"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:text="Error 404"
