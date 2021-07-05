@@ -549,6 +549,7 @@ public class ActiveUserActivity extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
+                Picasso.get().load(model.getImage()).into(holder.profileimg1);
 
                 holder.attE.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -633,6 +634,7 @@ public class ActiveUserActivity extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
+                Picasso.get().load(model.getImage()).into(holder.profileimg1);
                 holder.attE.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -712,6 +714,7 @@ public class ActiveUserActivity extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
+                Picasso.get().load(model.getImage()).into(holder.profileimg1);
                 holder.attE.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -791,6 +794,7 @@ public class ActiveUserActivity extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
+                Picasso.get().load(model.getImage()).into(holder.profileimg1);
                 holder.attE.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -860,6 +864,7 @@ public class ActiveUserActivity extends AppCompatActivity {
             city = itemView.findViewById(R.id.CityText);
             phone = itemView.findViewById(R.id.PhoneText);
             image = itemView.findViewById(R.id.admin_profile);
+
         }
 
     }

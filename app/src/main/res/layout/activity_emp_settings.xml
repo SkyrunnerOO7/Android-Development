@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".settings_Activity">
-
-
-
-
+    tools:context=".Emp_settings_Activity">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/settings_profile_image"
+        android:id="@+id/SEimage"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:src="@drawable/admin_profile_icon1"
@@ -21,36 +17,36 @@
         />
 
     <ImageView
-        android:id="@+id/profile_image_change_btn"
+        android:id="@+id/SEchange"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Change Profile"
         android:textSize="17sp"
         android:textStyle="bold"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="4dp"
         android:background="@drawable/add_icon"
+        android:layout_marginTop="4dp"
         android:backgroundTint="@color/primaryTextColor"
-        android:layout_below="@+id/settings_profile_image"
+        android:layout_below="@+id/SEimage"
         android:layout_centerHorizontal="true"
         />
 
     <TextView
-        android:id="@+id/settings_passcode"
+        android:id="@+id/SEIMEI"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/profile_image_change_btn"
+        android:layout_below="@+id/SEchange"
         android:layout_margin="15dp"
         android:padding="10dp"
-        android:text="Passcode"
+        android:text="IMEI"
         android:textColor="@color/blackTextColor"
         />
 
     <TextView
-        android:id="@+id/settings_full_name"
+        android:id="@+id/SEName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/settings_passcode"
+        android:layout_below="@+id/SEIMEI"
 
         android:layout_margin="15dp"
         android:padding="10dp"
@@ -59,10 +55,10 @@
         />
 
     <TextView
-        android:id="@+id/settings_Email"
+        android:id="@+id/SEemail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/settings_full_name"
+        android:layout_below="@+id/SEName"
         android:text="Email"
         android:textColor="@color/blackTextColor"
         android:layout_margin="15dp"
@@ -70,16 +66,35 @@
         />
 
     <TextView
-        android:id="@+id/save_btn"
+        android:id="@+id/SEsave"
         android:layout_width="113dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/settings_Email"
+        android:layout_margin="15dp"
+        android:layout_below="@id/SEemail"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:gravity="center"
         android:text="save"
+        android:textStyle="bold"
         android:textColor="@color/primaryTextColor"
         android:textSize="20sp"
         />
+
+    <TextView
+        android:id="@+id/SElogout"
+        android:layout_width="113dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:layout_below="@id/SEsave"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:text="Log Out"
+        android:textStyle="bold"
+        android:textColor="#FD0000"
+        android:textSize="20sp"
+        />
+
+
 
 </RelativeLayout>
