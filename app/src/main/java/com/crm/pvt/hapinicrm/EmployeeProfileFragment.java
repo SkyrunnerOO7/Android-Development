@@ -188,7 +188,7 @@ public class EmployeeProfileFragment extends Fragment {
                                 //String modelId=root.push().getKey();
                                 //root.child(IMEI_for_profile_pic).setValue(model);
                                 HashMap hashMap=new HashMap();
-                                hashMap.put("ImgUrl",imageUri.toString());
+                                hashMap.put("Image",imageUri.toString());
 
 
                                 root.child("Employee").child(IMEI_for_profile_pic).updateChildren(hashMap).addOnSuccessListener(new OnSuccessListener() {
@@ -249,7 +249,7 @@ public class EmployeeProfileFragment extends Fragment {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String img=snapshot.child(IMEI_for_profile_pic).child("ImgUrl").getValue(String.class);
+                String img=snapshot.child(IMEI_for_profile_pic).child("Image").getValue(String.class);
                 Toast.makeText(getContext(), img, Toast.LENGTH_SHORT).show();
                 if(!(img.equals("null")))
                 {

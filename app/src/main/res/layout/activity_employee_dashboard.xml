@@ -24,20 +24,6 @@
         android:textStyle="bold" />
 
 
-    <ImageView
-        android:id="@+id/refresh_employee_dashboard"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="10dp"
-        android:src="@drawable/refresh_icon" />
-
     <TextView
         android:id="@+id/time_employee_dashboard"
         android:layout_width="wrap_content"

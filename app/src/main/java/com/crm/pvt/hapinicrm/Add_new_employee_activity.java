@@ -9,10 +9,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+
 import android.view.ViewGroup;
+
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +51,8 @@ public class Add_new_employee_activity extends AppCompatActivity {
     private TextInputEditText conf_pass;
     private ProgressDialog loadingBar;
     private EditText Empname,CityE,phoneE;
+    private Spinner spinner;
+    String type_of_emp;
 
 
     @Override
@@ -56,6 +64,18 @@ public class Add_new_employee_activity extends AppCompatActivity {
         if(new InternetDialog(getApplicationContext()).getInternetStatus()){
             //   Toast.makeText(getContext(), "INTERNET VALIDATION PASSED", Toast.LENGTH_SHORT).show();
         }
+        spinner = findViewById(R.id.spinner_login);
+       spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+           @Override
+           public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+               type_of_emp = spinner.getSelectedItem().toString();
+           }
+
+           @Override
+           public void onNothingSelected(AdapterView<?> adapterView) {
+
+           }
+       });
 
         build_number = findViewById(R.id.bulid_number);
         email = findViewById(R.id.Email);
@@ -102,8 +122,10 @@ public class Add_new_employee_activity extends AppCompatActivity {
 
         // get text
 
-
-        if(password.isEmpty()){
+        if(type_of_emp.contentEquals("Select Employee Type")){
+            ((TextView)spinner.getSelectedView()).setError("Choose Valid Type");
+        }
+        else if(password.isEmpty()){
             pass.setError("passcode can't be empty");
         }
         else if(empname.isEmpty()){
@@ -140,9 +162,6 @@ public class Add_new_employee_activity extends AppCompatActivity {
             CityE.requestFocus();
             CityE.setError("Enter valid name");
         }
-
-
-
         else if(IMEI.length() != 15){
 
             build_number.setError("Number should be of 15 digits");
@@ -152,32 +171,30 @@ public class Add_new_employee_activity extends AppCompatActivity {
             email.setError("Enter a valid email address");
             email.requestFocus();
         }
-
-
         else if(!password.equals(repassword))
         {
 
             conf_pass.setError("password and Confrim password should be same");
 
         }
-
-
         else if(!checkBox.isChecked())
         {
             checkBox.setError("Please check the box");
 
         }
+
         else if (!validatePass(password))
         {
             Toast.makeText(this, "Enter Valid password", Toast.LENGTH_SHORT).show();
         }
+
         else{
-            ;
+           
             loadingBar.setTitle("Create Account");
             loadingBar.setMessage("please Wait while checking Credentials..");
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
-            ValidateEmp(IMEI,mail,password,empname,cityE,PhoneE,"null");
+            ValidateEmp(type_of_emp,IMEI,mail,password,empname,cityE,PhoneE,"null");
 
 
 
@@ -187,7 +204,7 @@ public class Add_new_employee_activity extends AppCompatActivity {
 
     }
 
-    public void ValidateEmp(String IMEI,String mail,String password,String name,String city,String phone,String url){
+    public void ValidateEmp(String type,String IMEI,String mail,String password,String name,String city,String phone,String url){
 
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
@@ -203,7 +220,7 @@ public class Add_new_employee_activity extends AppCompatActivity {
                     EmpDataMap.put("Name",name);
                     EmpDataMap.put("City",city);
                     EmpDataMap.put("Phone",phone);
-
+                    EmpDataMap.put("Type",type);
                     EmpDataMap.put("ImgUrl",url);
 
 
