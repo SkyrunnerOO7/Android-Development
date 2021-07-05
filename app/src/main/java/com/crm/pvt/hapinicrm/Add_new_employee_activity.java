@@ -3,11 +3,13 @@ package com.crm.pvt.hapinicrm;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -44,6 +46,7 @@ public class Add_new_employee_activity extends AppCompatActivity {
     private ProgressDialog loadingBar;
     private EditText Empname,CityE,phoneE;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +67,6 @@ public class Add_new_employee_activity extends AppCompatActivity {
         CityE = findViewById(R.id.cityE);
         phoneE = findViewById(R.id.phoneE);
         checkBox=findViewById(R.id.checkbox);
-
 
 
 
@@ -165,13 +167,12 @@ public class Add_new_employee_activity extends AppCompatActivity {
             checkBox.setError("Please check the box");
 
         }
-
-
-
-
-
+        else if (!validatePass(password))
+        {
+            Toast.makeText(this, "Enter Valid password", Toast.LENGTH_SHORT).show();
+        }
         else{
-            validatePass(password);
+            ;
             loadingBar.setTitle("Create Account");
             loadingBar.setMessage("please Wait while checking Credentials..");
             loadingBar.setCanceledOnTouchOutside(false);
@@ -213,12 +214,30 @@ public class Add_new_employee_activity extends AppCompatActivity {
                                     if(task.isSuccessful()){
                                         Toast.makeText(getApplicationContext(), "Account Has been Created Sucessfully.. ", Toast.LENGTH_SHORT).show();
                                         loadingBar.dismiss();
-                                        Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
-                                        startActivity(intent);
+
+                                        build_number.setText("");
+                                        email.setText("");
+                                        pass.setText("");
+                                        conf_pass.setText("");
+                                        Empname.setText("");
+                                        CityE.setText("");
+                                        phoneE.setText("");
+
+
+
+
+
+
+
+
+
+
 
                                     }else{
                                         loadingBar.dismiss();
                                         Toast.makeText(getApplicationContext(), "Somthing Went Wrong.. Please Try Again After Some time..", Toast.LENGTH_SHORT).show();
+
+
                                     }
 
                                 }
@@ -230,6 +249,7 @@ public class Add_new_employee_activity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "This "+email+" id already Exists..", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
                     Toast.makeText(getApplicationContext(), "Please Try Again Using Another email..", Toast.LENGTH_SHORT).show();
+
                 }
             }
 
@@ -251,7 +271,7 @@ public class Add_new_employee_activity extends AppCompatActivity {
         }
 
 
-       return true;
+        return true;
     }
 
 
@@ -299,5 +319,5 @@ public class Add_new_employee_activity extends AppCompatActivity {
             return false;
         }
         return true;
-        }
     }
+}

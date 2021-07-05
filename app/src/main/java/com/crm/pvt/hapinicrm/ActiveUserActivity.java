@@ -246,10 +246,14 @@ public class ActiveUserActivity extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Admin");
+
                 Picasso.get().load(model.getImage()).into(holder.image);
-
-
-
+                holder.DownloadUser.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(ActiveUserActivity.this, "Download Admin", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
 
                 holder.delete.setOnClickListener(new View.OnClickListener() {
@@ -327,6 +331,13 @@ public class ActiveUserActivity extends AppCompatActivity {
                 Picasso.get().load(model.getImage()).into(holder.image);
 
 
+                holder.DownloadUser.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(ActiveUserActivity.this, "Download Admin", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
 
                 holder.delete.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -401,6 +412,12 @@ public class ActiveUserActivity extends AppCompatActivity {
                 holder.profile.setText("profile : " + "Admin");
                 Picasso.get().load(model.getImage()).into(holder.image);
 
+                holder.DownloadUser.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(ActiveUserActivity.this, "Download Admin", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
 
 
@@ -479,6 +496,13 @@ public class ActiveUserActivity extends AppCompatActivity {
                 Picasso.get().load(model.getImage()).into(holder.image);
 
 
+                holder.DownloadUser.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(ActiveUserActivity.this, "Download Admin", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
 
                 holder.delete.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -549,6 +573,13 @@ public class ActiveUserActivity extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
+
+                holder.download.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(ActiveUserActivity.this, "Download Employee", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
                 holder.attE.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -633,6 +664,13 @@ public class ActiveUserActivity extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
+                holder.download.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(ActiveUserActivity.this, "Download Employee", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
                 holder.attE.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -712,6 +750,14 @@ public class ActiveUserActivity extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
+
+                holder.download.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(ActiveUserActivity.this, "Download Employee", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
                 holder.attE.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -791,6 +837,13 @@ public class ActiveUserActivity extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
+                holder.download.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(ActiveUserActivity.this, "Download Employee", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
                 holder.attE.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -845,7 +898,7 @@ public class ActiveUserActivity extends AppCompatActivity {
     public static class AdminlistViewHolder extends RecyclerView.ViewHolder{
 
         public TextView Username,Passcode,mailED,password,profile,city,phone;
-        public Button delete;
+        public Button delete,DownloadUser;
         public ImageView image;
 
         public AdminlistViewHolder(@NonNull View itemView) {
@@ -860,6 +913,7 @@ public class ActiveUserActivity extends AppCompatActivity {
             city = itemView.findViewById(R.id.CityText);
             phone = itemView.findViewById(R.id.PhoneText);
             image = itemView.findViewById(R.id.admin_profile);
+            DownloadUser=itemView.findViewById(R.id.downloadUser);
         }
 
     }
@@ -867,7 +921,7 @@ public class ActiveUserActivity extends AppCompatActivity {
     public static class EmplistViewHolder extends RecyclerView.ViewHolder{
 
         public TextView Username,Passcode,mailED,password,profile,city,phone;
-        public Button delete,attE;
+        public Button delete,attE,download;
         public ImageView profileimg1;
 
         public EmplistViewHolder(@NonNull View itemView) {
@@ -883,6 +937,7 @@ public class ActiveUserActivity extends AppCompatActivity {
             phone = itemView.findViewById(R.id.phone_emp);
             profileimg1=itemView.findViewById(R.id.emp_profile);
             attE = itemView.findViewById(R.id.att_btnE);
+            download=itemView.findViewById(R.id.download_btnE);
         }
 
 

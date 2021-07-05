@@ -159,6 +159,13 @@ public class Employee_Active_user extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
+
+                holder.download.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(Employee_Active_user.this, "Download", Toast.LENGTH_SHORT).show();
+                    }
+                });
                 holder.attE.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -244,6 +251,12 @@ public class Employee_Active_user extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
+                holder.download.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(Employee_Active_user.this, "Download", Toast.LENGTH_SHORT).show();
+                    }
+                });
                 holder.attE.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -329,6 +342,12 @@ public class Employee_Active_user extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
+                holder.download.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(Employee_Active_user.this, "Download", Toast.LENGTH_SHORT).show();
+                    }
+                });
                 holder.attE.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -414,6 +433,12 @@ public class Employee_Active_user extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
+                holder.download.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(Employee_Active_user.this, "Download", Toast.LENGTH_SHORT).show();
+                    }
+                });
                 holder.attE.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -476,7 +501,7 @@ public class Employee_Active_user extends AppCompatActivity {
     public static class EmplistViewHolder extends RecyclerView.ViewHolder{
 
         public TextView Username,Passcode,mailED,password,profile,city,phone;
-        public Button delete;
+        public Button delete,download;
         //public ImageView profileimg;
 
 
@@ -493,6 +518,7 @@ public class Employee_Active_user extends AppCompatActivity {
             profile = itemView.findViewById(R.id.profile_emp);
             city = itemView.findViewById(R.id.city_emp);
             phone = itemView.findViewById(R.id.phone_emp);
+            download=itemView.findViewById(R.id.download_btnE);
 
 
 

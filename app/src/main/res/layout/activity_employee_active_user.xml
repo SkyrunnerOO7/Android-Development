@@ -31,7 +31,7 @@
                 android:layout_toLeftOf="@id/searchbtnE"
                 android:padding="5dp"
                 android:layout_alignParentLeft="true"
-                android:hint="Search here"
+                android:hint="Search here by name"
                 android:layout_marginTop="14dp"
                 android:textAllCaps="false" />
 

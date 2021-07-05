@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,9 +35,9 @@ import java.util.HashMap;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class settings_Activity extends AppCompatActivity {
-    private CircleImageView profileImageView;
+    private ImageView profileImageView;
     private TextView fullNameEditText, passcodeText, emailText;
-    private TextView profileChangeTextBtn, closeTextBtn;
+    private TextView  closeTextBtn;
     private TextView saveTextButton;
 
     private Uri imageUri;
@@ -54,7 +55,7 @@ public class settings_Activity extends AppCompatActivity {
 
         storageProfilePrictureRef = FirebaseStorage.getInstance().getReference().child("Admin pictures");
 
-        profileImageView = (CircleImageView) findViewById(R.id.settings_profile_image);
+        profileImageView = (ImageView) findViewById(R.id.settings_profile_image);
         if(prevalent.CurrentOnlineAdmin.getImage()!=null){
             Picasso.get().load(prevalent.CurrentOnlineAdmin.getImage()).placeholder(R.drawable.admin_profile_icon1).into(profileImageView);
         }
@@ -64,7 +65,7 @@ public class settings_Activity extends AppCompatActivity {
         passcodeText.setText("passcode:  "+ prevalent.CurrentOnlineAdmin.getPasscode());
         emailText = findViewById(R.id.settings_Email);
         emailText.setText("Email:  " + prevalent.CurrentOnlineAdmin.getEmail());
-        profileChangeTextBtn = (TextView) findViewById(R.id.profile_image_change_btn);
+        //profileChangeTextBtn = (TextView) findViewById(R.id.profile_image_change_btn);
         saveTextButton =  findViewById(R.id.save_btn);
 
 
@@ -81,7 +82,7 @@ public class settings_Activity extends AppCompatActivity {
 
             }
         });
-        profileChangeTextBtn.setOnClickListener(new View.OnClickListener() {
+        profileImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 checker = "clicked";
@@ -167,7 +168,7 @@ public class settings_Activity extends AppCompatActivity {
         }
     }
 
-    private void userInfoDetails(CircleImageView profileImageView, TextView fullNameEditText, TextView emailText, TextView passcodeText) {
+    private void userInfoDetails(ImageView profileImageView, TextView fullNameEditText, TextView emailText, TextView passcodeText) {
         DatabaseReference adminref = FirebaseDatabase.getInstance().getReference().child("Users").child(prevalent.CurrentOnlineAdmin.getPasscode());
         adminref.addValueEventListener(new ValueEventListener() {
             @Override

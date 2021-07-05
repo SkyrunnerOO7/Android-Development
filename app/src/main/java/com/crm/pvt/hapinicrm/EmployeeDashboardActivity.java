@@ -50,7 +50,6 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
     public String IMEI_emp;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

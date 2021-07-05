@@ -11,34 +11,23 @@
 
 
 
-    <de.hdodenhof.circleimageview.CircleImageView
+
+    <ImageView
         android:id="@+id/settings_profile_image"
         android:layout_width="130dp"
         android:layout_height="130dp"
-        android:src="@drawable/admin_profile_icon1"
-        android:layout_marginTop="20dp"
+        android:src="@drawable/change_profile_image"
+        android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"
         />
 
-    <TextView
-        android:id="@+id/profile_image_change_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Change Profile"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="4dp"
-        android:textColor="@android:color/black"
-        android:layout_below="@+id/settings_profile_image"
-        android:layout_centerHorizontal="true"
-        />
+
 
     <TextView
         android:id="@+id/settings_passcode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/profile_image_change_btn"
+        android:layout_below="@+id/settings_profile_image"
         android:layout_margin="15dp"
         android:padding="10dp"
         android:text="Passcode"
