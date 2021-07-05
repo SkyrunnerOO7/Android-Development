@@ -159,6 +159,8 @@ public class settings_Activity extends AppCompatActivity {
                     }else{
                         progressDialog.dismiss();
                         Toast.makeText(settings_Activity.this, "error while uploading please try again", Toast.LENGTH_SHORT).show();
+
+
                     }
 
                 }

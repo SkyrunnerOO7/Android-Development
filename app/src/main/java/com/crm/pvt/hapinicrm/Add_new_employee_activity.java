@@ -45,6 +45,9 @@ public class Add_new_employee_activity extends AppCompatActivity {
     private TextInputEditText conf_pass;
     private ProgressDialog loadingBar;
     private EditText Empname,CityE,phoneE;
+    Dialog dialog;
+    private TextView errorText,errorHeading;
+
 
 
     @Override
@@ -67,6 +70,26 @@ public class Add_new_employee_activity extends AppCompatActivity {
         CityE = findViewById(R.id.cityE);
         phoneE = findViewById(R.id.phoneE);
         checkBox=findViewById(R.id.checkbox);
+
+        dialog=new Dialog(Add_new_employee_activity.this);
+        dialog.setContentView(R.layout.layout_error404);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setCancelable(false);
+        errorText=dialog.findViewById(R.id.errortextoferrorAc);
+        errorHeading=dialog.findViewById(R.id.homeHeading);
+
+        Button CloseDialog=dialog.findViewById(R.id.CloseBtnErrorAC);
+        CloseDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                errorHeading.setText("Error 404");
+                errorText.setText("Something went wrong!");
+
+
+            }
+        });
+
 
 
 
@@ -249,6 +272,10 @@ public class Add_new_employee_activity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "This "+email+" id already Exists..", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
                     Toast.makeText(getApplicationContext(), "Please Try Again Using Another email..", Toast.LENGTH_SHORT).show();
+                    errorHeading.setText("Invalid Credentials");
+                    errorText.setText("PLease Try again with another Email id");
+                    dialog.show();
+
 
                 }
             }

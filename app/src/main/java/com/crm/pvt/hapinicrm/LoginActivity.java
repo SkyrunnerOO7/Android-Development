@@ -1,5 +1,6 @@
 package com.crm.pvt.hapinicrm;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -58,7 +60,11 @@ public class LoginActivity extends AppCompatActivity {
   
     private String parentDBname = "Admin";
     private ProgressDialog loadingBar;
-  
+
+
+    Dialog dialog;
+    private TextView errorText,errorHeading;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +81,28 @@ public class LoginActivity extends AppCompatActivity {
 
 
         db = new DBhelper(this);
+
+
+        dialog=new Dialog(LoginActivity.this);
+        dialog.setContentView(R.layout.layout_error404);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setCancelable(false);
+        errorText=dialog.findViewById(R.id.errortextoferrorAc);
+        errorHeading=dialog.findViewById(R.id.homeHeading);
+
+        Button CloseDialog=dialog.findViewById(R.id.CloseBtnErrorAC);
+        CloseDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                errorHeading.setText("Error 404");
+                errorText.setText("Something went wrong!");
+                LoginEmail.setText("");
+                LoginPassword.setText("");
+
+
+            }
+        });
 
 
 
@@ -99,10 +127,10 @@ public class LoginActivity extends AppCompatActivity {
                 }else if(choose_category[0].contentEquals("Employee")){
                     LoginEmail.setHint("Enter IMEI");
                     parentDBname = "Employee";
-                }else if(choose_category[0].contentEquals("Developers")){
+                }/*else if(choose_category[0].contentEquals("Developers")){
                     LoginEmail.setHint("Enter Number");
                     parentDBname = "Developer";
-                }else{
+                }*/else{
                     Toast.makeText(LoginActivity.this, "please select on feild", Toast.LENGTH_SHORT).show();
                 }
 
@@ -181,7 +209,7 @@ public class LoginActivity extends AppCompatActivity {
                 }*/
 
                 // For Developers
-                if (choose_category[0].contentEquals("Developers") && LoginCheckBox.isChecked()) {
+                /*if (choose_category[0].contentEquals("Developers") && LoginCheckBox.isChecked()) {
                     if(TextUtils.isEmpty(Email)){
                         Toast.makeText(getApplicationContext(), "Please Enter Your Devloper number...", Toast.LENGTH_SHORT).show();
                     }
@@ -195,7 +223,8 @@ public class LoginActivity extends AppCompatActivity {
                         AllowAccessToDeveloper(Email,Password);
                     }
 
-                }/*else{
+                }*/
+                /*else{
                     LoginCheckBox.setError("Please check the box");
 
                 }*/
@@ -258,6 +287,10 @@ public class LoginActivity extends AppCompatActivity {
                 }else{
                     Toast.makeText(getApplicationContext(), "Invalid Credentials..PLease Try again with another Phone Number", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
+                    errorHeading.setText("Invalid Credentials");
+                    errorText.setText("PLease Try again with another Phone Number");
+                    dialog.show();
+
 
                 }
 
@@ -345,6 +378,10 @@ public class LoginActivity extends AppCompatActivity {
                 }else{
                     Toast.makeText(getApplicationContext(), "Invalid Credentials..PLease Try again with another Phone Number", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
+                    errorHeading.setText("Invalid Credentials");
+                    errorText.setText("PLease Try again with another Phone Number");
+                    dialog.show();
+
 
                 }
 
@@ -358,7 +395,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public void AllowAccessToDeveloper(final String number,final String Password){
+   /* public void AllowAccessToDeveloper(final String number,final String Password){
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
 
@@ -397,7 +434,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-    }
+    }*/
 
     @Override
     public void onBackPressed() {
