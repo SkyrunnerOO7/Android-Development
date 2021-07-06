@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
@@ -165,6 +166,43 @@
                 android:textColor="#FFFFFF"
                 android:textSize="15sp"
                 android:textStyle="bold" />
+
+
+
+            <Button
+                android:id="@+id/download_btnE"
+                android:layout_width="26dp"
+                android:layout_height="25dp"
+                android:layout_below="@id/phone_emp"
+                android:layout_toLeftOf="@id/att_btnE"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/download_icon"
+                android:gravity="end"
+                android:textAlignment="viewEnd"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/download_btnE"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="4dp"
+                >
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/textbox_round"
+                    android:hint="Add"
+                    android:textColorHint="#072f5f" />
+                <ImageButton
+                    android:layout_width="26dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/textbox_round"
+                    android:src="@drawable/adddata_icon"/>
+            </LinearLayout>
 
 
 

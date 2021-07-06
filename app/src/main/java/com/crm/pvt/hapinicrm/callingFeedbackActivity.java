@@ -1,17 +1,12 @@
 package com.crm.pvt.hapinicrm;
 
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.os.Bundle;
-
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
+import android.os.Bundle;
 import android.os.Handler;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,13 +29,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Timer;
-import java.util.TimerTask;
+
+public class callingFeedbackActivity extends AppCompatActivity {
 
 
-public class fragment_calling_feedback extends Fragment {
-
-    /*Spinner spinner_calling_feedback;
+    Spinner spinner_calling_feedback;
     EditText remark,problem;
     public String s;
     Button submit;
@@ -51,23 +44,16 @@ public class fragment_calling_feedback extends Fragment {
     final String[] choose_category = new String[1];
     int flag = 0;
 
-    public fragment_calling_feedback(String Key) {
+   /* public fragment_calling_feedback(String Key) {
         CurEmpIMEI = Key;
     }*/
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_calling_feedback);
+        spinner_calling_feedback=findViewById(R.id.spinner_calling_feedback);
 
-        View view=inflater.inflate(R.layout.fragment_calling_feedback,container,false);
-        /*spinner_calling_feedback=view.findViewById(R.id.spinner_calling_feedback);
-
-
-
-        //to check spinner selected item
-
-        //here s is to check spinner selected or not
         spinner_calling_feedback.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -78,26 +64,26 @@ public class fragment_calling_feedback extends Fragment {
 
                 if(choose_category[0].contentEquals("Intersted(Done)")){
                     s="false";
-                    Toast.makeText(getContext(),"Intersted",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(callingFeedbackActivity.this,"Intersted",Toast.LENGTH_SHORT).show();
                 }else if(choose_category[0].contentEquals("Not Intersted")){
                     s="false";
-                    Toast.makeText(getContext(),"Not Intersted",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(callingFeedbackActivity.this,"Not Intersted",Toast.LENGTH_SHORT).show();
                 }else if(choose_category[0].contentEquals("Do not PickUp")) {
                     s="false";
-                    Toast.makeText(getContext(), "Don't PickUp", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(callingFeedbackActivity.this, "Don't PickUp", Toast.LENGTH_SHORT).show();
                 }
                 else if(choose_category[0].contentEquals("Network Issues")){
                     s="false";
-                        Toast.makeText(getContext(),"Network Issues",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(callingFeedbackActivity.this,"Network Issues",Toast.LENGTH_SHORT).show();
                 }
                 else if(choose_category[0].contentEquals("Tell to callback")){
                     s="false";
-                        Toast.makeText(getContext(),"Tell to callback",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(callingFeedbackActivity.this,"Tell to callback",Toast.LENGTH_SHORT).show();
                 }
 
                 else if(choose_category[0].contentEquals("Intersted(Issue)")){
                     s="false";
-                    Toast.makeText(getContext(),"Intersted/Issue",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(callingFeedbackActivity.this,"Intersted/Issue",Toast.LENGTH_SHORT).show();
                 }
                 else{
                     s="true";
@@ -112,10 +98,10 @@ public class fragment_calling_feedback extends Fragment {
         });
 
 
-        submit=view.findViewById(R.id.Submit_calling_fragment);
-        remark=view.findViewById(R.id.remark_calling_feedback);
-        problem=view.findViewById(R.id.problem_calling_feedback);
-        loadingBar = new ProgressDialog(getContext());
+        submit=findViewById(R.id.Submit_calling_fragment);
+        remark=findViewById(R.id.remark_calling_feedback);
+        problem=findViewById(R.id.problem_calling_feedback);
+        loadingBar = new ProgressDialog(callingFeedbackActivity.this);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,7 +114,7 @@ public class fragment_calling_feedback extends Fragment {
 
                 if(s.equals("true"))
                 {
-                    Toast.makeText(getContext(),"Please Select Status",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(callingFeedbackActivity.this,"Please Select Status",Toast.LENGTH_SHORT).show();
                     /// Added now
                     return;
 
@@ -150,15 +136,6 @@ public class fragment_calling_feedback extends Fragment {
                     loadingBar.setCanceledOnTouchOutside(false);
                     loadingBar.show();
                     SubmitData();
-                    Timer timer = new Timer();
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            startActivity(new Intent(getContext(),fragment_calling.class));
-
-                        }
-                    }, 2000);
-
 
 
 
@@ -166,13 +143,13 @@ public class fragment_calling_feedback extends Fragment {
 
             }
         });
-*/
 
 
-        return view;
+
+
     }
 
-  /* public void SubmitData(){
+    public void SubmitData(){
 
 
         getEmp_type(CurEmpIMEI);
@@ -229,8 +206,8 @@ public class fragment_calling_feedback extends Fragment {
                             }
                         }
                     });
-                   getCounter(type,DataList);
-                   //   Toast.makeText(getContext(), String.valueOf(DataList.size()), Toast.LENGTH_SHORT).show();
+                    getCounter(type,DataList);
+                    //   Toast.makeText(getContext(), String.valueOf(DataList.size()), Toast.LENGTH_SHORT).show();
 
 
 
@@ -279,7 +256,7 @@ public class fragment_calling_feedback extends Fragment {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("NewData").child(contact);
 
         databaseReference.removeValue();
-        Toast.makeText(getContext(),"Data Deleted...",Toast.LENGTH_SHORT).show();
+        Toast.makeText(callingFeedbackActivity.this,"Data Deleted...",Toast.LENGTH_SHORT).show();
         loadingBar.dismiss();
     }
 
@@ -305,11 +282,11 @@ public class fragment_calling_feedback extends Fragment {
             putData(name1,contact1,city1,s,type);
         }
         else
-            Toast.makeText(getContext(),"There is no customer left to call!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(callingFeedbackActivity.this,"There is no customer left to call!",Toast.LENGTH_SHORT).show();
 
 
 
-     }
+    }
 
     private void putData(String name1, String contact, String city,String pos,String type) {
 
@@ -341,13 +318,13 @@ public class fragment_calling_feedback extends Fragment {
 
                                     } else {
                                         loadingBar.dismiss();
-                                        Toast.makeText(getContext(), "Somthing Went Wrong.. Please Try Again After Some time..", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(callingFeedbackActivity.this, "Somthing Went Wrong.. Please Try Again After Some time..", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
 
                 } else
-                    Toast.makeText(getContext(), "Data Already Exists with this contact", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(callingFeedbackActivity.this, "Data Already Exists with this contact", Toast.LENGTH_SHORT).show();
             }
 
 
@@ -361,15 +338,15 @@ public class fragment_calling_feedback extends Fragment {
     private void incrementPosition(String status, String contact,String pos,String type) {
 
 
-            int position = Integer.parseInt(pos);
-            String str = String.valueOf(position+1);
-            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-            databaseReference.child(type).setValue(str);
+        int position = Integer.parseInt(pos);
+        String str = String.valueOf(position+1);
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.child(type).setValue(str);
 
 
 
-        Toast.makeText(getContext(), "Sucessfully Submitted", Toast.LENGTH_SHORT).show();
+        Toast.makeText(callingFeedbackActivity.this, "Sucessfully Submitted", Toast.LENGTH_SHORT).show();
         loadingBar.dismiss();
 
-    }*/
+    }
 }

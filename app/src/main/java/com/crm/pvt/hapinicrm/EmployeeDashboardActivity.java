@@ -38,6 +38,7 @@ import java.util.Locale;
 
 public class EmployeeDashboardActivity extends AppCompatActivity {
     BottomNavigationView bnv;
+
     public TextView timerText;
     public Timer timer;
     public TimerTask timerTask;
@@ -52,13 +53,13 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
     public String IMEI_emp;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_dashboard);
 
         timerText = (TextView) findViewById(R.id.time_employee_dashboard);
+
         logbuton = findViewById(R.id.log);
 
         bnv=(BottomNavigationView)findViewById(R.id.bottomNavigation);
@@ -68,8 +69,12 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
 
 
         // to open home fragment Bydefault
-        getSupportFragmentManager().beginTransaction().replace(R.id.FrameConatiner,new fragment_calling(IMEI_emp)).commit();
+        //getSupportFragmentManager().beginTransaction().replace(R.id.FrameConatiner,new fragment_calling(IMEI_emp)).commit();
         // To add timer
+        Intent i =new Intent(EmployeeDashboardActivity.this,callingActivity.class);
+        i.putExtra("IMEI",IMEI_emp);
+        startActivity(i);
+
         timer = new Timer();
         startTimer();
 
@@ -85,11 +90,9 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
         };
         startHandler();
 
-
-
         //to select home icon as default
-        int i=2131362141;
-        bnv.setSelectedItemId(i);
+        //int i=2131362141;
+        //bnv.setSelectedItemId(i);
         bnv.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item)
@@ -98,8 +101,12 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
 
                 switch (item.getItemId())
                 {
-                    case R.id.menu_home : temp=new fragment_calling_feedback(IMEI_emp);
-                        getSupportFragmentManager().beginTransaction().replace(R.id.FrameConatiner,temp).commit();
+                    case R.id.menu_home : //temp=new fragment_calling_feedback(IMEI_emp);
+                        //getSupportFragmentManager().beginTransaction().replace(R.id.FrameConatiner,temp).commit();
+
+                        Intent intent1=new Intent(EmployeeDashboardActivity.this,callingFeedbackActivity.class);
+                        intent1.putExtra("imei",IMEI_emp);
+                        startActivity(intent1);
 
                         break;
                     case R.id.menu_feedback: temp=new fragment_feedback();

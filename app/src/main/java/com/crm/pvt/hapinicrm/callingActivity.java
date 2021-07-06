@@ -1,21 +1,16 @@
 package com.crm.pvt.hapinicrm;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -36,89 +31,109 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.Timer;
-import java.util.TimerTask;
 
+public class callingActivity extends AppCompatActivity {
 
-public class fragment_calling extends DialogFragment {
-    /*ImageView calling_fragment;
+    private static final int REQUEST_CALL = 1;
+    ImageView calling_fragment;
     TextView name;
     TextView city;
     TextView phone;
     HashMap<String,String> PhoneNumberList;
     ArrayList<HashMap> PhoneList;
-    private static final int REQUEST_CALL = 1;
+
     String CUR_EMP_ID;
 
     ArrayList<Data> DataList;
 
-    public fragment_calling(String imei) {
+    /*public fragment_calling(String imei) {
         CUR_EMP_ID = imei;
     }*/
 
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_calling,container,false);
-        /*calling_fragment=view.findViewById(R.id.calling_fragment);
-        name=view.findViewById(R.id.caller_name);
-        city=view.findViewById(R.id.caller_city);
-        phone=view.findViewById(R.id.caller_phone);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_calling);
+        //edittext = findViewById(R.id.editText);
+
+        calling_fragment=findViewById(R.id.calling_fragment);
+        name=findViewById(R.id.caller_name);
+        city=findViewById(R.id.caller_city);
+        phone=findViewById(R.id.caller_phone);
+
 
         calling_fragment.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view1) {
+            public void onClick(View view) {
 
-               makePhoneCall();
-                Timer timer = new Timer();
-                timer.schedule(new TimerTask() {
-                    @Override
-                    public void run() {
-                        startActivity(new Intent(getContext(),fragment_calling_feedback.class));
+                if(ContextCompat.checkSelfPermission(callingActivity.this, Manifest.permission.READ_PHONE_STATE)
+                        != PackageManager.PERMISSION_GRANTED)
+                {
+                    if (ActivityCompat.shouldShowRequestPermissionRationale(callingActivity.this,Manifest.permission.READ_PHONE_STATE)){
+
+                        ActivityCompat.requestPermissions(callingActivity.this,
+                                new String[]{Manifest.permission.READ_PHONE_STATE},1);
 
                     }
-                }, 2000);
+                    else {
+                        ActivityCompat.requestPermissions(callingActivity.this,
+                                new String[]{Manifest.permission.READ_PHONE_STATE},1);
 
 
+                    }
+
+                }
+                else {
+
+                }
+                makePhoneCall();
 
 
             }
-        });*/
+        });
 
-        return view;
+
     }
 
-
-/*
     private void makePhoneCall() {
         String phoneNumber = phone.getText().toString();
 
 
-            if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
-                ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.CALL_PHONE},REQUEST_CALL );
-            }
-            else{
-                String dial = "tel:" + phoneNumber;
-                startActivity(new Intent(Intent.ACTION_CALL,Uri.parse(dial)));
+        if(ContextCompat.checkSelfPermission(callingActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(callingActivity.this,new String[]{Manifest.permission.CALL_PHONE},REQUEST_CALL );
+        }
+        else{
+            String dial = "tel:" + phoneNumber;
+            startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(dial)));
 
-            }
+        }
 
     }
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull  String[] permissions, @NonNull  int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull  int[] grantResults) {
+        //super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode == REQUEST_CALL){
-            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                makePhoneCall();
-            }
-            else{
-                Toast.makeText(getContext(),"Permission DENIED",Toast.LENGTH_SHORT).show();
+        switch (requestCode) {
+            case 1: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE)
+                            == PackageManager.PERMISSION_GRANTED) {
+                        Toast.makeText(this, "permission granted", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(callingActivity.this, "Permission DENIED", Toast.LENGTH_SHORT).show();
+                }
+
             }
         }
 
     }
 
-    @Override
+
+
+    /*@Override
     public void onStart() {
         super.onStart();
 
@@ -158,7 +173,7 @@ public class fragment_calling extends DialogFragment {
 
     private void getEMPID() {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-         String[] Emp_type = new String[1];
+        String[] Emp_type = new String[1];
         if (databaseReference != null) {
             databaseReference.child("Employee").addValueEventListener(new ValueEventListener() {
                 @Override
@@ -249,7 +264,7 @@ public class fragment_calling extends DialogFragment {
 
         }
         else
-            Toast.makeText(getContext(),"There is no Data left for calling",Toast.LENGTH_SHORT).show();
+            Toast.makeText(callingActivity.this,"There is no Data left for calling",Toast.LENGTH_SHORT).show();
     }*/
 
 }

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,6 +13,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -19,6 +21,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.crm.pvt.hapinicrm.models.Candidate;
@@ -32,7 +35,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.rilixtech.widget.countrycodepicker.CountryCodePicker;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 
 import static com.crm.pvt.hapinicrm.R.drawable.active_user_icon;
 import static com.crm.pvt.hapinicrm.R.drawable.add_data_icon;
@@ -65,6 +71,11 @@ public class AddDataActivity extends AppCompatActivity {
     ProgressDialog loadingBar;
     //Switch Switch;
     SwitchCompat Switch;
+    private String currentDate;
+    private String currentTime,Time;
+    Dialog dialog;
+    private TextView errorText,errorHeading;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +98,32 @@ public class AddDataActivity extends AppCompatActivity {
         dataSpinner=findViewById(R.id.spinner_Doc);
 
         check_spinner="false";
+
+        currentDate = new SimpleDateFormat("MM/dd/yyyy", Locale.getDefault()).format(new Date());
+        currentTime = new SimpleDateFormat("HH:mm aa", Locale.getDefault()).format(new Date());
+
+        Time=currentDate+" @"+currentTime;
+
+
+
+        dialog=new Dialog(AddDataActivity.this);
+        dialog.setContentView(R.layout.layout_error404);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setCancelable(false);
+        errorText=dialog.findViewById(R.id.errortextoferrorAc);
+        errorHeading=dialog.findViewById(R.id.homeHeading);
+
+        Button CloseDialog=dialog.findViewById(R.id.CloseBtnErrorAC);
+        CloseDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                errorHeading.setText("Error 404");
+                errorText.setText("Something went wrong!");
+
+
+            }
+        });
 
 
         AlertDialog.Builder builder1 = new AlertDialog.Builder(AddDataActivity.this);
@@ -178,7 +215,8 @@ public class AddDataActivity extends AppCompatActivity {
 
                     type="Candidate";
                     check_spinner="true";
-                }else if(choose_category[0].contentEquals("Vendors")){
+                }
+                else if(choose_category[0].contentEquals("Vendors")){
                     type="Vendors";
                     check_spinner="true";
                     full_name.setHintTextColor(getResources().getColor(R.color.navy_blue));
@@ -191,6 +229,11 @@ public class AddDataActivity extends AppCompatActivity {
                     experience.setHintTextColor(getResources().getColor(R.color.navy_blue));
                     subService.setHintTextColor(getResources().getColor(R.color.navy_blue));
                     service.setHintTextColor(getResources().getColor(R.color.navy_blue));
+
+
+
+
+
 
                     full_name.setEnabled(true);
                     phone_number.setEnabled(true);
@@ -214,6 +257,7 @@ public class AddDataActivity extends AppCompatActivity {
                     subService.setFocusable(true);
                     service.setFocusable(true);
 
+
                     full_name.setHint("Enter FullName");
                     phone_number.setHint("Enter Phone Number");
                     city.setHint("Enter City");
@@ -224,6 +268,10 @@ public class AddDataActivity extends AppCompatActivity {
                     subService.setHint("Enter SubService");
                     mail.setHint("Enter Mail");
                     area.setHint("Enter Area");
+
+
+
+
 
                 }
                 else if(choose_category[0].contentEquals("CustomerB2B")){
@@ -239,10 +287,13 @@ public class AddDataActivity extends AppCompatActivity {
                     password.setHintTextColor(getResources().getColor(R.color.navy_blue));
                     mail.setHintTextColor(getResources().getColor(R.color.navy_blue));
 
+
                     area.setHintTextColor(getResources().getColor(R.color.md_blue_grey_400));
                     experience.setHintTextColor(getResources().getColor(R.color.md_blue_grey_400));
                     subService.setHintTextColor(getResources().getColor(R.color.md_blue_grey_400));
                     service.setHintTextColor(getResources().getColor(R.color.md_blue_grey_400));
+
+
 
                     full_name.setFocusable(true);
                     phone_number.setFocusable(true);
@@ -251,12 +302,17 @@ public class AddDataActivity extends AppCompatActivity {
                     mail.setFocusable(true);
                     organization.setFocusable(true);
 
+
+
                     full_name.setEnabled(true);
                     phone_number.setEnabled(true);
                     city.setEnabled(true);
                     password.setEnabled(true);
                     mail.setEnabled(true);
                     organization.setEnabled(true);
+
+
+
 
                     full_name.setHint("Enter FullName");
                     phone_number.setHint("Enter Phone Number");
@@ -320,6 +376,7 @@ public class AddDataActivity extends AppCompatActivity {
                     mail.setHint("Enter Mail");
                     area.setHint("Enter Area");
 
+
                     service.setHint("Not Required for CustomerB2C");
                     service.setEnabled(false);
                     service.setFocusable(false);
@@ -349,6 +406,8 @@ public class AddDataActivity extends AppCompatActivity {
 
             }
         });
+
+
 
 
         loadingBar = new ProgressDialog(this);
@@ -498,7 +557,7 @@ public class AddDataActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
-                                        Toast.makeText(getApplicationContext(), "Details has been Added Sucessfully.. ", Toast.LENGTH_SHORT).show();
+                                        AddNewData(fullName,phoneNumber,city_st,"Candidate");
                                         loadingBar.dismiss();
 
                                         full_name.setText("");
@@ -514,7 +573,9 @@ public class AddDataActivity extends AppCompatActivity {
 
                                     }else{
                                         loadingBar.dismiss();
-                                        Toast.makeText(getApplicationContext(), "Somthing Went Wrong.. Please Try Again After Some time..", Toast.LENGTH_SHORT).show();
+                                        //Toast.makeText(getApplicationContext(), "Somthing Went Wrong.. Please Try Again After Some time..", Toast.LENGTH_SHORT).show();
+                                        dialog.show();
+
                                     }
 
                                 }
@@ -523,8 +584,12 @@ public class AddDataActivity extends AppCompatActivity {
 
 
                 }else{
-                    Toast.makeText(getApplicationContext(), "This "+phoneNumber+" number already Exists..", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "This "+phoneNumber+" number already Exists..", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
+                    errorHeading.setText("Phone no already Exists..");
+                    errorText.setText("Please Try Again Using Another phpne number.");
+                    dialog.show();
+
                 }
             }
 
@@ -560,7 +625,7 @@ public class AddDataActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
-                                        Toast.makeText(getApplicationContext(), "Details has been Added Sucessfully.. ", Toast.LENGTH_SHORT).show();
+                                        AddNewData(fullName,phoneNumber,city_st,"CustomerB2B");
                                         loadingBar.dismiss();
 
                                         full_name.setText("");
@@ -575,6 +640,8 @@ public class AddDataActivity extends AppCompatActivity {
                                     }else{
                                         loadingBar.dismiss();
                                         Toast.makeText(getApplicationContext(), "Somthing Went Wrong.. Please Try Again After Some time..", Toast.LENGTH_SHORT).show();
+                                        dialog.show();
+
                                     }
 
                                 }
@@ -599,7 +666,7 @@ public class AddDataActivity extends AppCompatActivity {
     {
 
 
-        final DatabaseReference RootRef;
+        final DatabaseReference RootRef,RootRef1;
         RootRef = FirebaseDatabase.getInstance().getReference();
 
         RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -619,9 +686,8 @@ public class AddDataActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
-                                        Toast.makeText(getApplicationContext(), "Details has been Added Sucessfully.. ", Toast.LENGTH_SHORT).show();
+                                        AddNewData(fullName,phoneNumber,city_st,"CustomerB2C");
                                         loadingBar.dismiss();
-
                                         full_name.setText("");
                                         phone_number.setText("");
                                         city.setText("");
@@ -634,6 +700,8 @@ public class AddDataActivity extends AppCompatActivity {
                                     }else{
                                         loadingBar.dismiss();
                                         Toast.makeText(getApplicationContext(), "Somthing Went Wrong.. Please Try Again After Some time..", Toast.LENGTH_SHORT).show();
+                                        dialog.show();
+
                                     }
 
                                 }
@@ -644,6 +712,10 @@ public class AddDataActivity extends AppCompatActivity {
                 }else{
                     Toast.makeText(getApplicationContext(), "This "+phoneNumber+" number already Exists..", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
+                    errorHeading.setText("Phone already Exists..");
+                    errorText.setText("Please Try Again Using Another Phone number..");
+                    dialog.show();
+
                 }
             }
 
@@ -660,6 +732,12 @@ public class AddDataActivity extends AppCompatActivity {
     private void VendorsCreateEntry(String phoneNumber,String fullName,String area1,String city_st,String organization1,String experience1,String service1,String subservice1,String password1,String mail1){
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
+
+        String time;
+
+
+
+
 
         RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -681,14 +759,15 @@ public class AddDataActivity extends AppCompatActivity {
 
 
 
+
                     RootRef.child("Data").child("Vendors").child(phoneNumber).updateChildren(UserDataMap)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
-                                        Toast.makeText(getApplicationContext(), "Details has been Added Sucessfully.. ", Toast.LENGTH_SHORT).show();
-                                        loadingBar.dismiss();
 
+                                        AddNewData(fullName,phoneNumber,city_st,"Vendor");
+                                        loadingBar.dismiss();
 
                                         full_name.setText("");
                                         phone_number.setText("");
@@ -705,7 +784,9 @@ public class AddDataActivity extends AppCompatActivity {
 
                                     }else{
                                         loadingBar.dismiss();
-                                        Toast.makeText(getApplicationContext(), "Somthing Went Wrong.. Please Try Again After Some time..", Toast.LENGTH_SHORT).show();
+                                        //Toast.makeText(getApplicationContext(), "Something Went Wrong.. Please Try Again After Some time..", Toast.LENGTH_SHORT).show();
+                                        dialog.show();
+
                                     }
 
                                 }
@@ -713,7 +794,13 @@ public class AddDataActivity extends AppCompatActivity {
 
 
 
-                }else{
+
+
+
+
+
+                }
+                else{
                     Toast.makeText(getApplicationContext(), "This "+phoneNumber+" number already Exists..", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
                 }
@@ -725,6 +812,37 @@ public class AddDataActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    private void AddNewData(String fullName,String phoneNumber,String city_st,String Type)
+    {
+        final DatabaseReference RootRef1;
+        RootRef1 = FirebaseDatabase.getInstance().getReference();
+        HashMap<String,Object> UserNewDataMap = new HashMap<>();
+        UserNewDataMap.put("Name",fullName);
+        UserNewDataMap.put("Contact",phoneNumber);
+        UserNewDataMap.put("City",city_st);
+        UserNewDataMap.put("Type",Type);
+        UserNewDataMap.put("Time",Time);
+
+        RootRef1.child("NewData").child(phoneNumber).updateChildren(UserNewDataMap)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(getApplicationContext(), "Details has been Added Sucessfully.. ", Toast.LENGTH_SHORT).show();
+
+                        }else{
+                            loadingBar.dismiss();
+                            //Toast.makeText(getApplicationContext(), "Something Went Wrong.. Please Try Again After Some time..", Toast.LENGTH_SHORT).show();
+                            dialog.show();
+
+
+                        }
+
+                    }
+                });
 
     }
 
@@ -861,8 +979,4 @@ public class AddDataActivity extends AppCompatActivity {
 
         return true;
     }
-
-
-
-
 }
