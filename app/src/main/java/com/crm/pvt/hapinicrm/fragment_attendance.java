@@ -47,6 +47,7 @@ public class fragment_attendance extends DialogFragment {
     DatabaseReference databaseReference;
     long id ;
     ArrayList<String> list;
+    private String loginTime;
 
     public fragment_attendance(String id) {
     this.id = Long.parseLong(id);
@@ -82,12 +83,15 @@ public class fragment_attendance extends DialogFragment {
         mark_presence = view.findViewById(R.id.mark_attendance);
         mark_presence.setOnClickListener(view1 -> {
             calendar = Calendar.getInstance();
-            String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+            String currentDate = new SimpleDateFormat("", Locale.getDefault()).format(new Date());
             //DateFormat.getDateInstance(DateFormat.SHORT).format(calendar.getTime());
             String  curTime = DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime());;
             list.add(0,currentDate);
 
             MarkAttendance(currentDate,curTime);
+//            Intent i = new Intent(getContext(),EmployeeDashboardActivity.class);
+//            i.putExtra("loginTime",curTime);
+//            startActivity(i);
 
 
 
@@ -103,6 +107,7 @@ public class fragment_attendance extends DialogFragment {
 //        databaseReference.child("Attendance").child(String.valueOf(id)).child(currentDate).child("Time").setValue(curTime);
         String IMEI = prevalent.CurrentOnlineEmloyee.getIMEI();
         mark(IMEI,currentDate,curTime);
+
 
 
 
@@ -132,6 +137,7 @@ public class fragment_attendance extends DialogFragment {
                     hashMap.put("Date",Date);
                     hashMap.put("Time",Time);
                     eRef.child("Attendance").child(IMEI).child(Date).updateChildren(hashMap);
+
 
                 }
             }

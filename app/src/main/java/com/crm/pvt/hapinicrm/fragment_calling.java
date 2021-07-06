@@ -36,6 +36,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class fragment_calling extends DialogFragment {
@@ -68,6 +70,15 @@ public class fragment_calling extends DialogFragment {
             public void onClick(View view1) {
 
                makePhoneCall();
+                Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        startActivity(new Intent(getContext(),fragment_calling_feedback.class));
+
+                    }
+                }, 2000);
+
 
 
 

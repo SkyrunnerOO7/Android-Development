@@ -34,6 +34,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class fragment_calling_feedback extends Fragment {
@@ -148,6 +150,15 @@ public class fragment_calling_feedback extends Fragment {
                     loadingBar.setCanceledOnTouchOutside(false);
                     loadingBar.show();
                     SubmitData();
+                    Timer timer = new Timer();
+                    timer.schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            startActivity(new Intent(getContext(),fragment_calling.class));
+
+                        }
+                    }, 2000);
+
 
 
 

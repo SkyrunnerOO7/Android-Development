@@ -14,6 +14,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * Created by Kuldeep Sahu on 04/06/2021.
  * E-mail: sahukuldeep912001@gmail.com
@@ -45,6 +49,15 @@ public class SupportActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 makecall();
+//                Timer timer = new Timer();
+//                timer.schedule(new TimerTask() {
+//                    @Override
+//                    public void run() {
+//                        startActivity(new Intent(getApplicationContext(), Error404Activity.class));
+//                        finish();
+//                    }
+//                }, 2000);
+
 
             }
         });
@@ -72,7 +85,11 @@ public class SupportActivity extends AppCompatActivity {
             Intent pI = new Intent(Intent.ACTION_CALL);
             pI.setData(Uri.parse(s));
             startActivity(pI);
+
+
         }
+
+
     }
 
     @Override

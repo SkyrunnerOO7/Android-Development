@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,7 +30,15 @@ import com.google.firebase.storage.StorageTask;
 import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -39,13 +48,20 @@ public class Emp_settings_Activity extends AppCompatActivity {
     private TextView fullNameEditText, passcodeText, emailText;
     private ImageView profileChangeTextBtn;
     private TextView saveTextButton,logout;
-
+    private Button rest;
+    public TimerTask timerTask;
+    public Timer timer;
+    public TextView timerText;
     private Uri imageUri;
     private String myUrl = "";
+    Double time = 0.0;
+    int restt = 0;
     private StorageTask uploadTask;
     private StorageReference storageProfilePrictureRef;
     private static final int PICK_IMAGE = 1, RESULT_OK = -1;
     private String checker = "";
+    private String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +84,14 @@ public class Emp_settings_Activity extends AppCompatActivity {
         saveTextButton =  findViewById(R.id.SEsave);
         logout = findViewById(R.id.SElogout);
 
+        rest = findViewById(R.id.work_break);
         userInfoDetails(profileImageView);
+
+
+
+
+
+
 
         saveTextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,7 +118,125 @@ public class Emp_settings_Activity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+                DatabaseReference att = FirebaseDatabase.getInstance().getReference().child("Attendance");
+                Calendar calendar = Calendar.getInstance();
+                String logtime = DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime());
+
+
+
+                att.child(prevalent.CurrentOnlineEmloyee.getIMEI()).child(date)
+                        .addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull  DataSnapshot snapshot) {
+                                String time = snapshot.child("Time").getValue(String.class);
+                                long Rest = (long)snapshot.child("RestTime").getValue();
+
+                                DateFormat format = new SimpleDateFormat("hh:mm aa");
+                                Date d1 = null;
+                                try {
+                                    d1 = format.parse(time);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                                Date d2 = null;
+                                try {
+                                    d2 = format.parse(logtime);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                                long diff1 = d2.getTime()-d1.getTime();
+                                long hr = diff1/(1000*60*60);
+                                HashMap<String ,Object> hashMap = new HashMap<>();
+                                hashMap.put("BreakTime",hr-Rest);
+                                hashMap.put("Logout",logtime);
+                                att.child(prevalent.CurrentOnlineEmloyee.getIMEI()).child(date).updateChildren(hashMap)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if(task.isSuccessful()){
+                                                    Toast.makeText(Emp_settings_Activity.this, "please wait you  are logging out", Toast.LENGTH_SHORT).show();
+                                                    Timer timer = new Timer();
+                                                    timer.schedule(new TimerTask() {
+                                                        @Override
+                                                        public void run() {
+                                                            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                                                            finish();
+                                                        }
+                                                    }, 5000);
+
+
+                                                }
+                                            }
+                                        });
+
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
+
+
+
+//                Calendar calendar = Calendar.getInstance();
+//                String  curTime = DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime());
+//                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Attendance").child(prevalent.CurrentOnlineEmloyee.getIMEI());
+//                HashMap<String ,Object> hashMap = new HashMap<>();
+//                hashMap.put("Logout",curTime);
+//                ref.child(date).updateChildren(hashMap)
+//                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<Void> task) {
+//                                if(task.isSuccessful()){
+//                                    Toast.makeText(Emp_settings_Activity.this, "please wait you  are logging out", Toast.LENGTH_SHORT).show();
+//                                    Timer timer = new Timer();
+//                                    timer.schedule(new TimerTask() {
+//                                        @Override
+//                                        public void run() {
+//                                            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+//                                            finish();
+//                                        }
+//                                    }, 5000);
+//
+//
+//                                }
+//                            }
+//                        });
+
+
+            }
+        });
+
+        rest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Calendar calendar = Calendar.getInstance();
+                String  curTime = DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime());
+
+                Intent intent = new Intent(getApplicationContext(),Break_Activity.class);
+                intent.putExtra("RestTime",curTime);
+                startActivity(intent);
+
+//                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Attendance").child(prevalent.CurrentOnlineEmloyee.getIMEI());
+//                HashMap<String ,Object> hashMap = new HashMap<>();
+//                hashMap.put("RestTime",curTime);
+//                ref.child(date).updateChildren(hashMap)
+//                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<Void> task) {
+//                                if(task.isSuccessful()){
+//
+//
+//
+//
+//                                }
+//                            }
+//                        });
+
 
             }
         });
@@ -103,6 +244,8 @@ public class Emp_settings_Activity extends AppCompatActivity {
 
 
     }
+
+
 
 
 
