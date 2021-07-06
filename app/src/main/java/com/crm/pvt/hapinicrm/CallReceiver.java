@@ -12,6 +12,7 @@ public class CallReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         try {
 //1 more comment
+            //2nd comment
             //comment
             //Toast.makeText(context," Receiver start ",Toast.LENGTH_SHORT).show();
             String state=intent.getStringExtra(TelephonyManager.EXTRA_STATE);
