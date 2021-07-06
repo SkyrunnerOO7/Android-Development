@@ -1,13 +1,14 @@
 package com.crm.pvt.hapinicrm.models;
 
 public class Attendance {
-    String IMEI,Date,Time,Logout,BreakTime;
+    String IMEI,Date,Time,Logout;
+    long BreakTime;
 
     Attendance(){
 
     }
 
-    public Attendance(String IMEI, String date, String time, String logout, String breakTime) {
+    public Attendance(String IMEI, String date, String time, String logout, long breakTime) {
         this.IMEI = IMEI;
         Date = date;
         Time = time;
@@ -47,11 +48,11 @@ public class Attendance {
         Logout = logout;
     }
 
-    public String getBreakTime() {
+    public long getBreakTime() {
         return BreakTime;
     }
 
-    public void setBreakTime(String breakTime) {
+    public void setBreakTime(long breakTime) {
         BreakTime = breakTime;
     }
 }

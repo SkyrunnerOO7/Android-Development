@@ -125,7 +125,7 @@ public class Attendance_Activity extends AppCompatActivity {
                 holder.DateD.setText(model.getDate());
                 holder.TimeD.setText(model.getTime());
                 holder.logoutD.setText(model.getLogout());
-                holder.countD.setText(model.getBreakTime());
+                holder.countD.setText(""+model.getBreakTime());
 
 
 
