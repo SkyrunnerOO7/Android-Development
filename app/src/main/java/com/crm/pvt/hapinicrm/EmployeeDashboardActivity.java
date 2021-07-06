@@ -10,6 +10,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -36,12 +38,12 @@ import java.util.Locale;
 
 public class EmployeeDashboardActivity extends AppCompatActivity {
     BottomNavigationView bnv;
-    ImageView refresh;
     public TextView timerText;
     public Timer timer;
     public TimerTask timerTask;
     Double time = 0.0;
     boolean doubleBackToExitPressedOnce= false;
+    private TextView logbuton;
 
     Handler handler;
     Runnable r;
@@ -57,12 +59,12 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_employee_dashboard);
 
         timerText = (TextView) findViewById(R.id.time_employee_dashboard);
+        logbuton = findViewById(R.id.log);
 
         bnv=(BottomNavigationView)findViewById(R.id.bottomNavigation);
 
         Intent intent = getIntent();
         IMEI_emp = intent.getStringExtra("IMEI");
-
 
 
         // to open home fragment Bydefault
@@ -124,7 +126,27 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
             }
         });
 
+
+
+
+
+
+//        logbuton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                    timer.cancel();
+//                    String Etime = getTimerText();
+//                    Intent i = new Intent(getApplicationContext(),Break_Activity.class);
+//                    i.putExtra("Time",Etime);
+//                    i.putExtra("loginTime",Etime);
+//                    startActivity(i);
+//            }
+//        });
+
     }
+
+
+
 
 
 
@@ -160,6 +182,12 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
                 doubleBackToExitPressedOnce=false;
             }
         }, 2000);
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
 
     }
 

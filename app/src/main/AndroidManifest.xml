@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.crm.pvt.hapinicrm" >
+    package="com.crm.pvt.hapinicrm">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -16,20 +16,18 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.HapiniCRM" >
-        <activity android:name=".Emp_settings_Activity" >
-        </activity>
+        android:theme="@style/Theme.HapiniCRM">
+        <activity android:name=".Break_Activity"></activity>
+        <activity android:name=".Emp_settings_Activity"></activity>
         <activity android:name=".Attendance_Activity" />
         <activity android:name=".AddDocumentActivity" />
-        <activity android:name=".UserFeedbackShowActivity" >
-        </activity>
+        <activity android:name=".UserFeedbackShowActivity"></activity>
         <activity android:name=".MasterProfileActivity" />
         <activity android:name=".ActiveUserActivity" />
         <activity android:name=".ActiveDataActivity" />
         <activity android:name=".Employee_Active_user" />
         <activity android:name=".addAdminActivity" />
-        <activity android:name=".MasterAdminLoginActivity" >
-        </activity>
+        <activity android:name=".MasterAdminLoginActivity"></activity>
         <activity android:name=".SplashScreenMasterPanel" />
         <activity android:name=".MasterAdminDasboardActivity" />
         <activity android:name=".Error405Activity" />
@@ -56,7 +54,7 @@
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" /> <!-- optional (needed if default theme has no action bar) -->
-        <activity android:name=".MainActivity" >
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

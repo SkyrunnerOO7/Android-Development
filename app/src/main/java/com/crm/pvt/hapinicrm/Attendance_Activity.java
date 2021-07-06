@@ -124,6 +124,9 @@ public class Attendance_Activity extends AppCompatActivity {
 
                 holder.DateD.setText(model.getDate());
                 holder.TimeD.setText(model.getTime());
+                holder.logoutD.setText(model.getLogout());
+                holder.countD.setText(model.getBreakTime());
+
 
 
             }
@@ -181,7 +184,7 @@ public class Attendance_Activity extends AppCompatActivity {
     }
     public static class AttendanceViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView DateT,TimeT,DateD,TimeD;
+        public TextView DateT,TimeT,DateD,TimeD,logoutT,logoutD,count,countD;
 
         public AttendanceViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -190,6 +193,11 @@ public class Attendance_Activity extends AppCompatActivity {
            TimeT = itemView.findViewById(R.id.Time_text);
            DateD = itemView.findViewById(R.id.Ddata_text);
            TimeD = itemView.findViewById(R.id.TimeD_text);
+           logoutT = itemView.findViewById(R.id.Logout_text);
+           logoutD = itemView.findViewById(R.id.logoutD_text);
+           count = itemView.findViewById(R.id.break_btn);
+           countD = itemView.findViewById(R.id.breakDt);
+
         }
 
 
