@@ -97,7 +97,7 @@
     </string-array>
     Spinner_Add_doc_item
 
-    <string-array name="Spinner_Add_doc_item" >
+    <string-array name="Spinner_Add_doc_item">
         <item>Choose Here</item>
         <item>Candidate</item>
         <item>Vendors</item>
@@ -111,7 +111,6 @@
         <item>Choose Category</item>
         <item>Admin</item>
         <item>Employee</item>
-        <item>Developers</item>
     </string-array>
 
     <!-- String use in Add Data Activity -->

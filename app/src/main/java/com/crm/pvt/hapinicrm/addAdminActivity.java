@@ -3,13 +3,16 @@ package com.crm.pvt.hapinicrm;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.crm.pvt.hapinicrm.models.DBhelper;
@@ -42,6 +45,9 @@ public class addAdminActivity extends AppCompatActivity {
     ProgressDialog loadingBar;
     CheckBox checkBox;
     EditText cityA,phoneA;
+    Dialog dialog;
+    private TextView errorText,errorHeading;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +64,25 @@ public class addAdminActivity extends AppCompatActivity {
         cityA = findViewById(R.id.CityA);
         phoneA = findViewById(R.id.phoneA);
 
+
+        dialog=new Dialog(addAdminActivity.this);
+        dialog.setContentView(R.layout.layout_error404);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setCancelable(false);
+        errorText=dialog.findViewById(R.id.errortextoferrorAc);
+        errorHeading=dialog.findViewById(R.id.homeHeading);
+
+        Button CloseDialog=dialog.findViewById(R.id.CloseBtnErrorAC);
+        CloseDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                errorHeading.setText("Error 404");
+                errorText.setText("Something went wrong!");
+
+
+            }
+        });
 
 
         add = findViewById(R.id.add_admin_btn);
@@ -173,6 +198,10 @@ public class addAdminActivity extends AppCompatActivity {
                 }else{
                     Toast.makeText(getApplicationContext(), "This "+email+" id already Exists..", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
+                    errorHeading.setText("Invalid Credentials");
+                    errorText.setText("PLease Try again with another Email id");
+                    dialog.show();
+
                 }
             }
 

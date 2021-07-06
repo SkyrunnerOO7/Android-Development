@@ -1,18 +1,30 @@
 package com.crm.pvt.hapinicrm;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
+import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -33,6 +45,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -45,9 +58,18 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Map;
 
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static com.crm.pvt.hapinicrm.R.drawable.admin_profile_icon1;
 
 public class Employee_Active_user extends AppCompatActivity {
@@ -65,11 +87,26 @@ public class Employee_Active_user extends AppCompatActivity {
     public int z;
     public StorageReference storageReference;
 
+    Bitmap bmp,scalebmp;
+    String child1;
+    public String pdf;
+    private String stringFile = Environment.getExternalStorageDirectory().getPath() + File.separator + "Test.pdf";
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_active_user);
+
+        ActivityCompat.requestPermissions(this, new String[]{READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
+
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
+
+
+
+
 
         list = findViewById(R.id.rv1);
         list.setLayoutManager(new LinearLayoutManager(this));
@@ -159,12 +196,57 @@ public class Employee_Active_user extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
+                final String[] date = new String[1];
 
 
                 holder.download.setOnClickListener(new View.OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(Employee_Active_user.this, "Download", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Employee_Active_user.this, "Downloaded", Toast.LENGTH_SHORT).show();
+                        DatabaseReference ref;
+                        ref=FirebaseDatabase.getInstance().getReference().child("Attendance").child(model.getIMEI());
+                        ref.addChildEventListener(new ChildEventListener() {
+                            // Retrieve new posts as they are added to Firebase
+                            @Override
+                            public void onChildAdded(DataSnapshot snapshot, String previousChildKey) {
+
+                                String date,time;
+                                Map<String, Object> newPost = (Map<String, Object>) snapshot.getValue();
+
+
+                                date=newPost.get("Date").toString();
+                                time=newPost.get("Time").toString();
+                                createEmployeePdf(model.getName(),model.getIMEI(),model.getPassword(),model.getMail(),model.getCity(),model.getPhone(),model.getUrl(),date,time);
+
+                            }
+
+                            @Override
+                            public void onChildChanged(DataSnapshot snapshot, String previousChildName) {
+
+                            }
+
+                            @Override
+                            public void onChildRemoved(DataSnapshot snapshot) {
+
+                            }
+
+                            @Override
+                            public void onChildMoved(DataSnapshot snapshot, String previousChildName) {
+
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError error) {
+
+                            }
+
+                        });
+
+
+
+
+
                     }
                 });
 
@@ -259,7 +341,47 @@ public class Employee_Active_user extends AppCompatActivity {
                 holder.download.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(Employee_Active_user.this, "Download", Toast.LENGTH_SHORT).show();
+
+                        Toast.makeText(Employee_Active_user.this, "Downloaded", Toast.LENGTH_SHORT).show();
+                        DatabaseReference ref;
+                        ref=FirebaseDatabase.getInstance().getReference().child("Attendance").child(model.getIMEI());
+                        ref.addChildEventListener(new ChildEventListener() {
+                            // Retrieve new posts as they are added to Firebase
+                            @Override
+                            public void onChildAdded(DataSnapshot snapshot, String previousChildKey) {
+
+                                String date,time;
+                                Map<String, Object> newPost = (Map<String, Object>) snapshot.getValue();
+
+
+                                date=newPost.get("Date").toString();
+                                time=newPost.get("Time").toString();
+                                createEmployeePdf(model.getName(),model.getIMEI(),model.getPassword(),model.getMail(),model.getCity(),model.getPhone(),model.getUrl(),date,time);
+
+                            }
+
+                            @Override
+                            public void onChildChanged(DataSnapshot snapshot, String previousChildName) {
+
+                            }
+
+                            @Override
+                            public void onChildRemoved(DataSnapshot snapshot) {
+
+                            }
+
+                            @Override
+                            public void onChildMoved(DataSnapshot snapshot, String previousChildName) {
+
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError error) {
+
+                            }
+
+                        });
+
                     }
                 });
 
@@ -354,7 +476,46 @@ public class Employee_Active_user extends AppCompatActivity {
                 holder.download.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(Employee_Active_user.this, "Download", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Employee_Active_user.this, "Downloaded", Toast.LENGTH_SHORT).show();
+                        DatabaseReference ref;
+                        ref=FirebaseDatabase.getInstance().getReference().child("Attendance").child(model.getIMEI());
+                        ref.addChildEventListener(new ChildEventListener() {
+                            // Retrieve new posts as they are added to Firebase
+                            @Override
+                            public void onChildAdded(DataSnapshot snapshot, String previousChildKey) {
+
+                                String date,time;
+                                Map<String, Object> newPost = (Map<String, Object>) snapshot.getValue();
+
+
+                                date=newPost.get("Date").toString();
+                                time=newPost.get("Time").toString();
+                                createEmployeePdf(model.getName(),model.getIMEI(),model.getPassword(),model.getMail(),model.getCity(),model.getPhone(),model.getUrl(),date,time);
+
+                            }
+
+                            @Override
+                            public void onChildChanged(DataSnapshot snapshot, String previousChildName) {
+
+                            }
+
+                            @Override
+                            public void onChildRemoved(DataSnapshot snapshot) {
+
+                            }
+
+                            @Override
+                            public void onChildMoved(DataSnapshot snapshot, String previousChildName) {
+
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError error) {
+
+                            }
+
+                        });
+
                     }
                 });
 
@@ -449,7 +610,46 @@ public class Employee_Active_user extends AppCompatActivity {
                 holder.download.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(Employee_Active_user.this, "Download", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Employee_Active_user.this, "Downloaded", Toast.LENGTH_SHORT).show();
+                        DatabaseReference ref;
+                        ref=FirebaseDatabase.getInstance().getReference().child("Attendance").child(model.getIMEI());
+                        ref.addChildEventListener(new ChildEventListener() {
+                            // Retrieve new posts as they are added to Firebase
+                            @Override
+                            public void onChildAdded(DataSnapshot snapshot, String previousChildKey) {
+
+                                String date,time;
+                                Map<String, Object> newPost = (Map<String, Object>) snapshot.getValue();
+
+
+                                date=newPost.get("Date").toString();
+                                time=newPost.get("Time").toString();
+                                createEmployeePdf(model.getName(),model.getIMEI(),model.getPassword(),model.getMail(),model.getCity(),model.getPhone(),model.getUrl(),date,time);
+
+                            }
+
+                            @Override
+                            public void onChildChanged(DataSnapshot snapshot, String previousChildName) {
+
+                            }
+
+                            @Override
+                            public void onChildRemoved(DataSnapshot snapshot) {
+
+                            }
+
+                            @Override
+                            public void onChildMoved(DataSnapshot snapshot, String previousChildName) {
+
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError error) {
+
+                            }
+
+                        });
+
                     }
                 });
 
@@ -512,9 +712,101 @@ public class Employee_Active_user extends AppCompatActivity {
 
 
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+
+    public void createEmployeePdf(String name,String imei,String password,String mail,String city,String phone,String url1,String date,String time)
+    {
+
+        //bmp= BitmapFactory.decodeResource(getResources(), admin_profile_icon1);
+        //scalebmp=Bitmap.createScaledBitmap(bmp,45,45,false);
 
 
-    public static class EmplistViewHolder extends RecyclerView.ViewHolder{
+
+        pdf="/"+imei+".pdf";
+        PdfDocument myPdfDocument = new PdfDocument();
+        PdfDocument.PageInfo myPageInfo = new PdfDocument.PageInfo.Builder(800,800,1).create();
+        PdfDocument.Page myPage = myPdfDocument.startPage(myPageInfo);
+        Canvas canvas=myPage.getCanvas();
+        Paint titlePaint1=new Paint();
+
+
+
+
+
+        //titlePaint1.setTextColor(Color.parseColor("#006400"));
+
+        titlePaint1.setTextAlign(Paint.Align.CENTER);
+        titlePaint1.setTextSize(28);
+
+        canvas.drawText(name,500,200,titlePaint1);
+        canvas.drawText(imei,500,250,titlePaint1);
+        canvas.drawText(password,500,300,titlePaint1);
+        canvas.drawText(mail,500,350,titlePaint1);
+        canvas.drawText(city,500,400,titlePaint1);
+        canvas.drawText(phone,500,450,titlePaint1);
+        canvas.drawText(date,500,500,titlePaint1);
+        canvas.drawText(time,500,550,titlePaint1);
+
+
+        int greenColorValue = Color.parseColor("#072f5f");
+
+        titlePaint1.setColor(greenColorValue);
+        titlePaint1.setTextSize(35);
+        titlePaint1.setTypeface(Typeface.create(Typeface.DEFAULT,Typeface.BOLD));
+
+
+        canvas.drawText("Employee Profile",390,50,titlePaint1);
+        titlePaint1.setTextSize(28);
+        titlePaint1.setTypeface(Typeface.create(Typeface.DEFAULT,Typeface.BOLD));
+        canvas.drawText("Name: ",250,200,titlePaint1);
+        canvas.drawText("IMEI: ",250,250,titlePaint1);
+        canvas.drawText("Password: ",250,300,titlePaint1);
+        canvas.drawText("Mail: ",250,350,titlePaint1);
+        canvas.drawText("City: ",250,400,titlePaint1);
+        canvas.drawText("Phone: ",250,450,titlePaint1);
+        canvas.drawText("Date: ",250,500,titlePaint1);
+        canvas.drawText("Login Time: ",250,550,titlePaint1);
+
+
+
+        //canvas.drawBitmap(scalebmp,110,990,titlePaint1);
+
+
+
+        titlePaint1.setTypeface(Typeface.create(Typeface.DEFAULT,Typeface.NORMAL));
+
+        //canvas.drawLine(50,250,1050,250,myPaint);
+
+        //canvas.drawLine(50,345,1050,345,myPaint);
+
+
+        myPdfDocument.finishPage(myPage);
+
+        String s = null;
+        File d2= new File(getExternalFilesDir(s).getPath() + pdf);
+
+        String myFilePath = Environment.getExternalStorageDirectory().getPath() + pdf;
+        try {
+            myPdfDocument.writeTo(new FileOutputStream(d2));
+            Toast.makeText(this, "pdf write", Toast.LENGTH_SHORT).show();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+
+        }
+        child1=null;
+
+        myPdfDocument.close();
+        Toast.makeText(this, "pdf created", Toast.LENGTH_SHORT).show();
+
+        Intent i =new Intent(Employee_Active_user.this,ViewUserDetailsPdf.class);
+        i.putExtra("name",pdf);
+        startActivity(i);
+    }
+
+
+
+        public static class EmplistViewHolder extends RecyclerView.ViewHolder{
 
         public TextView Username,Passcode,mailED,password,profile,city,phone;
 
