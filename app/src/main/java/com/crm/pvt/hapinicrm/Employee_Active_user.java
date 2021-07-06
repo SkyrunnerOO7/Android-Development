@@ -813,7 +813,7 @@ public class Employee_Active_user extends AppCompatActivity {
         public Button delete,download;
         //public ImageView profileimg;
 
-        public Button delete;
+
         public ImageView profileimgE;
 
 

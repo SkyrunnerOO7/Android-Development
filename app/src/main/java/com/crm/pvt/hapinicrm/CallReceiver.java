@@ -15,7 +15,9 @@ public class CallReceiver extends BroadcastReceiver {
             //2nd comment
             //comment
             //Toast.makeText(context," Receiver start ",Toast.LENGTH_SHORT).show();
+
             String state=intent.getStringExtra(TelephonyManager.EXTRA_STATE);
+
 
             if(state.equalsIgnoreCase(TelephonyManager.EXTRA_STATE_OFFHOOK)){
                 showToast(context,"Call started...");
@@ -23,8 +25,9 @@ public class CallReceiver extends BroadcastReceiver {
             if(state.equalsIgnoreCase(TelephonyManager.EXTRA_STATE_IDLE)){
                 showToast(context,"Idle Call ended...");
                 Intent i = new Intent(context, callingFeedbackActivity.class);
+
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                i.putExtra("message", "message.getMessageBody()");
+               i.putExtra("message", "message.getMessageBody()");
                 context.startActivity(i);
 
             }
