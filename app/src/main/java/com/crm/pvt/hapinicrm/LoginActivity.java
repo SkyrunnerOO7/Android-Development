@@ -120,7 +120,7 @@ public class LoginActivity extends AppCompatActivity {
                     choose_category[0] = LoginSpinner.getSelectedItem().toString();
 
 
-                choose_category[0] = LoginSpinner.getSelectedItem().toString();
+              //  choose_category[0] = LoginSpinner.getSelectedItem().toString();
                 if(choose_category[0].contentEquals("Admin")){
                     LoginEmail.setHint("Enter passcode");
                     parentDBname = "Admin";

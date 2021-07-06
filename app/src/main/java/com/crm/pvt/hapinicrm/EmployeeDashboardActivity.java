@@ -36,7 +36,7 @@ import java.util.Locale;
 
 public class EmployeeDashboardActivity extends AppCompatActivity {
     BottomNavigationView bnv;
-    //ImageView refresh;
+    
     public TextView timerText;
     public Timer timer;
     public TimerTask timerTask;
@@ -56,7 +56,6 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_employee_dashboard);
 
         timerText = (TextView) findViewById(R.id.time_employee_dashboard);
-        //refresh=(ImageView)findViewById(R.id.refresh_employee_dashboard);
         bnv=(BottomNavigationView)findViewById(R.id.bottomNavigation);
 
         Intent intent = getIntent();
@@ -86,14 +85,6 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
         };
         startHandler();
 
-        /*refresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(EmployeeDashboardActivity.this,"Refresh",Toast.LENGTH_SHORT).show();
-            }
-        });*/
-
-
         //to select home icon as default
         //int i=2131362141;
         //bnv.setSelectedItemId(i);
@@ -117,10 +108,12 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.FrameConatiner,temp).commit();
                         break;
                     case R.id.menu_profile: temp=new EmployeeProfileFragment();
-                        Bundle bundle = new Bundle();
-                        bundle.putString("IMEI", IMEI_emp);
-                        temp.setArguments(bundle);
-                        getSupportFragmentManager().beginTransaction().replace(R.id.FrameConatiner,temp).commit();
+//                        Bundle bundle = new Bundle();
+//                        bundle.putString("IMEI", IMEI_emp);
+//                        temp.setArguments(bundle);
+//                        getSupportFragmentManager().beginTransaction().replace(R.id.FrameConatiner,temp).commit();
+                        Intent intent1=new Intent(EmployeeDashboardActivity.this,Emp_settings_Activity.class);
+                        startActivity(intent1);
                         break;
                     case R.id.menu_support :
                         Intent intent=new Intent(EmployeeDashboardActivity.this,SupportActivity.class);

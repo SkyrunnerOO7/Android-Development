@@ -1,40 +1,45 @@
 package com.crm.pvt.hapinicrm.models;
 
 public class Employee {
-    private String IMEI,Password,mail,Name,City,Phone,url,dailyLimit;
+
+    
+
+    private String IMEI,Password,mail,Name,City,Phone,Image;
+
 
     public Employee() {
 
     }
 
-    public Employee(String IMEI, String password, String mail, String url) {
+    public Employee(String IMEI, String password, String mail, String name, String city, String phone, String image) {
         this.IMEI = IMEI;
         Password = password;
         this.mail = mail;
-        this.url = url;
+        Name = name;
+        City = city;
+        Phone = phone;
+        Image = image;
     }
 
-    public String getDailyLimit() {
-        return dailyLimit;
-    }
-
-    public void setDailyLimit(String dailyLimit) {
-        this.dailyLimit = dailyLimit;
-    }
 
     /*public Employee(String IMEI, String password, String mail ) {
                 this.IMEI = IMEI;
                 Password = password;
                 this.mail = mail;
             }*/
-    public String getUrl() {
-        return url;
+   /*public Employee(String IMEI, String password, String mail ) {
+            this.IMEI = IMEI;
+            Password = password;
+            this.mail = mail;
+        }*/
+
+    public String getImage() {
+        return Image;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setImage(String image) {
+        Image = image;
     }
-
 
     public String getIMEI() {
         return IMEI;

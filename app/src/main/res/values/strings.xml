@@ -79,6 +79,13 @@
 
 
     </string-array>
+    <string-array name="Spinner_emp_type">
+        <item>Select Employee Type</item>
+        <item>candidate</item>
+        <item>customerb2b</item>
+        <item>customerb2c</item>
+        <item>vendors</item>
+    </string-array>
 
 
     <!-- Spinner user feedback Item -->

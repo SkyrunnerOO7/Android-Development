@@ -198,6 +198,7 @@ public class Employee_Active_user extends AppCompatActivity {
                 holder.profile.setText("profile : " + "Employee");
                 final String[] date = new String[1];
 
+
                 holder.download.setOnClickListener(new View.OnClickListener() {
                     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                     @Override
@@ -248,6 +249,9 @@ public class Employee_Active_user extends AppCompatActivity {
 
                     }
                 });
+
+                Picasso.get().load(model.getImage()).into(holder.profileimg1);
+
                 holder.attE.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -333,6 +337,7 @@ public class Employee_Active_user extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
+
                 holder.download.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -379,6 +384,9 @@ public class Employee_Active_user extends AppCompatActivity {
 
                     }
                 });
+
+                Picasso.get().load(model.getImage()).into(holder.profileimg1);
+
                 holder.attE.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -464,6 +472,7 @@ public class Employee_Active_user extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
+
                 holder.download.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -509,6 +518,9 @@ public class Employee_Active_user extends AppCompatActivity {
 
                     }
                 });
+
+                Picasso.get().load(model.getImage()).into(holder.profileimg1);
+
                 holder.attE.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -594,6 +606,7 @@ public class Employee_Active_user extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
+
                 holder.download.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -639,6 +652,9 @@ public class Employee_Active_user extends AppCompatActivity {
 
                     }
                 });
+
+                Picasso.get().load(model.getImage()).into(holder.profileimg1);
+
                 holder.attE.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -793,8 +809,13 @@ public class Employee_Active_user extends AppCompatActivity {
         public static class EmplistViewHolder extends RecyclerView.ViewHolder{
 
         public TextView Username,Passcode,mailED,password,profile,city,phone;
+
         public Button delete,download;
         //public ImageView profileimg;
+
+        public Button delete;
+        public ImageView profileimgE;
+
 
 
 
@@ -806,7 +827,7 @@ public class Employee_Active_user extends AppCompatActivity {
             mailED = itemView.findViewById(R.id.mail_emp);
             password = itemView.findViewById(R.id.password_emp);
             delete = itemView.findViewById(R.id.delete_emp);
-            //profileimg=itemView.findViewById(R.id.emp_profile);
+            profileimgE=itemView.findViewById(R.id.emp_profile);
             profile = itemView.findViewById(R.id.profile_emp);
             city = itemView.findViewById(R.id.city_emp);
             phone = itemView.findViewById(R.id.phone_emp);
