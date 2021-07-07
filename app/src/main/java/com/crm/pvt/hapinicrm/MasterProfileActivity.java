@@ -21,21 +21,18 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MasterProfileActivity extends AppCompatActivity {
 
-    private ImageView masterProfileImage;
+    private CircleImageView masterProfileImage;
     private static final int PICK_IMAGE = 1, RESULT_OK = -1;
     Uri imageUri;
 
-    private TextView Email;
-    private Button resetCode;
     private Button logout;
-    private CircleImageView image;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_master_profile);
             getSupportActionBar().hide();
-            masterProfileImage = (ImageView) findViewById(R.id.profile_image);
+            masterProfileImage = (CircleImageView) findViewById(R.id.profile_image);
 
             masterProfileImage.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -48,20 +45,14 @@ public class MasterProfileActivity extends AppCompatActivity {
                 }
             });
 
-
-            Email = findViewById(R.id.email);
-//            resetCode = findViewById(R.id.reset_button);
-            logout = findViewById(R.id.logout_button);
-            image = findViewById(R.id.profile_image);
+        logout  = findViewById(R.id.logout_button);
 
             logout.setOnClickListener(view -> {
                 startActivity(new Intent(getApplicationContext(), WelcomeActivity.class));
                 finish();
             });
 
-            resetCode.setOnClickListener(view -> {
-                Toast.makeText(getApplicationContext(), "Your Code will be RESET ASAP", Toast.LENGTH_SHORT).show();
-            });
+
         }
 
         @Override

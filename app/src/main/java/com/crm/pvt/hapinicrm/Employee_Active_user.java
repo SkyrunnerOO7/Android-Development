@@ -288,6 +288,16 @@ public class Employee_Active_user extends AppCompatActivity {
                     }
                 });
 
+                holder.add.setOnClickListener(view -> {
+//                    holder.Limit.setText(String.valueOf(Integer.parseInt(holder.Limit.getText().toString()+1)));
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Employee");
+                    HashMap<String,Object> map = new HashMap<>();
+                    map.put("DailyLimit",holder.Limit.getText().toString());
+                    databaseReference.child(model.getIMEI()).updateChildren(map);
+                    Toast.makeText(getApplicationContext(),"Limit Changed Successfully",Toast.LENGTH_SHORT).show();
+                });
+
+
 
             }
 
@@ -426,6 +436,16 @@ public class Employee_Active_user extends AppCompatActivity {
                     }
                 });
 
+                holder.add.setOnClickListener(view -> {
+//                    holder.Limit.setText(String.valueOf(Integer.parseInt(holder.Limit.getText().toString()+1)));
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Employee");
+                    HashMap<String,Object> map = new HashMap<>();
+                    map.put("DailyLimit",holder.Limit.getText().toString());
+                    databaseReference.child(model.getIMEI()).updateChildren(map);
+                    Toast.makeText(getApplicationContext(),"Limit Changed Successfully",Toast.LENGTH_SHORT).show();
+                });
+
+
 
             }
 
@@ -558,6 +578,16 @@ public class Employee_Active_user extends AppCompatActivity {
                         builder.show();
                     }
                 });
+
+                holder.add.setOnClickListener(view -> {
+//                    holder.Limit.setText(String.valueOf(Integer.parseInt(holder.Limit.getText().toString()+1)));
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Employee");
+                    HashMap<String,Object> map = new HashMap<>();
+                    map.put("DailyLimit",holder.Limit.getText().toString());
+                    databaseReference.child(model.getIMEI()).updateChildren(map);
+                    Toast.makeText(getApplicationContext(),"Limit Changed Successfully",Toast.LENGTH_SHORT).show();
+                });
+
 
 
             }
@@ -693,6 +723,16 @@ public class Employee_Active_user extends AppCompatActivity {
                     }
                 });
 
+                holder.add.setOnClickListener(view -> {
+//                    holder.Limit.setText(String.valueOf(Integer.parseInt(holder.Limit.getText().toString()+1)));
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Employee");
+                    HashMap<String,Object> map = new HashMap<>();
+                    map.put("DailyLimit",holder.Limit.getText().toString());
+                    databaseReference.child(model.getIMEI()).updateChildren(map);
+                    Toast.makeText(getApplicationContext(),"Limit Changed Successfully",Toast.LENGTH_SHORT).show();
+                });
+
+
 
             }
 
@@ -813,7 +853,8 @@ public class Employee_Active_user extends AppCompatActivity {
         public Button delete,download;
         //public ImageView profileimg;
 
-
+        public EditText Limit;
+        public ImageButton add;
         public ImageView profileimgE;
 
 
@@ -832,7 +873,8 @@ public class Employee_Active_user extends AppCompatActivity {
             city = itemView.findViewById(R.id.city_emp);
             phone = itemView.findViewById(R.id.phone_emp);
             download=itemView.findViewById(R.id.download_btnE);
-
+            add = itemView.findViewById(R.id.Add);
+            Limit = itemView.findViewById(R.id.limit);
 
 
         }

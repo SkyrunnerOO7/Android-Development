@@ -15,7 +15,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.crm.pvt.hapinicrm.models.DBhelper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -182,7 +181,7 @@ public class addAdminActivity extends AppCompatActivity {
                                     if(task.isSuccessful()){
                                         Toast.makeText(getApplicationContext(), "Congratulations..Your Account Has been Created Sucessfully.. ", Toast.LENGTH_SHORT).show();
                                         loadingBar.dismiss();
-                                        Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+                                        Intent intent = new Intent(getApplicationContext(),MasterAdminDasboardActivity.class);
                                         startActivity(intent);
 
                                     }else{

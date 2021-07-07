@@ -192,12 +192,14 @@
                 >
 
                 <EditText
+                    android:id="@+id/limit"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:background="@drawable/textbox_round"
                     android:hint="Add"
                     android:textColorHint="#072f5f" />
                 <ImageButton
+                    android:id="@+id/Add"
                     android:layout_width="26dp"
                     android:layout_height="25dp"
                     android:background="@drawable/textbox_round"

@@ -14,7 +14,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,8 +22,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.crm.pvt.hapinicrm.models.Admin;
-import com.crm.pvt.hapinicrm.models.DBhelper;
-import com.crm.pvt.hapinicrm.models.Developer;
 import com.crm.pvt.hapinicrm.models.Employee;
 import com.crm.pvt.hapinicrm.prevalent.prevalent;
 import com.google.firebase.database.DataSnapshot;
@@ -55,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
     CheckBox LoginCheckBox;
     Button LoginButton;
     TextView CreateAdminAccount;
-    DBhelper db;
+
     boolean doubleBackToExitPressedOnce = false;
     public static final String SHARED_PREFS_IMEI = "sharedPrefs_IMEI";
     public static final String text = "text";
@@ -83,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
         loadingBar = new ProgressDialog(this);
 
 
-        db = new DBhelper(this);
+
 
 
         dialog=new Dialog(LoginActivity.this);
