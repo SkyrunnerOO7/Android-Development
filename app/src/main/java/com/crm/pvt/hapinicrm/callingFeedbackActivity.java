@@ -50,9 +50,7 @@ public class callingFeedbackActivity extends AppCompatActivity {
     String limit;
     int flag1 = 0;
 
-   /* public fragment_calling_feedback(String Key) {
-        CurEmpIMEI = Key;
-    }*/
+  //// Completed on 7 July 2021.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
