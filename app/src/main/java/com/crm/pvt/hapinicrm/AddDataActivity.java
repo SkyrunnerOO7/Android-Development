@@ -95,7 +95,7 @@ public class AddDataActivity extends AppCompatActivity {
         subService = findViewById(R.id.SubService);
         mail = findViewById(R.id.Mail);
 
-        dataSpinner=findViewById(R.id.spinner_Doc);
+        dataSpinner=findViewById(R.id.spinner_Doc_data);
 
         check_spinner="false";
 
@@ -148,7 +148,8 @@ public class AddDataActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 choose_category[0] = dataSpinner.getSelectedItem().toString();
-                if(choose_category[0].contentEquals("Candidate")){
+                if(choose_category[0].contentEquals("candidate")){
+
 
                     full_name.setHintTextColor(getResources().getColor(R.color.navy_blue));
                     phone_number.setHintTextColor(getResources().getColor(R.color.navy_blue));
@@ -216,7 +217,7 @@ public class AddDataActivity extends AppCompatActivity {
                     type="Candidate";
                     check_spinner="true";
                 }
-                else if(choose_category[0].contentEquals("Vendors")){
+                else if(choose_category[0].contentEquals("vendors")){
                     type="Vendors";
                     check_spinner="true";
                     full_name.setHintTextColor(getResources().getColor(R.color.navy_blue));
@@ -274,7 +275,7 @@ public class AddDataActivity extends AppCompatActivity {
 
 
                 }
-                else if(choose_category[0].contentEquals("CustomerB2B")){
+                else if(choose_category[0].contentEquals("customerb2b")){
 
                     type="CustomerB2B";
                     check_spinner="true";
@@ -337,9 +338,11 @@ public class AddDataActivity extends AppCompatActivity {
                     service.setEnabled(false);
                     service.setFocusable(false);
 
-                }else if(choose_category[0].contentEquals("CustomerB2C")){
+                }
+                else if(choose_category[0].contentEquals("customerb2c")){
                     type="CustomerB2C";
                     check_spinner="true";
+
 
                     full_name.setHintTextColor(getResources().getColor(R.color.navy_blue));
                     phone_number.setHintTextColor(getResources().getColor(R.color.navy_blue));

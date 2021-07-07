@@ -45,7 +45,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Emp_settings_Activity extends AppCompatActivity {
 
     private CircleImageView profileImageView;
-    private TextView fullNameEditText, passcodeText, emailText;
+    private TextView fullNameEditText, passcodeText, emailText,edit;
     private ImageView profileChangeTextBtn;
     private TextView saveTextButton,logout;
     private Button rest;
@@ -83,10 +83,22 @@ public class Emp_settings_Activity extends AppCompatActivity {
         profileChangeTextBtn = findViewById(R.id.SEchange);
         saveTextButton =  findViewById(R.id.SEsave);
         logout = findViewById(R.id.SElogout);
+        edit=findViewById(R.id.edit_emp);
 
         rest = findViewById(R.id.work_break);
         userInfoDetails(profileImageView);
 
+
+
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // to select image from phone storage
+                Intent i=new Intent(Emp_settings_Activity.this,emp_edit_profile.class);
+                startActivity(i);
+            }
+        });
 
 
 
