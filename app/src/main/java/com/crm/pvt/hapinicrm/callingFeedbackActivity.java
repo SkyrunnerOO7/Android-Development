@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -30,6 +32,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 
+import static com.crm.pvt.hapinicrm.LoginActivity.SHARED_PREFS_IMEI;
+
 public class callingFeedbackActivity extends AppCompatActivity {
 
 
@@ -43,6 +47,8 @@ public class callingFeedbackActivity extends AppCompatActivity {
     ArrayList<Data> DataList;
     final String[] choose_category = new String[1];
     int flag = 0;
+    String limit;
+    int flag1 = 0;
 
    /* public fragment_calling_feedback(String Key) {
         CurEmpIMEI = Key;
@@ -53,7 +59,14 @@ public class callingFeedbackActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calling_feedback);
         spinner_calling_feedback=findViewById(R.id.spinner_calling_feedback);
-
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS_IMEI,MODE_PRIVATE);
+        CurEmpIMEI =sharedPreferences.getString("text","Empty");
+        if(CurEmpIMEI.contentEquals("Empty")){
+            Toast.makeText(getApplicationContext(),"Somethings Went Wrong",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        Toast.makeText(callingFeedbackActivity.this,CurEmpIMEI,Toast.LENGTH_SHORT).show();
+        Toast.makeText(callingFeedbackActivity.this,limit,Toast.LENGTH_SHORT).show();
         spinner_calling_feedback.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -253,24 +266,29 @@ public class callingFeedbackActivity extends AppCompatActivity {
     }
 
     private void deleteData(String contact) {
+      getLimit();
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("NewData").child(contact);
 
         databaseReference.removeValue();
         Toast.makeText(callingFeedbackActivity.this,"Data Deleted...",Toast.LENGTH_SHORT).show();
+        Intent i1= new Intent(callingFeedbackActivity.this,EmployeeDashboardActivity.class);
+      //  i1.putExtra("IMEI",CurEmpIMEI);
+        startActivity(i1);
         loadingBar.dismiss();
     }
+
 
     private void getDetails(ArrayList<Data> dataList, String s,String type) {
 
         if(flag == 1)
             return;
         flag = 1;
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                flag = 0;
-            }
-        }, 6000);
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                flag = 0;
+//            }
+//        }, 6000);
 
 
         int pos = Integer.parseInt(s);
@@ -313,7 +331,7 @@ public class callingFeedbackActivity extends AppCompatActivity {
                                     if (task.isSuccessful()) {
 
 
-                                        incrementPosition(choose_category[0], contact, pos, type);
+                                        incrementPosition(pos, type);
 
 
                                     } else {
@@ -335,7 +353,7 @@ public class callingFeedbackActivity extends AppCompatActivity {
         });
     }
 
-    private void incrementPosition(String status, String contact,String pos,String type) {
+    private void incrementPosition(String pos,String type) {
 
 
         int position = Integer.parseInt(pos);
@@ -343,10 +361,51 @@ public class callingFeedbackActivity extends AppCompatActivity {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.child(type).setValue(str);
 
+     getLimit();
 
-
-        Toast.makeText(callingFeedbackActivity.this, "Sucessfully Submitted", Toast.LENGTH_SHORT).show();
-        loadingBar.dismiss();
 
     }
+
+
+    private void getLimit() {
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Employee");
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                limit = snapshot.child(CurEmpIMEI).child("DailyLimit").getValue().toString();
+
+                decreaseLimit(limit);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void decreaseLimit(String limit) {
+        if(flag1 == 1)
+            return;
+        flag1 =1;
+        int i = Integer.parseInt(limit)-1;
+
+        String str= String.valueOf(i);
+        HashMap<String,Object> map = new HashMap<>();
+        map.put("DailyLimit",str);
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Employee");
+        databaseReference.child(CurEmpIMEI).updateChildren(map);
+
+
+      //  Toast.makeText(callingFeedbackActivity.this, "Sucessfully Submitted", Toast.LENGTH_SHORT).show();
+        Intent i1= new Intent(callingFeedbackActivity.this,EmployeeDashboardActivity.class);
+     //   i1.putExtra("IMEI",CurEmpIMEI);
+        startActivity(i1);
+        loadingBar.dismiss();
+
+
+    }
+
 }

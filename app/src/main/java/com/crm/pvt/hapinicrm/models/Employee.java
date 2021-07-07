@@ -4,15 +4,16 @@ public class Employee {
 
     
 
-    private String IMEI,Password,mail,Name,City,Phone,Image;
+    private String IMEI,Password,mail,Name,City,Phone,Image,Url;
 
 
     public Employee() {
 
     }
 
-    public Employee(String IMEI, String password, String mail, String name, String city, String phone, String image) {
+    public Employee(String IMEI, String password, String mail, String name, String city, String phone, String image,String url) {
         this.IMEI = IMEI;
+        Url = url;
         Password = password;
         this.mail = mail;
         Name = name;
@@ -32,6 +33,14 @@ public class Employee {
             Password = password;
             this.mail = mail;
         }*/
+
+    public String getUrl() {
+        return Url;
+    }
+
+    public void setUrl(String url) {
+        Url = url;
+    }
 
     public String getImage() {
         return Image;

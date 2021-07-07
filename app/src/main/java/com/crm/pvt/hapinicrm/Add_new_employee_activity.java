@@ -50,6 +50,8 @@ public class Add_new_employee_activity extends AppCompatActivity {
     private TextInputEditText pass;
     private TextInputEditText conf_pass;
     private ProgressDialog loadingBar;
+    Spinner spinner;
+    String type_of_emp;
     private EditText Empname,CityE,phoneE;
 
     Dialog dialog;

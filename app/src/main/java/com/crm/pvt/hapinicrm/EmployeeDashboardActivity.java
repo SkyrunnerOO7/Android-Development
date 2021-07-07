@@ -104,8 +104,8 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
                     case R.id.menu_home : //temp=new fragment_calling_feedback(IMEI_emp);
                         //getSupportFragmentManager().beginTransaction().replace(R.id.FrameConatiner,temp).commit();
 
-                        Intent intent1=new Intent(EmployeeDashboardActivity.this,callingFeedbackActivity.class);
-                        intent1.putExtra("imei",IMEI_emp);
+                        Intent intent1=new Intent(EmployeeDashboardActivity.this,callingActivity.class);
+                        intent1.putExtra("IMEI",IMEI_emp);
                         startActivity(intent1);
 
                         break;
@@ -117,8 +117,8 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
 //                        bundle.putString("IMEI", IMEI_emp);
 //                        temp.setArguments(bundle);
 //                        getSupportFragmentManager().beginTransaction().replace(R.id.FrameConatiner,temp).commit();
-                        Intent intent1=new Intent(EmployeeDashboardActivity.this,Emp_settings_Activity.class);
-                        startActivity(intent1);
+                        Intent intent11=new Intent(EmployeeDashboardActivity.this,Emp_settings_Activity.class);
+                        startActivity(intent11);
                         break;
                     case R.id.menu_support :
                         Intent intent=new Intent(EmployeeDashboardActivity.this,SupportActivity.class);

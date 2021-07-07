@@ -41,7 +41,7 @@ public class callingActivity extends AppCompatActivity {
     TextView phone;
     HashMap<String,String> PhoneNumberList;
     ArrayList<HashMap> PhoneList;
-
+    String[] limit = new String[1];
     String CUR_EMP_ID;
 
     ArrayList<Data> DataList;
@@ -62,7 +62,7 @@ public class callingActivity extends AppCompatActivity {
         city=findViewById(R.id.caller_city);
         phone=findViewById(R.id.caller_phone);
 
-
+        CUR_EMP_ID =  getIntent().getStringExtra("IMEI");
         calling_fragment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,6 +90,7 @@ public class callingActivity extends AppCompatActivity {
                 makePhoneCall();
 
 
+
             }
         });
 
@@ -105,8 +106,10 @@ public class callingActivity extends AppCompatActivity {
         }
         else{
             String dial = "tel:" + phoneNumber;
-            startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(dial)));
+            Intent intent =new Intent(Intent.ACTION_CALL, Uri.parse(dial));
+          ////  intent.putExtra("limit",limit[0]);
 
+            startActivity(intent);
         }
 
     }
@@ -133,42 +136,31 @@ public class callingActivity extends AppCompatActivity {
 
 
 
-    /*@Override
+    @Override
     public void onStart() {
         super.onStart();
 
-        getEMPID();
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Employee");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                limit[0] = snapshot.child(CUR_EMP_ID).child("DailyLimit").getValue().toString();
 
-//        final DatabaseReference RootRef;
-//        RootRef = FirebaseDatabase.getInstance().getReference();
-//
-//        RootRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                PhoneNumberList = new HashMap<>();
-//
-//                PhoneList = new ArrayList<>();
-//                for(DataSnapshot dataSnapshot: snapshot.child("NewData").child().getChildren()){
-//                    PhoneNumberList.clear();
-//                    PhoneNumberList.put("City",dataSnapshot.child("City").getValue().toString());
-//                    PhoneNumberList.put("Name",dataSnapshot.child("Name").getValue().toString());
-//                    PhoneNumberList.put("Number",dataSnapshot.child("Number").getValue().toString());
-//                    PhoneList.add(PhoneNumberList);
-//
-//                }
-//
-//                name.setText(PhoneList.get(0).get("Name").toString());
-//                city.setText(PhoneList.get(0).get("City").toString());
-//                phone.setText(PhoneList.get(0).get("Number").toString());
-//
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
+                if(Integer.parseInt(limit[0]) > 0)
+                    getEMPID();
+                else
+                    Toast.makeText(getApplicationContext(),"You have Reached You Daily Limit",Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
     }
 
     private void getEMPID() {
@@ -265,6 +257,6 @@ public class callingActivity extends AppCompatActivity {
         }
         else
             Toast.makeText(callingActivity.this,"There is no Data left for calling",Toast.LENGTH_SHORT).show();
-    }*/
+    }
 
 }

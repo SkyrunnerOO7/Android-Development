@@ -42,7 +42,7 @@ public class settings_Activity extends AppCompatActivity {
 
     private TextView  closeTextBtn;
 
-    private ImageView profileChangeTextBtn, closeTextBtn;
+    private ImageView profileChangeTextBtn;
 
     private TextView saveTextButton;
 
