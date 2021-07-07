@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -13,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -22,7 +20,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.crm.pvt.hapinicrm.models.DBhelper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -244,6 +241,7 @@ public class Add_new_employee_activity extends AppCompatActivity {
                     EmpDataMap.put("Phone",phone);
                     EmpDataMap.put("Type",type);
                     EmpDataMap.put("ImgUrl",url);
+                    EmpDataMap.put("DailyLimit","0");
 
 
                     RootRef.child("Employee").child(IMEI).updateChildren(EmpDataMap)

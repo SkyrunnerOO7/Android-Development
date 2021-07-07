@@ -56,6 +56,7 @@ import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.HashMap;
 import java.util.Map;
 //import com.squareup.picasso.Picasso;
 
@@ -679,6 +680,17 @@ public class ActiveUserActivity extends AppCompatActivity {
                     }
                 });
 
+                holder.add.setOnClickListener(view -> {
+//                    holder.Limit.setText(String.valueOf(Integer.parseInt(holder.Limit.getText().toString()+1)));
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Employee");
+                    HashMap<String,Object> map = new HashMap<>();
+                    map.put("DailyLimit",holder.Limit.getText().toString());
+                    databaseReference.child(model.getIMEI()).updateChildren(map);
+
+                    Toast.makeText(getApplicationContext(),"Limit Changed Successfully",Toast.LENGTH_SHORT).show();
+
+                });
+
 
 
             }
@@ -808,6 +820,14 @@ public class ActiveUserActivity extends AppCompatActivity {
                         });
                         builder.show();
                     }
+                });
+                holder.add.setOnClickListener(view -> {
+//                    holder.Limit.setText(String.valueOf(Integer.parseInt(holder.Limit.getText().toString()+1)));
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Employee");
+                    HashMap<String,Object> map = new HashMap<>();
+                    map.put("DailyLimit",holder.Limit.getText().toString());
+                    databaseReference.child(model.getIMEI()).updateChildren(map);
+                    Toast.makeText(getApplicationContext(),"Limit Changed Successfully",Toast.LENGTH_SHORT).show();
                 });
 
 
@@ -941,6 +961,15 @@ public class ActiveUserActivity extends AppCompatActivity {
                     }
                 });
 
+                holder.add.setOnClickListener(view -> {
+//                    holder.Limit.setText(String.valueOf(Integer.parseInt(holder.Limit.getText().toString()+1)));
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Employee");
+                    HashMap<String,Object> map = new HashMap<>();
+                    map.put("DailyLimit",holder.Limit.getText().toString());
+                    databaseReference.child(model.getIMEI()).updateChildren(map);
+                    Toast.makeText(getApplicationContext(),"Limit Changed Successfully",Toast.LENGTH_SHORT).show();
+                });
+
 
             }
 
@@ -1070,6 +1099,17 @@ public class ActiveUserActivity extends AppCompatActivity {
                         builder.show();
                     }
                 });
+
+                holder.add.setOnClickListener(view -> {
+//                    holder.Limit.setText(String.valueOf(Integer.parseInt(holder.Limit.getText().toString()+1)));
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Employee");
+                    HashMap<String,Object> map = new HashMap<>();
+                    map.put("DailyLimit",holder.Limit.getText().toString());
+                    databaseReference.child(model.getIMEI()).updateChildren(map);
+                    Toast.makeText(getApplicationContext(),"Limit Changed Successfully",Toast.LENGTH_SHORT).show();
+                });
+
+
 
 
             }
@@ -1301,6 +1341,8 @@ public class ActiveUserActivity extends AppCompatActivity {
         public TextView Username,Passcode,mailED,password,profile,city,phone;
         public Button delete,attE,download;
         public ImageView profileimg1;
+        public  EditText Limit;
+        public ImageButton add;
 
         public EmplistViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -1316,6 +1358,8 @@ public class ActiveUserActivity extends AppCompatActivity {
             profileimg1=itemView.findViewById(R.id.emp_profile);
             attE = itemView.findViewById(R.id.att_btnE);
             download=itemView.findViewById(R.id.download_btnE);
+            add = itemView.findViewById(R.id.Add);
+            Limit = itemView.findViewById(R.id.limit);
         }
 
 
