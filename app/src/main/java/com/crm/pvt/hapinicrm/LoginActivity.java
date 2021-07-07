@@ -146,6 +146,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+
+
+
                 loadingBar = new ProgressDialog(LoginActivity.this);
                 loadingBar.show();
                 loadingBar.setContentView(R.layout.progress_dialog);

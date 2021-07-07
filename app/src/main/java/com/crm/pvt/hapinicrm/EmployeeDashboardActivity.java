@@ -75,6 +75,7 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
         i.putExtra("IMEI",IMEI_emp);
         startActivity(i);
 
+
         timer = new Timer();
         startTimer();
 

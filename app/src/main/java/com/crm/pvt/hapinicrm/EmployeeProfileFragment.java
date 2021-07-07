@@ -113,6 +113,7 @@ public class EmployeeProfileFragment extends Fragment {
 
 
 
+
         root= FirebaseDatabase.getInstance().getReference();
         mStorageRef = FirebaseStorage.getInstance().getReference("Employee").child(IMEI_for_profile_pic);
         loadingBar = new ProgressDialog(getContext());
@@ -139,6 +140,7 @@ public class EmployeeProfileFragment extends Fragment {
         Ename.setText(prevalent.CurrentOnlineEmloyee.getName());
         Email.setText(prevalent.CurrentOnlineEmloyee.getMail());
         Ephone.setText(prevalent.CurrentOnlineEmloyee.getPhone());
+
 
 
         profileImg.setOnClickListener(new View.OnClickListener() {

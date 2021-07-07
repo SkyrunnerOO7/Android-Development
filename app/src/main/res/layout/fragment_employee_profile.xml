@@ -84,18 +84,13 @@
 
 
 
+
+
+
+
         <!--          Email            -->
 
 
-        <View
-            android:layout_width="300dp"
-            android:layout_height="1dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="10dp"
-            android:background="#DDDCDC"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emp_last_name" />
 
         <ImageView
             android:id="@+id/email_image"
@@ -249,19 +244,19 @@
             android:background="#DDDCDC"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/emp_phone" />
+
         <TextView
             android:id="@+id/save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="save Image"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="20sp"
+            app:layout_constraintHorizontal_bias="0.461"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/logout_layout"
-            android:layout_marginTop="20dp"
-            android:text="save Image"
-            android:textSize="20sp"
-            android:textColor="@color/primaryTextColor"/>
-
-
+            app:layout_constraintTop_toBottomOf="@id/logout_layout" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
