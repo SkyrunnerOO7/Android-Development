@@ -28,9 +28,6 @@
         <activity android:name=".callingFeedbackActivity" />
         <activity android:name=".callingActivity" />
         <activity android:name=".ViewUserDetailsPdf" />
-        <activity android:name=".Attendance_Activity" />
-        <activity android:name=".AddDocumentActivity" />
-        <activity android:name=".UserFeedbackShowActivity" />
         <activity android:name=".MasterProfileActivity" />
         <activity android:name=".ActiveUserActivity" />
         <activity android:name=".ActiveDataActivity" />
@@ -83,5 +80,7 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
+
+<!--    Kuldeep sahu-->
 
 </manifest>
