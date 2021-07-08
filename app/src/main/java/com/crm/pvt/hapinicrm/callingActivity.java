@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -30,7 +31,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class callingActivity extends AppCompatActivity {
 
@@ -43,7 +46,8 @@ public class callingActivity extends AppCompatActivity {
     ArrayList<HashMap> PhoneList;
     String[] limit = new String[1];
     String CUR_EMP_ID;
-
+    public static final String SHARED_PREFS1 = "sharedPrefsAttendan";
+    public static final String text = "text1";
     ArrayList<Data> DataList;
 
     /*public fragment_calling(String imei) {
@@ -138,6 +142,13 @@ public class callingActivity extends AppCompatActivity {
 
     @Override
     public void onStart() {
+
+
+        if(isFirstTime()) {
+            // Code to pop up attendance activicty
+            fragment_attendance fragment_attendance = new fragment_attendance(CUR_EMP_ID);
+            fragment_attendance.show(getSupportFragmentManager(), "MyFragment");
+        }
         super.onStart();
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Employee");
@@ -257,6 +268,26 @@ public class callingActivity extends AppCompatActivity {
         }
         else
             Toast.makeText(callingActivity.this,"There is no Data left for calling",Toast.LENGTH_SHORT).show();
+    }
+
+    private boolean isFirstTime() {
+
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS1,MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        String date1 = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+
+
+        if(sharedPreferences.getString(text,"2021-08-16").contentEquals(date1)){
+            return false;
+
+        }
+        else{
+
+            editor.putString(text,date1);
+            editor.apply();
+            return true;
+        }
+
     }
 
 }

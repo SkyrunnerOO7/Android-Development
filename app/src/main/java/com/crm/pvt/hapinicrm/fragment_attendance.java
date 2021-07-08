@@ -85,8 +85,10 @@ public class fragment_attendance extends DialogFragment {
             calendar = Calendar.getInstance();
             String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
             //DateFormat.getDateInstance(DateFormat.SHORT).format(calendar.getTime());
-            String  curTime = DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime());
-            list.add(0,currentDate);
+
+            String  curTime = DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime());;
+            list.add(0,currentDate+"  "+curTime);
+
 
             MarkAttendance(currentDate,curTime);
 //            Intent i = new Intent(getContext(),EmployeeDashboardActivity.class);

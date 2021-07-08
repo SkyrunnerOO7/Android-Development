@@ -48,8 +48,9 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
 
     Handler handler;
     Runnable r;
-    public static final String SHARED_PREFS = "sharedPrefs";
-    public static final String text = "text";
+    public static final String SHARED_PREFS = "sharedPrefsAttendance";
+    public static final String SHARED_PREFS1 = "sharedPrefsAttendance___";
+    public static final String text = "text1";
     public String IMEI_emp;
 
 
@@ -70,10 +71,10 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
         // to open home fragment Bydefault
         //getSupportFragmentManager().beginTransaction().replace(R.id.FrameConatiner,new fragment_calling(IMEI_emp)).commit();
         // To add timer
+
         Intent i =new Intent(EmployeeDashboardActivity.this,callingActivity.class);
         i.putExtra("IMEI",IMEI_emp);
         startActivity(i);
-
 
         timer = new Timer();
         startTimer();
@@ -218,6 +219,7 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
 //                fragment_calling fragment_calling = new fragment_calling(IMEI_emp);
 //               fragment_calling.show(getSupportFragmentManager(), "TAG");
 //            }
+
         super.onStart();
     }
     private void startTimer()
@@ -265,7 +267,7 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
 
     private boolean isFirstTime() {
 
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS1,MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         String date1 = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
 

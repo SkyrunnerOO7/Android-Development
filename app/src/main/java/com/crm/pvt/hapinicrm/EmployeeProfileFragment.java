@@ -257,6 +257,9 @@ public class EmployeeProfileFragment extends Fragment {
                 {
                     Picasso.get().load(img).into(profileImg);
                 }
+                else {
+                    Picasso.get().load(R.drawable.person_icon).into(profileImg);
+                }
             }
 
             @Override
