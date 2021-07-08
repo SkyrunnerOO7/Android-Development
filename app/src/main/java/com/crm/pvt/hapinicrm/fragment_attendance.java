@@ -83,9 +83,9 @@ public class fragment_attendance extends DialogFragment {
         mark_presence = view.findViewById(R.id.mark_attendance);
         mark_presence.setOnClickListener(view1 -> {
             calendar = Calendar.getInstance();
-            String currentDate = new SimpleDateFormat("", Locale.getDefault()).format(new Date());
+            String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
             //DateFormat.getDateInstance(DateFormat.SHORT).format(calendar.getTime());
-            String  curTime = DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime());;
+            String  curTime = DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime());
             list.add(0,currentDate);
 
             MarkAttendance(currentDate,curTime);
@@ -131,7 +131,7 @@ public class fragment_attendance extends DialogFragment {
         eRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(!(dataSnapshot.child("Attendance").child("IMEI").child("Date").exists())){
+                if(!(dataSnapshot.child("Attendance").child("IMEI").child(Date).exists())){
                     HashMap<String,Object> hashMap = new HashMap<>();
                     hashMap.put("IMEI",IMEI);
                     hashMap.put("Date",Date);
