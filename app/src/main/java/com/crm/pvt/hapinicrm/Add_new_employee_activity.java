@@ -241,7 +241,7 @@ public class Add_new_employee_activity extends AppCompatActivity {
                     EmpDataMap.put("Phone",phone);
                     EmpDataMap.put("Type",type);
                     EmpDataMap.put("ImgUrl",url);
-                    EmpDataMap.put("DailyLimit","0");
+                    EmpDataMap.put("DailyLimit","30");
 
 
                     RootRef.child("Employee").child(IMEI).updateChildren(EmpDataMap)
