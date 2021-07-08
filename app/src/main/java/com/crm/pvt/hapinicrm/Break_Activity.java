@@ -136,6 +136,7 @@ public class Break_Activity extends AppCompatActivity {
                                 if(task.isSuccessful()){
                                     Toast.makeText(Break_Activity.this, "Rest Time has Stopped..", Toast.LENGTH_SHORT).show();
                                     startActivity(new Intent(getApplicationContext(),Emp_settings_Activity.class));
+                                    finish();
                                 }
                             }
                         });

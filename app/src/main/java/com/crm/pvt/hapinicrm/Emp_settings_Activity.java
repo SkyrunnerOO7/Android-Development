@@ -130,6 +130,8 @@ public class Emp_settings_Activity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 DatabaseReference att = FirebaseDatabase.getInstance().getReference().child("Attendance");
                 Calendar calendar = Calendar.getInstance();
                 String logtime = DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime());
@@ -148,13 +150,13 @@ public class Emp_settings_Activity extends AppCompatActivity {
                                 try {
                                     d1 = format.parse(time);
                                 } catch (ParseException e) {
-                                    e.printStackTrace();
+                                    Toast.makeText(Emp_settings_Activity.this, "something went wrong please try again", Toast.LENGTH_SHORT).show();
                                 }
                                 Date d2 = null;
                                 try {
                                     d2 = format.parse(logtime);
                                 } catch (ParseException e) {
-                                    e.printStackTrace();
+                                    Toast.makeText(Emp_settings_Activity.this, "something went wrong please try again", Toast.LENGTH_SHORT).show();
                                 }
                                 long diff1 = d2.getTime()-d1.getTime();
                                 long hr = diff1/(1000*60*60);
