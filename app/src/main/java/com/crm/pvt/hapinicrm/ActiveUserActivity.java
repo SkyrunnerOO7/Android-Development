@@ -262,6 +262,7 @@ public class ActiveUserActivity extends AppCompatActivity {
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Admin");
 
+
                 Picasso.get().load(model.getImage()).into(holder.image);
                 holder.DownloadUser.setOnClickListener(new View.OnClickListener() {
                     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -596,6 +597,14 @@ public class ActiveUserActivity extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
+                holder.verifyemp.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i=new Intent(ActiveUserActivity.this,VerifyEmployee.class);
+                        i.putExtra("imei",model.getIMEI());
+                        startActivity(i);
+                    }
+                });
                 Picasso.get().load(model.getImage()).into(holder.profileimg1);
 
                 holder.download.setOnClickListener(new View.OnClickListener() {
@@ -739,6 +748,15 @@ public class ActiveUserActivity extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
+                holder.verifyemp.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i=new Intent(ActiveUserActivity.this,VerifyEmployee.class);
+                        i.putExtra("imei",model.getIMEI());
+                        startActivity(i);
+                    }
+                });
+
                 holder.download.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -876,6 +894,15 @@ public class ActiveUserActivity extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
+                holder.verifyemp.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i=new Intent(ActiveUserActivity.this,VerifyEmployee.class);
+                        i.putExtra("imei",model.getIMEI());
+                        startActivity(i);
+                    }
+                });
+
 
 
                 holder.download.setOnClickListener(new View.OnClickListener() {
@@ -1016,6 +1043,16 @@ public class ActiveUserActivity extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
+
+                holder.verifyemp.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i=new Intent(ActiveUserActivity.this,VerifyEmployee.class);
+                        i.putExtra("imei",model.getIMEI());
+                        startActivity(i);
+                    }
+                });
+
 
                 holder.download.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -1339,7 +1376,7 @@ public class ActiveUserActivity extends AppCompatActivity {
     public static class EmplistViewHolder extends RecyclerView.ViewHolder{
 
         public TextView Username,Passcode,mailED,password,profile,city,phone;
-        public Button delete,attE,download;
+        public Button delete,attE,download,verifyemp;
         public ImageView profileimg1;
         public  EditText Limit;
         public ImageButton add;
@@ -1360,6 +1397,7 @@ public class ActiveUserActivity extends AppCompatActivity {
             download=itemView.findViewById(R.id.download_btnE);
             add = itemView.findViewById(R.id.Add);
             Limit = itemView.findViewById(R.id.limit);
+            verifyemp=itemView.findViewById(R.id.verify_emp);
         }
 
 

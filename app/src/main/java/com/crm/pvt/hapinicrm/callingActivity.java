@@ -1,22 +1,31 @@
 package com.crm.pvt.hapinicrm;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.crm.pvt.hapinicrm.models.Data;
 import com.google.firebase.database.DataSnapshot;
@@ -25,6 +34,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.File;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -38,7 +48,7 @@ import java.util.Locale;
 public class callingActivity extends AppCompatActivity {
 
     private static final int REQUEST_CALL = 1;
-    ImageView calling_fragment;
+    ImageView calling_fragment,back;
     TextView name;
     TextView city;
     TextView phone;
@@ -54,17 +64,46 @@ public class callingActivity extends AppCompatActivity {
         CUR_EMP_ID = imei;
     }*/
 
+    /*@Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.share_menu,menu);
+        MenuItem item1=menu.findItem(R.id.shareBtn);
+
+        item1.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Intent i=new Intent(callingActivity.this,EmployeeDashboardActivity.class);
+                startActivity(i);
+
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
+    }
+*/
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calling);
-        //edittext = findViewById(R.id.editText);
-
         calling_fragment=findViewById(R.id.calling_fragment);
         name=findViewById(R.id.caller_name);
         city=findViewById(R.id.caller_city);
         phone=findViewById(R.id.caller_phone);
+        //back=findViewById(R.id.back_arrow_btn_caliing);
+        /*back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(callingActivity.this,EmployeeDashboardActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });*/
+        /*ActionBar actionBar = getSupportActionBar();
+        actionBar.setHomeAsUpIndicator(R.drawable.back_arrow_icon);
+        actionBar.setDisplayHomeAsUpEnabled(true);*/
 
         CUR_EMP_ID =  getIntent().getStringExtra("IMEI");
         calling_fragment.setOnClickListener(new View.OnClickListener() {
@@ -110,10 +149,51 @@ public class callingActivity extends AppCompatActivity {
         }
         else{
             String dial = "tel:" + phoneNumber;
-            Intent intent =new Intent(Intent.ACTION_CALL, Uri.parse(dial));
-          ////  intent.putExtra("limit",limit[0]);
+            if(phoneNumber.length()!=10)
+            {
+                Toast.makeText(this, "No data ", Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(callingActivity.this);
+                builder1.setMessage("No data Available for Calling ");
+                builder1.setCancelable(true);
 
-            startActivity(intent);
+                builder1.setPositiveButton(
+                        "Ok",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //dialog.cancel();
+                                AlertDialog.Builder builder1 = new AlertDialog.Builder(callingActivity.this);
+                                builder1.setMessage("Do you want to go to Employee Activity");
+                                builder1.setCancelable(true);
+
+                                builder1.setPositiveButton(
+                                        "Yes",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                dialog.cancel();
+                                                Intent i=new Intent(callingActivity.this,EmployeeDashboardActivity.class);
+                                                i.putExtra("IMEI",CUR_EMP_ID);
+                                                i.putExtra("stop","true");
+                                                startActivity(i);
+
+                                            }
+                                        });
+                                AlertDialog alert11 = builder1.create();
+                                alert11.show();
+
+                            }
+                        });
+                AlertDialog alert11 = builder1.create();
+                alert11.show();
+            }
+            else
+            {
+                Intent intent =new Intent(Intent.ACTION_CALL, Uri.parse(dial));
+                ////  intent.putExtra("limit",limit[0]);
+
+                startActivity(intent);
+            }
+
+
         }
 
     }
@@ -290,4 +370,16 @@ public class callingActivity extends AppCompatActivity {
 
     }
 
+    /*@Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Intent i=new Intent(callingActivity.this,EmployeeDashboardActivity.class);
+                startActivity(i);
+
+                this.finish();
+                //return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }*/
 }

@@ -131,16 +131,16 @@ public class AddDocumentActivity extends AppCompatActivity {
 
 
                 choose_category[0] = docSpinner.getSelectedItem().toString();
-                if(choose_category[0].contentEquals("Candidate")){
+                if(choose_category[0].contentEquals("candidate")){
                     type="Candidate";
                     check_spinner="true";
-                }else if(choose_category[0].contentEquals("Vendors")){
+                }else if(choose_category[0].contentEquals("vendors")){
                     type="Vendors";
                     check_spinner="true";
-                }else if(choose_category[0].contentEquals("CustomerB2B")){
+                }else if(choose_category[0].contentEquals("customerb2b")){
                     type="CustomerB2B";
                     check_spinner="true";
-                }else if(choose_category[0].contentEquals("CustomerB2C")){
+                }else if(choose_category[0].contentEquals("customerb2c")){
                     type="CustomerB2C";
                     check_spinner="true";
                 }

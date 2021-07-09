@@ -4,7 +4,7 @@ public class Employee {
 
     
 
-    private String IMEI,Password,mail,Name,City,Phone,Image,Url;
+    private String IMEI,Password,mail,Name,City,Phone,Image,Url,DOB;
 
 
     public Employee() {
@@ -33,6 +33,14 @@ public class Employee {
             Password = password;
             this.mail = mail;
         }*/
+
+    public String getDOB() {
+        return DOB;
+    }
+
+    public void setDOB(String DOB) {
+        this.DOB = DOB;
+    }
 
     public String getUrl() {
         return Url;

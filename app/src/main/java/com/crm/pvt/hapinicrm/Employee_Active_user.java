@@ -196,6 +196,15 @@ public class Employee_Active_user extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
+                holder.verifyemp.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i=new Intent(Employee_Active_user.this,VerifyEmployee.class);
+                        i.putExtra("imei",model.getIMEI());
+                        startActivity(i);
+                    }
+                });
+
                 final String[] date = new String[1];
 
 
@@ -347,6 +356,15 @@ public class Employee_Active_user extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
+                holder.verifyemp.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i=new Intent(Employee_Active_user.this,VerifyEmployee.class);
+                        i.putExtra("imei",model.getIMEI());
+                        startActivity(i);
+                    }
+                });
+
 
                 holder.download.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -492,6 +510,15 @@ public class Employee_Active_user extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
+                holder.verifyemp.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i=new Intent(Employee_Active_user.this,VerifyEmployee.class);
+                        i.putExtra("imei",model.getIMEI());
+                        startActivity(i);
+                    }
+                });
+
 
                 holder.download.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -636,6 +663,15 @@ public class Employee_Active_user extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
+                holder.verifyemp.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i=new Intent(Employee_Active_user.this,VerifyEmployee.class);
+                        i.putExtra("imei",model.getIMEI());
+                        startActivity(i);
+                    }
+                });
+
 
                 holder.download.setOnClickListener(new View.OnClickListener() {
                     @Override

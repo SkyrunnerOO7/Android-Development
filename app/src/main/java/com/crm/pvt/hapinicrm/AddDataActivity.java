@@ -208,6 +208,7 @@ public class AddDataActivity extends AppCompatActivity {
 
                     service.setHint("Not Required for Candidate");
                     subService.setHint("Not Required for Candidate");
+
                     subService.setEnabled(false);
                     subService.setFocusable(false);
 

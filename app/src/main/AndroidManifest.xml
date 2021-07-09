@@ -18,8 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HapiniCRM">
-        <activity android:name=".emp_edit_profile">
-        </activity>
+        <activity android:name=".VerifyEmployee"></activity>
+        <activity android:name=".emp_edit_profile"></activity>
         <activity android:name=".Break_Activity" />
         <activity android:name=".Emp_settings_Activity" />
         <activity android:name=".Attendance_Activity" />
@@ -66,8 +66,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-
         </activity>
 
         <receiver android:name=".CallReceiver">
@@ -80,7 +78,5 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-
-<!--    Kuldeep sahu-->
 
 </manifest>

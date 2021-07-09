@@ -51,7 +51,7 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
     public static final String SHARED_PREFS = "sharedPrefsAttendance";
     public static final String SHARED_PREFS1 = "sharedPrefsAttendance___";
     public static final String text = "text1";
-    public String IMEI_emp;
+    public String IMEI_emp,check;
 
 
     @Override
@@ -59,6 +59,7 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_employee_dashboard);
 
+        check="false";
         timerText = (TextView) findViewById(R.id.time_employee_dashboard);
 
 
@@ -66,15 +67,20 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         IMEI_emp = intent.getStringExtra("IMEI");
+        check = intent.getStringExtra("stop");
 
 
         // to open home fragment Bydefault
         //getSupportFragmentManager().beginTransaction().replace(R.id.FrameConatiner,new fragment_calling(IMEI_emp)).commit();
         // To add timer
 
-        Intent i =new Intent(EmployeeDashboardActivity.this,callingActivity.class);
-        i.putExtra("IMEI",IMEI_emp);
-        startActivity(i);
+        if(check.equals("false"))
+        {
+            Intent i =new Intent(EmployeeDashboardActivity.this,callingActivity.class);
+            i.putExtra("IMEI",IMEI_emp);
+            startActivity(i);
+
+        }
 
         timer = new Timer();
         startTimer();
@@ -113,7 +119,7 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
                     case R.id.menu_feedback: temp=new fragment_feedback();
                         getSupportFragmentManager().beginTransaction().replace(R.id.FrameConatiner,temp).commit();
                         break;
-                    case R.id.menu_profile: temp=new EmployeeProfileFragment();
+                    case R.id.menu_profile: //temp=new EmployeeProfileFragment();
 //                        Bundle bundle = new Bundle();
 //                        bundle.putString("IMEI", IMEI_emp);
 //                        temp.setArguments(bundle);
