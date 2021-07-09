@@ -1,12 +1,15 @@
 package com.crm.pvt.hapinicrm;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
+import android.view.MenuItem;
 import android.view.View;
 
 import android.view.ViewGroup;
@@ -58,6 +61,7 @@ public class Add_new_employee_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_employee);
+
 
         // CALL getInternetStatus() function to check for internet and display error dialog
         if(new InternetDialog(getApplicationContext()).getInternetStatus()){
@@ -144,51 +148,54 @@ public class Add_new_employee_activity extends AppCompatActivity {
         if(type_of_emp.contentEquals("Select Employee Type")){
             ((TextView)spinner.getSelectedView()).setError("Choose Valid Type");
         }
-        else if(password.isEmpty()){
-            pass.setError("passcode can't be empty");
+        else if(IMEI.isEmpty()){
+            build_number.setError("Feild can't be empty");
         }
-        else if(empname.isEmpty()){
-            Empname.setError("Name can't be empty");
+        else if(IMEI.length() != 4){
+
+            build_number.setError("Number should be of 4 digits");
+
         }
         else if(mail.isEmpty()){
             email.setError("Feild can't be empty");
         }
-        else if(repassword.isEmpty()){
-            conf_pass.setError("Field can't be Empty");
+        else if (!Patterns.EMAIL_ADDRESS.matcher(mail).matches()) {
+            email.setError("Enter a valid email address");
+            email.requestFocus();
         }
-        else if(IMEI.isEmpty()){
-            build_number.setError("Feild can't be empty");
+        else if(empname.isEmpty()){
+            Empname.setError("Name can't be empty");
         }
-        else if(cityE.isEmpty()){
-            CityE.setError("Feild can't be empty");
-        }
-        else if(PhoneE.isEmpty()){
-            phoneE.setError("Feild can't be empty");
-        }
-
-        else if(!(PhoneE.length()==10)){
-            phoneE.setError("Enter valid number");
-        }
-
         else if(!empname.matches("[a-zA-Z ]+"))
         {
             Empname.requestFocus();
             Empname.setError("Enter valid name");
         }
-
+        else if(cityE.isEmpty()){
+            CityE.setError("Feild can't be empty");
+        }
         else if(!cityE.matches("[a-zA-Z ]+"))
         {
             CityE.requestFocus();
             CityE.setError("Enter valid name");
         }
-        else if(IMEI.length() != 15){
-
-            build_number.setError("Number should be of 15 digits");
-
+        else if(!(PhoneE.length()==10)){
+            phoneE.setError("Enter valid number");
         }
-        else if (!Patterns.EMAIL_ADDRESS.matcher(mail).matches()) {
-            email.setError("Enter a valid email address");
-            email.requestFocus();
+
+        else if(PhoneE.isEmpty()){
+            phoneE.setError("Feild can't be empty");
+        }
+        else if(password.isEmpty()){
+            pass.setError("passcode can't be empty");
+        }
+        else if (!validatePass(password))
+        {
+            Toast.makeText(this, "Enter Valid password", Toast.LENGTH_SHORT).show();
+        }
+
+        else if(repassword.isEmpty()){
+            conf_pass.setError("Field can't be Empty");
         }
         else if(!password.equals(repassword))
         {
@@ -196,16 +203,14 @@ public class Add_new_employee_activity extends AppCompatActivity {
             conf_pass.setError("password and Confrim password should be same");
 
         }
+
         else if(!checkBox.isChecked())
         {
             checkBox.setError("Please check the box");
 
         }
 
-        else if (!validatePass(password))
-        {
-            Toast.makeText(this, "Enter Valid password", Toast.LENGTH_SHORT).show();
-        }
+
 
         else{
            
@@ -361,4 +366,5 @@ public class Add_new_employee_activity extends AppCompatActivity {
         }
         return true;
     }
+
 }

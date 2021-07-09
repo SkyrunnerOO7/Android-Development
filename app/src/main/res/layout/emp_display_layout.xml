@@ -183,12 +183,15 @@
                 android:textColor="#FFFFFF"
                 android:textSize="15sp"
                 android:textStyle="bold" />
+
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/download_btnE"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="4dp"
+                android:id="@+id/Addlimit"
                 >
 
                 <EditText
@@ -205,9 +208,16 @@
                     android:background="@drawable/textbox_round"
                     android:src="@drawable/adddata_icon"/>
             </LinearLayout>
-
-
-
+            <Button
+                android:id="@+id/verify_emp"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Addlimit"
+                android:layout_marginTop="8dp"
+                android:layout_centerInParent="true"
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:text="Verify Employee"/>
 
 
         </RelativeLayout>

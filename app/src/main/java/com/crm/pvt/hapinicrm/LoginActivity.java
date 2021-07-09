@@ -174,11 +174,15 @@ public class LoginActivity extends AppCompatActivity {
                 // For Admin
                 if (choose_category[0].contentEquals("Admin") && LoginCheckBox.isChecked()){
                     if(TextUtils.isEmpty(Email)){
-                        Toast.makeText(getApplicationContext(), "Please Enter Your passcode...", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), "Please Enter Your passcode...", Toast.LENGTH_SHORT).show();
+                        LoginEmail.setError("Please Enter Your passcode");
+                        LoginEmail.setFocusable(true);
                         loadingBar.dismiss();
                     }
                     else if(TextUtils.isEmpty(Password)){
-                        Toast.makeText(getApplicationContext(), "Please Enter a Password...", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), "Please Enter a Password...", Toast.LENGTH_SHORT).show();
+                        LoginPassword.setError("Please Enter a Password");
+                        LoginPassword.setFocusable(true);
                         loadingBar.dismiss();
                     }else{
                         loadingBar.setTitle("Login Account");
@@ -194,11 +198,15 @@ public class LoginActivity extends AppCompatActivity {
 
                if (choose_category[0].contentEquals("Employee") && LoginCheckBox.isChecked()) {
                      if(TextUtils.isEmpty(Email)){
-                       Toast.makeText(getApplicationContext(), "Please Enter Your IMEI number...", Toast.LENGTH_SHORT).show();
+                         LoginEmail.setError("Please Enter Your IMEI number");
+                         LoginEmail.setFocusable(true);
+                       //Toast.makeText(getApplicationContext(), "Please Enter Your IMEI number...", Toast.LENGTH_SHORT).show();
                          loadingBar.dismiss();
                    }
                    else if(TextUtils.isEmpty(Password)){
-                       Toast.makeText(getApplicationContext(), "Please Enter a Password...", Toast.LENGTH_SHORT).show();
+                         LoginPassword.setError("Please Enter a Password");
+                         LoginPassword.setFocusable(true);
+                       //Toast.makeText(getApplicationContext(), "Please Enter a Password...", Toast.LENGTH_SHORT).show();
                          loadingBar.dismiss();
                    }else{
                        loadingBar.setTitle("Login Account");
@@ -291,7 +299,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Invalid Credentials..PLease Try again with another Phone Number", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
                     errorHeading.setText("Invalid Credentials");
-                    errorText.setText("PLease Try again with another Phone Number");
+                    errorText.setText("PLease Try again with right Credentials");
                     dialog.show();
 
 
@@ -366,6 +374,7 @@ public class LoginActivity extends AppCompatActivity {
                                 setIMEI(IMEI);
                                 Intent intent = new Intent(getApplicationContext(),EmployeeDashboardActivity.class);
                                 intent.putExtra("IMEI",IMEI);
+                                intent.putExtra("stop","false");
                                 prevalent.CurrentOnlineEmloyee = EmployeeData;
                                 startActivity(intent);
                                 finish();
@@ -382,7 +391,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Invalid Credentials..PLease Try again with another Phone Number", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
                     errorHeading.setText("Invalid Credentials");
-                    errorText.setText("PLease Try again with another Phone Number");
+                    errorText.setText("PLease Try again with right Credentials");
                     dialog.show();
 
 

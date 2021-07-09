@@ -64,7 +64,7 @@ public class callingFeedbackActivity extends AppCompatActivity {
             return;
         }
         Toast.makeText(callingFeedbackActivity.this,CurEmpIMEI,Toast.LENGTH_SHORT).show();
-        Toast.makeText(callingFeedbackActivity.this,limit,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(callingFeedbackActivity.this,limit,Toast.LENGTH_SHORT).show();
         spinner_calling_feedback.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -339,8 +339,16 @@ public class callingFeedbackActivity extends AppCompatActivity {
                                 }
                             });
 
-                } else
+                }
+                else{
                     Toast.makeText(callingFeedbackActivity.this, "Data Already Exists with this contact", Toast.LENGTH_SHORT).show();
+                    loadingBar.dismiss();
+                    Intent i=new Intent(callingFeedbackActivity.this,callingActivity.class);
+                    startActivity(i);
+
+                }
+
+
             }
 
 
@@ -405,5 +413,6 @@ public class callingFeedbackActivity extends AppCompatActivity {
 
 
     }
+
 
 }
