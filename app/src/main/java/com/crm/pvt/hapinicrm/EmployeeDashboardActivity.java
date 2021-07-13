@@ -79,7 +79,11 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
             Intent i =new Intent(EmployeeDashboardActivity.this,callingActivity.class);
             i.putExtra("IMEI",IMEI_emp);
             startActivity(i);
+            finish();
 
+        }
+        else {
+            getSupportFragmentManager().beginTransaction().replace(R.id.FrameConatiner,new fragment_feedback()).commit();
         }
 
         timer = new Timer();
