@@ -23,6 +23,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -48,10 +49,11 @@ import java.util.Locale;
 public class callingActivity extends AppCompatActivity {
 
     private static final int REQUEST_CALL = 1;
-    ImageView calling_fragment,back;
+    ImageView calling_fragment;
     TextView name;
     TextView city;
     TextView phone;
+    LinearLayout back;
     HashMap<String,String> PhoneNumberList;
     ArrayList<HashMap> PhoneList;
     String[] limit = new String[1];
@@ -92,6 +94,7 @@ public class callingActivity extends AppCompatActivity {
         name=findViewById(R.id.caller_name);
         city=findViewById(R.id.caller_city);
         phone=findViewById(R.id.caller_phone);
+
         //back=findViewById(R.id.back_arrow_btn_caliing);
         /*back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,6 +109,13 @@ public class callingActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);*/
 
         CUR_EMP_ID =  getIntent().getStringExtra("IMEI");
+        back = findViewById(R.id.back_button);
+        back.setOnClickListener(view -> {
+            Intent intent = new Intent(callingActivity.this,EmployeeDashboardActivity.class);
+            intent.putExtra("IMEI",CUR_EMP_ID);
+            intent.putExtra("stop","true");
+            startActivity(intent);
+        });
         calling_fragment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

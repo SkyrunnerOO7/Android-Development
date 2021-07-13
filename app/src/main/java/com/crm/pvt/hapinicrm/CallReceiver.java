@@ -18,7 +18,7 @@ public class CallReceiver extends BroadcastReceiver {
 
             String state=intent.getStringExtra(TelephonyManager.EXTRA_STATE);
 
-
+            int flag  =0;
             if(state.equalsIgnoreCase(TelephonyManager.EXTRA_STATE_OFFHOOK)){
                 showToast(context,"Call started...");
             }
@@ -28,11 +28,13 @@ public class CallReceiver extends BroadcastReceiver {
 
                 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                i.putExtra("message", "message.getMessageBody()");
+               if(flag == 0)
                 context.startActivity(i);
 
             }
             if(state.equalsIgnoreCase(TelephonyManager.EXTRA_STATE_RINGING)){
                 showToast(context,"Incoming call...");
+                flag = 1;
 
             }
         }

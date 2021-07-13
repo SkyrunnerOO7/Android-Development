@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
+
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,12 +36,12 @@
                 />
 
             <TextView
-                android:id="@+id/skillsADC"
-                android:layout_width="160dp"
+                android:id="@+id/organizationADC"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:text="Skills "
+                android:text="Organization "
+                android:layout_below="@+id/AreaTextADC"
+                android:layout_marginTop="5dp"
                 android:textColor="#000000"
                 android:textAlignment="viewEnd"
                 android:gravity="end"
@@ -65,10 +66,8 @@
 
             <TextView
                 android:id="@+id/passwordEDC"
-                android:layout_width="160dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
                 android:text="password "
                 android:layout_marginTop="5dp"
                 android:textColor="#000000"
@@ -76,7 +75,7 @@
                 android:gravity="end"
                 android:textSize="15sp"
                 android:layout_marginLeft="2dp"
-                android:layout_below="@id/skillsADC"
+                android:layout_below="@id/organizationADC"
                 android:textStyle="bold"
                 />
 
@@ -96,10 +95,8 @@
 
             <TextView
                 android:id="@+id/ExpADC"
-                android:layout_width="160dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
                 android:text="Experience "
                 android:layout_marginTop="5dp"
                 android:textColor="#000000"
@@ -112,10 +109,10 @@
                 />
 
             <TextView
-                android:id="@+id/QualificationTextADC"
+                android:id="@+id/AreaTextADC"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
-                android:text="Qualification "
+                android:text="Area "
                 android:textColor="#000000"
                 android:textSize="15sp"
                 android:layout_marginLeft="2dp"
@@ -127,10 +124,8 @@
 
             <TextView
                 android:id="@+id/PhoneTextC"
-                android:layout_width="160dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
                 android:text="Phone "
                 android:layout_marginTop="5dp"
                 android:textColor="#000000"
@@ -149,7 +144,7 @@
                 android:layout_width="26dp"
                 android:layout_height="25dp"
                 android:layout_below="@id/PhoneTextC"
-                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginLeft="2dp"
                 android:layout_marginTop="10dp"

@@ -47,7 +47,7 @@ public class Emp_settings_Activity extends AppCompatActivity {
     private CircleImageView profileImageView;
     private TextView fullNameEditText, passcodeText, emailText,edit;
     private ImageView profileChangeTextBtn;
-    private TextView saveTextButton,logout;
+    private ImageView logout;
     private Button rest;
     public TimerTask timerTask;
     public Timer timer;
@@ -67,7 +67,7 @@ public class Emp_settings_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emp_settings);
-
+        getSupportActionBar().hide();
         storageProfilePrictureRef = FirebaseStorage.getInstance().getReference().child("Employee pictures");
 
         profileImageView = (CircleImageView) findViewById(R.id.SEimage);
@@ -75,13 +75,13 @@ public class Emp_settings_Activity extends AppCompatActivity {
             Picasso.get().load(prevalent.CurrentOnlineEmloyee.getImage()).placeholder(R.drawable.admin_profile_icon1).into(profileImageView);
         }
         fullNameEditText =  findViewById(R.id.SEName);
-        fullNameEditText.setText("Name:  "+prevalent.CurrentOnlineEmloyee.getName());
+        fullNameEditText.setText("Name  :  "+prevalent.CurrentOnlineEmloyee.getName());
         passcodeText =  findViewById(R.id.SEIMEI);
-        passcodeText.setText("passcode:  "+ prevalent.CurrentOnlineEmloyee.getIMEI());
+        passcodeText.setText("IMEI  :  "+ prevalent.CurrentOnlineEmloyee.getIMEI());
         emailText = findViewById(R.id.SEemail);
-        emailText.setText("Email:  " + prevalent.CurrentOnlineEmloyee.getMail());
-        profileChangeTextBtn = findViewById(R.id.SEchange);
-        saveTextButton =  findViewById(R.id.SEsave);
+        emailText.setText("Email  :  " + prevalent.CurrentOnlineEmloyee.getMail());
+        profileChangeTextBtn = findViewById(R.id.SEimage);
+
         logout = findViewById(R.id.SElogout);
         edit=findViewById(R.id.edit_emp);
 
@@ -105,17 +105,7 @@ public class Emp_settings_Activity extends AppCompatActivity {
 
 
 
-        saveTextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(checker.equals("clicked")){
-                    userInfosaved();
-                }else{
-//                    updateonlyUserinfo();
-                }
 
-            }
-        });
         profileChangeTextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -123,6 +113,8 @@ public class Emp_settings_Activity extends AppCompatActivity {
                 CropImage.activity(imageUri).
                         setAspectRatio(1,1).
                         start(Emp_settings_Activity.this);
+
+
 
             }
         });
@@ -270,6 +262,7 @@ public class Emp_settings_Activity extends AppCompatActivity {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             imageUri = result.getUri();
             profileImageView.setImageURI(imageUri);
+            userInfosaved();
 
         }else{
             Toast.makeText(this, "Error try again", Toast.LENGTH_SHORT).show();

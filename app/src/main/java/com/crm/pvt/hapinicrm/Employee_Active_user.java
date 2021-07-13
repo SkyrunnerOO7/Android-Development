@@ -196,6 +196,15 @@ public class Employee_Active_user extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
+                holder.area.setText("Area : "+model.getArea());
+
+                if(model.getVerified().equals("true"))
+                {
+                    holder.verified.setVisibility(View.VISIBLE);
+                }
+
+
+                //Toast.makeText(Employee_Active_user.this, model.getArea(), Toast.LENGTH_SHORT).show();
                 holder.verifyemp.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -212,45 +221,8 @@ public class Employee_Active_user extends AppCompatActivity {
                     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(Employee_Active_user.this, "Downloaded", Toast.LENGTH_SHORT).show();
-                        DatabaseReference ref;
-                        ref=FirebaseDatabase.getInstance().getReference().child("Attendance").child(model.getIMEI());
-                        ref.addChildEventListener(new ChildEventListener() {
-                            // Retrieve new posts as they are added to Firebase
-                            @Override
-                            public void onChildAdded(DataSnapshot snapshot, String previousChildKey) {
-
-                                String date,time;
-                                Map<String, Object> newPost = (Map<String, Object>) snapshot.getValue();
-
-
-                                date=newPost.get("Date").toString();
-                                time=newPost.get("Time").toString();
-                                createEmployeePdf(model.getName(),model.getIMEI(),model.getPassword(),model.getMail(),model.getCity(),model.getPhone(),model.getUrl(),date,time);
-
-                            }
-
-                            @Override
-                            public void onChildChanged(DataSnapshot snapshot, String previousChildName) {
-
-                            }
-
-                            @Override
-                            public void onChildRemoved(DataSnapshot snapshot) {
-
-                            }
-
-                            @Override
-                            public void onChildMoved(DataSnapshot snapshot, String previousChildName) {
-
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError error) {
-
-                            }
-
-                        });
+                        //Toast.makeText(Employee_Active_user.this, "Downloaded", Toast.LENGTH_SHORT).show();
+                        createEmployeePdf(model.getName(),model.getIMEI(),model.getPassword(),model.getMail(),model.getCity(),model.getPhone(),model.getUrl());
 
 
 
@@ -298,12 +270,19 @@ public class Employee_Active_user extends AppCompatActivity {
                 });
 
                 holder.add.setOnClickListener(view -> {
-//                    holder.Limit.setText(String.valueOf(Integer.parseInt(holder.Limit.getText().toString()+1)));
-                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Employee");
-                    HashMap<String,Object> map = new HashMap<>();
-                    map.put("DailyLimit",holder.Limit.getText().toString());
-                    databaseReference.child(model.getIMEI()).updateChildren(map);
-                    Toast.makeText(getApplicationContext(),"Limit Changed Successfully",Toast.LENGTH_SHORT).show();
+                    if(holder.Limit.getText().toString().isEmpty())
+                    {
+                        Toast.makeText(Employee_Active_user.this, "Please enter Limit", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        //holder.Limit.setText(String.valueOf(Integer.parseInt(holder.Limit.getText().toString()+1)));
+                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Employee");
+                        HashMap<String,Object> map = new HashMap<>();
+                        map.put("DailyLimit",holder.Limit.getText().toString());
+                        databaseReference.child(model.getIMEI()).updateChildren(map);
+                        Toast.makeText(getApplicationContext(),"Limit Changed Successfully",Toast.LENGTH_SHORT).show();
+                    }
+
                 });
 
 
@@ -356,6 +335,12 @@ public class Employee_Active_user extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
+                holder.area.setText("Area : "+model.getArea());
+
+                if(model.getVerified().equals("true"))
+                {
+                    holder.verified.setVisibility(View.VISIBLE);
+                }
                 holder.verifyemp.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -370,8 +355,9 @@ public class Employee_Active_user extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
 
-                        Toast.makeText(Employee_Active_user.this, "Downloaded", Toast.LENGTH_SHORT).show();
-                        DatabaseReference ref;
+                        //Toast.makeText(Employee_Active_user.this, "Downloaded", Toast.LENGTH_SHORT).show();
+                        createEmployeePdf(model.getName(),model.getIMEI(),model.getPassword(),model.getMail(),model.getCity(),model.getPhone(),model.getUrl());
+                        /*DatabaseReference ref;
                         ref=FirebaseDatabase.getInstance().getReference().child("Attendance").child(model.getIMEI());
                         ref.addChildEventListener(new ChildEventListener() {
                             // Retrieve new posts as they are added to Firebase
@@ -408,7 +394,7 @@ public class Employee_Active_user extends AppCompatActivity {
 
                             }
 
-                        });
+                        });*/
 
                     }
                 });
@@ -482,6 +468,7 @@ public class Employee_Active_user extends AppCompatActivity {
     }
 
     public void EmployeeFirebase1() {
+        Query query = empref.orderByChild("Name");
         empref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull  DataSnapshot snapshot) {
@@ -496,13 +483,14 @@ public class Employee_Active_user extends AppCompatActivity {
         });
         FirebaseRecyclerOptions<Employee> empoptions =
                 new FirebaseRecyclerOptions.Builder<Employee>()
-                        .setQuery(query1, Employee.class)
+                        .setQuery(query, Employee.class)
                         .build();
 
         FirebaseRecyclerAdapter<Employee, ActiveUserActivity.EmplistViewHolder> empadapter = new FirebaseRecyclerAdapter<Employee, ActiveUserActivity.EmplistViewHolder>(empoptions) {
             @Override
             protected void onBindViewHolder(@NonNull ActiveUserActivity.EmplistViewHolder holder, int position, @NonNull Employee model) {
 
+                //Toast.makeText(Employee_Active_user.this, model.getName(), Toast.LENGTH_SHORT).show();
                 holder.Username.setText("Name : "+model.getName());
                 holder.Passcode.setText("IMEI : "+model.getIMEI());
                 holder.password.setText("password : "+model.getPassword());
@@ -510,6 +498,12 @@ public class Employee_Active_user extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
+                holder.area.setText("Area : "+model.getArea());
+
+                if(model.getVerified().equals("true"))
+                {
+                    holder.verified.setVisibility(View.VISIBLE);
+                }
                 holder.verifyemp.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -523,46 +517,8 @@ public class Employee_Active_user extends AppCompatActivity {
                 holder.download.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(Employee_Active_user.this, "Downloaded", Toast.LENGTH_SHORT).show();
-                        DatabaseReference ref;
-                        ref=FirebaseDatabase.getInstance().getReference().child("Attendance").child(model.getIMEI());
-                        ref.addChildEventListener(new ChildEventListener() {
-                            // Retrieve new posts as they are added to Firebase
-                            @Override
-                            public void onChildAdded(DataSnapshot snapshot, String previousChildKey) {
-
-                                String date,time;
-                                Map<String, Object> newPost = (Map<String, Object>) snapshot.getValue();
-
-
-                                date=newPost.get("Date").toString();
-                                time=newPost.get("Time").toString();
-                                createEmployeePdf(model.getName(),model.getIMEI(),model.getPassword(),model.getMail(),model.getCity(),model.getPhone(),model.getUrl(),date,time);
-
-                            }
-
-                            @Override
-                            public void onChildChanged(DataSnapshot snapshot, String previousChildName) {
-
-                            }
-
-                            @Override
-                            public void onChildRemoved(DataSnapshot snapshot) {
-
-                            }
-
-                            @Override
-                            public void onChildMoved(DataSnapshot snapshot, String previousChildName) {
-
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError error) {
-
-                            }
-
-                        });
-
+                        //Toast.makeText(Employee_Active_user.this, "Downloaded", Toast.LENGTH_SHORT).show();
+                        createEmployeePdf(model.getName(),model.getIMEI(),model.getPassword(),model.getMail(),model.getCity(),model.getPhone(),model.getUrl());
                     }
                 });
 
@@ -663,6 +619,12 @@ public class Employee_Active_user extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
+                holder.area.setText("Area : "+model.getArea());
+
+                if(model.getVerified().equals("true"))
+                {
+                    holder.verified.setVisibility(View.VISIBLE);
+                }
                 holder.verifyemp.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -676,46 +638,7 @@ public class Employee_Active_user extends AppCompatActivity {
                 holder.download.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(Employee_Active_user.this, "Downloaded", Toast.LENGTH_SHORT).show();
-                        DatabaseReference ref;
-                        ref=FirebaseDatabase.getInstance().getReference().child("Attendance").child(model.getIMEI());
-                        ref.addChildEventListener(new ChildEventListener() {
-                            // Retrieve new posts as they are added to Firebase
-                            @Override
-                            public void onChildAdded(DataSnapshot snapshot, String previousChildKey) {
-
-                                String date,time;
-                                Map<String, Object> newPost = (Map<String, Object>) snapshot.getValue();
-
-
-                                date=newPost.get("Date").toString();
-                                time=newPost.get("Time").toString();
-                                createEmployeePdf(model.getName(),model.getIMEI(),model.getPassword(),model.getMail(),model.getCity(),model.getPhone(),model.getUrl(),date,time);
-
-                            }
-
-                            @Override
-                            public void onChildChanged(DataSnapshot snapshot, String previousChildName) {
-
-                            }
-
-                            @Override
-                            public void onChildRemoved(DataSnapshot snapshot) {
-
-                            }
-
-                            @Override
-                            public void onChildMoved(DataSnapshot snapshot, String previousChildName) {
-
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError error) {
-
-                            }
-
-                        });
-
+                        createEmployeePdf(model.getName(),model.getIMEI(),model.getPassword(),model.getMail(),model.getCity(),model.getPhone(),model.getUrl());
                     }
                 });
 
@@ -790,7 +713,7 @@ public class Employee_Active_user extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
 
-    public void createEmployeePdf(String name,String imei,String password,String mail,String city,String phone,String url1,String date,String time)
+    public void createEmployeePdf(String name,String imei,String password,String mail,String city,String phone,String url1)
     {
 
         //bmp= BitmapFactory.decodeResource(getResources(), admin_profile_icon1);
@@ -801,18 +724,73 @@ public class Employee_Active_user extends AppCompatActivity {
         pdf="/"+imei+".pdf";
         PdfDocument myPdfDocument = new PdfDocument();
         PdfDocument.PageInfo myPageInfo = new PdfDocument.PageInfo.Builder(800,800,1).create();
+        PdfDocument.PageInfo myPageInfo2 = new PdfDocument.PageInfo.Builder(800,800,2).create();
         PdfDocument.Page myPage = myPdfDocument.startPage(myPageInfo);
         Canvas canvas=myPage.getCanvas();
         Paint titlePaint1=new Paint();
-
-
-
-
 
         //titlePaint1.setTextColor(Color.parseColor("#006400"));
 
         titlePaint1.setTextAlign(Paint.Align.CENTER);
         titlePaint1.setTextSize(28);
+
+
+
+
+        /*DatabaseReference ref;
+        ref=FirebaseDatabase.getInstance().getReference().child("Attendance").child(imei);
+        ref.addChildEventListener(new ChildEventListener() {
+            // Retrieve new posts as they are added to Firebase
+            @Override
+            public void onChildAdded(DataSnapshot snapshot, String previousChildKey) {
+
+                String date,time;
+                Map<String, Object> newPost = (Map<String, Object>) snapshot.getValue();
+
+
+                date=newPost.get("Date").toString();
+                time=newPost.get("Time").toString();
+                canvas.drawText("Date: ",250,500,titlePaint1);
+                canvas.drawText("Login Time: ",250,550,titlePaint1);
+
+                canvas.drawText(date,500,500,titlePaint1);
+                canvas.drawText(time,500,550,titlePaint1);
+                //y += 50;
+                if(y>700)
+                {
+                    PdfDocument.Page myPage = myPdfDocument.startPage(myPageInfo2);
+                    Canvas canvas2=myPage.getCanvas();
+                    Paint titlePaint2=new Paint();
+
+                }
+
+
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot snapshot, String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot snapshot, String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+
+                //Toast.makeText(Employee_Active_user.this, "Cancelled", Toast.LENGTH_SHORT).show();
+            }
+
+        });*/
+
 
         canvas.drawText(name,500,200,titlePaint1);
         canvas.drawText(imei,500,250,titlePaint1);
@@ -820,8 +798,8 @@ public class Employee_Active_user extends AppCompatActivity {
         canvas.drawText(mail,500,350,titlePaint1);
         canvas.drawText(city,500,400,titlePaint1);
         canvas.drawText(phone,500,450,titlePaint1);
-        canvas.drawText(date,500,500,titlePaint1);
-        canvas.drawText(time,500,550,titlePaint1);
+        //canvas.drawText(date,500,500,titlePaint1);
+        //canvas.drawText(time,500,550,titlePaint1);
 
 
         int greenColorValue = Color.parseColor("#072f5f");
@@ -840,8 +818,8 @@ public class Employee_Active_user extends AppCompatActivity {
         canvas.drawText("Mail: ",250,350,titlePaint1);
         canvas.drawText("City: ",250,400,titlePaint1);
         canvas.drawText("Phone: ",250,450,titlePaint1);
-        canvas.drawText("Date: ",250,500,titlePaint1);
-        canvas.drawText("Login Time: ",250,550,titlePaint1);
+        /*canvas.drawText("Date: ",250,500,titlePaint1);
+        canvas.drawText("Login Time: ",250,550,titlePaint1);*/
 
 
 
@@ -864,7 +842,7 @@ public class Employee_Active_user extends AppCompatActivity {
         String myFilePath = Environment.getExternalStorageDirectory().getPath() + pdf;
         try {
             myPdfDocument.writeTo(new FileOutputStream(d2));
-            Toast.makeText(this, "pdf write", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "pdf write", Toast.LENGTH_SHORT).show();
         }
         catch (Exception e){
             e.printStackTrace();
@@ -873,7 +851,7 @@ public class Employee_Active_user extends AppCompatActivity {
         child1=null;
 
         myPdfDocument.close();
-        Toast.makeText(this, "pdf created", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "pdf created", Toast.LENGTH_SHORT).show();
 
         Intent i =new Intent(Employee_Active_user.this,ViewUserDetailsPdf.class);
         i.putExtra("name",pdf);
@@ -907,6 +885,7 @@ public class Employee_Active_user extends AppCompatActivity {
             profileimgE=itemView.findViewById(R.id.emp_profile);
             profile = itemView.findViewById(R.id.profile_emp);
             city = itemView.findViewById(R.id.city_emp);
+            //area = itemView.findViewById(R.id.area_emp);
             phone = itemView.findViewById(R.id.phone_emp);
             download=itemView.findViewById(R.id.download_btnE);
             add = itemView.findViewById(R.id.Add);
