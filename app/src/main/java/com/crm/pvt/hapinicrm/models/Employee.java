@@ -4,14 +4,14 @@ public class Employee {
 
     
 
-    private String IMEI,Password,mail,Name,City,Phone,Image,Url,DOB;
+    private String IMEI,Password,mail,Name,City,Phone,Image,Url,DOB,Area,Verified;
 
 
     public Employee() {
 
     }
 
-    public Employee(String IMEI, String password, String mail, String name, String city, String phone, String image,String url) {
+    public Employee(String IMEI, String password, String mail, String name, String city, String phone, String area1 ,String image,String url) {
         this.IMEI = IMEI;
         Url = url;
         Password = password;
@@ -20,7 +20,11 @@ public class Employee {
         City = city;
         Phone = phone;
         Image = image;
+        Area=area1;
     }
+
+
+
 
 
     /*public Employee(String IMEI, String password, String mail ) {
@@ -33,6 +37,23 @@ public class Employee {
             Password = password;
             this.mail = mail;
         }*/
+
+
+    public String getVerified() {
+        return Verified;
+    }
+
+    public void setVerified(String verified) {
+        Verified = verified;
+    }
+
+    public String getArea() {
+        return Area;
+    }
+
+    public void setArea(String area) {
+        this.Area = area;
+    }
 
     public String getDOB() {
         return DOB;

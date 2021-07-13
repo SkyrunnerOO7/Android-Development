@@ -569,7 +569,8 @@ public class ActiveUserActivity extends AppCompatActivity {
 
     }
 
-    public void EmployeeFirebase() {
+    public void EmployeeFirebase()
+    {
 
         empref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -597,6 +598,12 @@ public class ActiveUserActivity extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
+                holder.area.setText("Area : "+model.getArea());
+
+                if(model.getVerified().equals("true"))
+                {
+                    holder.verified.setVisibility(View.VISIBLE);
+                }
                 holder.verifyemp.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -748,6 +755,12 @@ public class ActiveUserActivity extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
+                holder.area.setText("Area : "+model.getArea());
+
+                if(model.getVerified().equals("true"))
+                {
+                    holder.verified.setVisibility(View.VISIBLE);
+                }
                 holder.verifyemp.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -894,6 +907,12 @@ public class ActiveUserActivity extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
+                holder.area.setText("Area : "+model.getArea());
+
+                if(model.getVerified().equals("true"))
+                {
+                    holder.verified.setVisibility(View.VISIBLE);
+                }
                 holder.verifyemp.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -1043,6 +1062,11 @@ public class ActiveUserActivity extends AppCompatActivity {
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
+                holder.area.setText("Area : "+model.getArea());
+                if(model.getVerified().equals("true"))
+                {
+                    holder.verified.setVisibility(View.VISIBLE);
+                }
 
                 holder.verifyemp.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -1375,7 +1399,7 @@ public class ActiveUserActivity extends AppCompatActivity {
 
     public static class EmplistViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView Username,Passcode,mailED,password,profile,city,phone;
+        public TextView Username,Passcode,mailED,password,profile,city,phone,area,verified;
         public Button delete,attE,download,verifyemp;
         public ImageView profileimg1;
         public  EditText Limit;
@@ -1391,6 +1415,7 @@ public class ActiveUserActivity extends AppCompatActivity {
             delete = itemView.findViewById(R.id.delete_emp);
             profile = itemView.findViewById(R.id.profile_emp);
             city = itemView.findViewById(R.id.city_emp);
+            area = itemView.findViewById(R.id.area_emp);
             phone = itemView.findViewById(R.id.phone_emp);
             profileimg1=itemView.findViewById(R.id.emp_profile);
             attE = itemView.findViewById(R.id.att_btnE);
@@ -1398,6 +1423,7 @@ public class ActiveUserActivity extends AppCompatActivity {
             add = itemView.findViewById(R.id.Add);
             Limit = itemView.findViewById(R.id.limit);
             verifyemp=itemView.findViewById(R.id.verify_emp);
+            verified=itemView.findViewById(R.id.verified_emp);
         }
 
 

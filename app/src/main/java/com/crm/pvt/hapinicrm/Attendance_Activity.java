@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.crm.pvt.hapinicrm.models.Admin;
 import com.crm.pvt.hapinicrm.models.Attendance;
@@ -122,10 +123,22 @@ public class Attendance_Activity extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull  Attendance_Activity.AttendanceViewHolder holder, int position, @NonNull  Attendance model) {
 
 
-                holder.DateD.setText(model.getDate());
+                if(model.getIMEI().equals(passcode_i))
+                {
+                    holder.DateD.setText(model.getDate());
+                    holder.TimeD.setText(model.getTime());
+                    holder.logoutD.setText(model.getLogout());
+                    holder.countD.setText(""+model.getBreakTime());
+
+                }
+                else
+                {
+                    Toast.makeText(Attendance_Activity.this, "Data not present", Toast.LENGTH_SHORT).show();
+                }
+                /*holder.DateD.setText(model.getDate());
                 holder.TimeD.setText(model.getTime());
                 holder.logoutD.setText(model.getLogout());
-                holder.countD.setText(""+model.getBreakTime());
+                holder.countD.setText(""+model.getBreakTime());*/
 
 
 

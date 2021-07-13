@@ -48,11 +48,11 @@ public class Add_new_employee_activity extends AppCompatActivity {
     private CheckBox checkBox;
     private TextInputEditText email;
     private TextInputEditText pass;
-    private TextInputEditText conf_pass;
+    //private TextInputEditText area;
     private ProgressDialog loadingBar;
     Spinner spinner;
     String type_of_emp;
-    private EditText Empname,CityE,phoneE;
+    private EditText Empname,CityE,area,phoneE;
 
     Dialog dialog;
     private TextView errorText,errorHeading;
@@ -84,7 +84,7 @@ public class Add_new_employee_activity extends AppCompatActivity {
         email = findViewById(R.id.Email);
         pass = findViewById(R.id.password);
         checkBox = findViewById(R.id.checkbox);
-        conf_pass = findViewById(R.id.confirm_password);
+        area = findViewById(R.id.areaE);
         loadingBar = new ProgressDialog(this);
         Empname = findViewById(R.id.Ename);
         CityE = findViewById(R.id.cityE);
@@ -137,7 +137,7 @@ public class Add_new_employee_activity extends AppCompatActivity {
         String IMEI = build_number.getText().toString();
         String mail = email.getText().toString();
         String password = pass.getText().toString();
-        String repassword = conf_pass.getText().toString();
+        String area1 = area.getText().toString();
         String empname = Empname.getText().toString();
         String cityE = CityE.getText().toString();
         String PhoneE = phoneE.getText().toString();
@@ -149,7 +149,7 @@ public class Add_new_employee_activity extends AppCompatActivity {
             ((TextView)spinner.getSelectedView()).setError("Choose Valid Type");
         }
         else if(IMEI.isEmpty()){
-            build_number.setError("Feild can't be empty");
+            build_number.setError("Field can't be empty");
         }
         else if(IMEI.length() != 4){
 
@@ -157,7 +157,7 @@ public class Add_new_employee_activity extends AppCompatActivity {
 
         }
         else if(mail.isEmpty()){
-            email.setError("Feild can't be empty");
+            email.setError("Field can't be empty");
         }
         else if (!Patterns.EMAIL_ADDRESS.matcher(mail).matches()) {
             email.setError("Enter a valid email address");
@@ -166,25 +166,41 @@ public class Add_new_employee_activity extends AppCompatActivity {
         else if(empname.isEmpty()){
             Empname.setError("Name can't be empty");
         }
+
+        else if(empname.length()<3)
+        {
+            Empname.requestFocus();
+            Empname.setError("Name should contain atleast 3 character");
+        }
         else if(!empname.matches("[a-zA-Z ]+"))
         {
             Empname.requestFocus();
             Empname.setError("Enter valid name");
         }
         else if(cityE.isEmpty()){
-            CityE.setError("Feild can't be empty");
+            CityE.setError("Field can't be empty");
         }
         else if(!cityE.matches("[a-zA-Z ]+"))
         {
             CityE.requestFocus();
-            CityE.setError("Enter valid name");
+            CityE.setError("Enter valid city name");
         }
+        else if(area1.isEmpty()){
+            CityE.setError("Field can't be empty");
+        }
+        else if(!area1.matches("[a-zA-Z ]+"))
+        {
+            CityE.requestFocus();
+            CityE.setError("Enter valid area name");
+        }
+
+
         else if(!(PhoneE.length()==10)){
             phoneE.setError("Enter valid number");
         }
 
         else if(PhoneE.isEmpty()){
-            phoneE.setError("Feild can't be empty");
+            phoneE.setError("Field can't be empty");
         }
         else if(password.isEmpty()){
             pass.setError("passcode can't be empty");
@@ -194,7 +210,7 @@ public class Add_new_employee_activity extends AppCompatActivity {
             Toast.makeText(this, "Enter Valid password", Toast.LENGTH_SHORT).show();
         }
 
-        else if(repassword.isEmpty()){
+        /*else if(repassword.isEmpty()){
             conf_pass.setError("Field can't be Empty");
         }
         else if(!password.equals(repassword))
@@ -202,7 +218,7 @@ public class Add_new_employee_activity extends AppCompatActivity {
 
             conf_pass.setError("password and Confrim password should be same");
 
-        }
+        }*/
 
         else if(!checkBox.isChecked())
         {
@@ -218,7 +234,7 @@ public class Add_new_employee_activity extends AppCompatActivity {
             loadingBar.setMessage("please Wait while checking Credentials..");
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
-            ValidateEmp(type_of_emp,IMEI,mail,password,empname,cityE,PhoneE,"null");
+            ValidateEmp(type_of_emp,IMEI,mail,password,empname,cityE,PhoneE,area1,"null");
 
 
 
@@ -228,7 +244,7 @@ public class Add_new_employee_activity extends AppCompatActivity {
 
     }
 
-    public void ValidateEmp(String type,String IMEI,String mail,String password,String name,String city,String phone,String url){
+    public void ValidateEmp(String type,String IMEI,String mail,String password,String name,String city,String phone,String area1,String url){
 
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
@@ -243,10 +259,17 @@ public class Add_new_employee_activity extends AppCompatActivity {
                     EmpDataMap.put("Password",password);
                     EmpDataMap.put("Name",name);
                     EmpDataMap.put("City",city);
+                    EmpDataMap.put("Area",area1);
                     EmpDataMap.put("Phone",phone);
                     EmpDataMap.put("Type",type);
                     EmpDataMap.put("ImgUrl",url);
                     EmpDataMap.put("DailyLimit","30");
+                    EmpDataMap.put("Verified","false");
+                    EmpDataMap.put("AdharBack","null");
+                    EmpDataMap.put("AdharFront","null");
+                    EmpDataMap.put("PanCard","null");
+                    EmpDataMap.put("DOB","null");
+
 
 
                     RootRef.child("Employee").child(IMEI).updateChildren(EmpDataMap)
@@ -260,7 +283,7 @@ public class Add_new_employee_activity extends AppCompatActivity {
                                         build_number.setText("");
                                         email.setText("");
                                         pass.setText("");
-                                        conf_pass.setText("");
+                                        area.setText("");
                                         Empname.setText("");
                                         CityE.setText("");
                                         phoneE.setText("");
@@ -277,7 +300,7 @@ public class Add_new_employee_activity extends AppCompatActivity {
 
                                     }else{
                                         loadingBar.dismiss();
-                                        Toast.makeText(getApplicationContext(), "Somthing Went Wrong.. Please Try Again After Some time..", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), "Something Went Wrong.. Please Try Again After Some time..", Toast.LENGTH_SHORT).show();
 
 
                                     }
@@ -288,11 +311,11 @@ public class Add_new_employee_activity extends AppCompatActivity {
 
 
                 }else{
-                    Toast.makeText(getApplicationContext(), "This "+email+" id already Exists..", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "This "+email+" id already Exists..", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
-                    Toast.makeText(getApplicationContext(), "Please Try Again Using Another email..", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "Please Try Again Using Another IMEI..", Toast.LENGTH_SHORT).show();
                     errorHeading.setText("Invalid Credentials");
-                    errorText.setText("PLease Try again with another Email id");
+                    errorText.setText("PLease Try again with another IMEI number");
                     dialog.show();
 
 

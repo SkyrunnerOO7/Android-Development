@@ -31,8 +31,25 @@
                 android:src="@drawable/admin_profile_icon1"/>
 
             <TextView
+                android:id="@+id/verified_emp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Verified"
+                android:textColor="#ffffff"
+                android:background="#037E07"
+                android:padding="3dp"
+                android:textSize="15sp"
+                android:visibility="invisible"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:textStyle="bold"
+                />
+
+
+            <TextView
                 android:id="@+id/name_emp"
-                android:layout_width="160dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Name"
                 android:textColor="#000000"
@@ -45,23 +62,23 @@
 
             <TextView
                 android:id="@+id/imei_emp"
-                android:layout_width="160dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
                 android:text="passcode "
                 android:textColor="#000000"
                 android:textAlignment="viewEnd"
+                android:layout_below="@+id/mail_emp"
                 android:gravity="end"
                 android:textSize="15sp"
                 android:layout_marginLeft="2dp"
+                android:layout_marginTop="5dp"
                 android:textStyle="bold"
-                android:layout_marginTop="90dp"
+
                 />
 
             <TextView
                 android:id="@+id/mail_emp"
-                android:layout_width="160dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="mailid "
                 android:textColor="#000000"
@@ -75,10 +92,8 @@
 
             <TextView
                 android:id="@+id/password_emp"
-                android:layout_width="160dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
                 android:text="password "
                 android:layout_marginTop="5dp"
                 android:textColor="#000000"
@@ -92,7 +107,7 @@
 
             <TextView
                 android:id="@+id/city_emp"
-                android:layout_width="160dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="City "
                 android:textColor="#000000"
@@ -100,16 +115,29 @@
                 android:layout_marginLeft="2dp"
                 android:layout_marginTop="5dp"
 
-                android:layout_below="@id/mail_emp"
+                android:layout_below="@id/phone_emp"
                 android:textStyle="bold"
                 />
 
             <TextView
-                android:id="@+id/phone_emp"
-                android:layout_width="160dp"
+                android:id="@+id/area_emp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
+                android:text="Area "
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="5dp"
+
+                android:layout_below="@id/city_emp"
+                android:textStyle="bold"
+                />
+
+
+            <TextView
+                android:id="@+id/phone_emp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Phone "
                 android:layout_marginTop="5dp"
                 android:textColor="#000000"
@@ -123,7 +151,7 @@
 
             <TextView
                 android:id="@+id/profile_emp"
-                android:layout_width="160dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="profile "
                 android:textColor="@color/md_pink_900"
@@ -131,7 +159,7 @@
                 android:layout_marginLeft="2dp"
                 android:layout_marginTop="5dp"
 
-                android:layout_below="@id/city_emp"
+                android:layout_below="@id/area_emp"
                 android:textStyle="bold"
                 />
 
@@ -139,7 +167,7 @@
                 android:id="@+id/att_btnE"
                 android:layout_width="26dp"
                 android:layout_height="25dp"
-                android:layout_below="@id/phone_emp"
+                android:layout_below="@id/area_emp"
                 android:layout_toLeftOf="@id/delete_emp"
                 android:layout_marginLeft="2dp"
                 android:layout_marginTop="10dp"
@@ -155,7 +183,7 @@
                 android:id="@+id/delete_emp"
                 android:layout_width="26dp"
                 android:layout_height="25dp"
-                android:layout_below="@id/phone_emp"
+                android:layout_below="@id/area_emp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginLeft="2dp"
@@ -173,7 +201,7 @@
                 android:id="@+id/download_btnE"
                 android:layout_width="26dp"
                 android:layout_height="25dp"
-                android:layout_below="@id/phone_emp"
+                android:layout_below="@id/area_emp"
                 android:layout_toLeftOf="@id/att_btnE"
                 android:layout_marginLeft="2dp"
                 android:layout_marginTop="10dp"
@@ -200,6 +228,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/textbox_round"
                     android:hint="Add"
+                    android:inputType="number"
                     android:textColorHint="#072f5f" />
                 <ImageButton
                     android:id="@+id/Add"
@@ -210,11 +239,12 @@
             </LinearLayout>
             <Button
                 android:id="@+id/verify_emp"
-                android:layout_width="300dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/Addlimit"
+                android:layout_below="@+id/profile_emp"
                 android:layout_marginTop="8dp"
-                android:layout_centerInParent="true"
+
+
                 android:textColor="#ffffff"
                 android:textStyle="bold"
                 android:text="Verify Employee"/>

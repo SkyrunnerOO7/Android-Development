@@ -192,14 +192,14 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
-                                    android:gravity="center"
                                     android:layout_margin="3dp"
-                                    android:text="Add Employee"
-                                    android:textColor="#072f5f"
-                                    android:textStyle="bold"
+                                    android:fontFamily="sans-serif"
+                                    android:gravity="center"
+                                    android:text="Add User"
                                     android:textAllCaps="false"
+                                    android:textColor="#072f5f"
                                     android:textSize="14sp"
-                                    android:fontFamily="sans-serif" />
+                                    android:textStyle="bold" />
 
                             </LinearLayout>
 
@@ -346,14 +346,14 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
-                                    android:gravity="center"
                                     android:layout_margin="3dp"
-                                    android:text="FeedBack"
-                                    android:textColor="#072f5f"
-                                    android:textStyle="bold"
+                                    android:fontFamily="sans-serif"
+                                    android:gravity="center"
+                                    android:text="Call Response"
                                     android:textAllCaps="false"
+                                    android:textColor="#072f5f"
                                     android:textSize="14sp"
-                                    android:fontFamily="sans-serif" />
+                                    android:textStyle="bold" />
 
                             </LinearLayout>
 
