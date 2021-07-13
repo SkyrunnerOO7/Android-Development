@@ -100,6 +100,14 @@ public class fragment_admin_dashboard extends Fragment {
 
             Intent intent = new Intent(getActivity(),UserFeedbackShowActivity.class);
             startActivity(intent);
+            Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    progressDialog.cancel();
+
+                }
+            }, 2000);
 
         });
 

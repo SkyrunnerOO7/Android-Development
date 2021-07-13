@@ -30,6 +30,7 @@ public class ViewUserDetailsPdf extends AppCompatActivity {
         p = intent.getStringExtra("name");
 
 
+
         item1.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -38,6 +39,7 @@ public class ViewUserDetailsPdf extends AppCompatActivity {
                 String s = null;
                 File file= new File(getExternalFilesDir(s).getPath() + p);
 
+                Toast.makeText(ViewUserDetailsPdf.this, file.toString(), Toast.LENGTH_SHORT).show();
 
                 //File file = new File(stringFile);
                 if (!file.exists()){
