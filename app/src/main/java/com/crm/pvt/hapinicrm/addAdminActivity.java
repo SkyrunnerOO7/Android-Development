@@ -57,7 +57,6 @@ public class addAdminActivity extends AppCompatActivity {
         name = findViewById(R.id.Name_admin);
         mail = findViewById(R.id.Email_admin);
         password = findViewById(R.id.password_admin);
-        repassword = findViewById(R.id.confirm_password_admin);
         checkBox = findViewById(R.id.checkbox_admin);
         loadingBar = new ProgressDialog(this);
         cityA = findViewById(R.id.CityA);
@@ -109,7 +108,6 @@ public class addAdminActivity extends AppCompatActivity {
         String Fullname = name.getText().toString();
         String email = mail.getText().toString();
         String password_st = password.getText().toString();
-        String repassword_st = repassword.getText().toString();
         String PhoneA = phoneA.getText().toString();
         String CityA = cityA.getText().toString();
 
@@ -130,17 +128,11 @@ public class addAdminActivity extends AppCompatActivity {
         else if(password_st.isEmpty()){
             Toast.makeText(this, "Please Enter a password...", Toast.LENGTH_SHORT).show();
         }
-        else if(repassword_st.isEmpty()){
-            Toast.makeText(this, "Please retype your password...", Toast.LENGTH_SHORT).show();
-        }
         else if(CityA.isEmpty()){
             Toast.makeText(this, "Please Enter City Name...", Toast.LENGTH_SHORT).show();
         }
         else if(PhoneA.isEmpty()){
             Toast.makeText(this, " please Enter Phone number...", Toast.LENGTH_SHORT).show();
-        }
-        else if(!password_st.equals(repassword_st)){
-            Toast.makeText(this, "passwords are not matching", Toast.LENGTH_SHORT).show();
         }
         else{
 
