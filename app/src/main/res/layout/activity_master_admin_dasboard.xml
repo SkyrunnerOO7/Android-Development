@@ -409,7 +409,7 @@
                                     android:layout_gravity="center"
                                     android:gravity="center"
                                     android:layout_margin="3dp"
-                                    android:text="FeedBack"
+                                    android:text="Call Status"
                                     android:textColor="#072f5f"
                                     android:textStyle="bold"
                                     android:textAllCaps="false"

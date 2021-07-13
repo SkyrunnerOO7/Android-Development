@@ -44,6 +44,7 @@ public class MasterProfileActivity extends AppCompatActivity {
     private CircleImageView masterProfileImage;
     private static final int PICK_IMAGE = 1, RESULT_OK = -1;
     Uri imageUri;
+    TextView save;
 
     private String myUrl = "";
     private StorageTask uploadTask;
@@ -57,7 +58,14 @@ public class MasterProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_master_profile);
         getSupportActionBar().hide();
         masterProfileImage = (CircleImageView) findViewById(R.id.profile_image);
-        storageProfilePrictureRef = FirebaseStorage.getInstance().getReference().child("Master").child("picture");
+        storageProfilePrictureRef = FirebaseStorage.getInstance().getReference().child("Master");
+
+        save = findViewById(R.id.save);
+
+        if(prevalent.CurrentMaster.getImage()!=null){
+            Picasso.get().load(prevalent.CurrentMaster.getImage()).placeholder(R.drawable.admin_profile_icon1).into(masterProfileImage);
+        }
+
 
             /*masterProfileImage.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -72,6 +80,18 @@ public class MasterProfileActivity extends AppCompatActivity {
 
         userInfoDetails(masterProfileImage);
 
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(checker.equals("clicked")){
+                    userInfosaved();
+                }else{
+//                    updateonlyUserinfo();
+                }
+
+            }
+        });
+
         masterProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,7 +99,7 @@ public class MasterProfileActivity extends AppCompatActivity {
                 CropImage.activity(imageUri).
                         setAspectRatio(1, 1).
                         start(MasterProfileActivity.this);
-                userInfosaved();
+
 
 
             }
@@ -139,7 +159,7 @@ public class MasterProfileActivity extends AppCompatActivity {
         progressDialog.show();
         if (imageUri != null) {
             final StorageReference fileref = storageProfilePrictureRef
-                    .child("code1234" + ".jpg");
+                    .child(prevalent.CurrentMaster.getCode() + ".jpg");
             uploadTask = fileref.putFile(imageUri);
             uploadTask.continueWithTask(new Continuation() {
                 @Override
@@ -158,7 +178,7 @@ public class MasterProfileActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 Uri downloaduri = task.getResult();
                                 myUrl = downloaduri.toString();
-                                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Master").child("code1234");
+                                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Master").child(prevalent.CurrentMaster.getCode());
                                 HashMap<String, Object> hashMap = new HashMap<>();
                                 hashMap.put("Image", myUrl);
                                 ref.updateChildren(hashMap);
@@ -180,7 +200,7 @@ public class MasterProfileActivity extends AppCompatActivity {
     }
 
     private void userInfoDetails(ImageView profileImageView) {
-        DatabaseReference adminref = FirebaseDatabase.getInstance().getReference().child("Master").child("code1234");
+        DatabaseReference adminref = FirebaseDatabase.getInstance().getReference().child("Master").child(prevalent.CurrentMaster.getCode());
 
         adminref.addValueEventListener(new ValueEventListener() {
             @Override
