@@ -84,7 +84,7 @@ public class UserFeedbackShowActivity extends AppCompatActivity {
                 }else{
                     feedbackFirebase();
 
-                    Toast.makeText(UserFeedbackShowActivity.this, "please select on field", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(UserFeedbackShowActivity.this, "please select on field", Toast.LENGTH_SHORT).show();
                 }
 
 

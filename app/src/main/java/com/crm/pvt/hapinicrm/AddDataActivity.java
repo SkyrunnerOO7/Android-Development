@@ -324,6 +324,17 @@ public class AddDataActivity extends AppCompatActivity {
                     service.setHintTextColor(getResources().getColor(R.color.md_blue_grey_400));
 
 
+                    full_name.setVisibility(View.VISIBLE);
+                    phone_number.setVisibility(View.VISIBLE);
+                    organization.setVisibility(View.VISIBLE);
+                    city.setVisibility(View.VISIBLE);
+                    mail.setVisibility(View.VISIBLE);
+                    area.setVisibility(View.GONE);
+                    password.setVisibility(View.GONE);
+                    experience.setVisibility(View.GONE);
+                    subService.setVisibility(View.GONE);
+                    service.setVisibility(View.GONE);
+
 //                    full_name.setVisibility(View.VISIBLE);
 //                    phone_number.setVisibility(View.VISIBLE);
 //                    city.setVisibility(View.VISIBLE);
@@ -336,6 +347,7 @@ public class AddDataActivity extends AppCompatActivity {
 //                    service.setVisibility(View.GONE);
 
 
+
 //                    full_name.setFocusable(true);
 //                    phone_number.setFocusable(true);
 //                    city.setFocusable(true);
@@ -344,13 +356,24 @@ public class AddDataActivity extends AppCompatActivity {
 //                    organization.setFocusable(true);
 
 
-
                     full_name.setEnabled(true);
                     phone_number.setEnabled(true);
                     city.setEnabled(true);
                     password.setEnabled(true);
                     mail.setEnabled(true);
                     organization.setEnabled(true);
+
+                    /*full_name.setVisibility(View.VISIBLE);
+                    phone_number.setVisibility(View.VISIBLE);
+                    city.setVisibility(View.VISIBLE);
+                    area.setVisibility(View.VISIBLE);
+                    password.setVisibility(View.GONE);
+                    mail.setVisibility(View.VISIBLE);
+                    organization.setVisibility(View.VISIBLE);
+                    experience.setVisibility(View.VISIBLE);
+                    subService.setVisibility(View.VISIBLE);
+                    service.setVisibility(View.VISIBLE);*/
+
 
 
                     full_name.setHint("Enter FullName");

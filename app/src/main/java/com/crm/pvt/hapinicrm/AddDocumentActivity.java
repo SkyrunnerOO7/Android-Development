@@ -2,6 +2,7 @@ package com.crm.pvt.hapinicrm;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,8 +10,16 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Typeface;
+import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,11 +43,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
@@ -48,7 +60,7 @@ import java.util.Locale;
 
 public class AddDocumentActivity extends AppCompatActivity {
 
-    Button pick;
+    Button pick,sample;
     Intent DocSelect;
     private DatabaseReference databaseReference;
     DatabaseReference RootRef;
@@ -62,6 +74,8 @@ public class AddDocumentActivity extends AppCompatActivity {
     private String currentTime,Time;
     Dialog dialog;
     private TextView errorText,errorHeading;
+    private ProgressDialog loadingBar1;
+    Bitmap bmp,scalebmp;
 
 
 
@@ -70,6 +84,7 @@ public class AddDocumentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_document);
         pick=findViewById(R.id.uploadDoc);
+        sample=findViewById(R.id.sampleDoc);
         databaseReference= FirebaseDatabase.getInstance().getReference("Data");
         loadingBar = new ProgressDialog(this);
         docSpinner=findViewById(R.id.spinner_Doc);
@@ -77,6 +92,9 @@ public class AddDocumentActivity extends AppCompatActivity {
         currentDate = new SimpleDateFormat("MM/dd/yyyy", Locale.getDefault()).format(new Date());
         currentTime = new SimpleDateFormat("HH:mm aa", Locale.getDefault()).format(new Date());
 
+
+
+        loadingBar1 = new ProgressDialog(this);
         Time=currentDate+" @"+currentTime;
         n=-1;
         c=-1;
@@ -154,6 +172,13 @@ public class AddDocumentActivity extends AppCompatActivity {
         });
 
 
+        sample.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            @Override
+            public void onClick(View view) {
+                createMyPDF();
+            }
+        });
         pick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -208,6 +233,10 @@ public class AddDocumentActivity extends AppCompatActivity {
                                 if(type.equalsIgnoreCase("CustomerB2C"))
                                 {
 
+                                    loadingBar1.setTitle("Login Account");
+                                    loadingBar1.setMessage("please Wait while checking Credentials..");
+                                    loadingBar1.setCanceledOnTouchOutside(false);
+                                    loadingBar1.show();
 
                                     for (int j=0;j<ids.length;j++)
                                     {
@@ -242,6 +271,7 @@ public class AddDocumentActivity extends AppCompatActivity {
                                     RootRef = FirebaseDatabase.getInstance().getReference();
                                     if(n<0 || c<0 || m<0 || p<0 || pw<0 || a<0)
                                     {
+                                        loadingBar1.dismiss();
                                         AlertDialog.Builder builder1 = new AlertDialog.Builder(AddDocumentActivity.this);
                                         builder1.setMessage("It should contain 6 Attributes i.e. name, city, mail, area, phone, password.");
                                         builder1.setCancelable(true);
@@ -271,6 +301,11 @@ public class AddDocumentActivity extends AppCompatActivity {
                                 }
                                 else if(type.equalsIgnoreCase("CustomerB2B"))
                                 {
+                                    loadingBar1.setTitle("Login Account");
+                                    loadingBar1.setMessage("please Wait while checking Credentials..");
+                                    loadingBar1.setCanceledOnTouchOutside(false);
+                                    loadingBar1.show();
+
                                     for (int j=0;j<ids.length;j++)
                                     {
                                         //Toast.makeText(this,ids[j] , Toast.LENGTH_SHORT).show();
@@ -306,7 +341,7 @@ public class AddDocumentActivity extends AppCompatActivity {
                                     //if(n<0 || c<0 || m<0 || p<0 || pw<0 || a<0 || q<0 ||s<0 || o<0 ||ss<0 )
                                     if(n<0 || c<0 || m<0 || p<0 || pw<0 || o<0)
                                     {
-
+                                        loadingBar1.dismiss();
                                         AlertDialog.Builder builder1 = new AlertDialog.Builder(AddDocumentActivity.this);
                                         builder1.setMessage("It should contain name,city,mail,oraganization,phone,password attributes ");
                                         builder1.setCancelable(true);
@@ -342,6 +377,11 @@ public class AddDocumentActivity extends AppCompatActivity {
                                 {
 
 
+                                    loadingBar1.setTitle("Login Account");
+                                    loadingBar1.setMessage("please Wait while checking Credentials..");
+                                    loadingBar1.setCanceledOnTouchOutside(false);
+                                    loadingBar1.show();
+
 
 
                                     for (int j=0;j<ids.length;j++)
@@ -356,14 +396,15 @@ public class AddDocumentActivity extends AppCompatActivity {
                                         {
                                             c=j;
                                         }
-                                        else if(ids[j].equalsIgnoreCase("email")) {
-                                            m=j;
+                                        else if(ids[j].equalsIgnoreCase("mail")) {
+                                            m = j;
                                         }
+
                                         else if(ids[j].equalsIgnoreCase("Experience"))
                                         {
                                             e=j;
                                         }
-                                        else if(ids[j].equalsIgnoreCase("Contact"))
+                                        else if(ids[j].equalsIgnoreCase("phone"))
                                         {
                                             p=j;
                                         }
@@ -371,11 +412,11 @@ public class AddDocumentActivity extends AppCompatActivity {
                                         {
                                             pw=j;
                                         }
-                                        else if(ids[j].equalsIgnoreCase("qualification"))
+                                        else if(ids[j].equalsIgnoreCase("Organization"))
                                         {
                                             q=j;
                                         }
-                                        else if(ids[j].equalsIgnoreCase("skills"))
+                                        else if(ids[j].equalsIgnoreCase("Area"))
                                         {
                                             s=j;
                                         }
@@ -386,8 +427,20 @@ public class AddDocumentActivity extends AppCompatActivity {
 
                                     if(n<0 || c<0 || m<0 || p<0 || pw<0 || e<0 ||s<0 || q<0 )
                                     {
+                                        loadingBar1.dismiss();
+
+                                        Toast.makeText(this, "n ="+String.valueOf(n), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(this, "c ="+String.valueOf(c), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(this, "m ="+String.valueOf(m), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(this, "p ="+String.valueOf(p), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(this, "pw ="+String.valueOf(pw), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(this, "e ="+String.valueOf(e), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(this, "s ="+String.valueOf(s), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(this, "q ="+String.valueOf(q), Toast.LENGTH_SHORT).show();
+
+
                                         AlertDialog.Builder builder1 = new AlertDialog.Builder(AddDocumentActivity.this);
-                                        builder1.setMessage("It should contain 8 attributes i.e. name, city, mail, Experience, phone, password ,qualification, skills ");
+                                        builder1.setMessage("It should contain 8 attributes i.e. name, city, mail, Experience, phone, password ,Area, Organization ");
                                         builder1.setCancelable(true);
 
                                         builder1.setPositiveButton(
@@ -409,7 +462,7 @@ public class AddDocumentActivity extends AppCompatActivity {
                                         mDatabaseReference.setValue(user);
                                         AddNewDocument(ids[n],ids[p],ids[c],"Candidate");
 
-                                        n=-1;
+                                       /* n=-1;
                                         c=-1;
                                         m=-1;
                                         p=-1;
@@ -418,7 +471,7 @@ public class AddDocumentActivity extends AppCompatActivity {
                                         q=-1;
                                         s=-1;
                                         o=-1;
-                                        ss=-1;
+                                        ss=-1;*/
 
                                     }
 
@@ -427,6 +480,11 @@ public class AddDocumentActivity extends AppCompatActivity {
                                 else if(type.equalsIgnoreCase("Vendors"))
                                 {
 
+
+                                    loadingBar1.setTitle("Login Account");
+                                    loadingBar1.setMessage("please Wait while checking Credentials..");
+                                    loadingBar1.setCanceledOnTouchOutside(false);
+                                    loadingBar1.show();
 
                                     for (int j=0;j<ids.length;j++)
                                     {
@@ -477,6 +535,7 @@ public class AddDocumentActivity extends AppCompatActivity {
                                     RootRef = FirebaseDatabase.getInstance().getReference();
                                     if(n<0 || c<0 || m<0 || p<0 || pw<0 || e<0 || a<0 ||s<0 || o<0 ||ss<0 )
                                     {
+                                        loadingBar1.dismiss();
                                         AlertDialog.Builder builder1 = new AlertDialog.Builder(AddDocumentActivity.this);
                                         builder1.setMessage("It should contain 10 attributes i.e. name, city, mail, Experience, phone, password ,organization, area, services, sub services ");
                                         builder1.setCancelable(true);
@@ -560,6 +619,7 @@ public class AddDocumentActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             Toast.makeText(getApplicationContext(), "Details has been Added Sucessfully.. ", Toast.LENGTH_SHORT).show();
 
+                            loadingBar1.dismiss();
                         }else{
                             loadingBar.dismiss();
                             dialog.show();
@@ -570,6 +630,117 @@ public class AddDocumentActivity extends AppCompatActivity {
 
                     }
                 });
+
+    }
+
+
+
+
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public void createMyPDF(){
+
+
+        final String pdf;
+
+
+        pdf="/"+"Sample.pdf";
+        PdfDocument myPdfDocument = new PdfDocument();
+        PdfDocument.PageInfo myPageInfo = new PdfDocument.PageInfo.Builder(1100,1800,1).create();
+        PdfDocument.Page myPage = myPdfDocument.startPage(myPageInfo);
+        Canvas canvas=myPage.getCanvas();
+        //Paint titlePaint=new Paint();
+        Paint titlePaint1=new Paint();
+
+        //Paint myPaint = new Paint();
+
+        titlePaint1.setTextAlign(Paint.Align.CENTER);
+        titlePaint1.setTypeface(Typeface.create(Typeface.DEFAULT,Typeface.BOLD));
+        titlePaint1.setTextSize(60);
+        canvas.drawText("Sample Pdf",550,80,titlePaint1);
+        titlePaint1.setTextSize(27);
+
+        bmp= BitmapFactory.decodeResource(getResources(),R.drawable.customerb2bnew);
+        scalebmp= Bitmap.createScaledBitmap(bmp,900,200,false);
+        canvas.drawText("CustomerB2B Sample",220,200,titlePaint1);
+        canvas.drawBitmap(scalebmp,110,230,titlePaint1);
+
+        bmp= BitmapFactory.decodeResource(getResources(),R.drawable.customerb2c);
+        scalebmp= Bitmap.createScaledBitmap(bmp,900,200,false);
+        canvas.drawText("CustomerB2C Sample",220,530,titlePaint1);
+        canvas.drawBitmap(scalebmp,110,560,titlePaint1);
+
+        bmp= BitmapFactory.decodeResource(getResources(),R.drawable.candidate);
+        scalebmp= Bitmap.createScaledBitmap(bmp,900,200,false);
+        canvas.drawText("Candidate Sample",220,830,titlePaint1);
+        canvas.drawBitmap(scalebmp,110,860,titlePaint1);
+
+        bmp= BitmapFactory.decodeResource(getResources(),R.drawable.vendors);
+        scalebmp= Bitmap.createScaledBitmap(bmp,900,200,false);
+        canvas.drawText("Vendors Sample",220,1130,titlePaint1);
+        canvas.drawBitmap(scalebmp,110,1160,titlePaint1);
+
+
+        /*canvas.drawText(" "+mtotal,710,dist+ed1+20,titlePaint1);
+        canvas.drawText(" "+ototal,940,dist+ed1+20,titlePaint1);
+
+        titlePaint1.setTextSize(22);
+        titlePaint1.setTypeface(Typeface.create(Typeface.DEFAULT,Typeface.BOLD));
+        canvas1.drawText("Patient Saved Amount: "+saved,800,485+ed1,titlePaint1);
+        titlePaint1.setTypeface(Typeface.create(Typeface.DEFAULT,Typeface.NORMAL));
+        canvas1.drawText("Time: 8 AM To 9 PM ",260,460+ed1-15,titlePaint1);
+        canvas1.drawText("(Monday to Sunday)",260,490+ed1-15,titlePaint1);
+
+
+
+        //first
+        canvas.drawLine(50,150,1050,150,myPaint);
+
+        titlePaint1.setTextSize(26);
+        titlePaint1.setTypeface(Typeface.create(Typeface.DEFAULT,Typeface.NORMAL));*/
+        //canvas.drawLine(0,650,1200,650,myPaint);
+        myPdfDocument.finishPage(myPage);
+
+        //Environment.getExternalStoragePublicDirectory();
+        String s = null;
+        File d2= new File(getExternalFilesDir(s).getPath() + pdf);
+
+        String myFilePath = Environment.getExternalStorageDirectory().getPath() + pdf;
+        //String myFilePath = Environment.getExternalStorageDirectory().getPath() + "/myPDFFile.pdf";
+        //Toast.makeText(MainActivity.this, myFilePath, Toast.LENGTH_LONG).show();
+        //File myFile = new File(myFilePath);
+        try {
+            myPdfDocument.writeTo(new FileOutputStream(d2));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+
+        }
+
+
+        myPdfDocument.close();
+        Intent i =new Intent(AddDocumentActivity.this,ViewSamplePdf.class);
+        i.putExtra("name",pdf);
+        startActivity(i);
+
+        /*android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(MainActivity.this);
+        builder.setMessage("Pdf Created");
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+
+
+            }
+        });
+        builder.show();*/
+                /*Intent i=new Intent(MainActivity.this,patientDetails.class);
+
+
+                startActivity(i);
+                finish();*/
+
+
 
     }
 
