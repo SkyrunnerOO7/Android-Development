@@ -323,11 +323,11 @@ public class AddDataActivity extends AppCompatActivity {
 
                     full_name.setVisibility(View.VISIBLE);
                     phone_number.setVisibility(View.VISIBLE);
+                    organization.setVisibility(View.VISIBLE);
                     city.setVisibility(View.VISIBLE);
+                    mail.setVisibility(View.VISIBLE);
                     area.setVisibility(View.GONE);
                     password.setVisibility(View.GONE);
-                    mail.setVisibility(View.VISIBLE);
-                    organization.setVisibility(View.VISIBLE);
                     experience.setVisibility(View.GONE);
                     subService.setVisibility(View.GONE);
                     service.setVisibility(View.GONE);
@@ -341,7 +341,6 @@ public class AddDataActivity extends AppCompatActivity {
                     organization.setFocusable(true);
 
 
-
                     full_name.setEnabled(true);
                     phone_number.setEnabled(true);
                     city.setEnabled(true);
@@ -351,7 +350,7 @@ public class AddDataActivity extends AppCompatActivity {
 
 
 
-                    full_name.setVisibility(View.VISIBLE);
+                    /*full_name.setVisibility(View.VISIBLE);
                     phone_number.setVisibility(View.VISIBLE);
                     city.setVisibility(View.VISIBLE);
                     area.setVisibility(View.VISIBLE);
@@ -360,10 +359,7 @@ public class AddDataActivity extends AppCompatActivity {
                     organization.setVisibility(View.VISIBLE);
                     experience.setVisibility(View.VISIBLE);
                     subService.setVisibility(View.VISIBLE);
-                    service.setVisibility(View.VISIBLE);
-
-
-
+                    service.setVisibility(View.VISIBLE);*/
 
 
 

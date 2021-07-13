@@ -18,7 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HapiniCRM">
-        <activity android:name=".VerifyEmployeeImageView"></activity>
+        <activity android:name=".ViewSamplePdf"></activity>
+        <activity android:name=".VerifyEmployeeImageView" />
         <activity android:name=".VerifyEmployee" />
         <activity android:name=".emp_edit_profile" />
         <activity android:name=".Break_Activity" />

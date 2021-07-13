@@ -36,6 +36,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner_Doc" />
 
+
+    <Button
+        android:id="@+id/sampleDoc"
+        android:layout_width="300dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="8dp"
+        android:text="Sample pdf"
+        android:textColor="#FDFAFA"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:backgroundTint="#072f5f"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/uploadDoc" />
+
     <TextView
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
