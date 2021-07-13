@@ -177,12 +177,12 @@ public class AddDataActivity extends AppCompatActivity {
                     phone_number.setVisibility(View.VISIBLE);
                     city.setVisibility(View.VISIBLE);
                     area.setVisibility(View.VISIBLE);
-                    password.setVisibility(View.INVISIBLE);
+                    password.setVisibility(View.GONE);
                     mail.setVisibility(View.VISIBLE);
                     organization.setVisibility(View.VISIBLE);
                     experience.setVisibility(View.VISIBLE);
-                    subService.setVisibility(View.INVISIBLE);
-                    service.setVisibility(View.INVISIBLE);
+                    subService.setVisibility(View.GONE);
+                    service.setVisibility(View.GONE);
 
 
                     full_name.setEnabled(true);
@@ -251,7 +251,7 @@ public class AddDataActivity extends AppCompatActivity {
                     phone_number.setVisibility(View.VISIBLE);
                     city.setVisibility(View.VISIBLE);
                     area.setVisibility(View.VISIBLE);
-                    password.setVisibility(View.INVISIBLE);
+                    password.setVisibility(View.GONE);
                     mail.setVisibility(View.VISIBLE);
                     organization.setVisibility(View.VISIBLE);
                     experience.setVisibility(View.VISIBLE);
@@ -324,13 +324,13 @@ public class AddDataActivity extends AppCompatActivity {
                     full_name.setVisibility(View.VISIBLE);
                     phone_number.setVisibility(View.VISIBLE);
                     city.setVisibility(View.VISIBLE);
-                    area.setVisibility(View.INVISIBLE);
-                    password.setVisibility(View.INVISIBLE);
+                    area.setVisibility(View.GONE);
+                    password.setVisibility(View.GONE);
                     mail.setVisibility(View.VISIBLE);
                     organization.setVisibility(View.VISIBLE);
-                    experience.setVisibility(View.INVISIBLE);
-                    subService.setVisibility(View.INVISIBLE);
-                    service.setVisibility(View.INVISIBLE);
+                    experience.setVisibility(View.GONE);
+                    subService.setVisibility(View.GONE);
+                    service.setVisibility(View.GONE);
 
 
                     full_name.setFocusable(true);
@@ -348,6 +348,20 @@ public class AddDataActivity extends AppCompatActivity {
                     password.setEnabled(true);
                     mail.setEnabled(true);
                     organization.setEnabled(true);
+
+
+
+                    full_name.setVisibility(View.VISIBLE);
+                    phone_number.setVisibility(View.VISIBLE);
+                    city.setVisibility(View.VISIBLE);
+                    area.setVisibility(View.VISIBLE);
+                    password.setVisibility(View.GONE);
+                    mail.setVisibility(View.VISIBLE);
+                    organization.setVisibility(View.VISIBLE);
+                    experience.setVisibility(View.VISIBLE);
+                    subService.setVisibility(View.VISIBLE);
+                    service.setVisibility(View.VISIBLE);
+
 
 
 
@@ -399,12 +413,12 @@ public class AddDataActivity extends AppCompatActivity {
                     phone_number.setVisibility(View.VISIBLE);
                     city.setVisibility(View.VISIBLE);
                     area.setVisibility(View.VISIBLE);
-                    password.setVisibility(View.INVISIBLE);
+                    password.setVisibility(View.GONE);
                     mail.setVisibility(View.VISIBLE);
-                    organization.setVisibility(View.INVISIBLE);
-                    experience.setVisibility(View.INVISIBLE);
-                    subService.setVisibility(View.INVISIBLE);
-                    service.setVisibility(View.INVISIBLE);
+                    organization.setVisibility(View.GONE);
+                    experience.setVisibility(View.GONE);
+                    subService.setVisibility(View.GONE);
+                    service.setVisibility(View.GONE);
 
 
                     full_name.setEnabled(true);
