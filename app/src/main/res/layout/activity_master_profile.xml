@@ -23,7 +23,8 @@
         android:layout_margin="25dp"
         android:textAlignment="center"
         android:text="Save Image"
-        android:textColor="@color/blackTextColor"
+        android:textSize="20sp"
+        android:textColor="@color/colorPrimary"
         android:layout_below="@id/profile_image"
         android:gravity="center_horizontal" />
 
@@ -45,7 +46,7 @@
         android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="abcd@gmail.com"
+        android:text="-"
         android:layout_marginTop="80dp"
         android:layout_alignLeft="@+id/sample_email"
         android:layout_below="@+id/profile_image"
@@ -71,7 +72,7 @@
         android:id="@+id/code"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="code1234"
+
         android:layout_marginTop="115dp"
         android:layout_alignLeft="@+id/sample_email"
         android:layout_below="@+id/profile_image"

@@ -44,7 +44,7 @@ public class MasterProfileActivity extends AppCompatActivity {
     private CircleImageView masterProfileImage;
     private static final int PICK_IMAGE = 1, RESULT_OK = -1;
     Uri imageUri;
-    TextView save;
+    TextView save,code;
 
     private String myUrl = "";
     private StorageTask uploadTask;
@@ -59,6 +59,8 @@ public class MasterProfileActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         masterProfileImage = (CircleImageView) findViewById(R.id.profile_image);
         storageProfilePrictureRef = FirebaseStorage.getInstance().getReference().child("Master");
+        code = findViewById(R.id.code);
+        code.setText(prevalent.CurrentMaster.getCode());
 
         save = findViewById(R.id.save);
 
