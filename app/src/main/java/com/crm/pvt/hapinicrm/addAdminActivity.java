@@ -187,7 +187,7 @@ public class addAdminActivity extends AppCompatActivity {
 
 
                 }else{
-                    Toast.makeText(getApplicationContext(), "This "+email+" id already Exists..", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "This "+passcode+" id already Exists..", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
                     errorHeading.setText("Invalid Credentials");
                     errorText.setText("PLease Try again with another Email id");
