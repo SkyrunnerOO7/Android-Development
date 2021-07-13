@@ -1,7 +1,7 @@
 package com.crm.pvt.hapinicrm.models;
 
 public class Candidate {
-    String City,Contact,Email,Experience,Name,Password,Qualification,Skills;
+    String Area,City,Mail,Experience,Phone,Name,Organization,Password;
 
     Candidate(){
 
@@ -9,13 +9,13 @@ public class Candidate {
 
     public Candidate(String city, String contact, String email, String experience, String name, String password, String qualification, String skills) {
         City = city;
-        Contact = contact;
-        Email = email;
+        Phone = contact;
+        Mail = email;
         Experience = experience;
         Name = name;
         Password = password;
-        Qualification = qualification;
-        Skills = skills;
+        Organization = qualification;
+        Area = skills;
     }
 
     public String getCity() {
@@ -26,20 +26,20 @@ public class Candidate {
         City = city;
     }
 
-    public String getContact() {
-        return Contact;
+    public String getArea() {
+        return Area;
     }
 
-    public void setContact(String contact) {
-        Contact = contact;
+    public void setArea(String area) {
+        Area = area;
     }
 
-    public String getEmail() {
-        return Email;
+    public String getMail() {
+        return Mail;
     }
 
-    public void setEmail(String email) {
-        Email = email;
+    public void setMail(String mail) {
+        Mail = mail;
     }
 
     public String getExperience() {
@@ -50,6 +50,14 @@ public class Candidate {
         Experience = experience;
     }
 
+    public String getPhone() {
+        return Phone;
+    }
+
+    public void setPhone(String phone) {
+        Phone = phone;
+    }
+
     public String getName() {
         return Name;
     }
@@ -58,27 +66,19 @@ public class Candidate {
         Name = name;
     }
 
+    public String getOrganization() {
+        return Organization;
+    }
+
+    public void setOrganization(String organization) {
+        Organization = organization;
+    }
+
     public String getPassword() {
         return Password;
     }
 
     public void setPassword(String password) {
         Password = password;
-    }
-
-    public String getQualification() {
-        return Qualification;
-    }
-
-    public void setQualification(String qualification) {
-        Qualification = qualification;
-    }
-
-    public String getSkills() {
-        return Skills;
-    }
-
-    public void setSkills(String skills) {
-        Skills = skills;
     }
 }

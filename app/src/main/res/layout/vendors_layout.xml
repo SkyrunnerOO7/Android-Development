@@ -38,11 +38,11 @@
 
             <TextView
                 android:id="@+id/orgV"
-                android:layout_width="160dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
+                android:layout_below="@+id/ServiceV"
                 android:text="Organization "
+                android:layout_marginTop="5dp"
                 android:textColor="#000000"
                 android:textAlignment="viewEnd"
                 android:gravity="end"
@@ -67,10 +67,8 @@
 
             <TextView
                 android:id="@+id/passwordEDV"
-                android:layout_width="160dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
                 android:text="password "
                 android:layout_marginTop="5dp"
                 android:textColor="#000000"
@@ -97,10 +95,8 @@
 
             <TextView
                 android:id="@+id/ExpADV"
-                android:layout_width="160dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
                 android:text="Experience "
                 android:layout_marginTop="5dp"
                 android:textColor="#000000"
@@ -128,10 +124,8 @@
 
             <TextView
                 android:id="@+id/PhoneTextV"
-                android:layout_width="160dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
                 android:text="Phone "
                 android:layout_marginTop="5dp"
                 android:textColor="#000000"
@@ -160,10 +154,8 @@
 
             <TextView
                 android:id="@+id/SubServiceV"
-                android:layout_width="160dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
                 android:text="sub Service "
                 android:layout_marginTop="5dp"
                 android:textColor="#000000"
@@ -181,7 +173,7 @@
                 android:layout_width="26dp"
                 android:layout_height="25dp"
                 android:layout_below="@id/SubServiceV"
-                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginLeft="2dp"
                 android:layout_marginTop="10dp"

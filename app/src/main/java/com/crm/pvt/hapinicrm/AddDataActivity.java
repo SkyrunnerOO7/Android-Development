@@ -195,7 +195,7 @@ public class AddDataActivity extends AppCompatActivity {
 
 
                     full_name.setHint("Enter FullName");
-                    phone_number.setHint("Enter Phone Number");
+                    phone_number.setHint("Enter Mobile Number");
                     city.setHint("Enter City");
 
                     experience.setHint("Enter Experience");
@@ -261,7 +261,7 @@ public class AddDataActivity extends AppCompatActivity {
 
 
                     full_name.setHint("Enter FullName");
-                    phone_number.setHint("Enter Phone Number");
+                    phone_number.setHint("Enter Mobile Number");
                     city.setHint("Enter City");
                     organization.setHint("Enter Organization");
                     experience.setHint("Enter Experience");
@@ -317,7 +317,7 @@ public class AddDataActivity extends AppCompatActivity {
 
 
                     full_name.setHint("Enter FullName");
-                    phone_number.setHint("Enter Phone Number");
+                    phone_number.setHint("Enter Mobile Number");
                     city.setHint("Enter City");
                     password.setHint("Enter Password");
                     mail.setHint("Enter Mail");
@@ -374,7 +374,7 @@ public class AddDataActivity extends AppCompatActivity {
                     mail.setFocusable(true);
 
                     full_name.setHint("Enter FullName");
-                    phone_number.setHint("Enter Phone Number");
+                    phone_number.setHint("Enter Mobile Number");
                     city.setHint("Enter City");
                     password.setHint("Enter Password");
                     mail.setHint("Enter Mail");
@@ -553,7 +553,7 @@ public class AddDataActivity extends AppCompatActivity {
                     UserDataMap.put("Experience",experience1);
 
                     UserDataMap.put("Mail",mail1);
-                    UserDataMap.put("Organization name",organization1);
+                    UserDataMap.put("Organization",organization1);
                     UserDataMap.put("Password",password1);
 
                     RootRef.child("Data").child("Candidate").child(phoneNumber).updateChildren(UserDataMap)

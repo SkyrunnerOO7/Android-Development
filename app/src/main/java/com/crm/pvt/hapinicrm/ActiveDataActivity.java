@@ -277,14 +277,13 @@ public class ActiveDataActivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull ActiveDataActivity.CandViewHolder holder, int position, @NonNull  Candidate model) {
                 holder.name.setText("Name : "+model.getName());
-                holder.skills.setText("Skills : "+model.getSkills());
-                holder.mail.setText("Mail : "+model.getEmail());
+                holder.organization.setText("Skills : "+model.getOrganization());
+                holder.mail.setText("Mail : "+model.getMail());
                 holder.password.setText("Password : " +model.getPassword());
                 holder.city.setText("City : " +model.getCity());
                 holder.Experience.setText("Experience : " +model.getExperience());
-                holder.Qualification.setText("Qualification : "+model.getQualification());
-                holder.phone.setText("Phone : " + model.getContact());
-
+                holder.Area.setText("Qualification : "+model.getArea());
+                holder.phone.setText("Phone : " + model.getPhone());
 
                 holder.delete.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -360,13 +359,13 @@ public class ActiveDataActivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull ActiveDataActivity.CandViewHolder holder, int position, @NonNull  Candidate model) {
                 holder.name.setText("Name : "+model.getName());
-                holder.skills.setText("Skills : "+model.getSkills());
-                holder.mail.setText("Mail : "+model.getEmail());
+                holder.organization.setText("Skills : "+model.getOrganization());
+                holder.mail.setText("Mail : "+model.getMail());
                 holder.password.setText("Password : " +model.getPassword());
                 holder.city.setText("City : " +model.getCity());
                 holder.Experience.setText("Experience : " +model.getExperience());
-                holder.Qualification.setText("Qualification : "+model.getQualification());
-                holder.phone.setText("Phone : " + model.getContact());
+                holder.Area.setText("Qualification : "+model.getArea());
+                holder.phone.setText("Phone : " + model.getPhone());
 
 
                 holder.delete.setOnClickListener(new View.OnClickListener() {
@@ -441,14 +440,13 @@ public class ActiveDataActivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull ActiveDataActivity.CandViewHolder holder, int position, @NonNull  Candidate model) {
                 holder.name.setText("Name : "+model.getName());
-                holder.skills.setText("Skills : "+model.getSkills());
-                holder.mail.setText("Mail : "+model.getEmail());
+                holder.organization.setText("Skills : "+model.getOrganization());
+                holder.mail.setText("Mail : "+model.getMail());
                 holder.password.setText("Password : " +model.getPassword());
                 holder.city.setText("City : " +model.getCity());
                 holder.Experience.setText("Experience : " +model.getExperience());
-                holder.Qualification.setText("Qualification : "+model.getQualification());
-                holder.phone.setText("Phone : " + model.getContact());
-
+                holder.Area.setText("Qualification : "+model.getArea());
+                holder.phone.setText("Phone : " + model.getPhone());
 
                 holder.delete.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -495,6 +493,7 @@ public class ActiveDataActivity extends AppCompatActivity {
     }
 
     public void DisplayCandidateSortName(){
+        //Query query1 = Candref.orderByChild("Name");
         Query query1 = Candref.orderByChild("Name");
 
         Candref.addValueEventListener(new ValueEventListener() {
@@ -522,13 +521,13 @@ public class ActiveDataActivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull ActiveDataActivity.CandViewHolder holder, int position, @NonNull  Candidate model) {
                 holder.name.setText("Name : "+model.getName());
-                holder.skills.setText("Skills : "+model.getSkills());
-                holder.mail.setText("Mail : "+model.getEmail());
+                holder.organization.setText("Skills : "+model.getOrganization());
+                holder.mail.setText("Mail : "+model.getMail());
                 holder.password.setText("Password : " +model.getPassword());
                 holder.city.setText("City : " +model.getCity());
                 holder.Experience.setText("Experience : " +model.getExperience());
-                holder.Qualification.setText("Qualification : "+model.getQualification());
-                holder.phone.setText("Phone : " + model.getContact());
+                holder.Area.setText("Qualification : "+model.getArea());
+                holder.phone.setText("Phone : " + model.getPhone());
 
 
                 holder.delete.setOnClickListener(new View.OnClickListener() {
@@ -580,19 +579,19 @@ public class ActiveDataActivity extends AppCompatActivity {
 
     public static class CandViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView name,skills,mail,password,city,Experience,Qualification,phone;
+        public TextView name,organization,mail,password,city,Experience,Area,phone;
         public Button delete;
 
         public CandViewHolder(@NonNull View itemView) {
             super(itemView);
 
             name = itemView.findViewById(R.id.user_nameC);
-            skills = itemView.findViewById(R.id.skillsADC);
+            organization = itemView.findViewById(R.id.organizationADC);
             mail = itemView.findViewById(R.id.emailTextC);
             password = itemView.findViewById(R.id.passwordEDC);
             city = itemView.findViewById(R.id.CityTextC);
             Experience = itemView.findViewById(R.id.ExpADC);
-            Qualification = itemView.findViewById(R.id.QualificationTextADC);
+            Area = itemView.findViewById(R.id.AreaTextADC);
             phone = itemView.findViewById(R.id.PhoneTextC);
             delete = itemView.findViewById(R.id.delete_btnC);
         }
