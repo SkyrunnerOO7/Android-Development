@@ -138,6 +138,7 @@ public class fragment_attendance extends DialogFragment {
                     hashMap.put("IMEI",IMEI);
                     hashMap.put("Date",Date);
                     hashMap.put("Time",Time);
+                    hashMap.put("RestTime",(long)0);  //// Added after Rohan Said
                     eRef.child("Attendance").child(IMEI).child(Date).updateChildren(hashMap);
 
 
