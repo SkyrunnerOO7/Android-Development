@@ -7,6 +7,10 @@
     android:layout_height="match_parent"
     tools:context=".Emp_settings_Activity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:background="@drawable/profile_bg"></ImageView>
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/SEimage"
         android:layout_width="130dp"
@@ -15,30 +19,26 @@
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
         />
-
-    <ImageView
-        android:id="@+id/SEchange"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Change Profile"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/add_icon"
-        android:layout_marginTop="4dp"
-        android:backgroundTint="@color/primaryTextColor"
-        android:layout_below="@+id/SEimage"
-        android:layout_centerHorizontal="true"
-        />
+<ImageView
+    android:id="@+id/SElogout"
+    android:layout_width="30dp"
+    android:layout_height="30dp"
+    android:src="@drawable/round_power_button"
+    android:layout_alignParentRight="true"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp"/>
 
     <TextView
         android:id="@+id/SEIMEI"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/SEchange"
-        android:layout_margin="15dp"
+        android:layout_below="@+id/SEimage"
+        android:layout_marginLeft="10dp"
         android:padding="10dp"
         android:text="IMEI"
+        android:textSize="16dp"
+        android:layout_marginTop="80dp"
+        android:textStyle="bold"
         android:textColor="@color/blackTextColor"
         />
 
@@ -47,8 +47,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/SEIMEI"
-
-        android:layout_margin="15dp"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
         android:padding="10dp"
         android:text="Name"
         android:textColor="@color/blackTextColor"
@@ -60,70 +61,56 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/SEName"
         android:text="Email"
+        android:textSize="16dp"
+        android:textStyle="bold"
         android:textColor="@color/blackTextColor"
-        android:layout_margin="15dp"
+        android:layout_marginLeft="10dp"
         android:padding="10dp"
         />
 
-    <TextView
-        android:id="@+id/SEsave"
-        android:layout_width="113dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:layout_below="@id/SEemail"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:gravity="center"
-        android:text="save"
-        android:textStyle="bold"
-        android:textColor="@color/primaryTextColor"
-        android:textSize="20sp"
-        />
-    <TextView
+
+    <Button
         android:id="@+id/edit_emp"
-        android:layout_width="113dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:layout_below="@id/SEsave"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:gravity="center"
-        android:text="Edit Profile"
+        android:layout_marginTop="65dp"
+        android:layout_below="@id/SEemail"
+        android:text="Upload Documents"
+        android:layout_marginLeft="20dp"
+        android:layout_centerHorizontal="true"
         android:textStyle="bold"
-        android:textColor="@color/primaryTextColor"
-        android:textSize="20sp"
+        android:textColor="@color/whiteTextColor"
+        android:textSize="16sp"
         />
 
 
-    <TextView
-        android:id="@+id/SElogout"
-        android:layout_width="113dp"
+    <Button
+        android:id="@+id/work_break"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
         android:layout_below="@id/edit_emp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:gravity="center"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="45dp"
+        android:layout_centerHorizontal="true"
+        android:text="Take break"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        />
+   <!-- <Button
+        android:id="@+id/SElogout"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:layout_margin="65dp"
+        android:layout_below="@id/work_break"
+        android:layout_centerHorizontal="true"
         android:text="Log Out"
         android:textStyle="bold"
         android:textColor="#FD0000"
         android:textSize="20sp"
-        />
+        />-->
 
-    <Button
-        android:id="@+id/work_break"
-        android:layout_width="113dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:layout_below="@id/SElogout"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:gravity="center"
-        android:text="Take break"
-        android:textStyle="bold"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        />
 
 
 

@@ -151,7 +151,7 @@
                             android:id="@+id/phoneA"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="phone"
+                            android:hint="Mobile number"
                             android:inputType="text"
                             android:paddingLeft="10dp"
                             tools:ignore="DuplicateIds" />
@@ -179,25 +179,25 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="16dp"
-                        android:layout_marginTop="15dp"
-                        android:textColorHint="@color/navy_blue"
-                        app:passwordToggleEnabled="true"
-                        app:startIconDrawable="@drawable/ic_baseline_vpn_key_24">
+<!--                    <com.google.android.material.textfield.TextInputLayout-->
+<!--                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginHorizontal="16dp"-->
+<!--                        android:layout_marginTop="15dp"-->
+<!--                        android:textColorHint="@color/navy_blue"-->
+<!--                        app:passwordToggleEnabled="true"-->
+<!--                        app:startIconDrawable="@drawable/ic_baseline_vpn_key_24">-->
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/confirm_password_admin"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Confirm Password"
-                            android:inputType="textPassword"
-                            android:paddingLeft="10dp"
-                            tools:ignore="DuplicateIds" />
-                    </com.google.android.material.textfield.TextInputLayout>
+<!--                        <com.google.android.material.textfield.TextInputEditText-->
+<!--                            android:id="@+id/confirm_password_admin"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:hint="Confirm Password"-->
+<!--                            android:inputType="textPassword"-->
+<!--                            android:paddingLeft="10dp"-->
+<!--                            tools:ignore="DuplicateIds" />-->
+<!--                    </com.google.android.material.textfield.TextInputLayout>-->
 
 
                     <LinearLayout

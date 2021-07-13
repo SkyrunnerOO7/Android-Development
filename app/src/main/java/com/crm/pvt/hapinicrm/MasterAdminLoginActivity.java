@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.crm.pvt.hapinicrm.models.Master;
+import com.crm.pvt.hapinicrm.prevalent.prevalent;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -83,6 +84,7 @@ public class MasterAdminLoginActivity extends AppCompatActivity {
                             loadingbar.dismiss();
                             codeED.setText("");
                             Intent intent = new Intent(getApplicationContext(),MasterAdminDasboardActivity.class);
+                            prevalent.CurrentMaster = MasterData;
                             startActivity(intent);
                         }else{
                             loadingbar.dismiss();

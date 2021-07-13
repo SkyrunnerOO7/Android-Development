@@ -17,6 +17,18 @@
         app:civ_border_width="2dp" />
 
     <TextView
+        android:id="@+id/save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        android:textAlignment="center"
+        android:text="Save Image"
+        android:textColor="@color/blackTextColor"
+        android:layout_below="@id/profile_image"
+        android:gravity="center_horizontal" />
+
+
+    <TextView
         android:id="@+id/sample_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

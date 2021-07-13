@@ -727,7 +727,7 @@ public class ActiveUserActivity extends AppCompatActivity {
 
 
     public void EmployeeFirebasesearch(String s) {
-        Query q = dbref.orderByChild("Name").startAt(s).endAt(s+'\uf8ff');
+        Query q = empref.orderByChild("Name").startAt(s).endAt(s+'\uf8ff');
 
         empref.addValueEventListener(new ValueEventListener() {
             @Override

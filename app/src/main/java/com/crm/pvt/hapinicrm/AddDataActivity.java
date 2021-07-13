@@ -173,6 +173,17 @@ public class AddDataActivity extends AppCompatActivity {
                     organization.setHintTextColor(getResources().getColor(R.color.navy_blue));
                     experience.setHintTextColor(getResources().getColor(R.color.navy_blue));
 
+                    full_name.setVisibility(View.VISIBLE);
+                    phone_number.setVisibility(View.VISIBLE);
+                    city.setVisibility(View.VISIBLE);
+                    area.setVisibility(View.VISIBLE);
+                    password.setVisibility(View.GONE);
+                    mail.setVisibility(View.VISIBLE);
+                    organization.setVisibility(View.VISIBLE);
+                    experience.setVisibility(View.VISIBLE);
+                    subService.setVisibility(View.GONE);
+                    service.setVisibility(View.GONE);
+
 
                     full_name.setEnabled(true);
                     phone_number.setEnabled(true);
@@ -182,6 +193,8 @@ public class AddDataActivity extends AppCompatActivity {
                     mail.setEnabled(true);
                     organization.setEnabled(true);
                     experience.setEnabled(true);
+
+
 
 
                     full_name.setFocusable(true);
@@ -232,6 +245,18 @@ public class AddDataActivity extends AppCompatActivity {
                     subService.setHintTextColor(getResources().getColor(R.color.navy_blue));
                     service.setHintTextColor(getResources().getColor(R.color.navy_blue));
 
+
+
+                    full_name.setVisibility(View.VISIBLE);
+                    phone_number.setVisibility(View.VISIBLE);
+                    city.setVisibility(View.VISIBLE);
+                    area.setVisibility(View.VISIBLE);
+                    password.setVisibility(View.GONE);
+                    mail.setVisibility(View.VISIBLE);
+                    organization.setVisibility(View.VISIBLE);
+                    experience.setVisibility(View.VISIBLE);
+                    subService.setVisibility(View.VISIBLE);
+                    service.setVisibility(View.VISIBLE);
 
 
 
@@ -296,6 +321,17 @@ public class AddDataActivity extends AppCompatActivity {
                     service.setHintTextColor(getResources().getColor(R.color.md_blue_grey_400));
 
 
+                    full_name.setVisibility(View.VISIBLE);
+                    phone_number.setVisibility(View.VISIBLE);
+                    city.setVisibility(View.VISIBLE);
+                    area.setVisibility(View.GONE);
+                    password.setVisibility(View.GONE);
+                    mail.setVisibility(View.VISIBLE);
+                    organization.setVisibility(View.VISIBLE);
+                    experience.setVisibility(View.GONE);
+                    subService.setVisibility(View.GONE);
+                    service.setVisibility(View.GONE);
+
 
                     full_name.setFocusable(true);
                     phone_number.setFocusable(true);
@@ -312,6 +348,22 @@ public class AddDataActivity extends AppCompatActivity {
                     password.setEnabled(true);
                     mail.setEnabled(true);
                     organization.setEnabled(true);
+
+
+
+                    full_name.setVisibility(View.VISIBLE);
+                    phone_number.setVisibility(View.VISIBLE);
+                    city.setVisibility(View.VISIBLE);
+                    area.setVisibility(View.VISIBLE);
+                    password.setVisibility(View.GONE);
+                    mail.setVisibility(View.VISIBLE);
+                    organization.setVisibility(View.VISIBLE);
+                    experience.setVisibility(View.VISIBLE);
+                    subService.setVisibility(View.VISIBLE);
+                    service.setVisibility(View.VISIBLE);
+
+
+
 
 
 
@@ -356,6 +408,17 @@ public class AddDataActivity extends AppCompatActivity {
                     experience.setHintTextColor(getResources().getColor(R.color.md_blue_grey_400));
                     subService.setHintTextColor(getResources().getColor(R.color.md_blue_grey_400));
                     service.setHintTextColor(getResources().getColor(R.color.md_blue_grey_400));
+
+                    full_name.setVisibility(View.VISIBLE);
+                    phone_number.setVisibility(View.VISIBLE);
+                    city.setVisibility(View.VISIBLE);
+                    area.setVisibility(View.VISIBLE);
+                    password.setVisibility(View.GONE);
+                    mail.setVisibility(View.VISIBLE);
+                    organization.setVisibility(View.GONE);
+                    experience.setVisibility(View.GONE);
+                    subService.setVisibility(View.GONE);
+                    service.setVisibility(View.GONE);
 
 
                     full_name.setEnabled(true);
@@ -444,7 +507,7 @@ public class AddDataActivity extends AppCompatActivity {
 
             service1 = service.getText().toString();
             subservice1 = subService.getText().toString();
-            password1 = password.getText().toString();
+//            password1 = password.getText().toString();
             mail1 = mail.getText().toString();
             if (!check_spinner.equals("true"))
             {
@@ -455,14 +518,14 @@ public class AddDataActivity extends AppCompatActivity {
 
 
                 countryCodePicker.registerPhoneNumberTextView(phone_number);
-                if(validateFullName(fullName) && validatePhoneNumber(phoneNumber) && validatecity(city_st) && validatemail(mail1) && validatepassword(password1) && validatearea(area1)) {
+                if(validateFullName(fullName) && validatePhoneNumber(phoneNumber) && validatecity(city_st) && validatemail(mail1)  && validatearea(area1)) {
                     if (checkBox.isChecked()) {
 
                         if (countryCodePicker.isValid())
                             Toast.makeText(getApplicationContext(), "Successfully Submitted", Toast.LENGTH_SHORT).show();
 
                         if(countryCodePicker.isValid()){
-                            CustomerB2CcreateEntry(phoneNumber,fullName,area1,city_st,password1,mail1);
+                            CustomerB2CcreateEntry(phoneNumber,fullName,area1,city_st,mail1);
                         }
                         else
                             Toast.makeText(getApplicationContext(), "Provide valid code/phone number", Toast.LENGTH_SHORT).show();
@@ -475,14 +538,14 @@ public class AddDataActivity extends AppCompatActivity {
 
 
                 countryCodePicker.registerPhoneNumberTextView(phone_number);
-                if(validateFullName(fullName) && validatePhoneNumber(phoneNumber) && validatecity(city_st) && validatemail(mail1) && validatepassword(password1) && validateorganization(organization1)) {
+                if(validateFullName(fullName) && validatePhoneNumber(phoneNumber) && validatecity(city_st) && validatemail(mail1) &&  validateorganization(organization1)) {
                     if (checkBox.isChecked()) {
 
                         if (countryCodePicker.isValid())
                             Toast.makeText(getApplicationContext(), "Successfully Submitted", Toast.LENGTH_SHORT).show();
 
                         if(countryCodePicker.isValid()){
-                            CustomerB2BCreateEntry(phoneNumber,fullName,city_st,organization1,password1,mail1);
+                            CustomerB2BCreateEntry(phoneNumber,fullName,city_st,organization1,mail1);
                         }
                         else
                             Toast.makeText(getApplicationContext(), "Provide valid code/phone number", Toast.LENGTH_SHORT).show();
@@ -494,14 +557,14 @@ public class AddDataActivity extends AppCompatActivity {
 
                 Toast.makeText(this, "inside", Toast.LENGTH_SHORT).show();
                 countryCodePicker.registerPhoneNumberTextView(phone_number);
-                if(validatearea(area1) && validateorganization(organization1) && validateexperience(experience1)  && validateservice(service1) && validatesubservice(subservice1) && validatepassword(password1) && validatemail(mail1) &&validateFullName(fullName) && validatePhoneNumber(phoneNumber) && validatecity(city_st)) {
+                if(validatearea(area1) && validateorganization(organization1) && validateexperience(experience1)  && validateservice(service1) && validatesubservice(subservice1)  && validatemail(mail1) &&validateFullName(fullName) && validatePhoneNumber(phoneNumber) && validatecity(city_st)) {
                     if (checkBox.isChecked()) {
 
                         if (countryCodePicker.isValid())
                             Toast.makeText(getApplicationContext(), "Successfully Submitted", Toast.LENGTH_SHORT).show();
 
                         if(countryCodePicker.isValid()){
-                            VendorsCreateEntry(phoneNumber,fullName,area1,city_st,organization1,experience1,service1,subservice1,password1,mail1);
+                            VendorsCreateEntry(phoneNumber,fullName,area1,city_st,organization1,experience1,service1,subservice1,mail1);
                         }
                         else
                             Toast.makeText(getApplicationContext(), "Provide valid code/phone number", Toast.LENGTH_SHORT).show();
@@ -513,14 +576,14 @@ public class AddDataActivity extends AppCompatActivity {
 
                 countryCodePicker.registerPhoneNumberTextView(phone_number);
 
-                if(validatearea(area1) && validateorganization(organization1) && validateexperience(experience1)  && validatepassword(password1) && validatemail(mail1) &&validateFullName(fullName) && validatePhoneNumber(phoneNumber) && validatecity(city_st)) {
+                if(validatearea(area1) && validateorganization(organization1) && validateexperience(experience1)  &&  validatemail(mail1) &&validateFullName(fullName) && validatePhoneNumber(phoneNumber) && validatecity(city_st)) {
                     if (checkBox.isChecked()) {
 
                         if (countryCodePicker.isValid())
                             Toast.makeText(getApplicationContext(), "Successfully Submitted", Toast.LENGTH_SHORT).show();
 
                         if(countryCodePicker.isValid()){
-                            CandidateCreateEntry(phoneNumber,fullName,area1,city_st,organization1,experience1,password1,mail1);
+                            CandidateCreateEntry(phoneNumber,fullName,area1,city_st,organization1,experience1,mail1);
                         }
                         else
                             Toast.makeText(getApplicationContext(), "Provide valid code/phone number", Toast.LENGTH_SHORT).show();
@@ -536,7 +599,7 @@ public class AddDataActivity extends AppCompatActivity {
 
     }
 
-    private void CandidateCreateEntry(String phoneNumber,String fullName,String area1,String city_st,String organization1,String experience1,String password1,String mail1){
+    private void CandidateCreateEntry(String phoneNumber,String fullName,String area1,String city_st,String organization1,String experience1,String mail1){
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
 
@@ -553,8 +616,10 @@ public class AddDataActivity extends AppCompatActivity {
                     UserDataMap.put("Experience",experience1);
 
                     UserDataMap.put("Mail",mail1);
-                    UserDataMap.put("Organization",organization1);
-                    UserDataMap.put("Password",password1);
+
+                    UserDataMap.put("Organization name",organization1);
+//                    UserDataMap.put("Password",password1);
+
 
                     RootRef.child("Data").child("Candidate").child(phoneNumber).updateChildren(UserDataMap)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -570,7 +635,7 @@ public class AddDataActivity extends AppCompatActivity {
                                         area.setText("");
                                         organization.setText("");
                                         experience.setText("");
-                                        password.setText("");
+//                                        password.setText("");
                                         mail.setText("");
 
 
@@ -605,7 +670,7 @@ public class AddDataActivity extends AppCompatActivity {
 
 
     }
-    private void CustomerB2BCreateEntry(String phoneNumber,String fullName,String city_st,String organization1, String password1,String mail1){
+    private void CustomerB2BCreateEntry(String phoneNumber,String fullName,String city_st,String organization1,String mail1){
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
 
@@ -620,7 +685,7 @@ public class AddDataActivity extends AppCompatActivity {
 
                     UserDataMap.put("Mail",mail1);
                     UserDataMap.put("Organization name",organization1);
-                    UserDataMap.put("Password",password1);
+//                    UserDataMap.put("Password",password1);
 
 
 
@@ -636,7 +701,7 @@ public class AddDataActivity extends AppCompatActivity {
                                         phone_number.setText("");
                                         city.setText("");
                                         organization.setText("");
-                                        password.setText("");
+//                                        password.setText("");
                                         mail.setText("");
 
 
@@ -666,7 +731,7 @@ public class AddDataActivity extends AppCompatActivity {
         });
 
     }
-    private void CustomerB2CcreateEntry(String phoneNumber,String fullName,String area1,String city_st,String password1,String mail1)
+    private void CustomerB2CcreateEntry(String phoneNumber,String fullName,String area1,String city_st,String mail1)
     {
 
 
@@ -684,7 +749,7 @@ public class AddDataActivity extends AppCompatActivity {
 
                     UserDataMap.put("Area",area1);
                     UserDataMap.put("Mail",mail1);
-                    UserDataMap.put("Password",password1);
+//                    UserDataMap.put("Password",password1);
                     RootRef.child("Data").child("CustomerB2C").child(phoneNumber).updateChildren(UserDataMap)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
@@ -696,7 +761,7 @@ public class AddDataActivity extends AppCompatActivity {
                                         phone_number.setText("");
                                         city.setText("");
                                         area.setText("");
-                                        password.setText("");
+//                                        password.setText("");
                                         mail.setText("");
 
 
@@ -733,7 +798,7 @@ public class AddDataActivity extends AppCompatActivity {
     }
 
 
-    private void VendorsCreateEntry(String phoneNumber,String fullName,String area1,String city_st,String organization1,String experience1,String service1,String subservice1,String password1,String mail1){
+    private void VendorsCreateEntry(String phoneNumber,String fullName,String area1,String city_st,String organization1,String experience1,String service1,String subservice1,String mail1){
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
 
@@ -758,7 +823,7 @@ public class AddDataActivity extends AppCompatActivity {
 
                     UserDataMap.put("Mail",mail1);
                     UserDataMap.put("Organization name",organization1);
-                    UserDataMap.put("Password",password1);
+//                    UserDataMap.put("Password",password1);
                     UserDataMap.put("Service",service1);
 
 
@@ -779,7 +844,7 @@ public class AddDataActivity extends AppCompatActivity {
                                         area.setText("");
                                         organization.setText("");
                                         experience.setText("");
-                                        password.setText("");
+//                                        password.setText("");
                                         service.setText("");
                                         subService.setText("");
                                         mail.setText("");
