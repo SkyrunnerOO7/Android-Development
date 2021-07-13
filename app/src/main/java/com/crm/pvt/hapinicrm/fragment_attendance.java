@@ -86,7 +86,7 @@ public class fragment_attendance extends DialogFragment {
             String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
             //DateFormat.getDateInstance(DateFormat.SHORT).format(calendar.getTime());
 
-            String  curTime = DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime());;
+            String  curTime = DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime());
             list.add(0,currentDate+"  "+curTime);
 
 
@@ -138,6 +138,7 @@ public class fragment_attendance extends DialogFragment {
                     hashMap.put("IMEI",IMEI);
                     hashMap.put("Date",Date);
                     hashMap.put("Time",Time);
+                    hashMap.put("RestTime",(long)0);
                     eRef.child("Attendance").child(IMEI).child(Date).updateChildren(hashMap);
 
 

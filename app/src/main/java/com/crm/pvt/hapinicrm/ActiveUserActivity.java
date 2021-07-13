@@ -879,7 +879,7 @@ public class ActiveUserActivity extends AppCompatActivity {
     }
 
     public void EmployeeFirebaseSort() {
-        Query q = dbref.orderByChild("City");
+        Query q = empref.orderByChild("City");
 
         empref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -1034,7 +1034,7 @@ public class ActiveUserActivity extends AppCompatActivity {
     }
 
     public void EmployeeFirebaseSortName() {
-        Query q = dbref.orderByChild("Name");
+        Query q = empref.orderByChild("Name");
 
         empref.addValueEventListener(new ValueEventListener() {
             @Override
