@@ -1126,7 +1126,7 @@ public class ActiveUserActivity extends AppCompatActivity {
         canvas.drawText("Date: ",250,550,titlePaint1);
         canvas.drawText("Time: ",250,600,titlePaint1);
         canvas.drawText("By: ",250,650,titlePaint1);
-
+//      canvas.drawText("By: ",250,650,titlePaint1);
 
 
 
