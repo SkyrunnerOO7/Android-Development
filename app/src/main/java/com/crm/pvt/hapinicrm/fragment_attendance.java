@@ -32,6 +32,7 @@ import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -86,11 +87,19 @@ public class fragment_attendance extends DialogFragment {
             String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
             //DateFormat.getDateInstance(DateFormat.SHORT).format(calendar.getTime());
 
-            String  curTime = DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime());;
+
+
+
+            String  curTime = DateFormat.getTimeInstance(DateFormat.SHORT).format(calendar.getTime());
+
+
+
+
             list.add(0,currentDate+"  "+curTime);
-
-
             MarkAttendance(currentDate,curTime);
+
+
+
 //            Intent i = new Intent(getContext(),EmployeeDashboardActivity.class);
 //            i.putExtra("loginTime",curTime);
 //            startActivity(i);
@@ -138,6 +147,11 @@ public class fragment_attendance extends DialogFragment {
                     hashMap.put("IMEI",IMEI);
                     hashMap.put("Date",Date);
                     hashMap.put("Time",Time);
+
+                   
+
+                    hashMap.put("RestTime",(long)0);  //// Added after Rohan Said
+
                     eRef.child("Attendance").child(IMEI).child(Date).updateChildren(hashMap);
 
 

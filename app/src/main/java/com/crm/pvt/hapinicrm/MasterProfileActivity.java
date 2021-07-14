@@ -8,8 +8,10 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.os.Bundle;
@@ -44,13 +46,14 @@ public class MasterProfileActivity extends AppCompatActivity {
     private CircleImageView masterProfileImage;
     private static final int PICK_IMAGE = 1, RESULT_OK = -1;
     Uri imageUri;
-    TextView save;
+    TextView save,codetext;
 
     private String myUrl = "";
     private StorageTask uploadTask;
     private StorageReference storageProfilePrictureRef;
     private String checker = "";
     private Button logout;
+    private EditText code,email,name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +62,15 @@ public class MasterProfileActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         masterProfileImage = (CircleImageView) findViewById(R.id.profile_image);
         storageProfilePrictureRef = FirebaseStorage.getInstance().getReference().child("Master");
+        code = findViewById(R.id.settings_code);
+        email = findViewById(R.id.settings_Email);
+        name = findViewById(R.id.settings_full_name);
+        code.setVisibility(View.GONE);
+        codetext = findViewById(R.id.codetextview);
+        codetext.setText("Code:  "+prevalent.CurrentMaster.getCode());
 
         save = findViewById(R.id.save);
+
 
         if(prevalent.CurrentMaster.getImage()!=null){
             Picasso.get().load(prevalent.CurrentMaster.getImage()).placeholder(R.drawable.admin_profile_icon1).into(masterProfileImage);
@@ -78,7 +88,7 @@ public class MasterProfileActivity extends AppCompatActivity {
                 }
             });*/
 
-        userInfoDetails(masterProfileImage);
+        userInfoDetails(masterProfileImage,code,email,name);
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +96,7 @@ public class MasterProfileActivity extends AppCompatActivity {
                 if(checker.equals("clicked")){
                     userInfosaved();
                 }else{
-//                    updateonlyUserinfo();
+                    updateOnlyUserInfo();
                 }
 
             }
@@ -113,6 +123,22 @@ public class MasterProfileActivity extends AppCompatActivity {
         });
 
 
+    }
+
+
+    private void updateOnlyUserInfo()
+    {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Master");
+
+        HashMap<String, Object> userMap = new HashMap<>();
+        userMap. put("code", code.getText().toString());
+        userMap. put("Email", email.getText().toString());
+        userMap. put("Name", name.getText().toString());
+        ref.child(prevalent.CurrentMaster.getCode()).updateChildren(userMap);
+
+        startActivity(new Intent(getApplicationContext(), MasterAdminDasboardActivity.class));
+        Toast.makeText(getApplicationContext(), "Profile Info update successfully.", Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     /*@Override
@@ -144,7 +170,20 @@ public class MasterProfileActivity extends AppCompatActivity {
 
 
     private void userInfosaved() {
-        if (checker.equals("clicked")) {
+        if (TextUtils.isEmpty(code.getText().toString()))
+        {
+            Toast.makeText(this, "Code is mandatory.", Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(email.getText().toString()))
+        {
+            Toast.makeText(this, "Email is address.", Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(name.getText().toString()))
+        {
+            Toast.makeText(this, "Name is mandatory.", Toast.LENGTH_SHORT).show();
+        }
+        else if(checker.equals("clicked"))
+        {
             uploadImage();
         }
 
@@ -180,6 +219,9 @@ public class MasterProfileActivity extends AppCompatActivity {
                                 myUrl = downloaduri.toString();
                                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Master").child(prevalent.CurrentMaster.getCode());
                                 HashMap<String, Object> hashMap = new HashMap<>();
+                                hashMap. put("code", code.getText().toString());
+                                hashMap. put("Email", email.getText().toString());
+                                hashMap. put("Name", name.getText().toString());
                                 hashMap.put("Image", myUrl);
                                 ref.updateChildren(hashMap);
                                 progressDialog.dismiss();
@@ -199,7 +241,7 @@ public class MasterProfileActivity extends AppCompatActivity {
         }
     }
 
-    private void userInfoDetails(ImageView profileImageView) {
+    private void userInfoDetails(ImageView profileImageView, final EditText code,final EditText email,final EditText name) {
         DatabaseReference adminref = FirebaseDatabase.getInstance().getReference().child("Master").child(prevalent.CurrentMaster.getCode());
 
         adminref.addValueEventListener(new ValueEventListener() {
@@ -210,7 +252,14 @@ public class MasterProfileActivity extends AppCompatActivity {
 
                     if (snapshot.child("Image").exists()) {
                         String image = snapshot.child("Image").getValue().toString();
+                        String Code = snapshot.child("code").getValue().toString();
+                        String Email = snapshot.child("Email").getValue().toString();
+                        String Name = snapshot.child("Name").getValue().toString();
                         Picasso.get().load(image).into(profileImageView);
+
+                        code.setText(Code);
+                        email.setText(Email);
+                        name.setText(Name);
 
 
                     }

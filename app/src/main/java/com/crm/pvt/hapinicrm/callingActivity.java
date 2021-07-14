@@ -58,7 +58,7 @@ public class callingActivity extends AppCompatActivity {
     ArrayList<HashMap> PhoneList;
     String[] limit = new String[1];
     String CUR_EMP_ID;
-    public static final String SHARED_PREFS1 = "sharedPrefsAttendan";
+    public static final String SHARED_PREFS1 = "sharedPrefsAttendan112";
     public static final String text = "text1";
     ArrayList<Data> DataList;
 

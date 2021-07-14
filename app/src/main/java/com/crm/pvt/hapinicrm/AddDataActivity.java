@@ -112,6 +112,7 @@ public class AddDataActivity extends AppCompatActivity {
         dialog.setCancelable(false);
         errorText=dialog.findViewById(R.id.errortextoferrorAc);
         errorHeading=dialog.findViewById(R.id.homeHeading);
+        password.setVisibility(View.GONE);
 
         Button CloseDialog=dialog.findViewById(R.id.CloseBtnErrorAC);
         CloseDialog.setOnClickListener(new View.OnClickListener() {
@@ -173,16 +174,18 @@ public class AddDataActivity extends AppCompatActivity {
                     organization.setHintTextColor(getResources().getColor(R.color.navy_blue));
                     experience.setHintTextColor(getResources().getColor(R.color.navy_blue));
 
-                    full_name.setVisibility(View.VISIBLE);
-                    phone_number.setVisibility(View.VISIBLE);
-                    city.setVisibility(View.VISIBLE);
-                    area.setVisibility(View.VISIBLE);
-                    password.setVisibility(View.GONE);
-                    mail.setVisibility(View.VISIBLE);
-                    organization.setVisibility(View.VISIBLE);
-                    experience.setVisibility(View.VISIBLE);
-                    subService.setVisibility(View.GONE);
-                    service.setVisibility(View.GONE);
+//                    full_name.setVisibility(View.VISIBLE);
+//                    phone_number.setVisibility(View.VISIBLE);
+//                    city.setVisibility(View.VISIBLE);
+//                    area.setVisibility(View.VISIBLE);
+//                    password.setVisibility(View.GONE);
+//                    mail.setVisibility(View.VISIBLE);
+//                    organization.setVisibility(View.VISIBLE);
+//                    experience.setVisibility(View.VISIBLE);
+//                    subService.setVisibility(View.GONE);
+//                    service.setVisibility(View.GONE);
+
+
 
 
                     full_name.setEnabled(true);
@@ -197,14 +200,14 @@ public class AddDataActivity extends AppCompatActivity {
 
 
 
-                    full_name.setFocusable(true);
-                    phone_number.setFocusable(true);
-                    city.setFocusable(true);
-                    area.setFocusable(true);
-                    password.setFocusable(true);
-                    mail.setFocusable(true);
-                    organization.setFocusable(true);
-                    experience.setFocusable(true);
+//                    full_name.setFocusable(true);
+//                    phone_number.setFocusable(true);
+//                    city.setFocusable(true);
+//                    area.setFocusable(true);
+//                    password.setFocusable(true);
+//                    mail.setFocusable(true);
+//                    organization.setFocusable(true);
+//                    experience.setFocusable(true);
 
 
                     full_name.setHint("Enter FullName");
@@ -247,16 +250,16 @@ public class AddDataActivity extends AppCompatActivity {
 
 
 
-                    full_name.setVisibility(View.VISIBLE);
-                    phone_number.setVisibility(View.VISIBLE);
-                    city.setVisibility(View.VISIBLE);
-                    area.setVisibility(View.VISIBLE);
-                    password.setVisibility(View.GONE);
-                    mail.setVisibility(View.VISIBLE);
-                    organization.setVisibility(View.VISIBLE);
-                    experience.setVisibility(View.VISIBLE);
-                    subService.setVisibility(View.VISIBLE);
-                    service.setVisibility(View.VISIBLE);
+//                    full_name.setVisibility(View.VISIBLE);
+//                    phone_number.setVisibility(View.VISIBLE);
+//                    city.setVisibility(View.VISIBLE);
+//                    area.setVisibility(View.VISIBLE);
+//                    password.setVisibility(View.GONE);
+//                    mail.setVisibility(View.VISIBLE);
+//                    organization.setVisibility(View.VISIBLE);
+//                    experience.setVisibility(View.VISIBLE);
+//                    subService.setVisibility(View.VISIBLE);
+//                    service.setVisibility(View.VISIBLE);
 
 
 
@@ -273,16 +276,16 @@ public class AddDataActivity extends AppCompatActivity {
                     subService.setEnabled(true);
                     service.setEnabled(true);
 
-                    full_name.setFocusable(true);
-                    phone_number.setFocusable(true);
-                    city.setFocusable(true);
-                    area.setFocusable(true);
-                    password.setFocusable(true);
-                    mail.setFocusable(true);
-                    organization.setFocusable(true);
-                    experience.setFocusable(true);
-                    subService.setFocusable(true);
-                    service.setFocusable(true);
+//                    full_name.setFocusable(true);
+//                    phone_number.setFocusable(true);
+//                    city.setFocusable(true);
+//                    area.setFocusable(true);
+//                    password.setFocusable(true);
+//                    mail.setFocusable(true);
+//                    organization.setFocusable(true);
+//                    experience.setFocusable(true);
+//                    subService.setFocusable(true);
+//                    service.setFocusable(true);
 
 
                     full_name.setHint("Enter FullName");
@@ -332,6 +335,19 @@ public class AddDataActivity extends AppCompatActivity {
                     subService.setVisibility(View.GONE);
                     service.setVisibility(View.GONE);
 
+//                    full_name.setVisibility(View.VISIBLE);
+//                    phone_number.setVisibility(View.VISIBLE);
+//                    city.setVisibility(View.VISIBLE);
+//                    area.setVisibility(View.GONE);
+//                    password.setVisibility(View.GONE);
+//                    mail.setVisibility(View.VISIBLE);
+//                    organization.setVisibility(View.VISIBLE);
+//                    experience.setVisibility(View.GONE);
+//                    subService.setVisibility(View.GONE);
+//                    service.setVisibility(View.GONE);
+
+
+
 
                     full_name.setFocusable(true);
                     phone_number.setFocusable(true);
@@ -341,7 +357,6 @@ public class AddDataActivity extends AppCompatActivity {
                     mail.setFocusable(true);
                     organization.setFocusable(true);
 
-
                     full_name.setEnabled(true);
                     phone_number.setEnabled(true);
                     city.setEnabled(true);
@@ -349,8 +364,6 @@ public class AddDataActivity extends AppCompatActivity {
                     password.setEnabled(true);
                     mail.setEnabled(true);
                     organization.setEnabled(true);
-
-
 
                     /*full_name.setVisibility(View.VISIBLE);
                     phone_number.setVisibility(View.VISIBLE);
@@ -362,6 +375,7 @@ public class AddDataActivity extends AppCompatActivity {
                     experience.setVisibility(View.VISIBLE);
                     subService.setVisibility(View.VISIBLE);
                     service.setVisibility(View.VISIBLE);*/
+
 
 
 
@@ -404,16 +418,16 @@ public class AddDataActivity extends AppCompatActivity {
                     subService.setHintTextColor(getResources().getColor(R.color.md_blue_grey_400));
                     service.setHintTextColor(getResources().getColor(R.color.md_blue_grey_400));
 
-                    full_name.setVisibility(View.VISIBLE);
-                    phone_number.setVisibility(View.VISIBLE);
-                    city.setVisibility(View.VISIBLE);
-                    area.setVisibility(View.VISIBLE);
-                    password.setVisibility(View.GONE);
-                    mail.setVisibility(View.VISIBLE);
-                    organization.setVisibility(View.GONE);
-                    experience.setVisibility(View.GONE);
-                    subService.setVisibility(View.GONE);
-                    service.setVisibility(View.GONE);
+//                    full_name.setVisibility(View.VISIBLE);
+//                    phone_number.setVisibility(View.VISIBLE);
+//                    city.setVisibility(View.VISIBLE);
+//                    area.setVisibility(View.VISIBLE);
+//                    password.setVisibility(View.GONE);
+//                    mail.setVisibility(View.VISIBLE);
+//                    organization.setVisibility(View.GONE);
+//                    experience.setVisibility(View.GONE);
+//                    subService.setVisibility(View.GONE);
+//                    service.setVisibility(View.GONE);
 
 
                     full_name.setEnabled(true);
@@ -424,12 +438,12 @@ public class AddDataActivity extends AppCompatActivity {
                     mail.setEnabled(true);
 
 
-                    full_name.setFocusable(true);
-                    phone_number.setFocusable(true);
-                    city.setFocusable(true);
-                    area.setFocusable(true);
-                    password.setFocusable(true);
-                    mail.setFocusable(true);
+//                    full_name.setFocusable(true);
+//                    phone_number.setFocusable(true);
+//                    city.setFocusable(true);
+//                    area.setFocusable(true);
+//                    password.setFocusable(true);
+//                    mail.setFocusable(true);
 
                     full_name.setHint("Enter FullName");
                     phone_number.setHint("Enter Mobile Number");
