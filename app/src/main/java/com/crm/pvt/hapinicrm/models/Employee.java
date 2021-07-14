@@ -4,7 +4,7 @@ public class Employee {
 
     
 
-    private String IMEI,Password,mail,Name,City,Phone,Image,Url,DOB,Area,Verified;
+    private String IMEI,Password,mail,Name,City,Phone,Image,Url,DOB,Area,Verified,AdminName,Date,Time;
 
 
     public Employee() {
@@ -23,21 +23,29 @@ public class Employee {
         Area=area1;
     }
 
+    public String getAdminName() {
+        return AdminName;
+    }
 
+    public void setAdminName(String adminName) {
+        AdminName = adminName;
+    }
 
+    public String getDate() {
+        return Date;
+    }
 
+    public void setDate(String date) {
+        Date = date;
+    }
 
-    /*public Employee(String IMEI, String password, String mail ) {
-                this.IMEI = IMEI;
-                Password = password;
-                this.mail = mail;
-            }*/
-   /*public Employee(String IMEI, String password, String mail ) {
-            this.IMEI = IMEI;
-            Password = password;
-            this.mail = mail;
-        }*/
+    public String getTime() {
+        return Time;
+    }
 
+    public void setTime(String time) {
+        Time = time;
+    }
 
     public String getVerified() {
         return Verified;

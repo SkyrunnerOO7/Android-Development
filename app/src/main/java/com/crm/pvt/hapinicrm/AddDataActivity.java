@@ -326,7 +326,7 @@ public class AddDataActivity extends AppCompatActivity {
                     organization.setVisibility(View.VISIBLE);
                     city.setVisibility(View.VISIBLE);
                     mail.setVisibility(View.VISIBLE);
-                    area.setVisibility(View.GONE);
+                    area.setVisibility(View.VISIBLE);
                     password.setVisibility(View.GONE);
                     experience.setVisibility(View.GONE);
                     subService.setVisibility(View.GONE);
@@ -337,6 +337,7 @@ public class AddDataActivity extends AppCompatActivity {
                     phone_number.setFocusable(true);
                     city.setFocusable(true);
                     password.setFocusable(true);
+                    area.setFocusable(true);
                     mail.setFocusable(true);
                     organization.setFocusable(true);
 
@@ -344,6 +345,7 @@ public class AddDataActivity extends AppCompatActivity {
                     full_name.setEnabled(true);
                     phone_number.setEnabled(true);
                     city.setEnabled(true);
+                    area.setEnabled(true);
                     password.setEnabled(true);
                     mail.setEnabled(true);
                     organization.setEnabled(true);
@@ -364,20 +366,17 @@ public class AddDataActivity extends AppCompatActivity {
 
 
 
-                    full_name.setHint("Enter FullName");
+                    full_name.setHint("Enter Full Name");
                     phone_number.setHint("Enter Mobile Number");
                     city.setHint("Enter City");
                     password.setHint("Enter Password");
                     mail.setHint("Enter Mail");
                     organization.setHint("Enter Qualification");
 
-                    area.setHint("Not Required for CustomerB2B");
+                    area.setHint("Enter Area");
                     experience.setHint("Not Required for CustomerB2B");
                     experience.setEnabled(false);
                     experience.setFocusable(false);
-
-                    area.setEnabled(false);
-                    area.setFocusable(false);
 
                     service.setHint("Not Required for CustomerB2B");
                     subService.setHint("Not Required for CustomerB2B");
@@ -534,14 +533,14 @@ public class AddDataActivity extends AppCompatActivity {
 
 
                 countryCodePicker.registerPhoneNumberTextView(phone_number);
-                if(validateFullName(fullName) && validatePhoneNumber(phoneNumber) && validatecity(city_st) && validatemail(mail1) &&  validateorganization(organization1)) {
+                if(validateFullName(fullName) && validatePhoneNumber(phoneNumber) && validatecity(city_st) && validatemail(mail1) &&  validateorganization(organization1) && validatearea(area1)) {
                     if (checkBox.isChecked()) {
 
                         if (countryCodePicker.isValid())
                             Toast.makeText(getApplicationContext(), "Successfully Submitted", Toast.LENGTH_SHORT).show();
 
                         if(countryCodePicker.isValid()){
-                            CustomerB2BCreateEntry(phoneNumber,fullName,city_st,organization1,mail1);
+                            CustomerB2BCreateEntry(phoneNumber,fullName,city_st,organization1,mail1,area1);
                         }
                         else
                             Toast.makeText(getApplicationContext(), "Provide valid code/phone number", Toast.LENGTH_SHORT).show();
@@ -666,7 +665,7 @@ public class AddDataActivity extends AppCompatActivity {
 
 
     }
-    private void CustomerB2BCreateEntry(String phoneNumber,String fullName,String city_st,String organization1,String mail1){
+    private void CustomerB2BCreateEntry(String phoneNumber,String fullName,String city_st,String organization1,String mail1,String area2){
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
 
@@ -680,6 +679,7 @@ public class AddDataActivity extends AppCompatActivity {
                     UserDataMap.put("City",city_st);
 
                     UserDataMap.put("Mail",mail1);
+                    UserDataMap.put("Area",area2);
                     UserDataMap.put("Organization name",organization1);
 //                    UserDataMap.put("Password",password1);
 
@@ -696,6 +696,7 @@ public class AddDataActivity extends AppCompatActivity {
                                         full_name.setText("");
                                         phone_number.setText("");
                                         city.setText("");
+                                        area.setText("");
                                         organization.setText("");
 //                                        password.setText("");
                                         mail.setText("");
@@ -704,7 +705,7 @@ public class AddDataActivity extends AppCompatActivity {
 
                                     }else{
                                         loadingBar.dismiss();
-                                        Toast.makeText(getApplicationContext(), "Somthing Went Wrong.. Please Try Again After Some time..", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), "Something Went Wrong.. Please Try Again After Some time..", Toast.LENGTH_SHORT).show();
                                         dialog.show();
 
                                     }

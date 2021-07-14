@@ -44,16 +44,15 @@
 
             <TextView
                 android:id="@+id/passcode_imei"
-                android:layout_width="160dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
                 android:text="passcode "
                 android:textColor="#000000"
                 android:textAlignment="viewEnd"
-                android:layout_below="@id/admin_profile"
+                android:layout_below="@id/CityText"
                 android:gravity="end"
                 android:textSize="15sp"
+                android:layout_marginTop="5dp"
                 android:layout_marginLeft="2dp"
                 android:textStyle="bold"
                 />
@@ -74,10 +73,8 @@
 
             <TextView
                 android:id="@+id/passwordED"
-                android:layout_width="160dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
                 android:text="password "
                 android:layout_marginTop="5dp"
                 android:textColor="#000000"
@@ -105,10 +102,8 @@
 
             <TextView
                 android:id="@+id/PhoneText"
-                android:layout_width="160dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
                 android:text="Phone "
                 android:layout_marginTop="5dp"
                 android:textColor="#000000"
@@ -130,7 +125,7 @@
                 android:layout_marginLeft="2dp"
                 android:layout_marginTop="5dp"
 
-                android:layout_below="@id/CityText"
+                android:layout_below="@id/PhoneText"
                 android:textStyle="bold"
                 />
 
@@ -154,7 +149,7 @@
                 android:id="@+id/delete_btn"
                 android:layout_width="26dp"
                 android:layout_height="25dp"
-                android:layout_below="@id/PhoneText"
+                android:layout_below="@id/admin_profile"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginLeft="2dp"
@@ -170,7 +165,7 @@
                 android:id="@+id/downloadUser"
                 android:layout_width="26dp"
                 android:layout_height="25dp"
-                android:layout_below="@id/PhoneText"
+                android:layout_below="@id/admin_profile"
                 android:layout_toLeftOf="@id/delete_btn"
                 android:layout_marginLeft="2dp"
                 android:layout_marginTop="10dp"

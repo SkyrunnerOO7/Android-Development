@@ -133,6 +133,48 @@
                 android:textStyle="bold"
                 />
 
+            <TextView
+                android:id="@+id/adminBy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="By "
+                android:textColor="@color/md_pink_900"
+                android:textSize="15sp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="5dp"
+
+                android:layout_below="@id/TimeCreated"
+                android:textStyle="bold"
+                />
+
+
+            <TextView
+                android:id="@+id/dateCreated"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date "
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="5dp"
+
+                android:layout_below="@id/area_emp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/TimeCreated"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Time "
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="5dp"
+
+                android:layout_below="@id/dateCreated"
+                android:textStyle="bold"
+                />
 
             <TextView
                 android:id="@+id/phone_emp"
@@ -159,7 +201,7 @@
                 android:layout_marginLeft="2dp"
                 android:layout_marginTop="5dp"
 
-                android:layout_below="@id/area_emp"
+                android:layout_below="@id/adminBy"
                 android:textStyle="bold"
                 />
 
@@ -167,7 +209,7 @@
                 android:id="@+id/att_btnE"
                 android:layout_width="26dp"
                 android:layout_height="25dp"
-                android:layout_below="@id/area_emp"
+                android:layout_below="@id/adminBy"
                 android:layout_toLeftOf="@id/delete_emp"
                 android:layout_marginLeft="2dp"
                 android:layout_marginTop="10dp"
@@ -183,7 +225,7 @@
                 android:id="@+id/delete_emp"
                 android:layout_width="26dp"
                 android:layout_height="25dp"
-                android:layout_below="@id/area_emp"
+                android:layout_below="@id/adminBy"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_marginLeft="2dp"
@@ -201,7 +243,7 @@
                 android:id="@+id/download_btnE"
                 android:layout_width="26dp"
                 android:layout_height="25dp"
-                android:layout_below="@id/area_emp"
+                android:layout_below="@id/adminBy"
                 android:layout_toLeftOf="@id/att_btnE"
                 android:layout_marginLeft="2dp"
                 android:layout_marginTop="10dp"

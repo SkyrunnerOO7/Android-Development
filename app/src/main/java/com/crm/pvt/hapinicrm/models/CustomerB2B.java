@@ -2,19 +2,28 @@ package com.crm.pvt.hapinicrm.models;
 
 public class CustomerB2B {
 
-    String Name,Organization,Mail,Password,City,Phone;
+    String Name,Organization,Mail,Password,City,Phone,Area;
 
     CustomerB2B(){
 
     }
 
-    public CustomerB2B(String name, String organization, String mail, String password, String city, String phone) {
+    public CustomerB2B(String name, String organization, String mail, String password, String city, String phone,String area ) {
         Name = name;
         Organization = organization;
         Mail = mail;
         Password = password;
         City = city;
         Phone = phone;
+        Area= area;
+    }
+
+    public String getArea() {
+        return Area;
+    }
+
+    public void setArea(String area) {
+        Area = area;
     }
 
     public String getName() {

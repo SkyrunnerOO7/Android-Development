@@ -23,6 +23,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crm.pvt.hapinicrm.prevalent.prevalent;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -32,7 +33,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 /**
@@ -246,6 +250,10 @@ public class Add_new_employee_activity extends AppCompatActivity {
 
     public void ValidateEmp(String type,String IMEI,String mail,String password,String name,String city,String phone,String area1,String url){
 
+
+        final String currentDate,currentTime;
+        currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+        currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
 
@@ -269,8 +277,9 @@ public class Add_new_employee_activity extends AppCompatActivity {
                     EmpDataMap.put("AdharFront","null");
                     EmpDataMap.put("PanCard","null");
                     EmpDataMap.put("DOB","null");
-
-
+                    EmpDataMap.put("Date",currentDate);
+                    EmpDataMap.put("Time",currentTime);
+                    EmpDataMap.put("AdminName",prevalent.CurrentOnlineAdmin.getName());
 
                     RootRef.child("Employee").child(IMEI).updateChildren(EmpDataMap)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {

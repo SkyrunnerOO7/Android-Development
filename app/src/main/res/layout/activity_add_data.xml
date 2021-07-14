@@ -80,6 +80,7 @@
                         android:id="@+id/spinner_Doc_data"
                         android:background="@drawable/textbox_round"
                         android:layout_width="300dp"
+
                         android:layout_height="50dp"
                         android:entries="@array/Spinner_Add_doc_item"
                         android:spinnerMode="dialog"
