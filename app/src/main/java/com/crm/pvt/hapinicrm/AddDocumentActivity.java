@@ -67,7 +67,6 @@ public class AddDocumentActivity extends AppCompatActivity {
     private ProgressDialog loadingBar;
     Spinner docSpinner;
     public String type,check_spinner;
-
     public int n,c,m,p,pw,a,q,s,o,ss,e;
     String[] ids;
     private String currentDate;
@@ -334,16 +333,20 @@ public class AddDocumentActivity extends AppCompatActivity {
                                         {
                                             pw=j;
                                         }
+                                        else if(ids[j].equalsIgnoreCase("area"))
+                                        {
+                                            a=j;
+                                        }
 
                                     }
                                     RootRef = FirebaseDatabase.getInstance().getReference();
 
                                     //if(n<0 || c<0 || m<0 || p<0 || pw<0 || a<0 || q<0 ||s<0 || o<0 ||ss<0 )
-                                    if(n<0 || c<0 || m<0 || p<0 || pw<0 || o<0)
+                                    if(n<0 || c<0 || m<0 || p<0 || pw<0 || o<0 || a<0)
                                     {
                                         loadingBar1.dismiss();
                                         AlertDialog.Builder builder1 = new AlertDialog.Builder(AddDocumentActivity.this);
-                                        builder1.setMessage("It should contain name,city,mail,oraganization,phone,password attributes ");
+                                        builder1.setMessage("It should contain name,city,mail,oraganization,phone,password,area attributes ");
                                         builder1.setCancelable(true);
 
                                         builder1.setPositiveButton(
@@ -359,7 +362,7 @@ public class AddDocumentActivity extends AppCompatActivity {
                                     else if(!ids[n].equalsIgnoreCase("name") && !ids[c].equalsIgnoreCase("city"))
                                     {
                                         DatabaseReference mDatabaseReference;
-                                        CustomerB2B user = new CustomerB2B(ids[n],ids[o],ids[m],ids[pw],ids[c],ids[p]);
+                                        CustomerB2B user = new CustomerB2B(ids[n],ids[o],ids[m],ids[pw],ids[c],ids[p],ids[a]);
                                         mDatabaseReference = RootRef.child("Data").child("CustomerB2B").child(ids[p]);
                                         mDatabaseReference.setValue(user);
                                         AddNewDocument(ids[n],ids[p],ids[c],"CustomerB2B");
@@ -660,7 +663,7 @@ public class AddDocumentActivity extends AppCompatActivity {
         canvas.drawText("Sample Pdf",550,80,titlePaint1);
         titlePaint1.setTextSize(27);
 
-        bmp= BitmapFactory.decodeResource(getResources(),R.drawable.customerb2bnew);
+        bmp= BitmapFactory.decodeResource(getResources(),R.drawable.customerb2b);
         scalebmp= Bitmap.createScaledBitmap(bmp,900,200,false);
         canvas.drawText("CustomerB2B Sample",220,200,titlePaint1);
         canvas.drawBitmap(scalebmp,110,230,titlePaint1);
@@ -681,24 +684,6 @@ public class AddDocumentActivity extends AppCompatActivity {
         canvas.drawBitmap(scalebmp,110,1160,titlePaint1);
 
 
-        /*canvas.drawText(" "+mtotal,710,dist+ed1+20,titlePaint1);
-        canvas.drawText(" "+ototal,940,dist+ed1+20,titlePaint1);
-
-        titlePaint1.setTextSize(22);
-        titlePaint1.setTypeface(Typeface.create(Typeface.DEFAULT,Typeface.BOLD));
-        canvas1.drawText("Patient Saved Amount: "+saved,800,485+ed1,titlePaint1);
-        titlePaint1.setTypeface(Typeface.create(Typeface.DEFAULT,Typeface.NORMAL));
-        canvas1.drawText("Time: 8 AM To 9 PM ",260,460+ed1-15,titlePaint1);
-        canvas1.drawText("(Monday to Sunday)",260,490+ed1-15,titlePaint1);
-
-
-
-        //first
-        canvas.drawLine(50,150,1050,150,myPaint);
-
-        titlePaint1.setTextSize(26);
-        titlePaint1.setTypeface(Typeface.create(Typeface.DEFAULT,Typeface.NORMAL));*/
-        //canvas.drawLine(0,650,1200,650,myPaint);
         myPdfDocument.finishPage(myPage);
 
         //Environment.getExternalStoragePublicDirectory();

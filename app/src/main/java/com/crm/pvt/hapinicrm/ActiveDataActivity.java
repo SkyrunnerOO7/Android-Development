@@ -282,7 +282,7 @@ public class ActiveDataActivity extends AppCompatActivity {
                 holder.password.setText("Password : " +model.getPassword());
                 holder.city.setText("City : " +model.getCity());
                 holder.Experience.setText("Experience : " +model.getExperience());
-                holder.Area.setText("Qualification : "+model.getArea());
+                holder.Area.setText("Area : "+model.getArea());
                 holder.phone.setText("Phone : " + model.getPhone());
 
                 holder.delete.setOnClickListener(new View.OnClickListener() {
@@ -364,7 +364,7 @@ public class ActiveDataActivity extends AppCompatActivity {
                 holder.password.setText("Password : " +model.getPassword());
                 holder.city.setText("City : " +model.getCity());
                 holder.Experience.setText("Experience : " +model.getExperience());
-                holder.Area.setText("Qualification : "+model.getArea());
+                holder.Area.setText("Area : "+model.getArea());
                 holder.phone.setText("Phone : " + model.getPhone());
 
 
@@ -445,7 +445,7 @@ public class ActiveDataActivity extends AppCompatActivity {
                 holder.password.setText("Password : " +model.getPassword());
                 holder.city.setText("City : " +model.getCity());
                 holder.Experience.setText("Experience : " +model.getExperience());
-                holder.Area.setText("Qualification : "+model.getArea());
+                holder.Area.setText("Area : "+model.getArea());
                 holder.phone.setText("Phone : " + model.getPhone());
 
                 holder.delete.setOnClickListener(new View.OnClickListener() {
@@ -526,7 +526,7 @@ public class ActiveDataActivity extends AppCompatActivity {
                 holder.password.setText("Password : " +model.getPassword());
                 holder.city.setText("City : " +model.getCity());
                 holder.Experience.setText("Experience : " +model.getExperience());
-                holder.Area.setText("Qualification : "+model.getArea());
+                holder.Area.setText("Area : "+model.getArea());
                 holder.phone.setText("Phone : " + model.getPhone());
 
 
@@ -631,6 +631,7 @@ public class ActiveDataActivity extends AppCompatActivity {
                 holder.password.setText("Password : " +model.getPassword());
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone: " + model.getPhone());
+                holder.area.setText("Area: " + model.getArea());
 
 
                 holder.delete.setOnClickListener(new View.OnClickListener() {
@@ -711,6 +712,7 @@ public class ActiveDataActivity extends AppCompatActivity {
                 holder.password.setText("Password : " +model.getPassword());
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone: " + model.getPhone());
+                holder.area.setText("Area: " + model.getArea());
 
 
                 holder.delete.setOnClickListener(new View.OnClickListener() {
@@ -790,6 +792,7 @@ public class ActiveDataActivity extends AppCompatActivity {
                 holder.password.setText("Password : " +model.getPassword());
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone: " + model.getPhone());
+                holder.area.setText("Area: " + model.getArea());
 
 
                 holder.delete.setOnClickListener(new View.OnClickListener() {
@@ -869,6 +872,7 @@ public class ActiveDataActivity extends AppCompatActivity {
                 holder.password.setText("Password : " +model.getPassword());
                 holder.city.setText("City : " +model.getCity());
                 holder.phone.setText("Phone: " + model.getPhone());
+                holder.area.setText("Area: " + model.getArea());
 
 
                 holder.delete.setOnClickListener(new View.OnClickListener() {
@@ -918,7 +922,7 @@ public class ActiveDataActivity extends AppCompatActivity {
 
     public static class b2bViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView name,Org,mail,password,city,phone;
+        public TextView name,Org,mail,password,city,phone,area;
         public Button delete;
 
         public b2bViewHolder(@NonNull View itemView) {
@@ -931,6 +935,8 @@ public class ActiveDataActivity extends AppCompatActivity {
             city = itemView.findViewById(R.id.CityTextb2b);
             phone = itemView.findViewById(R.id.PhoneTextb2b);
             delete = itemView.findViewById(R.id.delete_btnb2b);
+            area = itemView.findViewById(R.id.area_btnb2b);
+
         }
     }
     private void Removeb2b(String uID) {

@@ -40,6 +40,8 @@
                 <Spinner
                     android:id="@+id/spinner_user_feedback"
                     android:layout_width="wrap_content"
+
+                    android:backgroundTint="#000000"
                     android:entries="@array/Spinner_user_feedback_item"
                     android:layout_height="wrap_content"
                     style="@style/modifiedEditText"

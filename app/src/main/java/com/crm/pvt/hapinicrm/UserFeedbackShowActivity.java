@@ -74,12 +74,12 @@ public class UserFeedbackShowActivity extends AppCompatActivity {
                 if(choose_category[0].contentEquals("Name")){
                     Toast.makeText(UserFeedbackShowActivity.this, "Name Selected", Toast.LENGTH_SHORT).show();
                     FeedbackFirebaseSortName();
-                    count.setText("Feedback Count: "+countfeedack);
+                    count.setText("Call Status Count: "+countfeedack);
                 }else if(choose_category[0].contentEquals("Number")){
                     Toast.makeText(UserFeedbackShowActivity.this, "Number Selected", Toast.LENGTH_SHORT).show();
                 }else if(choose_category[0].contentEquals("City")){
                     FeedbackFirebaseSortCity();
-                    count.setText("Feedback Count: "+countfeedack);
+                    count.setText("Call Status Count: "+countfeedack);
                     Toast.makeText(UserFeedbackShowActivity.this, "City Selected", Toast.LENGTH_SHORT).show();
                 }else{
                     feedbackFirebase();
@@ -181,7 +181,7 @@ public class UserFeedbackShowActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 countfeedack = (int) snapshot.getChildrenCount();
-                count.setText("Feedback Count: "+countfeedack);
+                count.setText("Call Status Count: "+countfeedack);
             }
 
             @Override

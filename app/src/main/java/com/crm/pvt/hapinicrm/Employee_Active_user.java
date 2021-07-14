@@ -200,6 +200,10 @@ public class Employee_Active_user extends AppCompatActivity {
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
                 holder.area.setText("Area : "+model.getArea());
+                holder.by.setText("By : "+model.getAdminName());
+                holder.date.setText("Date : "+model.getDate());
+                holder.time.setText("Time : "+model.getTime());
+
 
                 if(model.getVerified().equals("true"))
                 {
@@ -225,7 +229,7 @@ public class Employee_Active_user extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         //Toast.makeText(Employee_Active_user.this, "Downloaded", Toast.LENGTH_SHORT).show();
-                        createEmployeePdf(model.getName(),model.getIMEI(),model.getPassword(),model.getMail(),model.getCity(),model.getPhone(),model.getUrl());
+                        createEmployeePdf(model.getName(),model.getIMEI(),model.getPassword(),model.getMail(),model.getCity(),model.getPhone(),model.getUrl(),model.getArea(),model.getAdminName(),model.getDate(),model.getTime());
 
 
 
@@ -339,6 +343,10 @@ public class Employee_Active_user extends AppCompatActivity {
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
                 holder.area.setText("Area : "+model.getArea());
+                holder.by.setText("By : "+model.getAdminName());
+                holder.date.setText("Date : "+model.getDate());
+                holder.time.setText("Time : "+model.getTime());
+
 
                 if(model.getVerified().equals("true"))
                 {
@@ -355,11 +363,12 @@ public class Employee_Active_user extends AppCompatActivity {
 
 
                 holder.download.setOnClickListener(new View.OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                     @Override
                     public void onClick(View view) {
 
                         //Toast.makeText(Employee_Active_user.this, "Downloaded", Toast.LENGTH_SHORT).show();
-                        createEmployeePdf(model.getName(),model.getIMEI(),model.getPassword(),model.getMail(),model.getCity(),model.getPhone(),model.getUrl());
+                        createEmployeePdf(model.getName(),model.getIMEI(),model.getPassword(),model.getMail(),model.getCity(),model.getPhone(),model.getUrl(),model.getArea(),model.getAdminName(),model.getDate(),model.getTime());
                         /*DatabaseReference ref;
                         ref=FirebaseDatabase.getInstance().getReference().child("Attendance").child(model.getIMEI());
                         ref.addChildEventListener(new ChildEventListener() {
@@ -502,6 +511,10 @@ public class Employee_Active_user extends AppCompatActivity {
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
                 holder.area.setText("Area : "+model.getArea());
+                holder.by.setText("By : "+model.getAdminName());
+                holder.date.setText("Date : "+model.getDate());
+                holder.time.setText("Time : "+model.getTime());
+
 
                 if(model.getVerified().equals("true"))
                 {
@@ -518,10 +531,11 @@ public class Employee_Active_user extends AppCompatActivity {
 
 
                 holder.download.setOnClickListener(new View.OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                     @Override
                     public void onClick(View view) {
                         //Toast.makeText(Employee_Active_user.this, "Downloaded", Toast.LENGTH_SHORT).show();
-                        createEmployeePdf(model.getName(),model.getIMEI(),model.getPassword(),model.getMail(),model.getCity(),model.getPhone(),model.getUrl());
+                        createEmployeePdf(model.getName(),model.getIMEI(),model.getPassword(),model.getMail(),model.getCity(),model.getPhone(),model.getUrl(),model.getArea(),model.getAdminName(),model.getDate(),model.getTime());
                     }
                 });
 
@@ -623,6 +637,10 @@ public class Employee_Active_user extends AppCompatActivity {
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
                 holder.area.setText("Area : "+model.getArea());
+                holder.by.setText("By : "+model.getAdminName());
+                holder.date.setText("Date : "+model.getDate());
+                holder.time.setText("Time : "+model.getTime());
+
 
                 if(model.getVerified().equals("true"))
                 {
@@ -639,9 +657,10 @@ public class Employee_Active_user extends AppCompatActivity {
 
 
                 holder.download.setOnClickListener(new View.OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                     @Override
                     public void onClick(View view) {
-                        createEmployeePdf(model.getName(),model.getIMEI(),model.getPassword(),model.getMail(),model.getCity(),model.getPhone(),model.getUrl());
+                        createEmployeePdf(model.getName(),model.getIMEI(),model.getPassword(),model.getMail(),model.getCity(),model.getPhone(),model.getUrl(),model.getArea(),model.getAdminName(),model.getDate(),model.getTime());
                     }
                 });
 
@@ -834,7 +853,7 @@ public class Employee_Active_user extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
 
-    public void createEmployeePdf(String name,String imei,String password,String mail,String city,String phone,String url1)
+    public void createEmployeePdf(String name,String imei,String password,String mail,String city,String phone,String url1,String area,String by,String date,String time)
     {
 
         //bmp= BitmapFactory.decodeResource(getResources(), admin_profile_icon1);
@@ -919,6 +938,10 @@ public class Employee_Active_user extends AppCompatActivity {
         canvas.drawText(mail,500,350,titlePaint1);
         canvas.drawText(city,500,400,titlePaint1);
         canvas.drawText(phone,500,450,titlePaint1);
+        canvas.drawText(area,500,500,titlePaint1);
+        canvas.drawText(date,500,550,titlePaint1);
+        canvas.drawText(time,500,600,titlePaint1);
+        canvas.drawText(by,500,650,titlePaint1);
         //canvas.drawText(date,500,500,titlePaint1);
         //canvas.drawText(time,500,550,titlePaint1);
 
@@ -939,6 +962,12 @@ public class Employee_Active_user extends AppCompatActivity {
         canvas.drawText("Mail: ",250,350,titlePaint1);
         canvas.drawText("City: ",250,400,titlePaint1);
         canvas.drawText("Phone: ",250,450,titlePaint1);
+        canvas.drawText("Area: ",250,500,titlePaint1);
+        canvas.drawText("Date: ",250,550,titlePaint1);
+        canvas.drawText("Time: ",250,600,titlePaint1);
+        canvas.drawText("By: ",250,650,titlePaint1);
+
+
         /*canvas.drawText("Date: ",250,500,titlePaint1);
         canvas.drawText("Login Time: ",250,550,titlePaint1);*/
 

@@ -121,23 +121,43 @@ public class addAdminActivity extends AppCompatActivity {
         if(Passcode.isEmpty()){
             passcode.setError("passcode can't be empty");
         }
+        else if(Passcode.length()!=4){
+            passcode.setError("passcode should be of 4 digit");
+        }
+
         else if(Fullname.isEmpty()){
-            Toast.makeText(this, "Please Enter Your Name...", Toast.LENGTH_SHORT).show();
+            name.setError("Please Enter Your Name");
+            //Toast.makeText(this, "Please Enter Your Name...", Toast.LENGTH_SHORT).show();
+        }
+        else if(Fullname.length()<3){
+            name.setError("Name should be of 3 character");
+            //Toast.makeText(this, "Please Enter Your Name...", Toast.LENGTH_SHORT).show();
         }
         else if(email.isEmpty()){
             mail.setError("Field can't be Empty");
         }
         else if(password_st.isEmpty()){
-            Toast.makeText(this, "Please Enter a password...", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Please Enter a password...", Toast.LENGTH_SHORT).show();
+            password.setError("Please Enter a password");
         }
         else if(CityA.isEmpty()){
-            Toast.makeText(this, "Please Enter City Name...", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Please Enter City Name...", Toast.LENGTH_SHORT).show();
+            cityA.setError("please Enter City Name");
+        }
+        else if(CityA.length()<3){
+            cityA.setError("City Name should be of 3 character");
+            //Toast.makeText(this, "Please Enter Your Name...", Toast.LENGTH_SHORT).show();
         }
         else if(AreaA.isEmpty()){
             Toast.makeText(this, "Please Enter Area...", Toast.LENGTH_SHORT).show();
         }
         else if(PhoneA.isEmpty()){
+            phoneA.setError("please Enter Phone number");
             Toast.makeText(this, " please Enter Phone number...", Toast.LENGTH_SHORT).show();
+        }
+        else if(PhoneA.length()!=10){
+            phoneA.setError("phone number should be of 10 digit");
+            //Toast.makeText(this, " please Enter valid Phone number...", Toast.LENGTH_SHORT).show();
         }
         else{
 
