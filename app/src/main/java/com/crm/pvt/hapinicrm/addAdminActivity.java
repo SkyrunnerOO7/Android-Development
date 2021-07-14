@@ -40,7 +40,7 @@ public class addAdminActivity extends AppCompatActivity {
     EditText mail;
     EditText name;
     EditText password;
-    EditText repassword;
+    EditText Area;
     ProgressDialog loadingBar;
     CheckBox checkBox;
     EditText cityA,phoneA;
@@ -61,6 +61,7 @@ public class addAdminActivity extends AppCompatActivity {
         loadingBar = new ProgressDialog(this);
         cityA = findViewById(R.id.CityA);
         phoneA = findViewById(R.id.phoneA);
+        Area = findViewById(R.id.areaA);
 
 
         dialog=new Dialog(addAdminActivity.this);
@@ -110,6 +111,7 @@ public class addAdminActivity extends AppCompatActivity {
         String password_st = password.getText().toString();
         String PhoneA = phoneA.getText().toString();
         String CityA = cityA.getText().toString();
+        String AreaA = Area.getText().toString();
 
 
 
@@ -131,6 +133,9 @@ public class addAdminActivity extends AppCompatActivity {
         else if(CityA.isEmpty()){
             Toast.makeText(this, "Please Enter City Name...", Toast.LENGTH_SHORT).show();
         }
+        else if(AreaA.isEmpty()){
+            Toast.makeText(this, "Please Enter Area...", Toast.LENGTH_SHORT).show();
+        }
         else if(PhoneA.isEmpty()){
             Toast.makeText(this, " please Enter Phone number...", Toast.LENGTH_SHORT).show();
         }
@@ -140,7 +145,7 @@ public class addAdminActivity extends AppCompatActivity {
             loadingBar.setMessage("please Wait while checking Credentials..");
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
-            Validate(email,Passcode,Fullname,password_st,CityA,PhoneA);
+            Validate(email,Passcode,Fullname,password_st,CityA,PhoneA,AreaA);
 
 
 
@@ -148,7 +153,7 @@ public class addAdminActivity extends AppCompatActivity {
 
     }
 
-    private void Validate(final String email,final String passcode,final String fullname,final String password,final String cityA,final String phoneA) {
+    private void Validate(final String email,final String passcode,final String fullname,final String password,final String cityA,final String phoneA,final String areaA) {
 
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
@@ -164,6 +169,7 @@ public class addAdminActivity extends AppCompatActivity {
                     UserDataMap.put("Password",password);
                     UserDataMap.put("City",cityA);
                     UserDataMap.put("Phone",phoneA);
+                    UserDataMap.put("Area",areaA);
 
 
                     RootRef.child("Admin").child(passcode).updateChildren(UserDataMap)

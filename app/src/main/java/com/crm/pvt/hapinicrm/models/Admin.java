@@ -10,6 +10,7 @@ public class Admin {
     private String City;
     private String Phone;
     private String Image;
+    private String Area;
 
     Admin(){
 
@@ -23,6 +24,15 @@ public class Admin {
         City = city;
         Phone = phone;
         Image = image;
+    }
+
+
+    public String getArea() {
+        return Area;
+    }
+
+    public void setArea(String area) {
+        Area = area;
     }
 
     public String getPasscode() {

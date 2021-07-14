@@ -77,7 +77,7 @@ public class Employee_Active_user extends AppCompatActivity {
     private RecyclerView list;
     //public DatabaseReference databaseReference;
     private DatabaseReference empref;
-    Query query1,query2,query3;
+    Query query1,query2,query3,AreaQ;
     private String orderby = "Name";
     private int count;
     TextView text;
@@ -116,7 +116,7 @@ public class Employee_Active_user extends AppCompatActivity {
         empref = FirebaseDatabase.getInstance().getReference().child("Employee");
         query1 = empref.orderByChild("City");
         query2 = empref.orderByChild("Name");
-
+        AreaQ = empref.orderByChild("Area");
         inputtext = findViewById(R.id.searchtextE);
         img = findViewById(R.id.searchbtnE);
        // profileImageOfEmployee=findViewById(R.id.emp_profile);
@@ -147,6 +147,9 @@ public class Employee_Active_user extends AppCompatActivity {
 
             case R.id.names:
                 EmployeeFirebase2();
+                break;
+            case R.id.areas:
+                EmployeeFirebase3();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -607,6 +610,124 @@ public class Employee_Active_user extends AppCompatActivity {
         FirebaseRecyclerOptions<Employee> empoptions =
                 new FirebaseRecyclerOptions.Builder<Employee>()
                         .setQuery(query2, Employee.class)
+                        .build();
+
+        FirebaseRecyclerAdapter<Employee, ActiveUserActivity.EmplistViewHolder> empadapter = new FirebaseRecyclerAdapter<Employee, ActiveUserActivity.EmplistViewHolder>(empoptions) {
+            @Override
+            protected void onBindViewHolder(@NonNull ActiveUserActivity.EmplistViewHolder holder, int position, @NonNull Employee model) {
+                holder.Username.setText("Name : "+model.getName());
+                holder.Passcode.setText("IMEI : "+model.getIMEI());
+                holder.password.setText("password : "+model.getPassword());
+                holder.mailED.setText("MailID : " +model.getMail());
+                holder.city.setText("City : " +model.getCity());
+                holder.phone.setText("Phone : " +model.getPhone());
+                holder.profile.setText("profile : " + "Employee");
+                holder.area.setText("Area : "+model.getArea());
+
+                if(model.getVerified().equals("true"))
+                {
+                    holder.verified.setVisibility(View.VISIBLE);
+                }
+                holder.verifyemp.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i=new Intent(Employee_Active_user.this,VerifyEmployee.class);
+                        i.putExtra("imei",model.getIMEI());
+                        startActivity(i);
+                    }
+                });
+
+
+                holder.download.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        createEmployeePdf(model.getName(),model.getIMEI(),model.getPassword(),model.getMail(),model.getCity(),model.getPhone(),model.getUrl());
+                    }
+                });
+
+                Picasso.get().load(model.getImage()).into(holder.profileimg1);
+
+                holder.attE.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getApplicationContext(),Attendance_Activity.class);
+                        intent.putExtra("Passcode",model.getIMEI());
+                        intent.putExtra("profile","Employee");
+                        startActivity(intent);
+                    }
+                });
+
+
+
+                holder.delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        CharSequence options[] = new CharSequence[]{
+                                "Yes",
+                                "No"
+                        };
+                        AlertDialog.Builder builder = new AlertDialog.Builder(Employee_Active_user.this);
+                        builder.setTitle("Sure want to Delete this Employee profile ?");
+                        builder.setItems(options, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                if(i==0){
+                                    String uID = getRef(position).getKey();
+                                    RemoveEmp(uID);
+
+                                }else{
+
+                                }
+
+                            }
+                        });
+                        builder.show();
+                    }
+                });
+
+                holder.add.setOnClickListener(view -> {
+//                    holder.Limit.setText(String.valueOf(Integer.parseInt(holder.Limit.getText().toString()+1)));
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Employee");
+                    HashMap<String,Object> map = new HashMap<>();
+                    map.put("DailyLimit",holder.Limit.getText().toString());
+                    databaseReference.child(model.getIMEI()).updateChildren(map);
+                    Toast.makeText(getApplicationContext(),"Limit Changed Successfully",Toast.LENGTH_SHORT).show();
+                });
+
+
+
+            }
+
+
+            @NonNull
+
+            @Override
+            public ActiveUserActivity.EmplistViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.emp_display_layout,parent,false);
+                return new ActiveUserActivity.EmplistViewHolder(view);
+            }
+        };
+
+        list.setAdapter(empadapter);
+        empadapter.startListening();
+    }
+
+    public void EmployeeFirebase3() {
+        empref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull  DataSnapshot snapshot) {
+                count = (int) snapshot.getChildrenCount();
+                text.setText("count :"+count);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        FirebaseRecyclerOptions<Employee> empoptions =
+                new FirebaseRecyclerOptions.Builder<Employee>()
+                        .setQuery(AreaQ, Employee.class)
                         .build();
 
         FirebaseRecyclerAdapter<Employee, ActiveUserActivity.EmplistViewHolder> empadapter = new FirebaseRecyclerAdapter<Employee, ActiveUserActivity.EmplistViewHolder>(empoptions) {

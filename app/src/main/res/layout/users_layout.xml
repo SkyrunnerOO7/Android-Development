@@ -104,6 +104,21 @@
                 />
 
             <TextView
+                android:id="@+id/AreaText"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:text="Area "
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="5dp"
+
+                android:layout_below="@id/CityText"
+                android:textStyle="bold"
+                />
+
+
+            <TextView
                 android:id="@+id/PhoneText"
                 android:layout_width="160dp"
                 android:layout_height="wrap_content"
@@ -130,7 +145,7 @@
                 android:layout_marginLeft="2dp"
                 android:layout_marginTop="5dp"
 
-                android:layout_below="@id/CityText"
+                android:layout_below="@id/AreaText"
                 android:textStyle="bold"
                 />
 
