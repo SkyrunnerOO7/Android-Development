@@ -193,7 +193,7 @@ public class Employee_Active_user extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull ActiveUserActivity.EmplistViewHolder holder, int position, @NonNull Employee model) {
                 holder.Username.setText("Name : "+model.getName());
-                holder.Passcode.setText("IMEI : "+model.getIMEI());
+                holder.Passcode.setText("Passcode : "+model.getIMEI());
                 holder.password.setText("password : "+model.getPassword());
                 holder.mailED.setText("MailID : " +model.getMail());
                 holder.city.setText("City : " +model.getCity());
@@ -336,7 +336,7 @@ public class Employee_Active_user extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull ActiveUserActivity.EmplistViewHolder holder, int position, @NonNull Employee model) {
                 holder.Username.setText("Name : "+model.getName());
-                holder.Passcode.setText("IMEI : "+model.getIMEI());
+                holder.Passcode.setText("Passcode : "+model.getIMEI());
                 holder.password.setText("password : "+model.getPassword());
                 holder.mailED.setText("MailID : " +model.getMail());
                 holder.city.setText("City : " +model.getCity());
@@ -504,7 +504,7 @@ public class Employee_Active_user extends AppCompatActivity {
 
                 //Toast.makeText(Employee_Active_user.this, model.getName(), Toast.LENGTH_SHORT).show();
                 holder.Username.setText("Name : "+model.getName());
-                holder.Passcode.setText("IMEI : "+model.getIMEI());
+                holder.Passcode.setText("Passcode : "+model.getIMEI());
                 holder.password.setText("password : "+model.getPassword());
                 holder.mailED.setText("MailID : " +model.getMail());
                 holder.city.setText("City : " +model.getCity());
@@ -630,7 +630,7 @@ public class Employee_Active_user extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull ActiveUserActivity.EmplistViewHolder holder, int position, @NonNull Employee model) {
                 holder.Username.setText("Name : "+model.getName());
-                holder.Passcode.setText("IMEI : "+model.getIMEI());
+                holder.Passcode.setText("Passcode : "+model.getIMEI());
                 holder.password.setText("password : "+model.getPassword());
                 holder.mailED.setText("MailID : " +model.getMail());
                 holder.city.setText("City : " +model.getCity());
@@ -753,7 +753,7 @@ public class Employee_Active_user extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull ActiveUserActivity.EmplistViewHolder holder, int position, @NonNull Employee model) {
                 holder.Username.setText("Name : "+model.getName());
-                holder.Passcode.setText("IMEI : "+model.getIMEI());
+                holder.Passcode.setText("Passcode : "+model.getIMEI());
                 holder.password.setText("password : "+model.getPassword());
                 holder.mailED.setText("MailID : " +model.getMail());
                 holder.city.setText("City : " +model.getCity());
