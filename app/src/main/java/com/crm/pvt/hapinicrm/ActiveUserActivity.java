@@ -282,7 +282,7 @@ public class ActiveUserActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         Toast.makeText(ActiveUserActivity.this, "Downloaded", Toast.LENGTH_SHORT).show();
-                        createAdminPdf(model.getName(),model.getPasscode(),model.getPassword(),model.getEmail(),model.getCity(),model.getPhone());
+                        createAdminPdf(model.getName(),model.getPasscode(),model.getPassword(),model.getEmail(),model.getCity(),model.getPhone(),model.getArea());
                     }
                 });
 
@@ -368,7 +368,7 @@ public class ActiveUserActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         Toast.makeText(ActiveUserActivity.this, "Downloaded", Toast.LENGTH_SHORT).show();
-                        createAdminPdf(model.getName(),model.getPasscode(),model.getPassword(),model.getEmail(),model.getCity(),model.getPhone());
+                        createAdminPdf(model.getName(),model.getPasscode(),model.getPassword(),model.getEmail(),model.getCity(),model.getPhone(),model.getArea());
                     }
                 });
 
@@ -452,7 +452,7 @@ public class ActiveUserActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         Toast.makeText(ActiveUserActivity.this, "Downloaded", Toast.LENGTH_SHORT).show();
-                        createAdminPdf(model.getName(),model.getPasscode(),model.getPassword(),model.getEmail(),model.getCity(),model.getPhone());
+                        createAdminPdf(model.getName(),model.getPasscode(),model.getPassword(),model.getEmail(),model.getCity(),model.getPhone(),model.getArea());
                     }
                 });
 
@@ -539,7 +539,7 @@ public class ActiveUserActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         Toast.makeText(ActiveUserActivity.this, "Downloaded", Toast.LENGTH_SHORT).show();
-                        createAdminPdf(model.getName(),model.getPasscode(),model.getPassword(),model.getEmail(),model.getCity(),model.getPhone());
+                        createAdminPdf(model.getName(),model.getPasscode(),model.getPassword(),model.getEmail(),model.getCity(),model.getPhone(),model.getArea());
                     }
                 });
 
@@ -625,7 +625,7 @@ public class ActiveUserActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         Toast.makeText(ActiveUserActivity.this, "Downloaded", Toast.LENGTH_SHORT).show();
-                        createAdminPdf(model.getName(),model.getPasscode(),model.getPassword(),model.getEmail(),model.getCity(),model.getPhone());
+                        createAdminPdf(model.getName(),model.getPasscode(),model.getPassword(),model.getEmail(),model.getCity(),model.getPhone(),model.getArea());
                     }
                 });
 
@@ -1211,49 +1211,12 @@ public class ActiveUserActivity extends AppCompatActivity {
 
 
                 holder.download.setOnClickListener(new View.OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                     @Override
                     public void onClick(View view) {
+
                         Toast.makeText(ActiveUserActivity.this, "Downloaded", Toast.LENGTH_SHORT).show();
-                        DatabaseReference ref;
-                        ref=FirebaseDatabase.getInstance().getReference().child("Attendance").child(model.getIMEI());
-                        ref.addChildEventListener(new ChildEventListener() {
-                            // Retrieve new posts as they are added to Firebase
-                            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-                            @Override
-                            public void onChildAdded(DataSnapshot snapshot, String previousChildKey) {
-
-                                String date,time;
-                                Map<String, Object> newPost = (Map<String, Object>) snapshot.getValue();
-
-
-                                date=newPost.get("Date").toString();
-                                time=newPost.get("Time").toString();
-                                createEmployeePdf(model.getName(),model.getIMEI(),model.getPassword(),model.getMail(),model.getCity(),model.getPhone(),model.getUrl(),date,time);
-
-                            }
-
-                            @Override
-                            public void onChildChanged(DataSnapshot snapshot, String previousChildName) {
-
-                            }
-
-                            @Override
-                            public void onChildRemoved(DataSnapshot snapshot) {
-
-                            }
-
-                            @Override
-                            public void onChildMoved(DataSnapshot snapshot, String previousChildName) {
-
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError error) {
-
-                            }
-
-                        });
-
+                        createEmployeePdf(model.getName(),model.getIMEI(),model.getPassword(),model.getMail(),model.getCity(),model.getPhone(),model.getUrl(),model.getArea(),model.getAdminName(),model.getDate(),model.getTime());
                     }
                 });
 
@@ -1424,7 +1387,7 @@ public class ActiveUserActivity extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public void createAdminPdf(String name, String passcode, String password, String mail, String city, String phone)
+    public void createAdminPdf(String name, String passcode, String password, String mail, String city, String phone,String area2)
     {
 
         //bmp= BitmapFactory.decodeResource(getResources(), admin_profile_icon1);
@@ -1454,6 +1417,7 @@ public class ActiveUserActivity extends AppCompatActivity {
         canvas.drawText(mail,500,350,titlePaint1);
         canvas.drawText(city,500,400,titlePaint1);
         canvas.drawText(phone,500,450,titlePaint1);
+        canvas.drawText(area2,500,500,titlePaint1);
 
 
         int greenColorValue = Color.parseColor("#072f5f");
@@ -1472,6 +1436,7 @@ public class ActiveUserActivity extends AppCompatActivity {
         canvas.drawText("Mail: ",250,350,titlePaint1);
         canvas.drawText("City: ",250,400,titlePaint1);
         canvas.drawText("Phone: ",250,450,titlePaint1);
+        canvas.drawText("Area: ",250,500,titlePaint1);
 
 
 
