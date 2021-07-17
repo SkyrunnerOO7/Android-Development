@@ -30,7 +30,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 
 import static com.crm.pvt.hapinicrm.LoginActivity.SHARED_PREFS_IMEI;
 
@@ -63,7 +65,7 @@ public class callingFeedbackActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Somethings Went Wrong",Toast.LENGTH_SHORT).show();
             return;
         }
-        Toast.makeText(callingFeedbackActivity.this,CurEmpIMEI,Toast.LENGTH_SHORT).show();
+       // Toast.makeText(callingFeedbackActivity.this,CurEmpIMEI,Toast.LENGTH_SHORT).show();
         //Toast.makeText(callingFeedbackActivity.this,limit,Toast.LENGTH_SHORT).show();
         spinner_calling_feedback.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -75,6 +77,7 @@ public class callingFeedbackActivity extends AppCompatActivity {
 
                 if(choose_category[0].contentEquals("Intersted(Done)")){
                     s="false";
+
                     Toast.makeText(callingFeedbackActivity.this,"Intersted",Toast.LENGTH_SHORT).show();
                 }else if(choose_category[0].contentEquals("Not Intersted")){
                     s="false";
@@ -95,6 +98,10 @@ public class callingFeedbackActivity extends AppCompatActivity {
                 else if(choose_category[0].contentEquals("Intersted(Issue)")){
                     s="false";
                     Toast.makeText(callingFeedbackActivity.this,"Intersted/Issue",Toast.LENGTH_SHORT).show();
+                }
+                else if(choose_category[0].contentEquals("Wrong Number")){
+                    s="false";
+                    Toast.makeText(callingFeedbackActivity.this,"Wrong Number",Toast.LENGTH_SHORT).show();
                 }
                 else{
                     s="true";
@@ -246,7 +253,7 @@ public class callingFeedbackActivity extends AppCompatActivity {
                 // Toast.makeText(getContext(), String.valueOf(position[0]), Toast.LENGTH_SHORT).show();
                 // Toast.makeText(getContext(), String.valueOf(dataList.get(0).getName()), Toast.LENGTH_SHORT).show();
 
-                if(choose_category[0].trim().contentEquals("Not Intersted")){
+                if(choose_category[0].trim().contentEquals("Wrong Number")){
                     deleteData(dataList.get(Integer.parseInt(position[0])).getContact());
                 }
                 else{
@@ -312,7 +319,7 @@ public class callingFeedbackActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                if (!snapshot.child("Feedback").child(contact).exists()) {
+              //  if (!snapshot.child("Feedback").child(contact).exists()) {
                     HashMap<String, Object> FeedbackDataMap = new HashMap<>();
                     FeedbackDataMap.put("Status", choose_category[0]);
                     FeedbackDataMap.put("Remark", remark.getText().toString());
@@ -320,6 +327,8 @@ public class callingFeedbackActivity extends AppCompatActivity {
                     FeedbackDataMap.put("City", city);
                     FeedbackDataMap.put("Name", name1);
                     FeedbackDataMap.put("Contact", contact);
+                    String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+                    FeedbackDataMap.put("LastDate",currentDate);
 
 
                     RootRef.child("Feedback").child(contact).updateChildren(FeedbackDataMap)
@@ -329,7 +338,16 @@ public class callingFeedbackActivity extends AppCompatActivity {
                                     if (task.isSuccessful()) {
 
 
-                                        incrementPosition(pos, type);
+
+                                        if(choose_category[0].contentEquals("Intersted(Done)") || choose_category[0].contentEquals("Tell to callback")
+                                        || choose_category[0].contentEquals("Intersted(Issue)")){
+                                            updateDate(contact);
+                                            getLimit();
+                                        }
+                                        else
+                                        {
+                                            incrementPosition(pos, type);
+                                        }
 
 
                                     } else {
@@ -339,14 +357,14 @@ public class callingFeedbackActivity extends AppCompatActivity {
                                 }
                             });
 
-                }
-                else{
-                    Toast.makeText(callingFeedbackActivity.this, "Data Already Exists with this contact", Toast.LENGTH_SHORT).show();
-                    loadingBar.dismiss();
-                    Intent i=new Intent(callingFeedbackActivity.this,callingActivity.class);
-                    startActivity(i);
+              //  }
+              //  else{
+                 //   Toast.makeText(callingFeedbackActivity.this, "Data Already Exists with this contact", Toast.LENGTH_SHORT).show();
+//                    loadingBar.dismiss();
+//                    Intent i=new Intent(callingFeedbackActivity.this,callingActivity.class);
+//                    startActivity(i);
 
-                }
+              //  }
 
 
             }
@@ -357,6 +375,17 @@ public class callingFeedbackActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void updateDate(String contact) {
+        DateFormat f = new SimpleDateFormat("MM/dd/yyyy '@'hh:mm a");
+
+        HashMap<String,Object> map = new HashMap<>();
+        map.put("Time",f.format(new Date()));
+        DatabaseReference d = FirebaseDatabase.getInstance().getReference().child("NewData");
+        d.child(contact).updateChildren(map);
+
+
     }
 
     private void incrementPosition(String pos,String type) {
