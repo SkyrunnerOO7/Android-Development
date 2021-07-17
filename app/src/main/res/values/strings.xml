@@ -123,26 +123,67 @@
 
 
     <string name="privacy_policy">
-        Hapini Solution built the hapini CRM app as a Free app. This SERVICE is
-        provided by Hapini Solution at no cost and is intended for use as is.
-        This page is used to inform visitors regarding our policies with the collection,
-        use, and disclosure of Personal Information if anyone decided to use our Service.
-        If you choose to use our Service, then you agree to the collection and use of information
-        in relation to this policy. The Personal Information that we collect is used for
-        providing and improving the Service. We will not use or share your information with
-        anyone except as described in this Privacy Policy.
-        The terms used in this Privacy Policy have the same meanings as in our Terms and Conditions,
-        which is accessible at hapini CRM unless otherwise defined in this Privacy Policy.
+        <p>Hapini Solutions Pvt. Ltd. understands the price of client (s) privacy. Here, inside the privacy
+policy, we tend to unit describing the privacy information that we tend together once you
+utilize the services via CRM (CUSTOMERS RELATION MANAGEMENT) and therefore the
+method we tend to disclose and use that information. \n</p>
+
+
+        <p>If anyone of the users set to use services provided by our application, its a necessity that
+he or she trust our Privacy Policies and Terms and Conditions.
+Hapini resolution designed the hapini CRM app as a Free app. This SERVICE is provided by
+Hapini resolution at no worth and is meant to be used as is.
+If anyone decides to use our services, This page is employed to tell guests regarding our
+policies with the gathering, use, and revelation of non-public information.</p>
+
+
+        <p>
+            If you choose on to use our Service, then you suit the gathering and use of information in
+respect to this policy. The private information collected by U.S.A. is used for providing and
+up the Service. We will not use or share your information with anyone except as delineate
+throughout this Privacy Policy.
+        </p>
+
+        <p>The terms utilized throughout this Privacy Policy have a daily meaning as in our Terms and
+Conditions, thats accessible at hapini CRM unless otherwise made public throughout this
+Privacy Policy. So our app take user permissions on these segments "\n"</p>
+
+        <ul>
+            <li><u>INTERNET "\n"</u></li>
+
+            <li><u>ACCESS_NETWORK_STATE "\n"</u></li>
+
+            <li><u>CALL_PHONE "\n"</u></li>
+
+            <li><u>MANAGE_CALLS "\n"</u></li>
+
+
+            <li><u>READ_EXTERNAL_STORAGE "\n"</u></li>
+            <li><u>WRITE_EXTERNAL_STORAGE "\n"</u></li>
+
+            <li><u>READ_PHONE_STATE</u></li>
+
+
+
+        </ul>
+
+
+
+
+
+
+
     </string>
 
     <string name="Privacy_policy_Information">
-        <p>For a better experience, while using our Service,
-        we may require you to provide us with certain personally identifiable
-        information, including but not limited to Network State, Internet,
-        Phone Calls. The information that we request will be retained by us
-        and used as described in this privacy policy.The app does use third party
-        services that may collect information used to identify you.
-        Link to privacy policy of third party service providers used by the app.</p>
+        <p>For a much better experience, whereas using our Service, we tend to may wish you to
+provide U.S.A. with certain face to face placeable information, at the side of but not restricted
+to Network State, Internet, Phone Calls. The knowledge that we tend to request is popping
+into to be preserved by U.S.A. and used as delineate throughout this privacy policy.
+The app can use third party services which might collect information that may not verify you.
+Link to privacy policy of third party service suppliers used by the app.</p>
+
+
 
     </string>
     <string name="Privacy_policy_Information1">
@@ -172,84 +213,74 @@
         </ul>
     </string>
     <string name="Privacy_policy_Log_Data">
-        We want to inform you that whenever you use our Service, in a case of
-        an error in the app we collect data and information (through third party products)
-        on your phone called Log Data. This Log Data may include information such as your device
-        Internet Protocol (IP) address, device name, operating system version, the configuration
-        of the app when utilizing our Service, the time and date of your use of the Service,
-        and other statistics.
+        Some other dependencies.
+We want to tell you that whenever you utilize our Service, throughout a case of a mistake
+within the app we tend to gather information {and information|and information|and data}
+(through third party products) on your phone referred to as Log knowledge.
+This log information consists of your device information science (Internet protocol) address,
+name of your device, version of your computer code (OS)
+version, our app configuration at the time of service and variety of extra statistics.
+
     </string>
     <string name="Privacy_policy_Cookies">
-        Cookies are files with a small amount of data that are commonly used as anonymous
-        unique identifiers. These are sent to your browser from the websites that you visit
-        and are stored on your devices internal memory.This Service does not use these cookies
-        explicitly. However, the app may use third party code and libraries that use cookies
-        to collect information and improve their services. You have the option to either accept
-        or refuse these cookies and know when a cookie is being sent to your device. If you choose
-        to refuse our cookies, you may not be able to use some portions of this Service.
+        Cookies unit files with barely amount of information that unit usually used as anonymous
+distinctive identifiers. These unit sent to your browser from the websites merely|that you just}
+merely visit and unit hold on your devices internal memory.
+This Service does not use these cookies expressly. However, the app may use third party
+code and libraries that use cookies to assemble information and improve their services.
+You have the selection to either accept or refuse these cookies and acknowledge once a
+cookie is being sent to your device. If you choose to refuse our cookies, you will not be able to
+use some elements of this Service.
+
     </string>
     <string name="Privacy_policy_Service_Providers">
-        We may employ third-party companies and individuals due to the following reasons:
+        We may use third-party companies and folks because of later reasons:
+To facilitate our Service;
+To provide the Service on our behalf;
+To perform Service-related services; or
+To assist U.S.A. in analyzing, but our Service is used.
+We want {to information rm|to tell} users of this Service that these third parties have access
+to your Personal info. These service suppliers will perform the tasks assigned on our behalf.
+However, they are indebted to not disclose or use the knowledge for the opposite purpose.
         "\n"
-
-        <ul>
-            <li>
-                To facilitate our Service;
-            </li>
-            "\n"
-            <li>
-                 To provide the Service on our behalf;
-            </li>
-            "\n"
-            <li>
-                 To perform Service-related services; or
-            </li>
-            "\n"
-            <li>
-                 To assist us in analyzing how our Service is used.
-            </li>
-        </ul>
-        "\n"
-        "\n"
-        We want to inform users of this Service that these third parties have
-        access to your Personal Information. The reason is to perform the tasks
-        assigned to them on our behalf. However, they are obligated not to disclose
-        or use the information for any other purpose.
 
     </string>
     <string name="Privacy_policy_Security">
-        We value your trust in providing us your Personal Information, thus we are striving to
-        use commercially acceptable means of protecting it. But remember that no method of transmission
-        over the internet, or method of electronic storage is 100% secure and reliable, and we cannot
-        guarantee its absolute security.
+        We try our utmost to use personal information provided by you to verify your safety and
+security. But detain mind that no technique of transmission over the online, or technique of
+electronic storage is 100% secure and reliable, that we tend to cannot guarantee its absolute
+security.
     </string>
     <string name="Privacy_policy_Links">
-        his Service may contain links to other sites. If you click on a third-party link,
-        you will be directed to that site. Note that these external sites are not operated by us.
-        Therefore, we strongly advise you to review the Privacy Policy of these websites. We have no
-        control over and assume no responsibility for the content, privacy policies, or practices of
-        any third-party sites or services.
+        This Service may contain links to various sites. If you click on a third-party link, you will be
+directed to it computing machine. Note that these external sites are not operated by U.S.A. So
+we tend to advise every user to review the privacy policy before using these websites. We have
+no management over and assume no responsibility for the content, privacy policies, or
+practices of any third-party sites or services.
+
     </string>
-    <string name="Privacy_policy_Children">These Services do not address anyone under the age of 13.
-        We do not knowingly collect personally identifiable information from children under 13 years
-        of age. In the case we discover that a child under 13 has provided us with personal
-        information, we immediately delete this from our servers. If you are a parent or guardian and
-        you are aware that your child has provided us with personal information, please contact us so
-        that we will be able to do necessary actions.
+    <string name="Privacy_policy_Children">
+        These Services do not address anyone below the age of 13. We tend to do not knowingly
+collect face to face placeable information from youngsters below 13 years recent. Within the
+case we tend to get that a baby below 13 has provided U.S.A. with personal information, we
+tend to straightaway delete this from our servers. If you are a parent or guardian, and you are aware that your child has provided U.S.A. with personal information, please contact U.S.A.
+so as that we will be able to do necessary actions.
+
     </string>
     <string name="Privacy_policy_Changes">
-        We may update our Privacy Policy from time to time. Thus, you are advised to review
-        this page periodically for any changes. We will notify you of any changes by posting
-        the new Privacy Policy on this page.
-        This policy is effective as of 2021-06-25.
+        We may update our Privacy Policy from time to time. Changes to our privacy policy would be
+timely updated, so it is powerfully urged to travel to our page oft. {we will|we will|we unit going
+to} apprize all our service users if any new changes square measure created in our privacy
+policy on this page.
+This policy is effective as of 2021-06-25
     </string>
     <string name="Privacy_policy_Contact_Us">
-        If you have any questions or suggestions about our Privacy Policy, do not
-        hesitate to contact us at
+        If you have any queries or suggestions concerning our Privacy Policy, do not hesitate to
+contact U.S.A. at
     </string>
 
     <string name="Privacy_policy_Contact_Us_id">
-        <u>support@hapini.in</u>
+        <u>support@hapini.in "\n"</u>
     </string>
     <string name="Passcode">passcode</string>
 
