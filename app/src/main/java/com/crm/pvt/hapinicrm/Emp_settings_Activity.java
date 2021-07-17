@@ -77,7 +77,7 @@ public class Emp_settings_Activity extends AppCompatActivity {
         fullNameEditText =  findViewById(R.id.SEName);
         fullNameEditText.setText("Name  :  "+prevalent.CurrentOnlineEmloyee.getName());
         passcodeText =  findViewById(R.id.SEIMEI);
-        passcodeText.setText("IMEI  :  "+ prevalent.CurrentOnlineEmloyee.getIMEI());
+        passcodeText.setText("Passcode  :  "+ prevalent.CurrentOnlineEmloyee.getIMEI());
         emailText = findViewById(R.id.SEemail);
         emailText.setText("Email  :  " + prevalent.CurrentOnlineEmloyee.getMail());
         profileChangeTextBtn = findViewById(R.id.SEimage);

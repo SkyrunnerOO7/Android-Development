@@ -125,7 +125,7 @@ public class LoginActivity extends AppCompatActivity {
                     LoginEmail.setHint("Enter passcode");
                     parentDBname = "Admin";
                 }else if(choose_category[0].contentEquals("Employee")){
-                    LoginEmail.setHint("Enter IMEI");
+                    LoginEmail.setHint("Enter Passcode");
                     parentDBname = "Employee";
                 }/*else if(choose_category[0].contentEquals("Developers")){
                     LoginEmail.setHint("Enter Number");

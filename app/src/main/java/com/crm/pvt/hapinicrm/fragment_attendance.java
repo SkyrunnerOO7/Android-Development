@@ -94,7 +94,6 @@ public class fragment_attendance extends DialogFragment {
 
 
 
-
             list.add(0,currentDate+"  "+curTime);
             MarkAttendance(currentDate,curTime);
 
