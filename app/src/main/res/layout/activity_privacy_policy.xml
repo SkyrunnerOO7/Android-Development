@@ -201,7 +201,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
-                    android:text="Information Collection and Use "
+                    android:text="Information assortment and Use "
                     android:textColor="#ffffff"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -376,7 +376,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
-                    android:text="Links to Other Sites "
+                    android:text="Links to Various Sites "
                     android:textColor="#ffffff"
                     android:textSize="20sp"
                     android:textStyle="bold" />

@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -24,6 +26,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -58,6 +65,61 @@ public class callingFeedbackActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calling_feedback);
+
+
+        String filename;
+        filename="checkCall";
+        StringBuffer stringBuffer = new StringBuffer();
+        try {
+            //Attaching BufferedReader to the FileInputStream by the help of InputStreamReader
+            BufferedReader inputReader = new BufferedReader(new InputStreamReader(
+                    callingFeedbackActivity.this.openFileInput(filename)));
+            String inputString;
+            //Reading data line by line and storing it into the stringbuffer
+            while ((inputString = inputReader.readLine()) != null) {
+                stringBuffer.append(inputString + "\n");
+            }
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String fun1=stringBuffer.toString().trim();
+        //fun1="true";
+        if(!fun1.isEmpty())
+        {
+            String data;
+            data="data";
+
+            FileOutputStream fos;
+            try {
+                fos = callingFeedbackActivity.this.openFileOutput(filename, Context.MODE_PRIVATE);
+                //default mode is PRIVATE, can be APPEND etc.
+                fos.write(data.getBytes());
+                fos.close();
+
+
+            } catch (FileNotFoundException e) {e.printStackTrace();}
+            catch (IOException e) {e.printStackTrace();}
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         spinner_calling_feedback=findViewById(R.id.spinner_calling_feedback);
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS_IMEI,MODE_PRIVATE);
         CurEmpIMEI =sharedPreferences.getString("text","Empty");

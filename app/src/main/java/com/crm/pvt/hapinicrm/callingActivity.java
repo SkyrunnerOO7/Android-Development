@@ -9,6 +9,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -35,7 +36,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -97,6 +103,45 @@ public class callingActivity extends AppCompatActivity {
         phone=findViewById(R.id.caller_phone);
         date = findViewById(R.id.date);
         status = findViewById(R.id.status);
+
+        String filename;
+        filename="checkCall";
+        StringBuffer stringBuffer = new StringBuffer();
+        try {
+            //Attaching BufferedReader to the FileInputStream by the help of InputStreamReader
+            BufferedReader inputReader = new BufferedReader(new InputStreamReader(
+                    callingActivity.this.openFileInput(filename)));
+            String inputString;
+            //Reading data line by line and storing it into the stringbuffer
+            while ((inputString = inputReader.readLine()) != null) {
+                stringBuffer.append(inputString + "\n");
+            }
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String fun1=stringBuffer.toString().trim();
+        //fun1="true";
+        if(fun1.isEmpty())
+        {
+            String data;
+            data="false";
+
+            FileOutputStream fos;
+            try {
+                fos = callingActivity.this.openFileOutput(filename, Context.MODE_PRIVATE);
+                //default mode is PRIVATE, can be APPEND etc.
+                fos.write(data.getBytes());
+                fos.close();
+
+
+            } catch (FileNotFoundException e) {e.printStackTrace();}
+            catch (IOException e) {e.printStackTrace();}
+
+
+        }
 
         //back=findViewById(R.id.back_arrow_btn_caliing);
         /*back.setOnClickListener(new View.OnClickListener() {
@@ -232,10 +277,10 @@ public class callingActivity extends AppCompatActivity {
     }
 
 
-
     @Override
     public void onStart() {
 
+        //Toast.makeText(this, "OnStart", Toast.LENGTH_SHORT).show();
 
         if(isFirstTime()) {
             // Code to pop up attendance activicty
@@ -243,6 +288,7 @@ public class callingActivity extends AppCompatActivity {
             fragment_attendance.show(getSupportFragmentManager(), "MyFragment");
         }
         super.onStart();
+
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Employee");
         databaseReference.addValueEventListener(new ValueEventListener() {
