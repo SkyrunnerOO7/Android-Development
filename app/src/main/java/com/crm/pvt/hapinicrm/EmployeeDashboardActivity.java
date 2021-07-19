@@ -215,21 +215,6 @@ public class EmployeeDashboardActivity extends AppCompatActivity {
 
 
 
-        // added new Code to pop up calling Fragment
-//        fragment_attendance fragment_attendance = new fragment_attendance(IMEI_emp);
-//        fragment_attendance.show(getSupportFragmentManager(), "MyFragment");
-
-//
-            if(isFirstTime()) {
-                // Code to pop up attendance activicty
-                fragment_attendance fragment_attendance = new fragment_attendance(IMEI_emp);
-                fragment_attendance.show(getSupportFragmentManager(), "MyFragment");
-            }
-//            else{
-//                fragment_calling fragment_calling = new fragment_calling(IMEI_emp);
-//               fragment_calling.show(getSupportFragmentManager(), "TAG");
-//            }
-
         super.onStart();
     }
     private void startTimer()
