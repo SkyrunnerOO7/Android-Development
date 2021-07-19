@@ -50,7 +50,7 @@ public class callingActivity extends AppCompatActivity {
 
     private static final int REQUEST_CALL = 1;
     ImageView calling_fragment;
-    TextView name;
+    TextView name,status,date;
     TextView city;
     TextView phone;
     LinearLayout back;
@@ -95,6 +95,8 @@ public class callingActivity extends AppCompatActivity {
         name=findViewById(R.id.caller_name);
         city=findViewById(R.id.caller_city);
         phone=findViewById(R.id.caller_phone);
+        date = findViewById(R.id.date);
+        status = findViewById(R.id.status);
 
         //back=findViewById(R.id.back_arrow_btn_caliing);
         /*back.setOnClickListener(new View.OnClickListener() {
@@ -352,6 +354,29 @@ public class callingActivity extends AppCompatActivity {
 
         int pos = Integer.parseInt(s);
         if(DataList.size() > pos) {
+
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.child("Feedback").child(DataList.get(pos).getContact()).exists()) {
+                        String Date = (String) snapshot.child("Feedback").child(DataList.get(pos).getContact()).child("LastDate").getValue();
+                        String Status = (String) snapshot.child("Feedback").child(DataList.get(pos).getContact()).child("Status").getValue();
+                        date.setText(Date);
+                        status.setText(Status);
+                    }
+
+
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+
             name.setText(DataList.get(pos).getName());
             city.setText(DataList.get(pos).getCity());
             phone.setText(DataList.get(pos).getContact());
