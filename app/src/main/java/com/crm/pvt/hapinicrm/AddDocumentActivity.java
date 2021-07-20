@@ -663,22 +663,22 @@ public class AddDocumentActivity extends AppCompatActivity {
         canvas.drawText("Sample Pdf",550,80,titlePaint1);
         titlePaint1.setTextSize(27);
 
-        bmp= BitmapFactory.decodeResource(getResources(),R.drawable.customerb2b);
+        bmp= BitmapFactory.decodeResource(getResources(),R.drawable.customerb2b2);
         scalebmp= Bitmap.createScaledBitmap(bmp,900,200,false);
         canvas.drawText("CustomerB2B Sample",220,200,titlePaint1);
         canvas.drawBitmap(scalebmp,110,230,titlePaint1);
 
-        bmp= BitmapFactory.decodeResource(getResources(),R.drawable.customerb2c);
+        bmp= BitmapFactory.decodeResource(getResources(),R.drawable.customerb2c2);
         scalebmp= Bitmap.createScaledBitmap(bmp,900,200,false);
         canvas.drawText("CustomerB2C Sample",220,530,titlePaint1);
         canvas.drawBitmap(scalebmp,110,560,titlePaint1);
 
-        bmp= BitmapFactory.decodeResource(getResources(),R.drawable.candidate);
+        bmp= BitmapFactory.decodeResource(getResources(),R.drawable.candiadte1);
         scalebmp= Bitmap.createScaledBitmap(bmp,900,200,false);
         canvas.drawText("Candidate Sample",220,830,titlePaint1);
         canvas.drawBitmap(scalebmp,110,860,titlePaint1);
 
-        bmp= BitmapFactory.decodeResource(getResources(),R.drawable.vendors);
+        bmp= BitmapFactory.decodeResource(getResources(),R.drawable.vendors2);
         scalebmp= Bitmap.createScaledBitmap(bmp,900,200,false);
         canvas.drawText("Vendors Sample",220,1130,titlePaint1);
         canvas.drawBitmap(scalebmp,110,1160,titlePaint1);
