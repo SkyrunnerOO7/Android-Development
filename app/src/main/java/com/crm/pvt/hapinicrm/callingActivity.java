@@ -51,6 +51,8 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class callingActivity extends AppCompatActivity {
 
@@ -190,6 +192,15 @@ public class callingActivity extends AppCompatActivity {
                 }
                 makePhoneCall();
 
+                Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        startActivity(new Intent(getApplicationContext(), callingFeedbackActivity.class));
+                        finish();
+                    }
+                }, 7000);
+
 
 
             }
@@ -204,6 +215,8 @@ public class callingActivity extends AppCompatActivity {
 
         if(ContextCompat.checkSelfPermission(callingActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(callingActivity.this,new String[]{Manifest.permission.CALL_PHONE},REQUEST_CALL );
+
+
         }
         else{
             String dial = "tel:" + phoneNumber;
