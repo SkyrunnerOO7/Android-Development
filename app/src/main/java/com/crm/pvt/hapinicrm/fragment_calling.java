@@ -39,7 +39,6 @@ import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
 public class fragment_calling extends DialogFragment {
     /*ImageView calling_fragment;
     TextView name;
