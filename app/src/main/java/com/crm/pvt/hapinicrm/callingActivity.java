@@ -3,6 +3,7 @@ package com.crm.pvt.hapinicrm;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
+//import
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -392,11 +393,16 @@ public class callingActivity extends AppCompatActivity {
     private void getCounter(String type, ArrayList<Data> dataList) {
         DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference();
         final String[] position = new String[1];
+        position[0]="n";
         databaseReference1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Toast.makeText(callingActivity.this, type, Toast.LENGTH_SHORT).show();
 
+                //position[0]="2";
                 position[0] =  snapshot.child(type).getValue().toString();
+
+
 
                 set_data(position[0]);
 

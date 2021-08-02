@@ -94,6 +94,7 @@ public class ActiveUserActivity extends AppCompatActivity {
         switchCompat = findViewById(R.id.switch1);
         switchCompat.setChecked(true);
         sorting = findViewById(R.id.sortAU);
+        countadmin=0;
 
 
 
@@ -263,6 +264,7 @@ public class ActiveUserActivity extends AppCompatActivity {
                         .setQuery(dbref, Admin.class)
                         .build();
 
+
         FirebaseRecyclerAdapter<Admin, AdminlistViewHolder> adpater = new FirebaseRecyclerAdapter<Admin, AdminlistViewHolder>(options) {
             @Override
             protected void onBindViewHolder(AdminlistViewHolder holder, int position, Admin model) {
@@ -361,6 +363,7 @@ public class ActiveUserActivity extends AppCompatActivity {
                 holder.phone.setText("Phone : " +model.getPhone());
                 holder.profile.setText("profile : " + "Admin");
                 Picasso.get().load(model.getImage()).into(holder.image);
+                holder.Username.setText("Name : ");
 
 
                 holder.DownloadUser.setOnClickListener(new View.OnClickListener() {
@@ -671,17 +674,16 @@ public class ActiveUserActivity extends AppCompatActivity {
 
     }
 
-    public void EmployeeFirebase()
-    {
+    public void EmployeeFirebase() {
 
         empref.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull  DataSnapshot snapshot) {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
                 countemp = (int) snapshot.getChildrenCount();
             }
 
             @Override
-            public void onCancelled(@NonNull  DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
@@ -690,31 +692,30 @@ public class ActiveUserActivity extends AppCompatActivity {
                         .setQuery(empref, Employee.class)
                         .build();
 
-        FirebaseRecyclerAdapter<Employee,EmplistViewHolder> empadapter = new FirebaseRecyclerAdapter<Employee, EmplistViewHolder>(empoptions) {
+        FirebaseRecyclerAdapter<Employee, EmplistViewHolder> empadapter = new FirebaseRecyclerAdapter<Employee, EmplistViewHolder>(empoptions) {
             @Override
             protected void onBindViewHolder(@NonNull ActiveUserActivity.EmplistViewHolder holder, int position, @NonNull Employee model) {
-                holder.Username.setText("Name : "+model.getName());
-                holder.Passcode.setText("Passcode : "+model.getIMEI());
-                holder.password.setText("password : "+model.getPassword());
-                holder.mailED.setText("MailID : " +model.getMail());
-                holder.city.setText("City : " +model.getCity());
-                holder.phone.setText("Phone : " +model.getPhone());
+                holder.Username.setText("Name : " + model.getName());
+                holder.Passcode.setText("Passcode : " + model.getIMEI());
+                holder.password.setText("password : " + model.getPassword());
+                holder.mailED.setText("MailID : " + model.getMail());
+                holder.city.setText("City : " + model.getCity());
+                holder.phone.setText("Phone : " + model.getPhone());
                 holder.profile.setText("profile : " + "Employee");
-                holder.area.setText("Area : "+model.getArea());
-                holder.by.setText("By : "+model.getAdminName());
-                holder.date.setText("Date : "+model.getDate());
-                holder.time.setText("Time : "+model.getTime());
+                holder.area.setText("Area : " + model.getArea());
+                holder.by.setText("By : " + model.getAdminName());
+                holder.date.setText("Date : " + model.getDate());
+                holder.time.setText("Time : " + model.getTime());
 
 
-                if(model.getVerified().equals("true"))
-                {
+                if (model.getVerified().equals("true")) {
                     holder.verified.setVisibility(View.VISIBLE);
                 }
                 holder.verifyemp.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent i=new Intent(ActiveUserActivity.this,VerifyEmployee.class);
-                        i.putExtra("imei",model.getIMEI());
+                        Intent i = new Intent(ActiveUserActivity.this, VerifyEmployee.class);
+                        i.putExtra("imei", model.getIMEI());
                         startActivity(i);
                     }
                 });
@@ -725,16 +726,16 @@ public class ActiveUserActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         Toast.makeText(ActiveUserActivity.this, "Downloaded", Toast.LENGTH_SHORT).show();
-                        createEmployeePdf(model.getName(),model.getIMEI(),model.getPassword(),model.getMail(),model.getCity(),model.getPhone(),model.getUrl(),model.getArea(),model.getAdminName(),model.getDate(),model.getTime());
+                        createEmployeePdf(model.getName(), model.getIMEI(), model.getPassword(), model.getMail(), model.getCity(), model.getPhone(), model.getUrl(), model.getArea(), model.getAdminName(), model.getDate(), model.getTime());
                     }
                 });
 
                 holder.attE.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(getApplicationContext(),Attendance_Activity.class);
-                        intent.putExtra("Passcode",model.getIMEI());
-                        intent.putExtra("profile","Employee");
+                        Intent intent = new Intent(getApplicationContext(), Attendance_Activity.class);
+                        intent.putExtra("Passcode", model.getIMEI());
+                        intent.putExtra("profile", "Employee");
                         startActivity(intent);
                     }
                 });
@@ -750,11 +751,11 @@ public class ActiveUserActivity extends AppCompatActivity {
                         builder.setItems(options, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int i) {
-                                if(i==0){
+                                if (i == 0) {
                                     String uID = getRef(position).getKey();
                                     RemoveEmp(uID);
 
-                                }else{
+                                } else {
                                     finish();
                                 }
 
@@ -766,24 +767,21 @@ public class ActiveUserActivity extends AppCompatActivity {
 
                 holder.add.setOnClickListener(view -> {
 
-                    if(holder.Limit.getText().toString().isEmpty())
-                    {
+                    if (holder.Limit.getText().toString().isEmpty()) {
                         Toast.makeText(ActiveUserActivity.this, "Please enter limit", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
+                    } else {
                         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Employee");
-                        HashMap<String,Object> map = new HashMap<>();
-                        map.put("DailyLimit",holder.Limit.getText().toString());
+                        HashMap<String, Object> map = new HashMap<>();
+                        map.put("DailyLimit", holder.Limit.getText().toString());
                         databaseReference.child(model.getIMEI()).updateChildren(map);
 
-                        Toast.makeText(getApplicationContext(),"Limit Changed Successfully",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Limit Changed Successfully", Toast.LENGTH_SHORT).show();
 
                     }
 //                    holder.Limit.setText(String.valueOf(Integer.parseInt(holder.Limit.getText().toString()+1)));
 
 
                 });
-
 
 
             }
@@ -793,14 +791,14 @@ public class ActiveUserActivity extends AppCompatActivity {
 
             @Override
             public EmplistViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.emp_display_layout,parent,false);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.emp_display_layout, parent, false);
                 return new EmplistViewHolder(view);
             }
         };
 
         list.setAdapter(empadapter);
         empadapter.startListening();
-        }
+    }
 
 
     public void EmployeeFirebasesearch(String s) {
