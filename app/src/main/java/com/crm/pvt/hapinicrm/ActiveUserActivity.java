@@ -66,6 +66,7 @@ import java.util.Map;
  * http://skywarrior09.gq
  */
 
+
 public class ActiveUserActivity extends AppCompatActivity {
 
     private RecyclerView list;
@@ -120,6 +121,7 @@ public class ActiveUserActivity extends AppCompatActivity {
         list.setLayoutManager(new LinearLayoutManager(this));
 
 
+        //new changes Comment
 
 
 
